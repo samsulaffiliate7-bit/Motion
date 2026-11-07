@@ -18,7 +18,12 @@ parts.append({"text": "Tuliskan kata demi kata (bahasa Indonesia) apa yang terde
 body = {"contents": [{"parts": parts}], "generationConfig": {"responseMimeType": "application/json"}}
 req = urllib.request.Request("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent", json.dumps(body).encode(),
                              {"Content-Type": "application/json", "x-goog-api-key": os.environ.get("GOOGLE_API_KEY", "dummy")})
-r = json.load(urllib.request.urlopen(req, timeout=300))
+import time
+for k in range(4):   # 503/429 = server sibuk, coba lagi
+    try: r = json.load(urllib.request.urlopen(req, timeout=300)); break
+    except urllib.error.HTTPError as e:
+        if e.code not in (429, 500, 503) or k == 3: raise
+        time.sleep(15 * (k + 1))
 txt = r["candidates"][0]["content"]["parts"][0]["text"]; got = json.loads(txt)
 if isinstance(got, list): got = {k: v for x in got for k, v in x.items()} if all(isinstance(x, dict) for x in got) else dict(zip(ids, got))
 if set(got) != set(ids): got = dict(zip(ids, got.values()))   # kunci kadang ditulis lain (mis. s100), cocokkan urutan
