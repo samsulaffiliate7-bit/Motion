@@ -5,7 +5,7 @@ Pipeline video pendek 9:16 (TikTok, Instagram Reels, YouTube Shorts) untuk 6 aku
 ## Alur repo
 - `main` = versi terbaru untuk semua akun. Tiap sesi kerja di branch sendiri, lalu digabung ke `main` lewat pull request. Pemisahan per akun memakai folder (`motion/accounts/<akun>`, `motion/episodes/<akun>/<ep>`), BUKAN branch per akun.
 - Repo: `samsulaffiliate7-bit/Motion` (pindah dari `threadspoco-dev/Sandbox` 7 Nov 2026). Satu repo untuk 6 akun; kode mesin dipakai bersama, isi per akun dipisah folder.
-- Satu lingkungan cloud per akun (keputusan pemilik 7 Nov): "Motion - <Akun>" (Dompet, Kades, Hewan, Balai, Denah, Meja), semuanya repo `samsulaffiliate7-bit/Motion`. Satu sesi = satu akun; jangan kerjakan akun lain di sesi itu. Lingkungan "Default"/"Tes" = umum, untuk kerja mesin/dokumen lintas akun (tanpa kunci TTS akun).
+- Tiga lingkungan cloud, masing-masing 2 akun (keputusan pemilik 7 Nov): "Motion - Kades Denah", "Motion - Dompet Meja", "Motion - Balai Hewan", semuanya repo `samsulaffiliate7-bit/Motion`. Satu sesi hanya mengerjakan akun milik lingkungan sesi itu; jangan kerjakan akun pasangan lain. Kuota TTS (10/hari per model per kunci) dibagi dua akun sepasang: Kades+Denah sama-sama flash-lite, Dompet+Meja sama-sama flash, Balai (flash-lite) + Hewan (flash) beda model. Lingkungan "Default"/"Tes" = umum, untuk kerja mesin/dokumen lintas akun (tanpa kunci TTS akun).
 - Beberapa akun milik customer. Tiap lingkungan memakai kunci Gemini PEMILIK akun itu (network secret, diisi pemilik di pengaturan lingkungan, bukan di chat). Kunci customer hanya untuk akun customer itu; jangan dipakai untuk akun lain. Kuota TTS mengikuti proyek Google pemilik kunci.
 - Cara menjalankan pipeline dan struktur folder: `motion/README.md`.
 
@@ -70,7 +70,7 @@ Baca dulu:
 ## Status (7 Nov 2026)
 - Terjadwal di Repliz: 7 Nov (36 posting), 8 Nov (33), 9 Nov (24: dompet ep006/ep007, meja ep006/ep007, balai jalan/viral, hewan ep006/ep007). Daftar di `docs/jadwal/`.
 - Berikutnya untuk Dompet/Meja/Balai/Hewan: video 10 Nov dengan format yang belum dipakai (lihat KONSEP-V3 dan BANK-TOPIK v3).
-- Repo pindah ke `samsulaffiliate7-bit/Motion` (7 Nov). Lingkungan "Motion - <Akun>" perlu dibuat/dicek di akun Claude ini; kunci Gemini tiap lingkungan diisi pemilik akunnya (network secret).
+- Repo pindah ke `samsulaffiliate7-bit/Motion` (7 Nov). 3 lingkungan pasangan dibuat manual oleh pemilik; kunci Gemini tiap lingkungan diisi pemilik akunnya (network secret).
 - Branch lama `claude/tes-jhfxih` sudah boleh dihapus (jadwal 6 Nov sudah tayang); penghapusan dari sesi ditolak izin, pemilik bisa menghapus lewat GitHub.
 - Kades: Hari 3 menunggu voting Hari 2 (A rumah deret / B rumah berjarak, anggaran 75 jt) setelah tayang 8 Nov.
 - Denah: Hari 2 menunggu voting Hari 1 (A perumahan / B kawasan usaha) setelah tayang 8 Nov.
