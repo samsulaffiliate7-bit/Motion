@@ -18,7 +18,7 @@ Baca dulu:
 - `docs/jadwal/`: daftar jadwal posting per tanggal.
 
 ## Keputusan pemilik (jangan diubah tanpa tanya)
-- 2 video per hari per akun. Durasi 60-120 detik.
+- 3 video per hari per akun (naik dari 2, keputusan pemilik 7 Nov, demi growth). Durasi 60-120 detik.
 - Tidak ada label "cerita fiksi" di dalam video (cukup di bio). Tidak ada bar progres/durasi.
 - Tanpa musik latar.
 - Semua akun 3D (three.js low-poly). Visual dan gerak tiap akun WAJIB beda (latar, kamera, transisi, gerak). Tiap kejadian = lokasi 3D baru; variasikan shot, jangan template yang sama.
