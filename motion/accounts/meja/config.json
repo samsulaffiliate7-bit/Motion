@@ -1,0 +1,26 @@
+{
+ "id": "meja",
+ "name": "Meja Seberang Bos",
+ "handle": "@mejaseberangbos",
+ "tagline": "satu masalah kerja, dua sisi",
+ "style": "kantor",
+ "theme": {
+  "bg": "#DCE3EC",
+  "bg2": "#C9D4E2",
+  "accent": "#F28C28",
+  "staf": "#6C8CB0",
+  "bos": "#F28C28",
+  "ink": "#1E2A38",
+  "gold": "#F5C542",
+  "card": "#F5F7FA",
+  "font": "Poppins",
+  "capInk": "#1E2A38"
+ },
+ "tts": {
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Puck"
+ },
+ "disclaimer": "",
+ "logo": "assets/logos/small/06-meja-seberang-bos.png",
+ "engine": "3d"
+}

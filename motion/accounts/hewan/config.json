@@ -1,0 +1,25 @@
+{
+ "id": "hewan",
+ "name": "Hewan Berdasi Kotor",
+ "handle": "@hewanberdasikotor",
+ "tagline": "fabel kantor, kos, pasar",
+ "style": "fabel",
+ "theme": {
+  "bg": "#0B1026",
+  "bg2": "#1B2347",
+  "accent": "#F28C28",
+  "moon": "#F5D76E",
+  "ink": "#0B1026",
+  "gold": "#F5D76E",
+  "card": "#1B2347",
+  "font": "Baloo",
+  "capInk": "#2A1A10"
+ },
+ "tts": {
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Algenib"
+ },
+ "disclaimer": "",
+ "logo": "assets/logos/small/03-hewan-berdasi-kotor.png",
+ "engine": "3d"
+}

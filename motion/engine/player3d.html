@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Baloo;font-weight:800;src:url(../assets/fonts/baloo-2-latin-800-normal.woff2)}
+@font-face{font-family:Baloo;font-weight:700;src:url(../assets/fonts/baloo-2-latin-700-normal.woff2)}
+@font-face{font-family:Nunito;font-weight:800;src:url(../assets/fonts/nunito-latin-800-normal.woff2)}
+@font-face{font-family:Fredoka;font-weight:600;src:url(../assets/fonts/fredoka-latin-600-normal.woff2)}
+@font-face{font-family:Fredoka;font-weight:700;src:url(../assets/fonts/fredoka-latin-700-normal.woff2)}
+@font-face{font-family:Poppins;font-weight:600;src:url(../assets/fonts/poppins-latin-600-normal.woff2)}
+@font-face{font-family:Poppins;font-weight:700;src:url(../assets/fonts/poppins-latin-700-normal.woff2)}
+@font-face{font-family:Poppins;font-weight:800;src:url(../assets/fonts/poppins-latin-800-normal.woff2)}
+html,body{margin:0;padding:0;background:#000}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Baloo,sans-serif;font-weight:800}
+#gl{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#ov{position:absolute;left:0;top:0;width:1080px;height:1920px}
+</style></head><body><div id="stage"><canvas id="gl" width="1080" height="1920"></canvas><div id="ov"></div></div>
+<script type="module">
+// Pemutar 3D: adegan three.js per shot + lapisan DOM (caption kata per kata, HUD, judul, label).
+import { THREE, clamp, lerp, seg, E } from './w3d/kit.js';
+const PX = new Set(['left','top','right','bottom','width','height','fontSize','padding']);
+const ab = (css, parent, html) => { const e = document.createElement('div'); e.style.position = 'absolute'; for (const k in css) { const v = css[k]; e.style[k] = (typeof v === 'number' && PX.has(k)) ? v + 'px' : v } if (html != null) e.innerHTML = html; if (parent) parent.appendChild(e); return e };
+const pop = (el, p, extra = '') => { el.style.opacity = p > 0 ? 1 : 0; el.style.transform = `${extra} scale(${p > 0 ? E.back(Math.min(1, p)) : 0})` };
+let TL, TH, R, ov, capEl, shots = [], style, cur = -1;
+const V = new THREE.Vector3();
+window.init = async tl => {
+  TL = tl; TH = tl.theme; ov = document.getElementById('ov');
+  await Promise.all(['800 40px Baloo','700 40px Baloo','800 40px Poppins','700 40px Poppins','700 40px Fredoka','800 40px Nunito'].map(f => document.fonts.load(f)));
+  ov.style.fontFamily = `${TH.font || 'Baloo'},Baloo,sans-serif`;
+  R = new THREE.WebGLRenderer({ canvas: document.getElementById('gl'), antialias: true, preserveDrawingBuffer: true });
+  R.setPixelRatio(1); R.setSize(1080, 1920, false); R.shadowMap.enabled = true; R.shadowMap.type = THREE.PCFSoftShadowMap;
+  R.toneMapping = THREE.ACESFilmicToneMapping; R.toneMappingExposure = 1.05; R.outputColorSpace = THREE.SRGBColorSpace;
+  const cue = (s, rx, fb) => { if (!rx) return fb; const c = TL.caps.find(c => c.t0 >= s.start - .01 && c.t0 < s.start + s.dur && rx.test(c.text)); return c ? c.t0 - s.start - .15 : fb };
+  const ctx = { TL, TH, ab, pop, ov, cue, C: (s, x, fb) => x == null ? fb : (typeof x === 'number' ? x : cue(s, new RegExp(x, 'i'), fb)),
+    proj: (obj, cam, off = [0, 0, 0]) => { cam.updateMatrixWorld(); obj.updateWorldMatrix(true, false); V.set(...off).applyMatrix4(obj.matrixWorld).project(cam); return [(V.x + 1) / 2 * 1080, (1 - V.y) / 2 * 1920, V.z] } };
+  style = await import(`./w3d/${tl.style}.js`);
+  await style.setup(ctx);
+  for (const s of tl.scenes) { const root = ab({ left: 0, top: 0, width: 1080, height: 1920 }, ov); root.style.display = 'none'; const sh = style.SHOTS[s.type](s, root, ctx); sh.root = root; sh.s = s; shots.push(sh) }
+  style.chrome && style.chrome(ctx);
+  // logo
+  if (tl.brand.logo) { const b = ab({ right: 54, top: 58, width: 104, height: 104, borderRadius: '50%', background: '#fff', border: `6px solid ${TH.ink}`, overflow: 'hidden', zIndex: 8 }, ov); const im = document.createElement('img'); im.src = '../' + tl.brand.logo; Object.assign(im.style, { width: '100%', height: '100%', objectFit: 'cover' }); b.appendChild(im); await new Promise(r => { if (im.complete) r(); im.onload = r; im.onerror = r }) }
+  capEl = ab({ left: 50, top: 1450, width: 980, height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }, ov);
+  window.__ready = true;
+};
+window.renderAt = T => {
+  let idx = 0; TL.scenes.forEach((s, i) => { if (T >= s.start) idx = i });
+  const sh = shots[idx], s = sh.s, t = Math.max(0, T - s.start);
+  shots.forEach((x, i) => x.root.style.display = i === idx ? 'block' : 'none');
+  sh.upd(t, s.dur, T);
+  if (sh.render) sh.render(R); else { R.setScissorTest(false); R.setViewport(0, 0, 1080, 1920); R.render(sh.scene, sh.cam) }
+  style.frame && style.frame(T, idx, t);
+  const c = TL.caps.find(c => T >= c.t0 && T < c.t1 + .08);
+  if (c) { const html = c.words.map(([w, h, tw]) => { const st = tw == null ? 0 : tw, q = seg(T, st, st + .14), vis = T >= st;
+      return `<span style="display:inline-block;${h ? 'color:#FFFFFF;' : ''}visibility:${vis ? 'visible' : 'hidden'};transform:scale(${vis ? .6 + .4 * E.back(q) : 1}) translateY(${(1 - q) * 12}px)">${w}</span>` }).join(' ');
+    capEl.innerHTML = `<div style="font-family:Baloo;font-size:78px;line-height:1.05;text-align:center;color:${TH.gold};-webkit-text-stroke:14px ${TH.capInk || TH.ink};paint-order:stroke fill;text-shadow:0 8px 0 ${TH.capInk || TH.ink}">${html}</div>` }
+  else capEl.innerHTML = '';
+};
+</script></body></html>

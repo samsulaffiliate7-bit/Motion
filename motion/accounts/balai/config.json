@@ -1,0 +1,26 @@
+{
+ "id": "balai",
+ "name": "Balai Desa Bocor",
+ "handle": "@balaidesabocor",
+ "tagline": "liputan warga dari desa rekaan",
+ "style": "warga",
+ "theme": {
+  "bg": "#F6E7CF",
+  "bg2": "#B5452B",
+  "accent": "#B5452B",
+  "bucket": "#3E7CB1",
+  "leaf": "#6B9A47",
+  "ink": "#3A1F14",
+  "gold": "#F2C14E",
+  "card": "#FFF8EA",
+  "font": "Fredoka",
+  "capInk": "#3A1F14"
+ },
+ "tts": {
+  "model": "gemini-3.8-flash-lite-tts",
+  "voice": "Charon"
+ },
+ "disclaimer": "",
+ "logo": "assets/logos/small/04-balai-desa-bocor.png",
+ "engine": "3d"
+}

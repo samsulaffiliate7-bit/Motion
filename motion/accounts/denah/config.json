@@ -1,0 +1,25 @@
+{
+ "id": "denah",
+ "name": "Denah Rumah Dunia",
+ "handle": "@denahrumahdunia",
+ "tagline": "bumi kosong, kalian yang menentukan isinya",
+ "style": "bumi",
+ "theme": {
+  "bg": "#0E2A47",
+  "accent": "#D9772B",
+  "green": "#2E7D5B",
+  "sky": "#9FD3F0",
+  "ink": "#13324F",
+  "gold": "#FFC93C",
+  "card": "#FFFBF2",
+  "font": "Fredoka",
+  "capInk": "#3A1F14"
+ },
+ "tts": {
+  "model": "gemini-3.8-flash-lite-tts",
+  "voice": "Sulafat"
+ },
+ "disclaimer": "",
+ "logo": "assets/logos/small/05-denah-rumah-dunia.png",
+ "engine": "3d"
+}

@@ -1,0 +1,7 @@
+.env
+node_modules/
+motion/out/
+__pycache__/
+
+# video baru di-host di storage Repliz, bukan di repo
+motion/media/*.mp4

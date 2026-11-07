@@ -1,0 +1,27 @@
+{
+ "id": "kades",
+ "name": "Kades Magang Juara",
+ "handle": "@kadesmagangjuara",
+ "tagline": "bangun desa dari lahan kosong",
+ "style": "desa3d",
+ "theme": {
+  "bg": "#DCEDC8",
+  "bg2": "#8BC34A",
+  "accent": "#FFC93C",
+  "green": "#8BC34A",
+  "dgreen": "#5E9B2F",
+  "cream": "#FFF6D6",
+  "ink": "#23411F",
+  "gold": "#FFC93C",
+  "card": "#FFF6D6",
+  "font": "Fredoka",
+  "capInk": "#23411F"
+ },
+ "tts": {
+  "model": "gemini-3.8-flash-lite-tts",
+  "voice": "Achird"
+ },
+ "disclaimer": "",
+ "logo": "assets/logos/small/02-kades-magang-juara.png",
+ "engine": "3d"
+}

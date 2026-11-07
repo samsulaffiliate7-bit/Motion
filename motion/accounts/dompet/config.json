@@ -1,0 +1,24 @@
+{
+ "id": "dompet",
+ "name": "Dompet Gue Nangis",
+ "handle": "@dompetguenangis",
+ "tagline": "cerita fiksi soal duit",
+ "theme": {
+  "bg": "#FCEBD0",
+  "bg2": "#F6DDB5",
+  "accent": "#C8501E",
+  "ink": "#4A2410",
+  "gold": "#F2B41B",
+  "card": "#FFF6E6",
+  "capInk": "#4A2410",
+  "font": "Baloo"
+ },
+ "tts": {
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Kore"
+ },
+ "disclaimer": "",
+ "logo": "assets/logos/small/01-dompet-gue-nangis.png",
+ "style": "nana",
+ "engine": "3d"
+}
