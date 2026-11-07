@@ -56,7 +56,7 @@ Baca dulu:
 - Hook: bikin penasaran + jelaskan isi video dalam ~5 detik pertama; frame pertama langsung "aksi".
 
 ## Akun 2 Kades: penonton memilih
-- Mulai 10 Nov (berlaku juga untuk Denah): 3 konten sehari = 2 episode utama (Hari N pagi/siang, Hari N+1 sore/malam; 1 video = 1 hari cerita) + 1 sampingan berlabel "FYI" tanpa voting.
+- Mulai 10 Nov (berlaku juga untuk Denah): 3 konten sehari = 2 episode utama (Hari N pagi/siang, Hari N+1 sore/malam; 1 video = 1 hari cerita) + 1 sampingan tanpa voting utama: label "SIDE QUEST" (Kades) dan "LORE BUMI" (Denah), keputusan pemilik 7 Nov. Isi/format sampingan bebas dan divariasikan, tiap video ditutup SATU ajakan interaksi yang jelas (tebak, kasih nama, skor, pilih aturan, dll), hasilnya disebut di video berikutnya.
 - Keputusan episode utama diambil dari interaksi penonton episode utama sebelumnya (TikTok, IG, YouTube, lewat Repliz): voting A/B, isi komentar, like, follower/subscriber. Jangan selalu voting + komentar; variasikan mekanismenya (mis. like menentukan penduduk, follower membuka fasilitas, komentar terbaik jadi kejadian). Catat angka di data episode.
 - Interaksi sepi/seri/belum ada (mis. episode sebelumnya baru tayang beberapa jam): Claude bebas menentukan sendiri biar serial tetap jalan, dan disebut di narasi ("kades memutuskan sendiri").
 
@@ -76,4 +76,6 @@ Baca dulu:
 - Kades: Hari 3 menunggu voting Hari 2 (A rumah deret / B rumah berjarak, anggaran 75 jt) setelah tayang 8 Nov.
 - Denah: Hari 2 menunggu voting Hari 1 (A perumahan / B kawasan usaha) setelah tayang 8 Nov.
 - Data awal performa (ep001, < 2 hari): Denah paling kuat (TikTok 59% bertahan di detik 3, IG 34 simpan); akun cerita banyak kehilangan penonton di 1-3 detik pertama.
+- Sampingan siap (7 Nov, belum dijadwalkan, menunggu cek pemilik): Kades `sq01` "kenapa nggak tanya warga" (9 Nov; mekanik komentar WARGA = +1 penduduk, hitung di Hari 3), `sq02` "desa belum punya nama" (10 Nov; usulan nama, like komentar terbanyak menang); Denah `lore01` tebak negara (9 Nov; skor + negara tujuan), `lore02` rumah vs pajak (10 Nov; komentar A/B/C aturan pajak kota).
+- Sinkron hari cerita (usulan, tunggu keputusan pemilik): 9 Nov Kades hanya sampingan, Denah Hari 2 + sampingan, supaya mulai 10 Nov keduanya sama-sama Hari 3 + Hari 4.
 - Belum ada: efek suara, jadwal otomatis harian, analisis mingguan pertama.
