@@ -1,6 +1,6 @@
 # BANK TOPIK (60 per akun)
 
-Cukup untuk ~30 hari dengan jadwal 2 video/hari/akun. Format: **topik** — hook (teks frame pertama + kalimat pembuka narasi).
+Cukup untuk ~30 hari dengan jadwal 2 video/hari/akun, atau ~20 hari dengan 3 video/hari (mulai 10 Nov 2026). Tambah topik sebelum habis. Format: **topik** — hook (teks frame pertama + kalimat pembuka narasi).
 
 Aturan pakai:
 - Tandai `[x]` setelah dipakai dan tulis tanggal + id episode. Jangan ulang topik yang sudah tayang di akun yang sama.

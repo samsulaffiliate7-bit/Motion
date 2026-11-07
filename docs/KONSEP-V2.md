@@ -62,7 +62,7 @@ Nama akun TETAP @denahrumahdunia / Denah Rumah Dunia (keputusan pemilik). "Bumi 
 
 **Isi informasi:** tiap keputusan bangunan diambil dari arsitektur nyata negara/kota itu (rumah adat, rumah modern khas, solusi iklim). Fakta wajib bersumber dan sumbernya di `episode.py`. Tetap ada kalimat "inspirasi, konsultasikan ke arsitek" kalau membahas denah untuk dibangun.
 
-**Slot harian:** slot 1 = episode utama "Hari N" (butuh voting 24 jam). Slot 2 = "Info Rumah Dunia": FYI singkat tentang rumah/bangunan dari negara yang sedang atau akan dikunjungi, ditutup ajakan komentar negara tujuan. Tidak butuh voting.
+**Slot harian:** slot 1 = episode utama "Hari N" (butuh voting 24 jam). Slot 2 = "Info Rumah Dunia": FYI singkat tentang rumah/bangunan dari negara yang sedang atau akan dikunjungi, ditutup ajakan komentar negara tujuan. Tidak butuh voting. Slot 3 (mulai 10 Nov 2026, 3 video/hari) = sampingan tambahan tanpa voting, bentuk menyusul (tanya pemilik).
 
 **Beda dengan Kades (wajib):** Kades = satu desa kecil, keputusan sehari-hari desa (sumur, balai, pos ronda), kamera dekat ala game isometrik. Denah = skala kota besar dan negara (zona kota, gedung tinggi, transportasi, bandara), kamera drone tinggi, orbit globe, dan terbang antar negara. Tokoh, palet, HUD, dan transisi berbeda.
 
