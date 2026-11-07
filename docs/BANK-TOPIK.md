@@ -1,6 +1,6 @@
 # BANK TOPIK (60 per akun)
 
-Cukup untuk ~30 hari dengan jadwal 2 video/hari/akun. Format: **topik** — hook (teks frame pertama + kalimat pembuka narasi).
+Awalnya cukup ~30 hari dengan 2 video/hari/akun; sejak 7 Nov 2026 jadwal 3 video/hari/akun, jadi bank cepat habis: tambah topik terus. Format: **topik** — hook (teks frame pertama + kalimat pembuka narasi).
 
 Aturan pakai:
 - Tandai `[x]` setelah dipakai dan tulis tanggal + id episode. Jangan ulang topik yang sudah tayang di akun yang sama.
@@ -90,12 +90,12 @@ Aturan pakai:
 - [ ] Mulai investasi pertama — "Uang 1 juta pertama buat investasi. Gue takut." [cek sumber, penegas]
 
 **v3 (format rotasi, lihat `docs/KONSEP-V3.md`; tokoh Nana atau Raka)**
-- [ ] [Mesin Waktu] Kopi 25 ribu sehari, dihitung 20 tahun + inflasi [cek sumber] — "Kopi 25 ribu ini, 20 tahun lagi harganya segini."
+- [x] [Mesin Waktu] Kopi 25 ribu sehari, dihitung 20 tahun + inflasi [cek sumber] — "Kopi 25 ribu ini, 20 tahun lagi harganya segini." (dompet ep009, 3D v3, 10 Nov 2026)
 - [ ] [Mesin Waktu] Uang 10 juta disimpan di lemari 10 tahun [cek sumber] — "Uang 10 juta di lemari. 10 tahun lagi tinggal 'segini'."
 - [ ] [Mesin Waktu] Mulai sisihkan umur 22 vs umur 32 (ilustrasi bunga majemuk, asumsi jelas) — "Beda mulai 10 tahun. Hasilnya beda segini."
 - [ ] [Dua Timeline] Raka: motor baru cicilan vs motor bekas + nabung selisih — "Motor sama-sama jalan. 3 tahun lagi saldonya beda jauh."
 - [ ] [Dua Timeline] Nana: pesta nikah besar vs sederhana + DP rumah — "Pestanya sehari. Cicilannya 3 tahun."
-- [ ] [Checklist Sebelum 30] 5 hal keuangan yang beres sebelum 30 — "5 hal ini kalau belum beres di umur 30, bahaya."
+- [x] [Checklist Sebelum 30] 5 hal keuangan yang beres sebelum 30 — "5 hal ini kalau belum beres di umur 30, bahaya." (dompet ep010, 3D v3, 10 Nov 2026)
 - [ ] [Checklist Sebelum 30] 3 pengeluaran yang gue stop umur 25 — "Umur 25 gue stop 3 hal ini. Tabungan langsung napas."
 - [x] [Bongkar Jebakan] Untung 10% per bulan = tanda bahaya + cek izin [cek sumber] — "Untung 10% per bulan? Ini hitungan kenapa mustahil." (dompet ep006, 3D v3, 6 Nov 2026)
 - [ ] [Bongkar Jebakan] "Titip dana" dan skema ajak 2 teman — "Temen nawarin 'titip dana'. Gue hitung dulu."
@@ -105,7 +105,7 @@ Aturan pakai:
 - [ ] [Mitos vs Fakta] "Emas pasti untung" (selisih harga beli-jual) [cek sumber] — "Beli emas hari ini, jual besok. Kok rugi?"
 - [ ] [Mitos vs Fakta] "Nabung aja cukup" vs inflasi [cek sumber] — "Rajin nabung, kok tetap nggak kebeli?"
 - [ ] [Ini yang Gue Lakuin] Raka pisah 4 pos tiap gajian — "Gaji gue 5,5 juta. Ini 4 pos yang gue pisah tiap tanggal 25."
-- [ ] [Ini yang Gue Lakuin] Nana isi dana darurat pelan-pelan — "Dana darurat 6 kali pengeluaran. Gue isi dari 200 ribu."
+- [x] [Ini yang Gue Lakuin] Nana isi dana darurat pelan-pelan — "Dana darurat 6 kali pengeluaran. Gue isi dari 200 ribu." (dompet ep008, 3D v3, 10 Nov 2026)
 - [ ] [Ini yang Gue Lakuin] Urutan pakai gaji pertama — "Gaji pertama gue nggak langsung buat jajan. Ini urutannya."
 - [ ] [Ini yang Gue Lakuin] Raka hitung untung bersih kerja sampingan — "Freelance dapat 2 juta. Bersihnya ternyata segini."
 - [ ] [Cerita Keputusan A/B] Bonus akhir tahun: liburan atau lunasi utang — "Bonus cair 4 juta. Liburan atau lunasin utang?"
@@ -542,11 +542,11 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 - [ ] Burnout yang nggak kelihatan — "Staf paling rajin tiba-tiba minta resign."
 
 **v3 (format rotasi, sudut pandang bergantian; lihat `docs/KONSEP-V3.md`)**
-- [ ] [Full POV Staf] Hari pertama: "pelajari sendiri ya" — "Hari pertama kerja, gue disuruh 'pelajari sendiri ya'."
+- [x] [Full POV Staf] Hari pertama: "pelajari sendiri ya" — "Hari pertama kerja, gue disuruh 'pelajari sendiri ya'." (meja ep008, 3D v3, 10 Nov 2026)
 - [ ] [Full POV Staf] Anak rantau: gaji habis buat kos dan makan — "Gaji kota besar. Sisanya kok kayak gaji kampung?"
 - [ ] [Full POV Bos] Manajer baru dijepit target atas dan tim bawah — "Jadi manajer ternyata: gaji naik dikit, beban naik 3x."
 - [ ] [Full POV Bos] Bos harus memberhentikan staf yang dia suka — "Staf terbaik gue. Dan gue yang harus bilang 'maaf'."
-- [ ] [Full POV Bos] Bos baca grup chat tim yang lupa ada dia — "Grup tim rame ngomongin gue. Mereka lupa gue di situ."
+- [x] [Full POV Bos] Bos baca grup chat tim yang lupa ada dia — "Grup tim rame ngomongin gue. Mereka lupa gue di situ." (meja ep009, 3D v3, 10 Nov 2026)
 - [x] [Seri Jenis Bos] Bos killer yang tidak pernah teriak — "Bos killer bukan yang teriak. Yang ini lebih serem." (meja ep006, 3D v3, 6 Nov 2026)
 - [ ] [Seri Jenis Bos] Bos micromanage update tiap jam — "Jam 9: progres? Jam 10: progres? Jam 11..."
 - [ ] [Seri Jenis Bos] Bos hilang saat ditanya, muncul saat deadline — "Ditanya seminggu nggak bales. Jam 4 sore: 'Kok belum?'"
@@ -558,7 +558,7 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 - [x] [Kamus HRD] "Mampu bekerja di bawah tekanan" — "Di lowongan: 'mampu bekerja di bawah tekanan'. Artinya..." (meja ep007)
 - [x] [Kamus HRD] "Gaji kompetitif" dan cara tanya angka saat interview — "'Gaji kompetitif.' Kompetitif sama siapa?" (meja ep007)
 - [x] [Kamus HRD] "Kami akan menghubungi Anda" — "Udah 3 minggu. 'Kami akan menghubungi Anda.'" (meja ep007)
-- [ ] [Hari 1 vs Bulan ke-6] Semangat jadi hambar — "Hari 1: datang jam 7. Bulan ke-6: ..."
+- [x] [Hari 1 vs Bulan ke-6] Semangat jadi hambar — "Hari 1: datang jam 7. Bulan ke-6: ..." (meja ep010, 3D v3, 10 Nov 2026)
 - [ ] [Split Staf vs Bos] Cuti mendadak sehari sebelum — "Staf: 'Besok cuti ya.' Bos: 'Besok presentasi klien.'"
 - [ ] [Split Staf vs Bos] Resign sebulan setelah naik gaji — "Baru naik gaji bulan lalu. Hari ini kirim surat resign."
 
