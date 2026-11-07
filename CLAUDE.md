@@ -17,7 +17,7 @@ Baca dulu:
 - `docs/jadwal/`: daftar jadwal posting per tanggal.
 
 ## Keputusan pemilik (jangan diubah tanpa tanya)
-- 2 video per hari per akun. Durasi 60-120 detik.
+- 3 video per hari per akun mulai 10 Nov 2026 (sebelumnya 2; keputusan pemilik 7 Nov). Durasi 60-120 detik.
 - Tidak ada label "cerita fiksi" di dalam video (cukup di bio). Tidak ada bar progres/durasi.
 - Tanpa musik latar.
 - Semua akun 3D (three.js low-poly). Visual dan gerak tiap akun WAJIB beda (latar, kamera, transisi, gerak). Tiap kejadian = lokasi 3D baru; variasikan shot, jangan template yang sama.
@@ -56,8 +56,9 @@ Baca dulu:
 - Hook: bikin penasaran + jelaskan isi video dalam ~5 detik pertama; frame pertama langsung "aksi".
 
 ## Akun 2 Kades: penonton memilih
-- Sebelum episode utama "Hari N" berikutnya, WAJIB baca komentar episode utama sebelumnya (TikTok, IG, YouTube) lewat Repliz, hitung A/B, catat di data episode. Komentar sepi/seri: kades memutuskan sendiri dan disebut di narasi.
-- Slot 1 = episode utama Hari N; slot 2 = episode sampingan tanpa voting.
+- Mulai 10 Nov (berlaku juga untuk Denah): 3 konten sehari = 2 episode utama (Hari N pagi/siang, Hari N+1 sore/malam; 1 video = 1 hari cerita) + 1 sampingan berlabel "FYI" tanpa voting.
+- Keputusan episode utama diambil dari interaksi penonton episode utama sebelumnya (TikTok, IG, YouTube, lewat Repliz): voting A/B, isi komentar, like, follower/subscriber. Jangan selalu voting + komentar; variasikan mekanismenya (mis. like menentukan penduduk, follower membuka fasilitas, komentar terbaik jadi kejadian). Catat angka di data episode.
+- Interaksi sepi/seri/belum ada (mis. episode sebelumnya baru tayang beberapa jam): Claude bebas menentukan sendiri biar serial tetap jalan, dan disebut di narasi ("kades memutuskan sendiri").
 
 ## Posting (Repliz)
 - ID akun di `docs/PROFIL-AKUN.md`. Akun lain di workspace (kidblirezky, azzlaffaa, my.ootd.kalcer) bukan bagian proyek, jangan diposting.

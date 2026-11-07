@@ -16,7 +16,7 @@ Revisi dari profil fase 1, ditambah masukan yang sudah disetujui pemilik akun (r
 ## Aturan umum semua akun (keputusan pemilik)
 
 **Jadwal dan durasi**
-- 2 video per hari per akun (12 video/hari total).
+- 3 video per hari per akun mulai 10 Nov 2026 (18 video/hari total); sebelumnya 2.
 - Durasi 60-120 detik. `build.py` memberi peringatan di luar rentang itu.
 - Tiap video beda topik dari video sebelumnya di akun yang sama. Ambil dari bank topik, tandai yang sudah dipakai.
 
