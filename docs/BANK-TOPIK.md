@@ -277,13 +277,13 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 - [x] [Pasar, Kucing pedagang] Timbangan dikurangi — "Beli sekilo. Sampai rumah 8 ons." (hewan ep007, 3D v3, 7 Nov 2026)
 - [ ] [Pasar] Harga naik menjelang hari raya — "Minggu lalu 30 ribu. Menjelang lebaran 55."
 - [ ] [Kampus, Beo] Titip absen — "Yang hadir 12. Yang absen 40."
-- [ ] [Kampus] Kerja kelompok yang dikerjakan satu ekor — "Tugas kelompok lima. Yang ngerjain Tikus."
+- [x] [Kampus] Kerja kelompok yang dikerjakan satu ekor — "Tugas kelompok lima. Yang ngerjain Tikus." (hewan ep009, 3D v3, 10 Nov 2026, Dari Mata Korban)
 - [ ] [Panitia, Bunglon] Bendahara acara, laporan rapi uang kurang — "Laporannya rapi. Uangnya kurang."
 - [ ] [Perumahan] Ketua RT pilih kasih bantuan — "Bantuan datang. Yang dapat tetangga Pak RT."
-- [ ] [Perumahan] Pinjam barang tidak kembali — "Pinjam bor 'sebentar'. Sudah setahun."
+- [x] [Perumahan] Pinjam barang tidak kembali — "Pinjam bor 'sebentar'. Sudah setahun." (hewan ep010, 3D v3, 10 Nov 2026, Pepatah Baru)
 - [ ] [Keluarga besar] Saudara utang pas lebaran — "Ketemu tiap lebaran. Utangnya juga ketemu tiap lebaran."
 - [ ] [Senjata Makan Tuan] Kucing ketahuan memalsukan laporan sendiri — "Kucing rajin bikin laporan palsu. Sampai laporan itu dibaca bos besar."
-- [ ] [Hewan di Sekitarmu] 3 tipe teman di grup chat — "Di grup chat lo pasti ada 3 hewan ini."
+- [x] [Hewan di Sekitarmu] 3 tipe teman di grup chat — "Di grup chat lo pasti ada 3 hewan ini." (hewan ep008, 3D v3, 10 Nov 2026: Beo, Bunglon, Kucing)
 - [ ] [Dari Mata Korban] Tikus cerita kenapa dia berhenti percaya — "Gue Tikus. Ini terakhir kali gue minjemin uang."
 
 **Usulan penonton:** (isi dari komentar)
@@ -369,16 +369,16 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 - [ ] [Jejak Anggaran] Bantuan bibit: yang datang separuh, foto penyerahan lengkap — "Bibitnya separuh. Fotonya lengkap."
 - [ ] [Jejak Anggaran] Pelatihan usaha warga: honor narasumber > modal peserta — "Pelatihan usaha 3 hari. Modal usahanya nggak ada."
 - [ ] [Jejak Anggaran] Renovasi sekolah: "biaya koordinasi" makan sepertiga — "Atap sekolah bocor. Rapatnya di hotel."
-- [ ] [Kalkulator Warga] Semua iuran warga dijumlah setahun — "Gaji warga nggak naik. Iurannya naik 5 kali tahun ini."
+- [x] [Kalkulator Warga] Semua iuran warga dijumlah setahun — "Gaji warga nggak naik. Iurannya naik 5 kali tahun ini." (balai iuran, 3D v3, 10 Nov 2026)
 - [ ] [Kalkulator Warga] Retribusi pasar naik, pasar tetap becek — "Retribusi naik dua kali. Becek-nya tetap."
 - [ ] [Liputan Warga] Iuran "sukarela" yang ditagih door to door — "Sumbangannya sukarela. Yang belum bayar dicatat."
 - [ ] [Liputan Warga] Musyawarah desa, keputusan sudah dicetak — "Warga diminta usul. Keputusannya udah dicetak kemarin."
 - [x] [Liputan Warga] Aduan warga dibalas stiker, viral baru ditangani — "Lapor tiga bulan nggak dibalas. Viral sehari, langsung datang." (balai viral, 3D v3, 7 Nov 2026)
 - [ ] [Dulu vs Menjelang Pemilihan] Jalan rusak 5 tahun, beres 3 hari — "Jalan rusak 5 tahun, beres 3 hari. Bulan depan pemilihan kades."
-- [ ] [Dulu vs Menjelang Pemilihan] Bantuan datang bareng baliho — "Berasnya 5 kilo. Balihonya 5 meter."
+- [x] [Dulu vs Menjelang Pemilihan] Bantuan datang bareng baliho — "Berasnya 5 kilo. Balihonya 5 meter." (balai baliho, 3D v3, 10 Nov 2026)
 - [ ] [Liputan Darurat] Asap lahan terbakar 2 minggu, rapat minggu depan — "Asap udah 2 minggu. Rapatnya minggu depan."
 - [ ] [Liputan Darurat] Tanggul baru diresmikan, jebol hujan pertama — "Tanggul diresmikan Senin. Jebol Kamis."
-- [ ] [Siaran Pers Balai] Peresmian sumur: tenda 3, airnya belum keluar — "Peresmian sumur: tenda 3, pejabat 12, airnya belum keluar."
+- [x] [Siaran Pers Balai] Peresmian sumur: tenda 3, airnya belum keluar — "Peresmian sumur: tenda 3, pejabat 12, airnya belum keluar." (balai sumur, 3D v3, 10 Nov 2026; versi twist: air dari mobil tangki)
 - [ ] [Siaran Pers Balai] Lomba desa dadakan, warga disuruh ngecat pagar sendiri — "Juri datang besok. Warga disuruh ngecat pagar malam ini."
 - [ ] [Wawancara Jalanan] Urusan surat cepat kalau ada "uang kopi" — "Surat jadi 2 minggu. Atau 2 jam, kalau 'ngopi'."
 - [ ] [Wawancara Jalanan] Pajak/retribusi naik, warga tanya hasilnya ke mana — "Bayarnya rajin. Hasilnya di mana?"

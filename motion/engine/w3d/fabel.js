@@ -7,7 +7,8 @@ let X; const MOON = '#F5D76E', NIGHT = '#0B1026', ORANGE = '#F28C28';
 // ===== tokoh hewan =====
 function animal(parent, p, kind, o = {}) {
   const base = { cat: { skin: '#9AA0A8', body: '#2B2F3A', pants: '#22252E', tie: '#C0392B', s: 1 }, mouse: { skin: '#B9B6B0', body: '#D9D2C3', pants: '#5A5F6B', s: .78 },
-    buffalo: { skin: '#5B5552', body: '#6B8E5A', pants: '#3E3A36', s: 1.22 }, snake: { skin: '#6FA34A', body: '#3A2E4A', pants: '#2A2236', tie: '#E5C04A', s: 1.02 }, owl: { skin: '#8B6B4A', body: '#3A2E2A', pants: '#2A221E', tie: MOON, s: 1.08 } }[kind];
+    buffalo: { skin: '#5B5552', body: '#6B8E5A', pants: '#3E3A36', s: 1.22 }, snake: { skin: '#6FA34A', body: '#3A2E4A', pants: '#2A2236', tie: '#E5C04A', s: 1.02 }, owl: { skin: '#8B6B4A', body: '#3A2E2A', pants: '#2A221E', tie: MOON, s: 1.08 },
+    parrot: { skin: '#3FAE49', body: '#E5484D', pants: '#2A6B3A', s: .9 }, chameleon: { skin: '#7BC043', body: '#4E8F3A', pants: '#3A6B2A', s: .95 } }[kind];
   const g = person(parent, p, Object.assign({}, base, o)); const H = g.userData.st.head, sk = o.skin || base.skin;
   if (kind === 'cat') { [-1, 1].forEach(i => H.add(mesh(G.cone(.14, .3, 4), sk, [i * .22, .36, 0], { rot: [0, 0, -i * .3] }))); H.add(mesh(G.sph(.12, 8, 6), '#E8E4DC', [0, -.1, .3], { s: [1.3, .8, .8] }));
     [-1, 1].forEach(i => [0, 1].forEach(k => H.add(mesh(G.box(.32, .015, .015), '#EEE', [i * .28, -.08 + k * .05, .28], { rot: [0, 0, i * (k ? .15 : -.1)], cast: false }))));
@@ -21,12 +22,18 @@ function animal(parent, p, kind, o = {}) {
   if (kind === 'snake') { H.scale.set(1.15, .78, 1.3); [-1, 1].forEach(i => H.add(mesh(G.sph(.07, 8, 6), '#F2D23A', [i * .14, .08, .3], { cast: false, mat: { emissive: '#F2D23A', emissiveIntensity: .6 } })));
     const tg = group(H, [0, -.12, .36]); tg.add(mesh(G.box(.04, .015, .2), '#C0392B', [0, 0, .1], { cast: false })); [-1, 1].forEach(i => tg.add(mesh(G.box(.02, .015, .1), '#C0392B', [i * .03, 0, .23], { rot: [0, i * .4, 0], cast: false })));
     for (let i = 0; i < 6; i++) H.add(mesh(G.box(.12, .03, .12), '#4E7F32', [((i % 3) - 1) * .16, .3, -.1 + Math.floor(i / 3) * .18], { cast: false })); g.userData.tongue = tg }
+  if (kind === 'parrot') { H.add(mesh(G.cone(.12, .3, 6), '#F2B233', [0, -.05, .4], { rot: [Math.PI / 2 + .5, 0, 0] })); [0, 1, 2].forEach(i => H.add(mesh(G.box(.06, .26 - i * .05, .14), '#E5484D', [0, .42 - i * .02, -.05 - i * .13], { rot: [-.4 - i * .25, 0, 0] })));
+    [-1, 1].forEach(i => H.add(mesh(G.sph(.1, 8, 6), '#FFFFFF', [i * .18, .08, .26], { cast: false }))); const tail = group(g, [0, .7, -.3]); ['#3E8FC4', '#E5484D', '#F2B233'].forEach((c, i) => tail.add(mesh(G.box(.1, .05, .6), c, [(i - 1) * .1, 0, -.3], { rot: [.5, 0, 0] }))); g.userData.tail = tail }
+  if (kind === 'chameleon') { [-1, 1].forEach(i => { H.add(mesh(G.sph(.13, 10, 8), sk, [i * .3, .08, .12])); H.add(mesh(G.sph(.05, 6, 5), '#1E1E1E', [i * .38, .08, .16], { cast: false })) }); for (let i = 0; i < 4; i++) H.add(mesh(G.cone(.06, .16, 4), sk, [0, .36 - i * .03, .1 - i * .14]));
+    const tail = group(g, [0, .55, -.3]); for (let i = 0; i < 9; i++) { const a = i * .7; tail.add(mesh(G.sph(.07 - i * .005, 6, 5), sk, [0, Math.sin(a) * .18 * (1 - i / 12), -.15 - Math.cos(a) * .18 * (1 - i / 12) - i * .02])) } g.userData.tail = tail;
+    const list = []; const c1 = mat(sk), c2 = mat(o.body || base.body); g.traverse(m => { if (m.isMesh && (m.material === c1 || m.material === c2)) { m.material = m.material.clone(); m.userData.k = m.material.color.getHexString() === c1.color.getHexString() ? 0 : 1; list.push(m) } });
+    g.userData.tint = (a, b) => list.forEach(m => m.material.color.set(m.userData.k ? (b || a) : a)) }
   return g;
 }
 const cast = {
   kucing: (p, o = {}) => animal(o.parent, p, 'cat', o), tikus: (p, o = {}) => animal(o.parent, p, 'mouse', o),
   kerbau: (p, o = {}) => animal(o.parent, p, 'buffalo', o), hantu: (p, o = {}) => animal(o.parent, p, 'owl', o),
-  ular: (p, o = {}) => animal(o.parent, p, 'snake', o),
+  ular: (p, o = {}) => animal(o.parent, p, 'snake', o), beo: (p, o = {}) => animal(o.parent, p, 'parrot', o), bunglon: (p, o = {}) => animal(o.parent, p, 'chameleon', o),
 };
 // ===== set noir =====
 function noirRoom(sc, o = {}) {
@@ -302,3 +309,229 @@ export function frame(T, idx, t) {
   title.innerHTML = `<div style="font-size:48px;color:${MOON};letter-spacing:2px;text-shadow:0 4px 0 #000">${full.slice(0, n)}<span style="opacity:${Math.sin(t * 8) > 0 ? 1 : 0}">▌</span></div>`;
   let f = 0; X.TL.scenes.forEach((x, i) => { if (i) f = Math.max(f, 1 - Math.abs(T - x.start) / .35) }); fade.style.opacity = clamp(f * 1.2);
 }
+
+// ===================== 10 Nov 2026: grup chat (Hewan di Sekitarmu), kerja kelompok (Dari Mata Korban), pinjam barang (Pepatah Baru) =====================
+const ftag = (root, html, css = {}) => { const w = X.ab({ left: 0, top: 0 }, root); const e = chip(w, html, Object.assign({ position: 'relative', transform: 'translate(-50%,-100%)' }, css));
+  return { e, at(obj, cam, off, p) { const [x, y] = X.proj(obj, cam, off); w.style.left = Math.max(170, Math.min(910, x)) + 'px'; w.style.top = y + 'px'; e.style.opacity = p > 0 ? 1 : 0; e.style.transform = `translate(-50%,-100%) scale(${p > 0 ? E.back(Math.min(1, p)) : 0})` } } };
+const bottomHook = (root, html, o = {}) => X.ab(Object.assign({ left: 60, top: 1240, width: 960, textAlign: 'center', fontFamily: 'Baloo', fontWeight: 800, fontSize: '60px', lineHeight: 1.1, color: '#fff', textShadow: '0 6px 0 #000' }, o), root, html);
+const topCard = (root, html, o = {}) => X.ab(Object.assign({ left: 70, top: 300, width: 940, textAlign: 'center', fontFamily: 'Baloo', fontWeight: 800, fontSize: '60px', lineHeight: 1.1, color: '#fff', opacity: 0, textShadow: '0 6px 0 #000' }, o), root, html);
+const bubble = (root, html, col = '#FFFFFF', ink = '#1B2347', o = {}) => { const e = X.ab(Object.assign({ background: col, color: ink, borderRadius: '34px', padding: '16px 28px', fontFamily: 'Baloo', fontWeight: 800, fontSize: '44px', whiteSpace: 'nowrap', boxShadow: '0 8px 0 #00000055', border: '4px solid #0B1026' }, o), root, html); e.style.opacity = 0; return e };
+function txtTex(w, h, draw) { const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d'); draw(x, w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t }
+function skyline(sc, z = -22) { for (let i = 0; i < 18; i++) { const h = 3 + ((i * 53) % 9); const x = -26 + i * 3.1; sc.add(mesh(G.box(2.4, h, 2.4), '#1C2550', [x, h / 2 - 3, z - (i % 3) * 3], { cast: false }));
+  for (let k = 0; k < 4; k++) sc.add(mesh(G.box(.3, .3, .05), ((i + k) % 3) ? '#FFD27A' : '#2A3355', [x - .6 + (k % 2) * 1.2, -2 + k * (h / 5), z - (i % 3) * 3 + 1.22], { mat: { emissive: '#FFC86A', emissiveIntensity: ((i + k) % 3) ? 1 : 0 }, cast: false })) } }
+function streetLamp(sc, p, I = 14) { const g = group(sc, p); g.add(mesh(G.cyl(.06, .08, 3.6, 8), '#3A3F52', [0, 1.8, 0])); g.add(mesh(G.box(.6, .1, .25), '#3A3F52', [-.25, 3.6, 0])); g.add(mesh(G.box(.4, .06, .2), '#FFF2C8', [-.4, 3.54, 0], { mat: { emissive: '#FFE2A0', emissiveIntensity: 2 }, cast: false }));
+  const L = new THREE.PointLight('#FFE0A8', I, 9); L.position.set(-.4, 3.3, 0); g.add(L); return g }
+function phoneMesh(parent, p, s = 1) { const g = group(parent, p); g.scale.setScalar(s); g.add(mesh(G.box(.14, .26, .03), '#111', [0, 0, 0])); g.add(mesh(G.box(.12, .22, .01), '#BFE3FF', [0, 0, .02], { mat: { emissive: '#9CC3E6', emissiveIntensity: 1.2 }, cast: false })); return g }
+function nameTent(parent, p, name) { const t = txtTex(256, 96, x => { x.fillStyle = '#F4F0E6'; x.fillRect(0, 0, 256, 96); x.fillStyle = '#1B2347'; x.font = '800 54px Baloo'; x.textAlign = 'center'; x.fillText(name, 128, 68) });
+  const m = new THREE.Mesh(G.box(.5, .2, .02), [mat('#F4F0E6'), mat('#F4F0E6'), mat('#F4F0E6'), mat('#F4F0E6'), new THREE.MeshStandardMaterial({ map: t }), mat('#F4F0E6')]); m.position.set(...p); m.rotation.x = -.25; parent.add(m); return m }
+function bor(parent, p) { const g = group(parent, p); g.add(mesh(G.box(.32, .2, .12), '#F2B233', [0, 0, 0])); g.add(mesh(G.box(.1, .26, .1), '#2B2B2B', [-.06, -.2, 0])); g.add(mesh(G.cyl(.02, .015, .22, 6), '#AAA', [.26, 0, 0], { rot: [0, 0, Math.PI / 2] })); return g }
+function ladder(parent, p, h = 2.4) { const g = group(parent, p); [-.25, .25].forEach(x => g.add(mesh(G.box(.06, h, .06), '#C9C9C9', [x, h / 2, 0]))); for (let i = 1; i < 7; i++) g.add(mesh(G.box(.5, .04, .05), '#C9C9C9', [0, i * h / 7, 0])); return g }
+function cart(parent, p) { const g = group(parent, p); g.add(mesh(G.box(.8, .35, .6), '#5A7A9A', [0, .45, 0])); g.add(mesh(G.cyl(.16, .16, .08, 12), '#222', [.4, .16, 0], { rot: [Math.PI / 2, 0, 0] })); g.add(mesh(G.box(.7, .04, .04), '#333', [-.6, .55, .22])); g.add(mesh(G.box(.7, .04, .04), '#333', [-.6, .55, -.22])); return g }
+function hoseCoil(parent, p) { const g = group(parent, p); for (let i = 0; i < 4; i++) g.add(mesh(new THREE.TorusGeometry(.26 - i * .03, .035, 6, 18), '#2E9E5B', [0, .05 + i * .06, 0], { rot: [Math.PI / 2, 0, 0] })); return g }
+function homeN(sc, p, o = {}) { const g = group(sc, p); if (o.rot) g.rotation.y = o.rot; const w = o.w || 4.4; g.add(mesh(G.box(w, 2.6, 3.2), o.wall || '#56607E', [0, 1.3, 0])); g.add(mesh(new THREE.CylinderGeometry(0, 1, 1, 4, 1), o.roof || '#2A2F44', [0, 3.2, 0], { s: [(w + .6) * .72, 1.3, 3.8 * .72], rot: [0, Math.PI / 4, 0] }));
+  g.add(mesh(G.box(.9, 1.8, .06), '#3A2A1E', [-w / 4, .9, 1.62])); const win = mesh(G.box(1, .8, .05), '#FFD98A', [w / 4, 1.5, 1.62], { mat: { emissive: '#FFC86A', emissiveIntensity: 1 }, cast: false }); g.add(win);
+  g.add(mesh(G.box(w + 1.6, .5, .08), '#7A6A5A', [0, .25, 3])); const L = new THREE.PointLight('#FFD9A0', 8, 6); L.position.set(-w / 4, 2.3, 2.2); g.add(L); g.add(mesh(G.sph(.1, 8, 6), '#FFE8B0', [-w / 4, 2.2, 1.7], { mat: { emissive: '#FFD27A', emissiveIntensity: 2 }, cast: false })); return g }
+
+Object.assign(SHOTS, {
+  // ---- Hewan di Sekitarmu: 3 tipe di grup chat ----
+  H_GCSTAGE(s, root) {   // panggung "dunia grup chat" di atas kota malam: tiga podium bernomor; varian end: podium ke-4 bertanda "lo?"
+    const END = s.variant === 'end'; const sc = newScene(NOIR({ hemi: 1, sunI: 1.4 })); skyline(sc);
+    sc.add(mesh(G.box(9, .4, 6), '#1B2347', [0, -.2, 0])); for (let i = 0; i < 6; i++) sc.add(mesh(G.box(2.4 + (i % 3) * .6, .05, .7), i % 2 ? '#DCF8C6' : '#FFFFFF', [(i % 2 ? 1 : -1) * 1.6, .02, -2.2 + i * .8], { cast: false, mat: { emissive: '#FFFFFF', emissiveIntensity: .15 } }));
+    const xs = END ? [-2.1, -.7, .7, 2.1] : [-1.6, 0, 1.6]; const who = [cast.beo, cast.bunglon, cast.kucing, cast.tikus];
+    const peds = xs.map((x, i) => { const g = group(sc, [x, 0, -.4]); g.add(mesh(G.cyl(.55, .62, .8 + (i === 1 ? .3 : 0), 16), ['#E5484D', '#3FAE49', ORANGE, '#5A6B9A'][i], [0, .4, 0]));
+      const A = (END && i === 3) ? null : who[i]([0, .8 + (i === 1 ? .3 : 0), 0], { parent: g }); const sp = new THREE.SpotLight('#FFF2D0', 0, 9, .35, .5, 1); sp.position.set(x, 6, 2.5); sp.target.position.set(x, .8, -.4); sc.add(sp, sp.target); return { g, A, sp } });
+    const mirror = END ? (() => { const m = mesh(G.box(.8, 1.4, .06), '#BFD7F2', [2.1, 1.6, -.4], { mat: { metalness: .8, roughness: .1, emissive: '#5A7AB0', emissiveIntensity: .4 } }); sc.add(m); return m })() : null;
+    const bub = Array.from({ length: 10 }, (_, i) => { const b = mesh(G.box(.9, .4, .08), i % 3 ? '#FFFFFF' : '#DCF8C6', [0, 0, -2.5], { cast: false, mat: { emissive: '#FFFFFF', emissiveIntensity: .2 } }); sc.add(b); return b });
+    const nums = peds.map((_, i) => ftag(root, END && i === 3 ? 'lo?' : `#${i + 1}`, { fontSize: '54px' }));
+    const cam = camera(42); const hook = END ? null : bottomHook(root, `Di grup chat lo, pasti ada<br><span style="color:${MOON}">3 hewan ini.</span>`);
+    const card = END ? topCard(root, `Nggak nemu ketiganya?<br><span style="color:${MOON}">Jangan-jangan lo salah satunya.</span>`, { fontSize: '56px' }) : null;
+    return { scene: sc, cam, upd(t, dur) {
+      const cues = END ? [0, 0, 0, at(s, 'salah satunya', dur * .6)] : [.2, .9, 1.6]; peds.forEach((P, i) => { const on = t > cues[i]; P.sp.intensity = on ? 40 : 0; if (P.A) P.A.pose(t + i, { talk: i === 0 && on, look: Math.sin(t + i) * .3, nod: i === 2 }); if (P.A && P.A.userData.tint) P.A.userData.tint(['#7BC043', '#E5484D', '#3E8FC4'][Math.floor(t * 1.2) % 3]) });
+      bub.forEach((b, i) => { const u = ((t * .25 + i / 10) % 1); b.position.set(((i * 37) % 10) / 10 * 8 - 4, u * 6, -2.6 - (i % 3)); b.rotation.y = Math.sin(i) * .3 });
+      const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(-1, 1, p), lerp(2.4, 2.9, p), lerp(10.5, 11.5, p)); cam.lookAt(0, 1.6, -.4);
+      nums.forEach((n, i) => n.at(peds[i].g, cam, [0, 2.6 + (i === 1 ? .3 : 0), 0], seg(t, cues[i], cues[i] + .4)));
+      if (hook) hook.style.opacity = seg(t, 0, .3); if (card) { const q = seg(t, cues[3], cues[3] + .5); card.style.opacity = q; card.style.transform = `translateY(${(1 - q) * 20}px)` }
+    } };
+  },
+  H_GCBEO(s, root) {   // halte malam: Beo meneruskan pesan; gelembung terbang ke 5 grup; lalu "maaf, ternyata salah"
+    const sc = newScene(NOIR({ hemi: 1, sunI: 1.4 })); skyline(sc, -18); sc.add(mesh(G.box(20, .2, 12), '#3E4452', [0, -.1, 0])); sc.add(mesh(G.box(20, .05, 2.4), '#2A2F3E', [0, .02, 3]));
+    const hal = group(sc, [0, 0, -1]); hal.add(mesh(G.box(4, .1, 1.6), '#5A7A9A', [0, 2.6, 0])); [-1.9, 1.9].forEach(x => hal.add(mesh(G.box(.08, 2.6, .08), '#3A3F52', [x, 1.3, -.6]))); hal.add(mesh(G.box(3, .1, .6), '#8A6A4A', [0, .55, -.4])); hal.add(mesh(G.box(3.6, 1.6, .05), '#BFD7F2', [0, 1.5, -.75], { mat: { transparent: true, opacity: .35 }, cast: false }));
+    streetLamp(sc, [3, 0, 1]); const B = cast.beo([0, .1, -.3]); sc.add(B); B.rotation.y = .2; const ph = phoneMesh(B.userData.st.arms[1], [0, -.6, .12], 1.4);
+    const groups = ['Grup RT', 'Grup Alumni', 'Grup Kantor', 'Grup Keluarga', 'Grup Arisan']; const G5 = groups.map((nm, i) => { const g = group(sc, [-3.2 + i * 1.6, 3.6 + (i % 2) * .7, -2]); g.add(mesh(G.box(1.2, .5, .1), '#2E5E8C', [0, 0, 0], { mat: { emissive: '#2E5E8C', emissiveIntensity: .4 } })); return g });
+    const labels = G5.map((g, i) => ftag(root, groups[i], { fontSize: '30px', padding: '6px 14px' }));
+    const flyers = Array.from({ length: 5 }, () => { const m = mesh(G.box(.4, .2, .05), '#DCF8C6', [0, 0, 0], { cast: false, mat: { emissive: '#DCF8C6', emissiveIntensity: .4 } }); sc.add(m); return m });
+    const cam = camera(42); const c1 = chip(root, '↪ diteruskan: <b>5 grup</b>', { left: 70, top: 560 }), c2 = chip(root, '💬 “dari grup sebelah”', { left: 70, top: 670 });
+    const sorry = bubble(root, 'maaf, ternyata salah 🙏', '#FFDADA', '#8A1C1C', { left: 160, top: 790, fontSize: '54px' });
+    return { scene: sc, cam, upd(t, dur) {
+      const tf = at(s, 'diteruskan', 1.5), tg = at(s, 'grup sebelah', dur * .45), tm = at(s, 'maaf', dur - 2.5);
+      flyers.forEach((f, i) => { const a = tf + i * .35, q = seg(t, a, a + 1); f.visible = q > 0 && q < 1; const P0 = new THREE.Vector3(.3, 1.6, -.1), P1 = G5[i].position; f.position.set(lerp(P0.x, P1.x, q), lerp(P0.y, P1.y, q) + Math.sin(q * Math.PI) * 1, lerp(P0.z, P1.z, q)); f.rotation.z = q * 6 });
+      B.pose(t, { hold: true, talk: t > tm, bounce: t > tf && t < tf + 2 }); B.userData.st.arms[1].rotation.x = -1.3;
+      const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(-1.5, 1.5, p), lerp(2.3, 2.8, p), lerp(7.2, 8.4, p)); cam.lookAt(0, 2, -1);
+      labels.forEach((l, i) => l.at(G5[i], cam, [0, .4, 0], seg(t, tf + i * .35 + .8, tf + i * .35 + 1.1))); X.pop(c1, seg(t, tf + 1, tf + 1.4)); X.pop(c2, seg(t, tg, tg + .4)); X.pop(sorry, seg(t, tm, tm + .4));
+    } };
+  },
+  H_GCBUNGLON(s, root) {   // taman kota malam: Kucing "pantai", Kerbau "gunung"; Bunglon berubah warna mengikuti yang terakhir chat
+    const sc = newScene(NOIR({ hemi: 1, sunI: 1.4 })); sc.add(mesh(G.box(20, .2, 14), '#3E5A44', [0, -.1, 0])); sc.add(mesh(G.cyl(2.6, 2.6, .05, 24), '#7A7A82', [0, .02, 0], { cast: false }));
+    [[-5, -4], [5, -4.5], [-6, 2], [6, 2.5]].forEach(([x, z], i) => { const g = group(sc, [x, 0, z]); g.add(mesh(G.cyl(.15, .2, 1.4, 6), '#5A3E2A', [0, .7, 0])); g.add(mesh(G.ico(1.1, 0), i % 2 ? '#2E6A3E' : '#3A7A4A', [0, 2, 0])) });
+    streetLamp(sc, [-3, 0, -1.5], 16); streetLamp(sc, [3.4, 0, -1.8], 16); sc.add(mesh(G.box(2.2, .1, .6), '#8A6A4A', [0, .5, -1.4]));
+    const Bg = cast.bunglon([0, 0, -.6]); sc.add(Bg); const K = cast.kucing([-2.6, 0, .6]); K.rotation.y = .7; const R = cast.kerbau([2.7, 0, .5]); R.rotation.y = -.7; sc.add(K, R); [K, R].forEach(a => phoneMesh(a.userData.st.arms[1], [0, -.6, .12], 1.3));
+    const cam = camera(42); const bK = bubble(root, '🏖️ ke pantai!', '#FFD8B0', '#7A3A10', { left: 70, top: 330 }), bR = bubble(root, '⛰️ ke gunung!', '#CDEBFF', '#12406A', { left: 600, top: 330 });
+    const bS = bubble(root, 'setuju! 👍', '#FFFFFF', '#1B2347', { left: 380, top: 470 }), bT = bubble(root, 'terserah 😅', '#FFF3B0', '#6A5200', { left: 340, top: 600, fontSize: '60px' });
+    return { scene: sc, cam, upd(t, dur) {
+      const tp = at(s, 'pantai', 2), tg = at(s, 'gunung', 4.5), tw = at(s, 'Warnanya', dur * .5), tt = at(s, 'terserah', dur - 2);
+      const col = t > tt ? ['#E5484D', '#F2B233', '#3FAE49', '#3E8FC4', '#9A5AC8'][Math.floor(t * 6) % 5] : t > tw ? (Math.floor(t * 2) % 2 ? '#F28C28' : '#5AA0D8') : t > tg ? '#5AA0D8' : t > tp ? '#F28C28' : '#7BC043'; Bg.userData.tint(col);
+      Bg.pose(t, { nod: (t > tp && t < tp + 1.2) || (t > tg && t < tg + 1.2), shake: t > tt, look: t > tg ? .5 : t > tp ? -.5 : 0 }); K.pose(t, { hold: true, talk: t > tp && t < tg }); R.pose(t, { hold: true, talk: t > tg && t < tw });
+      const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(0, .6, p), lerp(2.6, 3, p), lerp(9, 10, p)); cam.lookAt(0, 1.3, -.2);
+      X.pop(bK, seg(t, tp, tp + .4)); X.pop(bR, seg(t, tg, tg + .4)); X.pop(bS, (t > tp && t < tp + 1.5) || (t > tg && t < tg + 1.5) ? 1 : 0); X.pop(bT, seg(t, tt, tt + .4));
+    } };
+  },
+  H_GCKUCING(s, root) {   // ruang tamu mewah Kucing malam: rebahan di sofa, grup terus dibaca tanpa balas, lalu minta pinjaman tengah malam
+    const sc = newScene(NOIR({ hemi: .9 })); noirRoom(sc, { wall: '#4A3A5A', floor: '#5A4A3E', wx: 2.2 }); const fl = new THREE.PointLight('#FFC8A0', 10, 9); fl.position.set(-1, 3.2, 1.5); sc.add(fl);
+    const so = group(sc, [-.6, 0, -1.8]); so.add(mesh(G.box(3, .5, 1.1), '#8A2E4A', [0, .45, 0])); so.add(mesh(G.box(3, .9, .3), '#8A2E4A', [0, .9, -.45])); [-1.5, 1.5].forEach(x => so.add(mesh(G.box(.3, .8, 1.1), '#7A2440', [x, .6, 0])));
+    const K = cast.kucing([-.6, .75, -1.7]); sc.add(K); K.rotation.z = -Math.PI / 2 + .3; K.position.set(-1.4, 1.0, -1.7); phoneMesh(K.userData.st.arms[1], [0, -.6, .12], 1.4);
+    const tv = mesh(G.box(2, 1.1, .06), '#1B2347', [2.6, 1.6, -3.85], { mat: { emissive: '#5A7AB0', emissiveIntensity: .5 }, cast: false }); sc.add(tv); sc.add(mesh(G.box(1, .35, .5), '#E5C04A', [1.6, .2, -.4], { mat: { metalness: .6, roughness: .3 } }));
+    const ph = group(sc, [-1.9, 2.6, -.4]); ph.add(mesh(G.box(1.3, 2.5, .1), '#111', [0, 0, 0])); const tex = chatTex(X.TL.vars.chat3, 'Geng Rimba (24)', '#5A3A8A'); const scr = new THREE.Mesh(G.plane(1.2, 2.36), new THREE.MeshBasicMaterial({ map: tex.t })); scr.position.z = .055; ph.add(scr);
+    const cam = camera(42); const c1 = chip(root, '👀 3 bulan: <b>cuma baca</b>', { left: 70, top: 300 }); const clk = chip(root, '🕛 00.12', { left: 70, top: 410, color: ORANGE, borderColor: ORANGE });
+    const big = bubble(root, 'guys, ada yang bisa<br>pinjemin 500 ribu? 🙏', '#FFFFFF', '#1B2347', { left: 120, top: 560, fontSize: '54px', whiteSpace: 'normal', width: 760, textAlign: 'center' });
+    return { scene: sc, cam, upd(t, dur) {
+      const tb = at(s, 'cuma baca', 1.5), tq = at(s, 'tengah malam', dur * .6), tp = at(s, 'guys', dur - 3);
+      const n = X.TL.vars.chat3.length; tex.draw(t < tp ? Math.min(n - 1, Math.ceil(seg(t, .3, tq) * (n - 1))) : n);
+      K.pose(t, { hold: true, look: .2 }); K.userData.st.arms[1].rotation.x = -1.6; if (K.userData.tail) K.userData.tail.rotation.z = Math.sin(t * 2) * .3;
+      const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(.4, 1, p), lerp(2.4, 2.2, p), lerp(7.2, 6.4, p)); cam.lookAt(-.5, 1.6, -1); ph.rotation.y = .25; ph.position.y = 2.6 + Math.sin(t * 1.2) * .04;
+      X.pop(c1, seg(t, tb, tb + .4)); X.pop(clk, seg(t, tq, tq + .4)); X.pop(big, seg(t, tp, tp + .4)); tv.material.emissiveIntensity = .4 + Math.sin(t * 7) * .1;
+    } };
+  },
+  // ---- Dari Mata Korban: kerja kelompok ----
+  H_LIB(s, root) {   // perpustakaan kampus malam: Tikus sendirian, empat kursi kosong bernama; varian chat: alasan muncul di atas kursi
+    const CH = s.variant === 'chat'; const v = X.TL.vars; const sc = newScene(NOIR({ hemi: 1, sunI: 1.4, fog: [NIGHT, 12, 30] })); noirRoom(sc, { wall: '#4A5272', floor: '#5A4A3E', wx: -3 });
+    const bc = ['#C0392B', '#E5C04A', '#2E6A8A', '#3FAE49', '#9A5AC8', '#F28C28']; for (let r = 0; r < 4; r++) for (let i = 0; i < 18; i++) sc.add(mesh(G.box(.18, .5 + (i % 3) * .08, .3), bc[(i + r) % 6], [.2 + i * .26, .8 + r * .75, -3.75], { cast: false }));
+    for (let r = 0; r < 4; r++) sc.add(mesh(G.box(4.8, .06, .4), '#5E3E22', [2.4, .5 + r * .75, -3.75]));
+    [-1.5, 1.5].forEach(x => { const L = new THREE.PointLight('#FFE0A8', 14, 8); L.position.set(x, 3.2, .2); sc.add(L); sc.add(mesh(G.cone(.4, .3, 12, 1), '#3A3A3A', [x, 3.4, .2])); sc.add(mesh(G.sph(.12, 8, 6), '#FFE8B0', [x, 3.25, .2], { mat: { emissive: '#FFD27A', emissiveIntensity: 2 }, cast: false })) });
+    sc.add(mesh(G.box(5.4, .1, 1.4), '#7A5230', [0, .8, 0])); sc.add(mesh(G.box(5.2, .76, 1.2), '#5E3E22', [0, .38, 0]));
+    const T = cast.tikus([-2, 0, .95]); sc.add(T); T.rotation.y = Math.PI; sc.add(mesh(G.box(.6, .55, .6), '#2A2A33', [-2, .27, .95]));
+    const lap = group(sc, [-2, .86, .3]); lap.add(mesh(G.box(.6, .03, .4), '#9AA0A8', [0, 0, 0])); lap.add(mesh(G.box(.6, .4, .03), '#9AA0A8', [0, .2, -.2], { rot: [-.2, 0, 0] })); lap.add(mesh(G.box(.54, .34, .01), '#BFE3FF', [0, .2, -.18], { rot: [-.2, 0, 0], mat: { emissive: '#9CC3E6', emissiveIntensity: 1.2 }, cast: false }));
+    const names = ['KUCING', 'BEO', 'BUNGLON', 'ULAR']; const chairs = names.map((nm, i) => { const g = group(sc, [-.8 + i * 1.2, 0, .95]); g.add(mesh(G.box(.6, .55, .6), '#2A2A33', [0, .27, 0])); g.add(mesh(G.box(.6, .8, .08), '#2A2A33', [0, .8, .3])); nameTent(sc, [-.8 + i * 1.2, .92, .5], nm); return g });
+    for (let i = 0; i < 6; i++) sc.add(mesh(G.box(.4, .12 + (i % 2) * .04, .3), bc[i], [-2.6 + (i % 2) * .2, .9 + i * .12, -.2], { cast: false }));
+    const clock = txtTex(256, 256, x => { x.fillStyle = '#F4F0E6'; x.beginPath(); x.arc(128, 128, 120, 0, 7); x.fill(); x.strokeStyle = '#1B2347'; x.lineWidth = 14; x.stroke(); x.lineCap = 'round'; x.beginPath(); x.moveTo(128, 128); x.lineTo(128, 50); x.stroke(); x.beginPath(); x.moveTo(128, 128); x.lineTo(84, 104); x.stroke() });
+    const ck = new THREE.Mesh(G.plane(.8, .8), new THREE.MeshBasicMaterial({ map: clock })); ck.position.set(-2.4, 3.2, -3.85); sc.add(ck);
+    const cam = camera(42); const hook = CH ? null : bottomHook(root, `Tugas kelompok 5 ekor.<br><span style="color:${MOON}">Yang ngerjain: gue doang.</span>`);
+    const c1 = CH ? null : chip(root, '📚 bab 1 → daftar pustaka: <b>Tikus</b>', { left: 70, top: 300 }), c2 = CH ? null : chip(root, '🪑 4 kursi kosong, 4 nama di sampul', { left: 70, top: 410, color: ORANGE, borderColor: ORANGE });
+    const bubs = CH ? v.alasan.map(([nm, tx]) => ftag(root, `<span style="color:${ORANGE}">${nm}:</span> ${tx}`, { fontSize: '36px' })) : [];
+    return { scene: sc, cam, upd(t, dur) {
+      T.pose(t, { hold: true }); T.userData.st.arms.forEach((A, i) => { A.rotation.x = -1.1 + Math.sin(t * 14 + i * 2) * .12 });
+      const p = E.inout(seg(t, 0, dur));
+      if (CH) { cam.position.set(lerp(-4.3, -3.6, p), 2.9, lerp(4.4, 5.2, p)); cam.lookAt(lerp(-1, 1.2, p), 1.4, .6); const cues = v.alasan_cues.map((c, i) => at(s, c, 1 + i * 2)); bubs.forEach((b, i) => b.at(chairs[i], cam, [0, 1.6 + (i % 2) * .5, 0], seg(t, cues[i], cues[i] + .4))) }
+      else { cam.position.set(lerp(-4.4, -3.8, p), lerp(2.3, 2.8, p), lerp(3.2, 4.8, p)); cam.lookAt(-.6, 1.1, .5); hook.style.opacity = seg(t, 0, .3); const tk = at(s, 'kosong', dur * .6); X.pop(c1, seg(t, at(s, 'daftar pustaka', 2), at(s, 'daftar pustaka', 2) + .4)); X.pop(c2, seg(t, tk, tk + .4)) }
+    } };
+  },
+  H_CLASS(s, root) {   // ruang kelas malam terang: Kucing presentasi slide Tikus; varian tanya: dosen Burung Hantu membuka lembar kontribusi
+    const Q = s.variant === 'tanya'; const v = X.TL.vars; const sc = newScene(NOIR({ hemi: 1.3, sunI: 1.8 })); noirRoom(sc, { window: false, wall: '#56607E', floor: '#4A4048' }); [[-2, 3.4, 1.5], [2, 3.4, 1.5]].forEach(([x, y, z]) => { const L = new THREE.PointLight('#FFF0D0', 14, 10); L.position.set(x, y, z); sc.add(L) });
+    const slide = txtTex(1024, 576, x => { x.fillStyle = '#F4F7FA'; x.fillRect(0, 0, 1024, 576); x.fillStyle = '#2E6A8A'; x.fillRect(0, 0, 1024, 100); x.fillStyle = '#fff'; x.font = '800 56px Baloo'; x.fillText('HASIL PENELITIAN', 40, 70); x.fillStyle = '#1B2347'; x.font = '800 46px Baloo';
+      ['Data 3 tahun terakhir', 'Analisis per musim', 'Kesimpulan + saran'].forEach((l, i) => x.fillText('• ' + l, 60, 200 + i * 90)); x.fillStyle = '#E5C04A'; [0, 1, 2, 3].forEach(i => x.fillRect(700 + i * 70, 470 - i * 60, 50, 60 + i * 60)); x.fillStyle = '#777'; x.font = '700 34px Baloo'; x.fillText('Kelompok 3', 60, 540) });
+    const scr = new THREE.Mesh(G.plane(3.4, 1.9), new THREE.MeshBasicMaterial({ map: slide })); scr.position.set(-.2, 2.7, -3.85); sc.add(scr); const sl = new THREE.PointLight('#DDE8FF', 6, 6); sl.position.set(0, 2.4, -2.6); sc.add(sl);
+    const K = cast.kucing([-2, 0, -2.6]); K.rotation.y = .5; const Bo = cast.beo([.1, 0, -2.7]); Bo.rotation.y = -.2; const Bg = cast.bunglon([1, 0, -2.5]); Bg.rotation.y = -.4; const T = cast.tikus([1.9, 0, -2.3]); T.rotation.y = -.6; const U = cast.ular([2.7, 0, -2.4]); U.rotation.y = -.7;
+    [K, Bo, Bg, T, U].forEach(a => sc.add(a)); T.userData.st.arms[1].add(mesh(G.box(.08, .2, .05), '#222', [0, -.62, .1]));
+    const dsk = group(sc, [-3.2, 0, .6]); dsk.add(mesh(G.box(1.6, .08, .8), '#4A3626', [0, .78, 0])); dsk.add(mesh(G.box(1.5, .74, .7), '#3A2A1E', [0, .37, 0])); const O = cast.hantu([-3.2, 0, 1.3]); sc.add(O); O.rotation.y = Math.PI + .5;
+    const sheet = mesh(G.box(.32, .01, .44), '#F4F0E6', [0, -.62, .14], { cast: false, mat: { emissive: '#F4F0E6', emissiveIntensity: .3 } }); O.userData.st.arms[1].add(sheet); sheet.visible = Q;
+    const studs = []; for (let r = 0; r < 1; r++) for (let c = 0; c < 4; c++) { const a = [cast.tikus, cast.kerbau, cast.tikus, cast.hantu][(r + c) % 4]([[-3.4, -2.4, 2.8, 3.8][c], 0, 1.4], (r + c) % 2 ? { body: ['#8FA8C8', '#C9B8A0'][r] } : {}); a.rotation.y = Math.PI; sc.add(a); studs.push(a) }
+    const cam = camera(42);
+    const c1 = Q ? null : chip(root, '🎤 presentasi: <b>Kucing</b>', { left: 70, top: 300 }), c2 = Q ? null : chip(root, '🖱️ pegang remote: <b>Tikus</b>', { left: 70, top: 410, color: ORANGE, borderColor: ORANGE });
+    const qb = Q ? bubble(root, '🦉 “Kenapa datanya dari tahun itu?”', '#FFFFFF', '#1B2347', { left: 70, top: 300, fontSize: '42px' }) : null;
+    const lk = Q ? X.ab({ left: 120, top: 420, width: 760, padding: '22px 30px', background: '#FDF6E3', border: '6px solid #0B1026', borderRadius: '12px', fontFamily: 'Baloo', fontWeight: 800, color: '#1B2347', fontSize: '38px', lineHeight: 1.25, opacity: 0, boxShadow: '0 12px 0 #00000055' }, root,
+      `<div style="font-size:44px;color:#C0392B">LEMBAR KONTRIBUSI</div>${v.kontribusi.map(([n, k]) => `<div>${n}: <span style="color:${n === 'Tikus' ? '#2E7D32' : '#8A1C1C'}">${k}</span></div>`).join('')}`) : null;
+    return { scene: sc, cam, upd(t, dur) {
+      const p = E.inout(seg(t, 0, dur));
+      if (!Q) { const tk = at(s, 'maju', 1.5), tr = at(s, 'pegang remote', dur - 2); K.pose(t, { talk: true, point: (t % 3) < 1.2 }); Bo.pose(t, { nod: true }); Bg.pose(t, { cheer: t > at(s, 'tepuk tangan', dur * .6) }); T.pose(t, { hold: t > tr, look: -.3 }); U.pose(t, { look: .3 });
+        cam.position.set(lerp(2.6, 1.4, p), 4.6, lerp(6.6, 5.8, p)); cam.lookAt(.2, 1.3, -2.4); X.pop(c1, seg(t, tk, tk + .4)); X.pop(c2, seg(t, tr, tr + .4)) }
+      else { const tq = at(s, 'tahun itu', 2.5), tl = at(s, 'lembar kontribusi', dur - 2.5); K.pose(t, { shake: t > tq, look: .2 }); Bo.pose(t, { look: t > tq + 1 ? .8 : 0 }); Bg.pose(t, { look: t > tq + 2 ? -.8 : 0 }); Bg.userData.tint(t > tq + 2 ? '#C9D86A' : '#7BC043'); T.pose(t, { nod: t > tl }); U.pose(t, { look: .5 });
+        O.pose(t, { talk: t < tl, hold: true }); cam.position.set(lerp(-4.6, -3.6, p), 3.8, lerp(5.8, 5, p)); cam.lookAt(.2, 1.3, -2.2); X.pop(qb, t < tl ? seg(t, .4, .8) : 0); X.pop(lk, seg(t, tl, tl + .5)) }
+      studs.forEach((a, i) => a.pose(t + i, { look: Math.sin(t * .5 + i) * .2 }));
+    } };
+  },
+  H_BOARD(s, root) {   // koridor kampus malam: papan nilai ditempel; Tikus A, empat lainnya C
+    const v = X.TL.vars; const sc = newScene(NOIR({ hemi: 1.1, sunI: 1.6 })); noirRoom(sc, { window: false, wall: '#4A5272', floor: '#3E465E' });
+    for (let i = 0; i < 4; i++) { const L = new THREE.PointLight('#FFE0A8', 8, 7); L.position.set(-4 + i * 2.8, 3.6, 0); sc.add(L); sc.add(mesh(G.box(.9, .06, .3), '#FFF2D0', [-4 + i * 2.8, 3.9, 0], { mat: { emissive: '#FFE7B0', emissiveIntensity: 1.2 }, cast: false })) }
+    sc.add(mesh(G.box(3.4, 2.2, .1), '#B98B5E', [0, 2.1, -3.85])); const nil = txtTex(768, 512, x => { x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, 768, 512); x.fillStyle = '#1B2347'; x.font = '800 54px Baloo'; x.textAlign = 'center'; x.fillText('NILAI TUGAS KELOMPOK 3', 384, 70);
+      v.nilai.forEach(([n, g], i) => { x.textAlign = 'left'; x.font = '800 48px Baloo'; x.fillStyle = '#1B2347'; x.fillText(n, 120, 150 + i * 72); x.textAlign = 'right'; x.fillStyle = g === 'A' ? '#2E7D32' : '#C0392B'; x.fillText(g, 650, 150 + i * 72) }) });
+    const pap = new THREE.Mesh(G.plane(2.4, 1.6), new THREE.MeshStandardMaterial({ map: nil, emissive: '#FFFFFF', emissiveIntensity: .2 })); pap.position.set(0, 2.1, -3.78); sc.add(pap);
+    const T = cast.tikus([-.3, 0, -1.6]); T.rotation.y = Math.PI; const back = [cast.kucing([-2.2, 0, .4]), cast.beo([-1.2, 0, 1]), cast.bunglon([1, 0, .9]), cast.ular([2.1, 0, .3])]; back.forEach(a => { a.rotation.y = Math.PI + .2; sc.add(a) }); sc.add(T);
+    const cam = camera(42); const card = topCard(root, `Kerja boleh bareng.<br><span style="color:${MOON}">Tapi catat siapa yang kerja.</span>`, { fontSize: '58px' });
+    const q = X.ab({ left: 70, top: 470, width: 940, textAlign: 'center', fontFamily: 'Baloo', fontWeight: 800, fontSize: '46px', color: MOON, opacity: 0, textShadow: '0 4px 0 #000' }, root, 'Pernah jadi Tikus di kelompok?');
+    const gA = ftag(root, '<b style="color:#7CFF8A">A</b>', { fontSize: '64px' });
+    return { scene: sc, cam, upd(t, dur) {
+      const ta = at(s, 'dapat \\*?A', 3), tc = at(s, 'catat siapa', dur * .6), tq = at(s, 'Pernah', dur - 3);
+      T.pose(t, { cheer: t > ta && t < ta + 1.6, look: 0 }); back.forEach((a, i) => a.pose(t + i, { shake: t > ta + .8 && i < 2, look: (i - 1.5) * .2 })); if (back[2].userData.tint) back[2].userData.tint('#8FA86A');
+      const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(1.2, .4, p), lerp(2.8, 3.2, p), lerp(7.6, 8.6, p)); cam.lookAt(0, 1.7, -2.6);
+      gA.at(T, cam, [0, 2.4, 0], seg(t, ta, ta + .4)); const qq = seg(t, tc, tc + .5); card.style.opacity = qq; card.style.transform = `translateY(${(1 - qq) * 20}px)`; q.style.opacity = seg(t, tq, tq + .5);
+    } };
+  },
+  // ---- Pepatah Baru: pinjam barang di kompleks ----
+  H_LANE(s, root) {   // jalan kompleks malam: rumah Kerbau (kiri) & Kucing (kanan); default: pinjam bor; time: barang lain ikut dipinjam; end: Kerbau menempel label nama + pepatah
+    const V = s.variant || 'pinjam'; const v = X.TL.vars; const sc = newScene(NOIR({ hemi: 1.1, sunI: 1.6 })); skyline(sc, -26);
+    sc.add(mesh(G.box(30, .2, 20), '#3E5A44', [0, -.1, 0])); sc.add(mesh(G.box(30, .05, 3), '#3A3F52', [0, .02, 4])); for (let i = 0; i < 8; i++) sc.add(mesh(G.box(1, .02, .12), '#E8E0C0', [-14 + i * 4, .06, 4], { cast: false }));
+    const HK = homeN(sc, [-3.4, 0, -2], { wall: '#6A7A5A' }), HC = homeN(sc, [3.4, 0, -2], { wall: '#7A5A6A', roof: '#3A2433' }); streetLamp(sc, [0, 0, 2.4], 18); streetLamp(sc, [-9, 0, 2.4]); streetLamp(sc, [9, 0, 2.4]);
+    const R = cast.kerbau([-4.1, 0, .1]); sc.add(R); const K = cast.kucing([-.6, 0, .8]); sc.add(K); const B = bor(sc, [0, 0, 0]);
+    const items = [ladder(sc, [4.6, 0, -.2]), cart(sc, [2.4, 0, .6]), hoseCoil(sc, [5.2, 0, .9])]; items.forEach(o => o.visible = false); items[0].rotation.z = -.15;
+    const cam = camera(42); const cal = X.ab({ left: 70, top: 300, background: '#0B1026E6', border: `4px solid ${MOON}`, borderRadius: '16px', width: 230, textAlign: 'center', fontFamily: 'Baloo', fontWeight: 800, color: MOON, opacity: V === 'end' ? 0 : 1 }, root);
+    const hook = V === 'pinjam' ? bottomHook(root, `Pinjam bor “sebentar”.<br><span style="color:${MOON}">Sudah setahun.</span>`) : null;
+    const quote = V === 'pinjam' ? bubble(root, '😼 “Pinjam bor sebentar ya.”', '#FFFFFF', '#1B2347', { left: 330, top: 300, fontSize: '40px' }) : null;
+    const list = V === 'time' ? v.pinjam.map(([nm, d], i) => chip(root, `${nm} · <span style="color:#FF8A8A">belum kembali</span>`, { left: 330, top: 300 + i * 100, fontSize: '38px' })) : [];
+    const card = V === 'end' ? topCard(root, `“Barang pinjaman yang tidak ditagih,<br><span style="color:${MOON}">lama-lama dianggap hadiah.”</span>`, { fontSize: '52px' }) : null;
+    const q = V === 'end' ? X.ab({ left: 70, top: 470, width: 940, textAlign: 'center', fontFamily: 'Baloo', fontWeight: 800, fontSize: '44px', color: '#fff', opacity: 0, textShadow: '0 4px 0 #000' }, root, 'Barang lo pernah nggak balik?') : null;
+    const tagN = V === 'end' ? ftag(root, '🏷️ KERBAU', { fontSize: '40px' }) : null;
+    const walk = (A, a, b, q) => { A.position.x = lerp(a, b, q); A.position.z = .8; A.rotation.y = b > a ? Math.PI / 2 : -Math.PI / 2 };
+    return { scene: sc, cam, upd(t, dur) {
+      const p = E.inout(seg(t, 0, dur));
+      if (V === 'pinjam') { const tk = .2, tg = at(s, 'mengangguk', 3), tl = at(s, 'terakhir kalinya', dur * .5); let q1 = seg(t, tk, tg - .5), q2 = seg(t, tg + .4, tl + 1);
+        if (t < tg + .4) { walk(K, -.6, -3, E.inout(q1)); K.pose(t, { walk: q1 > 0 && q1 < 1 ? 1 : 0, talk: q1 >= 1 }); if (q1 >= 1) K.rotation.y = -Math.PI / 2 } else { walk(K, -3, 4, E.inout(q2)); K.pose(t, { walk: q2 < 1 ? 1 : 0, hold: true }) }
+        R.pose(t, { nod: t > tg && t < tg + 1.2, hold: t < tg + .4 }); R.rotation.y = .9; const hb = t < tg + .4 ? R : K; const hp = new THREE.Vector3(); hb.userData.st.arms[1].getWorldPosition(hp); B.position.set(hp.x, hp.y - .5, hp.z + .1);
+        cam.position.set(lerp(-1.9, .6, p), lerp(2.4, 3.2, p), lerp(10.5, 12, p)); cam.lookAt(lerp(-2.4, .4, p), 1.3, 0); hook.style.opacity = seg(t, 0, .3); X.pop(quote, t < tg + .8 ? seg(t, .3, .7) : 0);
+        const days = Math.round(lerp(1, 365, E.in(seg(t, tl, dur - .5)))); cal.innerHTML = `<div style="font-size:28px">HARI KE-</div><div style="font-size:72px;line-height:1.1">${days}</div>` }
+      else if (V === 'time') { const cues = v.pinjam_cues.map((c, i) => at(s, c, 1 + i * 2.5)); let k = -1; cues.forEach((c, i) => { if (t > c - .4) k = i });
+        const ph = k < 0 ? 0 : seg(t, cues[k] - .4, (k < 2 ? cues[k + 1] - .4 : dur)); walk(K, -2.6, 4, E.inout(ph)); K.pose(t, { walk: ph < 1 ? 1 : 0, hold: true });
+        items.forEach((o, i) => { o.visible = i < k || (i === k && ph > .9) }); R.pose(t, { look: .6, shake: t > dur - 2 }); R.rotation.y = .9;
+        cam.position.set(lerp(-6, 6, p), 5.5, 12); cam.lookAt(lerp(-1, 2, p), 1, 0); const d = k < 0 ? 1 : v.pinjam[k][1]; cal.innerHTML = `<div style="font-size:28px">HARI KE-</div><div style="font-size:72px;line-height:1.1">${d}</div>`;
+        list.forEach((c, i) => X.pop(c, i <= k ? seg(t, cues[i], cues[i] + .4) : 0)) }
+      else { items.forEach(o => o.visible = false); R.position.set(-3.2, 0, 1.4); R.rotation.y = Math.PI * .1; B.position.set(-2.6, .95, 1.6); R.pose(t, { hold: true, nod: true }); K.position.set(3.4, 0, .8); K.rotation.y = -1; K.pose(t, { look: -.5 });
+        cam.position.set(lerp(-3, -3.6, p), lerp(2.3, 2.6, p), lerp(6.6, 7.6, p)); cam.lookAt(-3, 1.4, 0); tagN.at(B, cam, [0, .3, 0], seg(t, .6, 1));
+        const tc = at(s, 'Pepatah', dur * .4), tq = at(s, 'pernah minjemin', dur - 3); const qq = seg(t, tc, tc + .5); card.style.opacity = qq; card.style.transform = `translateY(${(1 - qq) * 20}px)`; q.style.opacity = seg(t, tq, tq + .5) }
+    } };
+  },
+  H_GARAGE(s, root) {   // garasi Kucing: barang Kerbau berjejer, bekas tempat bor kosong; Kucing garuk kepala
+    const sc = newScene(NOIR({ hemi: 1.1, sunI: 1.5 })); noirRoom(sc, { window: false, wall: '#5A5A6A', floor: '#4A4A52' }); const L = new THREE.PointLight('#FFF0D0', 16, 9); L.position.set(0, 3.4, 0); sc.add(L);
+    sc.add(mesh(G.box(3, 1.8, .05), '#B98B5E', [0, 2, -3.85])); [[-1, 2.4], [-.3, 2.4], [.6, 2.4], [-.8, 1.6], [.3, 1.6], [1, 1.6]].forEach(([x, y], i) => { if (i === 2) sc.add(mesh(G.box(.42, .3, .02), '#2A2A33', [x, y, -3.8], { cast: false })); else sc.add(mesh(G.box(.3, .2, .08), ['#C0392B', '#E5C04A', '#2E6A8A', '#3FAE49', '#9AA0A8', '#F28C28'][i], [x, y, -3.78])) });
+    const holes = ftag(root, 'tempat bor: <b>kosong</b>', { fontSize: '34px' }); const hole = group(sc, [.6, 2.4, -3.8]);
+    const lad = ladder(sc, [-3, 0, -3.4]); lad.rotation.x = .12; const ct = cart(sc, [-2.6, 0, -1.6]); const hs = hoseCoil(sc, [-1.6, 0, -2.6]);
+    const K = cast.kucing([.8, 0, -.8]); K.rotation.y = -.4; const R = cast.kerbau([2.6, 0, 1.2]); R.rotation.y = -2.4; sc.add(K, R);
+    const cam = camera(42); const qk = bubble(root, '😼 “Bor? Kayaknya dipinjam<br>lagi sama Bunglon.”', '#FFFFFF', '#1B2347', { left: 70, top: 300, fontSize: '40px', whiteSpace: 'normal', width: 700 });
+    const c2 = chip(root, '📦 barang Kerbau → <b>3 tetangga lain</b>', { left: 70, top: 500, color: ORANGE, borderColor: ORANGE });
+    const tL = ftag(root, 'milik Kerbau', { fontSize: '30px' }), tC = ftag(root, 'milik Kerbau', { fontSize: '30px' });
+    return { scene: sc, cam, upd(t, dur) {
+      const tg = at(s, 'garuk kepala', 2.5), tb = at(s, 'tiga tetangga', dur - 2.5);
+      K.pose(t, { talk: t > tg && t < tb }); if (t > tg) { K.userData.st.arms[0].rotation.x = -2.6; K.userData.st.arms[0].rotation.z = -.4 + Math.sin(t * 10) * .15 } R.pose(t, { look: t > tg ? .3 : 0, shake: t > tb });
+      const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(3.4, 2.6, p), lerp(2.6, 2.4, p), lerp(5.8, 5, p)); cam.lookAt(-.4, 1.4, -1.8);
+      X.pop(qk, seg(t, tg + .3, tg + .7)); X.pop(c2, seg(t, tb, tb + .4)); holes.at(hole, cam, [0, .3, 0], seg(t, 1, 1.4)); tL.at(lad, cam, [0, 2.6, 0], t < tg ? seg(t, 1, 1.4) : 0); tC.at(ct, cam, [0, .9, 0], t < tg ? seg(t, 1.4, 1.8) : 0);
+    } };
+  },
+  H_YARDSALE(s, root) {   // bazar kompleks malam: lampu gantung, lapak Kucing menjual bor Kerbau; gagang bertuliskan KERBAU
+    const v = X.TL.vars; const sc = newScene(NOIR({ hemi: 1.1, sunI: 1.4 })); skyline(sc, -20); sc.add(mesh(G.box(24, .2, 16), '#3A3F52', [0, -.1, 0]));
+    const bulbs = []; for (let i = 0; i < 22; i++) { const x = -8 + i * .76, y = 3.4 - Math.sin(i / 21 * Math.PI) * .6; const b = mesh(G.sph(.08, 6, 5), ['#FFD27A', '#FF8A8A', '#9CE0FF', '#B8FF9A'][i % 4], [x, y, -1], { cast: false, mat: { emissive: ['#FFD27A', '#FF8A8A', '#9CE0FF', '#B8FF9A'][i % 4], emissiveIntensity: 2 } }); sc.add(b); bulbs.push(b) }
+    [-6, 0, 6].forEach(x => { const L = new THREE.PointLight('#FFD9A0', 14, 9); L.position.set(x, 3, 0); sc.add(L) });
+    const stall = (x, c) => { const g = group(sc, [x, 0, -1.8]); g.add(mesh(G.box(2.6, .1, 1.1), c, [0, .8, 0])); g.add(mesh(G.box(2.5, .76, 1), '#3A2A1E', [0, .38, 0])); return g };
+    const sK = stall(0, '#8A2E4A'); stall(-4.6, '#2E6A8A'); stall(4.6, '#3E7A4A'); for (let i = 0; i < 6; i++) sc.add(mesh(G.box(.3, .25, .3), ['#C0392B', '#E5C04A', '#9AA0A8'][i % 3], [-5.4 + (i % 3) * .6 + (i > 2 ? 9.2 : 0), .98, -1.8], { cast: false }));
+    const B = bor(sc, [.2, .95, -1.6]); const tg = txtTex(256, 128, x => { x.fillStyle = '#FFF3B0'; x.fillRect(0, 0, 256, 128); x.fillStyle = '#C0392B'; x.font = '800 52px Baloo'; x.textAlign = 'center'; x.fillText('Rp150rb', 128, 82) });
+    const tag = new THREE.Mesh(G.plane(.5, .25), new THREE.MeshStandardMaterial({ map: tg, side: THREE.DoubleSide, emissive: '#FFFFFF', emissiveIntensity: .2 })); tag.position.set(-.4, 1.05, -1.3); tag.rotation.x = -.6; sc.add(tag);
+    const K = cast.kucing([0, 0, -2.7]); const R = cast.kerbau([1.3, 0, -.2]); R.rotation.y = Math.PI + .5; const crowd = [cast.tikus([-2.6, 0, .4]), cast.hantu([-1.6, 0, 1.4]), cast.bunglon([2.4, 0, .8]), cast.tikus([3.2, 0, 1.6], { body: '#8FA8C8' })]; [K, R, ...crowd].forEach(a => sc.add(a));
+    const cam = camera(42); const pr = chip(root, '🏷️ “dijual: <b>Rp150.000</b>”', { left: 70, top: 300 });
+    const inset = X.ab({ left: 560, top: 380, width: 440, height: 300, borderRadius: '26px', overflow: 'hidden', border: `6px solid ${MOON}`, opacity: 0, background: '#2B2B2B' }, root,
+      `<div style="position:absolute;left:30px;top:90px;width:380px;height:120px;background:#F2B233;border-radius:20px"></div><div style="position:absolute;left:60px;top:118px;font-family:Baloo;font-weight:800;font-size:62px;color:#5A3A10;letter-spacing:6px;transform:rotate(-3deg)">KERBAU</div><div style="position:absolute;left:18px;bottom:12px;color:#fff;font-family:Baloo;font-weight:800;font-size:30px">gagang bor (tergores)</div>`);
+    return { scene: sc, cam, upd(t, dur) {
+      const tl = at(s, 'Labelnya', dur * .4), tb = at(s, 'membaliknya', dur * .6), tn = at(s, 'namanya sendiri', dur - 2.5);
+      bulbs.forEach((b, i) => b.material.emissiveIntensity = 1.4 + Math.sin(t * 3 + i) * .6);
+      const lift = E.inout(seg(t, tb - .3, tb + .6)); B.position.set(lerp(.2, .4, lift), lerp(.95, 1.5, lift), lerp(-1.6, -.4, lift)); B.rotation.z = lift * Math.PI;
+      R.pose(t, { hold: t > tb, look: 0 }); K.pose(t, { talk: t < tb, shake: t > tn, look: t > tn ? .5 : 0 }); crowd.forEach((a, i) => { a.rotation.y = t > tn ? Math.atan2(-a.position.x, -2.7 - a.position.z) : Math.PI + Math.sin(t + i) * .4; a.pose(t + i, { nod: t > tn }) });
+      const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(-3.4, -2, p), lerp(3.6, 3.2, p), lerp(6.8, 6, p)); cam.lookAt(.3, 1, -1.6);
+      X.pop(pr, seg(t, tl, tl + .4)); const q = seg(t, tn, tn + .5); inset.style.opacity = q; inset.style.transform = `scale(${E.back(q)})`;
+    } };
+  },
+});

@@ -52,7 +52,7 @@ Baca dulu:
 - Model per akun (disetujui pemilik): `gemini-3.8-flash-tts` untuk Dompet (Kore), Meja (Puck), Hewan (Algenib); `gemini-3.8-flash-lite-tts` untuk Denah (Sulafat), Kades (Achird), Balai (Charon). Jangan ganti model/suara tanpa izin.
 - Kunci terpasang sebagai Network secret di lingkungan akun (host generativelanguage.googleapis.com, header x-goog-api-key): jalankan build dengan `GOOGLE_API_KEY=dummy`. Kalau TTS gagal 401/403, kunci lingkungan itu belum diisi: minta pemilik mengisinya di pengaturan lingkungan. Jangan tulis kunci asli ke file/log, jangan minta pemilik menempel kunci di chat.
 - Kuota 10 permintaan/hari PER MODEL (reset ~08:00 UTC = 15:00 WIB). Satu panggilan TTS per video (`full.wav`), dipotong per adegan otomatis. Kalau build mencetak PERINGATAN potongan, buat ulang dengan `--calls 2`. Jangan bikin akun/proyek Google tambahan untuk menambah kuota akun yang sama (melanggar ToS); kunci berbeda hanya karena pemilik akunnya berbeda.
-- Cek potongan suara: kirim tiap potongan berlabel ("POTONGAN s1") ke gemini-3.5-flash, minta JSON object per id. Kalau kuota pemeriksa habis (429), bandingkan rasio durasi/huruf antar adegan.
+- Cek potongan suara: `GOOGLE_API_KEY=dummy python3 motion/engine/cek_potongan.py <akun> <ep>` (kirim tiap potongan berlabel "POTONGAN s1" ke gemini-3.5-flash, JSON per id; 503 = ulangi sebentar lagi). Kalau kuota pemeriksa habis (429), bandingkan rasio durasi/huruf antar adegan.
 - Tempo: jeda antar adegan ~0,7 dtk (LEAD 0,22 / TAIL 0,28 / GAP 0,10 di `build.py`), disetujui pemilik.
 - Hook: bikin penasaran + jelaskan isi video dalam ~5 detik pertama; frame pertama langsung "aksi".
 
