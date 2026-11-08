@@ -32,7 +32,7 @@ Baca dulu:
 
 ## Isi v3 (Dompet, Meja, Balai, Hewan; detail di `docs/KONSEP-V3.md`)
 - Rotasi format: format sama tidak dua kali berturut-turut, minimal 4 format beda per 7 hari. Kades dan Denah tetap serial harian.
-- Dompet: tokoh Nana atau Raka (cowok). Boleh info investasi/sukses sebelum 30. Disclaimer gaya cerita: "Ini yang gue lakuin, bukan nasihat keuangan ya. Tapi angka ini penting banget lo tahu." + kalimat risiko singkat di video investasi, tanpa janji untung. Raka pakai suara cowok "Fenrir" (model sama, flash; dipilih Claude atas izin pemilik 8 Nov "yang penting bagus"): `CONFIG_OVERRIDE = {"tts": {"voice": "Fenrir"}}`. Kalau hasil pertama jelek, boleh ganti suara cowok lain (bukan Puck/Charon/Achird/Algenib, sudah dipakai akun lain).
+- Dompet: tokoh Nana atau Raka (cowok). Boleh info investasi/sukses sebelum 30. Disclaimer gaya cerita: "Ini yang gue lakuin, bukan nasihat keuangan ya. Tapi angka ini penting banget lo tahu." + kalimat risiko singkat di video investasi, tanpa janji untung. Raka pakai suara cowok dari kolam suara Dompet (lihat bagian TTS), mis. `CONFIG_OVERRIDE = {"tts": {"voice": "Fenrir"}}`.
 - Meja: POV bergantian (full staf, full bos, jenis bos, jenis staf, kamus HRD); split staf vs bos maksimal 1-2x seminggu.
 - Balai: satu sindiran halus per video, logis dan relate, semua rekaan tanpa nama.
 - Hewan: setting wajib berganti (kantor maksimal 1 dari 4), tokoh tamu bebas (sudah ada Ular).
@@ -49,7 +49,9 @@ Baca dulu:
 - Penyetel di `episode.py`: `END_PAD` (tahan adegan terakhir, untuk durasi >= 60 dtk), `SPLIT_SHIFT` (geser batas potongan suara, mis. `{3: -1}` = batas adegan 4->5 mundur satu jeda).
 
 ## TTS (Gemini, tier gratis)
-- Model per akun (disetujui pemilik): `gemini-3.8-flash-tts` untuk Dompet (Kore), Meja (Puck), Hewan (Algenib); `gemini-3.8-flash-lite-tts` untuk Denah (Sulafat), Kades (Achird), Balai (Charon). Jangan ganti model/suara tanpa izin.
+- Model per akun (disetujui pemilik): `gemini-3.8-flash-tts` untuk Dompet (Kore), Meja (Puck), Hewan (Algenib); `gemini-3.8-flash-lite-tts` untuk Denah (Sulafat), Kades (Achird), Balai (Charon). Jangan ganti MODEL tanpa izin (kuota dibagi per model).
+- Suara boleh dirotasi (keputusan pemilik 8 Nov): tiap akun punya kolam sampai 3 suara, pilih yang terbaik, supaya tidak itu-itu terus. Suara boleh sama antar akun (umum di luar sana). Ganti suara TIDAK menambah kuota (tetap 1 panggilan per video). Pakai `CONFIG_OVERRIDE = {"tts": {"voice": ...}}` di `episode.py`, catat di `META["suara"]`. Jenis kelamin suara ikut narator/tokoh utama. Suara yang hasilnya jelek dicoret dari kolam.
+- Kolam suara: Dompet = Nana: Kore, Leda, Zephyr; Raka: Fenrir, Sadachbia, Zubenelgenubi. Meja = Puck, Sadachbia, Laomedeia. Akun lain: suara awal di atas, sesi pasangannya boleh menambah 2 suara dan mencatatnya di sini.
 - Kunci terpasang sebagai Network secret di lingkungan akun (host generativelanguage.googleapis.com, header x-goog-api-key): jalankan build dengan `GOOGLE_API_KEY=dummy`. Kalau TTS gagal 401/403, kunci lingkungan itu belum diisi: minta pemilik mengisinya di pengaturan lingkungan. Jangan tulis kunci asli ke file/log, jangan minta pemilik menempel kunci di chat.
 - Kuota 10 permintaan/hari PER MODEL (reset ~08:00 UTC = 15:00 WIB). Satu panggilan TTS per video (`full.wav`), dipotong per adegan otomatis. Kalau build mencetak PERINGATAN potongan, buat ulang dengan `--calls 2`. Jangan bikin akun/proyek Google tambahan untuk menambah kuota akun yang sama (melanggar ToS); kunci berbeda hanya karena pemilik akunnya berbeda.
 - Cek potongan suara: kirim tiap potongan berlabel ("POTONGAN s1") ke gemini-3.5-flash, minta JSON object per id. Kalau kuota pemeriksa habis (429), bandingkan rasio durasi/huruf antar adegan.
