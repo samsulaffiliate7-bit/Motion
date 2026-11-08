@@ -32,7 +32,7 @@ Baca dulu:
 
 ## Isi v3 (Dompet, Meja, Balai, Hewan; detail di `docs/KONSEP-V3.md`)
 - Rotasi format: format sama tidak dua kali berturut-turut, minimal 4 format beda per 7 hari. Kades dan Denah tetap serial harian.
-- Dompet: tokoh Nana atau Raka (cowok). Boleh info investasi/sukses sebelum 30. Disclaimer gaya cerita: "Ini yang gue lakuin, bukan nasihat keuangan ya. Tapi angka ini penting banget lo tahu." + kalimat risiko singkat di video investasi, tanpa janji untung. Raka butuh suara cowok: tanya pemilik dulu, pakai `CONFIG_OVERRIDE = {"tts": {"voice": ...}}`.
+- Dompet: tokoh Nana atau Raka (cowok). Boleh info investasi/sukses sebelum 30. Disclaimer gaya cerita: "Ini yang gue lakuin, bukan nasihat keuangan ya. Tapi angka ini penting banget lo tahu." + kalimat risiko singkat di video investasi, tanpa janji untung. Raka pakai suara cowok "Fenrir" (model sama, flash; dipilih Claude atas izin pemilik 8 Nov "yang penting bagus"): `CONFIG_OVERRIDE = {"tts": {"voice": "Fenrir"}}`. Kalau hasil pertama jelek, boleh ganti suara cowok lain (bukan Puck/Charon/Achird/Algenib, sudah dipakai akun lain).
 - Meja: POV bergantian (full staf, full bos, jenis bos, jenis staf, kamus HRD); split staf vs bos maksimal 1-2x seminggu.
 - Balai: satu sindiran halus per video, logis dan relate, semua rekaan tanpa nama.
 - Hewan: setting wajib berganti (kantor maksimal 1 dari 4), tokoh tamu bebas (sudah ada Ular).
