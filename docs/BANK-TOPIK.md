@@ -93,7 +93,7 @@ Aturan pakai:
 - [x] [Mesin Waktu] Kopi 25 ribu sehari, dihitung 20 tahun + inflasi [cek sumber] — "Kopi 25 ribu ini, 20 tahun lagi harganya segini." (dompet ep009, 3D v3, 10 Nov 2026)
 - [ ] [Mesin Waktu] Uang 10 juta disimpan di lemari 10 tahun [cek sumber] — "Uang 10 juta di lemari. 10 tahun lagi tinggal 'segini'."
 - [ ] [Mesin Waktu] Mulai sisihkan umur 22 vs umur 32 (ilustrasi bunga majemuk, asumsi jelas) — "Beda mulai 10 tahun. Hasilnya beda segini."
-- [ ] [Dua Timeline] Raka: motor baru cicilan vs motor bekas + nabung selisih — "Motor sama-sama jalan. 3 tahun lagi saldonya beda jauh."
+- [x] [Dua Timeline] Raka: motor baru cicilan vs motor bekas + nabung selisih — "Motor sama-sama jalan. 3 tahun lagi saldonya beda jauh." (dompet ep012, 11 Nov 2026)
 - [ ] [Dua Timeline] Nana: pesta nikah besar vs sederhana + DP rumah — "Pestanya sehari. Cicilannya 3 tahun."
 - [x] [Checklist Sebelum 30] 5 hal keuangan yang beres sebelum 30 — "5 hal ini kalau belum beres di umur 30, bahaya." (dompet ep010, 3D v3, 10 Nov 2026)
 - [ ] [Checklist Sebelum 30] 3 pengeluaran yang gue stop umur 25 — "Umur 25 gue stop 3 hal ini. Tabungan langsung napas."
@@ -103,7 +103,7 @@ Aturan pakai:
 - [ ] [Bongkar Jebakan] Paylater "cicilan 0%" tapi ada biaya [cek sumber] — "Cicilan 0%. Kok totalnya lebih mahal?"
 - [x] [Mitos vs Fakta] "Investasi nunggu kaya dulu" — "Investasi harus nunggu kaya dulu? Salah." (dompet ep007, 3D v3, 7 Nov 2026)
 - [ ] [Mitos vs Fakta] "Emas pasti untung" (selisih harga beli-jual) [cek sumber] — "Beli emas hari ini, jual besok. Kok rugi?"
-- [ ] [Mitos vs Fakta] "Nabung aja cukup" vs inflasi [cek sumber] — "Rajin nabung, kok tetap nggak kebeli?"
+- [x] [Mitos vs Fakta] "Nabung aja cukup" vs inflasi [cek sumber] — "Rajin nabung, kok tetap nggak kebeli?" (dompet ep013 versi 'nabung di lemari', 11 Nov 2026)
 - [ ] [Ini yang Gue Lakuin] Raka pisah 4 pos tiap gajian — "Gaji gue 5,5 juta. Ini 4 pos yang gue pisah tiap tanggal 25."
 - [x] [Ini yang Gue Lakuin] Nana isi dana darurat pelan-pelan — "Dana darurat 6 kali pengeluaran. Gue isi dari 200 ribu." (dompet ep008, 3D v3, 10 Nov 2026)
 - [ ] [Ini yang Gue Lakuin] Urutan pakai gaji pertama — "Gaji pertama gue nggak langsung buat jajan. Ini urutannya."
@@ -544,7 +544,7 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 **v3 (format rotasi, sudut pandang bergantian; lihat `docs/KONSEP-V3.md`)**
 - [x] [Full POV Staf] Hari pertama: "pelajari sendiri ya" — "Hari pertama kerja, gue disuruh 'pelajari sendiri ya'." (meja ep008, 3D v3, 10 Nov 2026)
 - [ ] [Full POV Staf] Anak rantau: gaji habis buat kos dan makan — "Gaji kota besar. Sisanya kok kayak gaji kampung?"
-- [ ] [Full POV Bos] Manajer baru dijepit target atas dan tim bawah — "Jadi manajer ternyata: gaji naik dikit, beban naik 3x."
+- [x] [Full POV Bos] Manajer baru dijepit target atas dan tim bawah — "Jadi manajer ternyata: gaji naik dikit, beban naik 3x." (meja ep013, 11 Nov 2026)
 - [ ] [Full POV Bos] Bos harus memberhentikan staf yang dia suka — "Staf terbaik gue. Dan gue yang harus bilang 'maaf'."
 - [x] [Full POV Bos] Bos baca grup chat tim yang lupa ada dia — "Grup tim rame ngomongin gue. Mereka lupa gue di situ." (meja ep009, 3D v3, 10 Nov 2026)
 - [x] [Seri Jenis Bos] Bos killer yang tidak pernah teriak — "Bos killer bukan yang teriak. Yang ini lebih serem." (meja ep006, 3D v3, 6 Nov 2026)
@@ -553,7 +553,7 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 - [ ] [Seri Jenis Bos] Bos baik tapi tidak berani memutuskan — "Bosnya baik banget. Masalahnya, dia nggak pernah mutusin."
 - [ ] [Seri Jenis Staf] Gen Z pulang tepat jam 5 (dua sisi adil) — "Jam 5 tepat, laptop ditutup. Salah?"
 - [ ] [Seri Jenis Staf] Senior "zaman gue dulu" — "'Zaman gue dulu lebih parah.' Terus?"
-- [ ] [Seri Jenis Staf] Si paling "siap pak" tapi tidak dikerjakan — "Jawabnya selalu 'siap pak'. Hasilnya nggak pernah siap."
+- [x] [Seri Jenis Staf] Si paling "siap pak" tapi tidak dikerjakan — "Jawabnya selalu 'siap pak'. Hasilnya nggak pernah siap." (meja ep012, 11 Nov 2026)
 - [x] [Kamus HRD] "Suasana kekeluargaan" — "'Suasana kekeluargaan' artinya apa sih?" (meja ep007 (4 kalimat HRD sekaligus), 3D v3, 7 Nov 2026)
 - [x] [Kamus HRD] "Mampu bekerja di bawah tekanan" — "Di lowongan: 'mampu bekerja di bawah tekanan'. Artinya..." (meja ep007)
 - [x] [Kamus HRD] "Gaji kompetitif" dan cara tanya angka saat interview — "'Gaji kompetitif.' Kompetitif sama siapa?" (meja ep007)
