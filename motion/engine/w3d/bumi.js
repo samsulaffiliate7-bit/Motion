@@ -516,6 +516,117 @@ export const SHOTS = {
       C.forEach((c, i) => { const q = i < 3 ? 1.2 + i * .5 + (popAt(s, 'dari apa', 2) - 1) : popAt(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) });
     } };
   },
+
+  // ===== HARI 2: kawasan usaha, penduduk dari like, pekerja tanpa rumah =====
+  B2_HOOK(s, root) {   // papan kota sore: pasar tumbuh, kerumunan, lalu tanda tanya di atas pekerja
+    const sc = newScene({ sky: ['#FFC48A', '#FFF1DE'], sunPos: [12, 14, 8], shadow: 20 }); const B = cityBoard(sc); B.userData.zones.usaha.forEach(m => m.visible = true);
+    const items = [shop(sc, [-2, 0, -1.8], { sign: '#E5484D', awn: '#F5C542' }), shop(sc, [1.8, 0, -1.8], { w: 2.6, sign: '#2E7D5B', wall: '#F4F7FA' }), shop(sc, [-1.8, 0, 2], { awn: '#E5484D', sign: '#F5C542' }), tower(sc, [2, 0, 1.6], 3)];
+    const ppl = Array.from({ length: 8 }, (_, i) => person(sc, [Math.sin(i * 2.1) * 2.4, 0, Math.cos(i * 1.7) * 2.2 + .2], { s: .55, body: ['#2E7D5B', '#8E2F3A', '#3E8FC4', '#D9772B', '#6B4FA0', '#C9472F'][i % 6] }));
+    const qs = [0, 3, 6].map(i => { const sp = txtSprite('?', GOLD, NAVY, .7); sc.add(sp); return [sp, ppl[i]] });
+    const cam = camera(42);
+    const hook = X.ab({ left: 70, top: 300, width: 940, background: '#FFFBF2F2', border: `8px solid ${NAVY}`, borderRadius: '40px', padding: '22px 28px', textAlign: 'center', fontSize: '58px', lineHeight: 1.12, color: NAVY, fontFamily: 'Fredoka', fontWeight: 700, boxShadow: `0 14px 0 ${TERRA}`, opacity: 0 }, root,
+      `Kalian pilih <span style="color:#3E8FC4">B · usaha</span>!<br><span style="font-size:48px;color:${TERRA}">tapi pekerjanya tidur di mana?</span>`);
+    return { scene: sc, cam, upd(t, dur) {
+      orbit(cam, lerp(-35, 10, E.inout(seg(t, 0, dur))), lerp(20, 9, E.inout(seg(t, 0, dur))), lerp(30, 17, E.inout(seg(t, 0, dur))), [0, .5, 0]); grow(items, t, .2, .15);
+      ppl.forEach((p, i) => { p.pose(t + i, { walk: 1 }); const a = t * .4 + i; p.position.x = Math.sin(a) * 2.6; p.position.z = Math.cos(a * .8) * 2.4; p.rotation.y = a });
+      const tq = popAt(s, 'tidur di mana', dur - 2); qs.forEach(([sp, p], i) => { sp.visible = t > tq + i * .2; sp.position.set(p.position.x, 1.5 + Math.sin(t * 4 + i) * .08, p.position.z) });
+      X.pop(hook, seg(t, .1, .5));
+    } };
+  },
+  B2_TALLY(s, root) {   // papan skor di angkasa dekat globe: batang suara + kartu komentar
+    const sc = newScene({ sky: ['#0B1F3A', '#264E86'], hemi: .9, sunI: 2.6, sunPos: [8, 10, 12] }); stars(sc);
+    const gl = globe(sc, 3, { highlight: ['Indonesia'] }); gl.position.set(0, -4.2, -2); gl.face(-6.2, 106.8); const V = X.TL.vars;
+    const bar = (n, x, col) => Array.from({ length: n }, (_, i) => { const m = mesh(G.box(1.4, .55, 1.4), col, [x, -.6 + i * .58, 1.5]); sc.add(m); return m });
+    const SB = bar(V.b, 1.3, '#3E8FC4'), SA = bar(V.a, -1.3, '#E5484D');
+    const tb = tag3(root, `B · usaha: ${V.b}`, '#3E8FC4'), ta = tag3(root, `A · rumah: ${V.a}`, '#E5484D');
+    const cc = V.komentar.slice(0, 1).map(([u, tx]) => X.ab({ left: 120, top: 1090, width: 840, background: '#FFFFFF', borderRadius: '28px', padding: '16px 24px', fontFamily: 'Fredoka', color: '#1E1E1E', border: `5px solid ${NAVY}`, boxShadow: '0 8px 0 #00000030', opacity: 0 }, root, `<div style="font-size:26px;color:#888">${u} · komentar</div><div style="font-size:40px;font-weight:700">“${tx}”</div>`))[0];
+    const J = juragan([3.2, -.9, 1.5], { s: .9 }); sc.add(J); J.rotation.y = -.5;
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) {
+      orbit(cam, Math.sin(t * .3) * 10, 1.8, 15.5, [0, 1.3, 1]);
+      SB.forEach((m, i) => { const q = E.back(seg(t, .4 + i * .15, .7 + i * .15)); m.scale.setScalar(Math.max(.001, q)) }); SA.forEach((m, i) => { const q = E.back(seg(t, .6 + i * .15, .9 + i * .15)); m.scale.setScalar(Math.max(.001, q)) });
+      tb.at(SB[SB.length - 1], cam, [0, .5, 0], seg(t, 1.2, 1.6)); ta.at(SA[SA.length - 1], cam, [0, .5, 0], seg(t, 1.4, 1.8));
+      const tp = popAt(s, 'protes', 4); const q = seg(t, tp, tp + .4); cc.style.opacity = q; cc.style.transform = `translateY(${(1 - E.out(q)) * 30}px) rotate(-2deg)`;
+      J.pose(t, { hold: true, shake: t > tp && t < tp + 2.5, nod: t > popAt(s, 'kepakai', dur - 1.5) });
+    } };
+  },
+  B2_MARKET(s, root) {   // kamera setinggi orang menyusuri pasar: lapak, swalayan, kantor; koin keluar dari koper
+    const sc = newScene({ sky: ['#8FD3FF', '#F4FBFF'], sunPos: [-8, 16, 8], shadow: 14 }); island(sc, 18, 22, '#9CCB6A', '#8D6E4A'); sc.add(mesh(G.box(3, .05, 22), '#8A8F96', [0, .03, 0]));
+    const stalls = []; for (let i = 0; i < 4; i++) { const g = group(sc, [-3.2, 0, -7 + i * 2.6]); g.add(mesh(G.box(2, .8, 1.4), '#B5835A', [0, .4, 0])); g.add(mesh(G.box(2.3, .1, 1.8), ['#E5484D', '#F5C542', '#3E8FC4', '#2E7D5B'][i], [0, 1.9, 0], { rot: [.15, 0, 0] })); [-.9, .9].forEach(x => g.add(mesh(G.box(.08, 1.9, .08), '#7A4E2C', [x, .95, .7]))); [0, 1, 2].forEach(k => g.add(mesh(G.sph(.16, 8, 6), ['#F28C28', '#8BC34A', '#E5484D'][k], [-.5 + k * .5, .9, 0]))); stalls.push(g) }
+    const swal = shop(sc, [3.6, 0, -5], { w: 3.4, d: 2.6, h: 1.8, sign: '#2E7D5B', wall: '#F4F7FA', awn: '#2E7D5B' }); swal.rotation.y = -Math.PI / 2;
+    const offs = [tower(sc, [3.6, 0, 1], 3.4), tower(sc, [3.6, 0, 4], 2.6, '#C9D6E2')];
+    const J = juragan([-1.5, 0, 3.5]); sc.add(J); J.rotation.y = 2.6; const coins = Array.from({ length: 14 }, () => coin(sc, [0, -5, 0], 1.3));
+    const V = X.TL.vars; const C = [['🛒 pasar + swalayan', 'swalayan'], ['🏢 kantor kecil', 'kantor'], [`🪙 −${V.biaya} koin`, 'koin'], [`💼 sisa ${V.koin} koin`, 'tinggal']].map(([tx, cu], i) => ({ cu, e: chip(root, tx, { left: 60, top: 300 + i * 105, fontSize: '40px' }, i === 2 ? '#E5484D' : NAVY) }));
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) {
+      const p = E.inout(seg(t, 0, dur)); cam.position.set(1.2, 2.2, lerp(12, 5, p)); cam.lookAt(0, 1.3, lerp(2, -6, p));
+      grow(stalls, t, popAt(s, 'pasar', .5), .2); grow([swal], t, popAt(s, 'swalayan', 2)); grow(offs, t, popAt(s, 'kantor', 3), .25);
+      const tc = popAt(s, 'Juragan', .2); coins.forEach((c, i) => { const q = ((t - tc) * .6 + i / 14) % 1; c.visible = t > tc && t < tc + 4; c.position.set(-1.5 + Math.sin(i * 2.3) * q * 2, 1 + q * 3 - q * q * 3.5, 3.5 - q * 3); c.rotation.set(t * 5 + i, t * 3, 0) });
+      J.pose(t, { hold: true, shake: t > popAt(s, 'keringetan', dur - 1.5) });
+      C.forEach(c => { const q = popAt(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) });
+    } };
+  },
+  B2_BUS(s, root) {   // bus datang ke halte, penduduk baru turun satu per satu, penghitung naik
+    const sc = newScene({ sky: ['#7EC8F2', '#E7F6FF'], sunPos: [10, 14, 8], shadow: 14 }); island(sc, 22, 14, '#9CCB6A', '#8D6E4A'); sc.add(mesh(G.box(22, .05, 3), '#8A8F96', [0, .03, 2]));
+    const stop = group(sc, [1, 0, -.6]); stop.add(mesh(G.box(3, .1, 1.2), '#3E8FC4', [0, 2.2, 0])); [-1.4, 1.4].forEach(x => stop.add(mesh(G.box(.1, 2.2, .1), '#555', [x, 1.1, -.4]))); stop.add(mesh(G.box(2.6, .3, .5), '#C9D6E2', [0, .5, -.3]));
+    const bus = group(sc); bus.add(mesh(G.box(5, 1.8, 1.8), '#2E7D5B', [0, 1.1, 0])); bus.add(mesh(G.box(4.6, .6, 1.82), '#9ED8F5', [0, 1.5, 0], { cast: false })); [-1.6, 1.6].forEach(x => [-1, 1].forEach(z => bus.add(mesh(G.cyl(.35, .35, .2, 12), '#222', [x, .35, z * .9], { rot: [Math.PI / 2, 0, 0] }))));
+    const V = X.TL.vars; const ppl = Array.from({ length: V.baru }, (_, i) => person(sc, [0, 0, 0], { s: .75, body: ['#2E7D5B', '#8E2F3A', '#3E8FC4', '#D9772B', '#6B4FA0', '#C9472F', '#F5C542', '#4A4A52'][i % 8] }));
+    const big = X.ab({ left: 0, top: 980, width: 1080, textAlign: 'center', fontFamily: 'Fredoka', fontWeight: 700, fontSize: '130px', color: '#FFFFFF', WebkitTextStroke: `14px ${NAVY}`, paintOrder: 'stroke fill', opacity: 0 }, root, '');
+    const C = [[`❤ ${V.like} like`, 'totalnya'], ['10 like = +1 penduduk', 'sepuluh like']].map(([tx, cu], i) => ({ cu, e: chip(root, tx, { left: 60, top: 300 + i * 105, fontSize: '42px' }, i ? NAVY : '#E5484D') }));
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) {
+      orbit(cam, lerp(-25, 15, E.inout(seg(t, 0, dur))), 3.5, 14, [0, 1.2, .6]); const tb = popAt(s, 'turun dari bus', 4);
+      bus.position.set(lerp(-14, 1, E.out(seg(t, tb - 2.5, tb))), 0, 2);
+      let n = 0; ppl.forEach((p, i) => { const q = seg(t, tb + i * .45, tb + i * .45 + 1.4); p.visible = q > 0; if (q > 0) n++; p.position.set(1.8 - i * .55 + q * 0, 0, lerp(1.6, -1.4 + (i % 2) * .5, q)); p.rotation.y = Math.PI; p.pose(t + i, { walk: q < 1 ? 1 : 0, wave: q >= 1 }) });
+      X.pop(big, seg(t, tb, tb + .3)); big.innerHTML = `👥 ${2 + n}`;
+      C.forEach(c => { const q = popAt(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) });
+    } };
+  },
+  B2_NIGHT(s, root) {   // malam di pasar: pekerja tidur di lapak, lampu jalan; bayangan rumah + jalan + bus muncul sebagai ide
+    const sc = newScene({ sky: ['#1B2A4A', '#3E5F8A'], hemi: .9, sunI: 1.2, sun: '#AFC6FF', sunPos: [-6, 10, 6], shadow: 12 }); stars(sc); island(sc, 18, 16, '#6E8F5A', '#5E4A36');
+    const stalls = [-3, 0, 3].map((x, i) => { const g = group(sc, [x, 0, -1]); g.add(mesh(G.box(2.2, .8, 1.4), '#8E6A4A', [0, .4, 0])); g.add(mesh(G.box(2.4, .1, 1.8), ['#E5484D', '#F5C542', '#3E8FC4'][i], [0, 1.9, 0])); [-1, 1].forEach(k => g.add(mesh(G.box(.08, 1.9, .08), '#5A3A22', [k, .95, .7]))); return g });
+    const sleepers = [-3, 0, 3].map((x, i) => { const p = person(sc, [x, .85, -1], { s: .7, body: ['#2E7D5B', '#8E2F3A', '#3E8FC4'][i] }); p.rotation.z = Math.PI / 2; p.rotation.y = .2; return p });
+    const zz = sleepers.map(() => { const sp = txtSprite('z', '#FFFFFF', NAVY, .5); sc.add(sp); return sp });
+    const lamps = [-5.5, 5.5].map(x => { const g = group(sc, [x, 0, 2]); g.add(mesh(G.cyl(.06, .06, 3, 6), '#333', [0, 1.5, 0])); g.add(mesh(G.sph(.25, 10, 8), '#FFE7A0', [0, 3.1, 0], { mat: { emissive: '#FFD86B', emissiveIntensity: 1.5 } })); const L = new THREE.PointLight('#FFD86B', 6, 9); L.position.set(0, 3, 0); g.add(L); return g });
+    const ghost = [house(sc, [-4, 0, 5], { w: 1.6, d: 1.4, h: 1.1, wall: '#FFF3D6', roofC: '#C9472F' }), house(sc, [-1.8, 0, 5.3], { w: 1.6, d: 1.4, h: 1.1, wall: '#F3E1C4', roofC: '#B5452B' })];
+    ghost.forEach(h => h.traverse(o => { if (o.material) { o.material = o.material.clone(); o.material.transparent = true; o.material.opacity = .45; o.material.emissive = new THREE.Color('#FFE7A0'); o.material.emissiveIntensity = .3 } }));
+    const road = mesh(G.box(1.2, .06, 6), '#FFE7A0', [1.5, .05, 4], { cast: false, mat: { transparent: true, opacity: .5 } }); sc.add(road);
+    const V = X.TL.vars; const cc = X.ab({ left: 120, top: 300, width: 840, background: '#FFFFFF', borderRadius: '28px', padding: '16px 24px', fontFamily: 'Fredoka', color: '#1E1E1E', border: `5px solid ${NAVY}`, boxShadow: '0 8px 0 #00000030', opacity: 0 }, root, `<div style="font-size:26px;color:#888">${V.komentar[1][0]} · komentar</div><div style="font-size:40px;font-weight:700">“${V.komentar[1][1]}”</div>`);
+    const C = [['🏠 kawasan tinggal', 'kawasan tinggal'], ['🛣️ jalan + 🚌 angkutan', 'angkutan']].map(([tx, cu], i) => ({ cu, e: chip(root, tx, { left: 60, top: 470 + i * 105, fontSize: '42px' }, '#2E7D5B') }));
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) {
+      orbit(cam, lerp(20, -15, E.inout(seg(t, 0, dur))), 4, 13, [0, 1, 1.5]);
+      zz.forEach((sp, i) => { const q = (t * .5 + i * .3) % 1; sp.position.set(sleepers[i].position.x + q * .5, 1.6 + q * 1.2, -1); sp.material.opacity = 1 - q });
+      const tk = popAt(s, 'tempat kerja', 2), tg = popAt(s, 'kawasan tinggal', dur - 4); const q = seg(t, tk, tk + .4); cc.style.opacity = q; cc.style.transform = `translateY(${(1 - E.out(q)) * 30}px) rotate(-2deg)`;
+      ghost.forEach((h, i) => { const k = E.back(seg(t, tg + i * .2, tg + .4 + i * .2)); h.visible = k > 0; h.scale.setScalar(Math.max(.001, k)) }); road.visible = t > popAt(s, 'jalan dan', dur - 2.5);
+      C.forEach(c => { const qq = popAt(s, c.cu, 99); X.pop(c.e, seg(t, qq, qq + .4)) });
+    } };
+  },
+  B2_IDEAS(s, root) {   // dinding papan usulan di balai kota Bumi: kartu usulan menempel, Kepala Bumi memilah
+    const sc = newScene({ sky: ['#9FD6F5', '#F3FBFF'], sunPos: [-6, 12, 10], shadow: 12 }); island(sc, 16, 12, '#9CCB6A', '#8D6E4A');
+    const wall = group(sc, [0, 0, -2]); wall.add(mesh(G.box(9, 4.4, .3), '#E8D9B5', [0, 2.6, 0])); wall.add(mesh(G.box(9.4, .3, .5), TERRA, [0, 4.9, 0])); [-4.4, 4.4].forEach(x => wall.add(mesh(G.box(.3, 5, .4), '#9C6B3E', [x, 2.5, 0])));
+    const V = X.TL.vars; const notes = V.usulan.map((u, i) => { const c = document.createElement('canvas'); c.width = 256; c.height = 160; const x = c.getContext('2d'); x.fillStyle = ['#FFF59D', '#B3E5FC', '#FFCCBC', '#C8E6C9'][i % 4]; x.fillRect(0, 0, 256, 160); x.fillStyle = NAVY; x.font = '700 40px Fredoka'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(u, 128, 84);
+      const tx = new THREE.CanvasTexture(c); tx.colorSpace = THREE.SRGBColorSpace; const m = new THREE.Mesh(new THREE.PlaneGeometry(1.9, 1.2), new THREE.MeshStandardMaterial({ map: tx })); m.position.set(-3.1 + (i % 4) * 2.07, 3.6 - Math.floor(i / 4) * 1.6, .17); m.rotation.z = ((i * 37) % 10 - 5) / 60; wall.add(m); return m });
+    const K = kepala([3, 0, 1.4]); sc.add(K); K.rotation.y = -.6; const J = juragan([-3, 0, 1.6]); sc.add(J); J.rotation.y = .6;
+    const cam = camera(42); const big = chip(root, `👥 kota baru ${V.pend} orang`, { left: 230, top: 1060, fontSize: '46px' }, TERRA);
+    return { scene: sc, cam, upd(t, dur) {
+      const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(-1, 1, p), 3, lerp(17, 15, p)); cam.lookAt(0, 2.6, -2);
+      notes.forEach((m, i) => { const q = E.back(seg(t, .3 + i * .35, .6 + i * .35)); m.scale.setScalar(Math.max(.001, q)) });
+      K.pose(t, { talk: true, point: (t % 4) < 1.6 }); J.pose(t, { hold: true, nod: true }); const tb = popAt(s, 'baru', dur - 3); X.pop(big, seg(t, tb, tb + .4));
+    } };
+  },
+  B2_ASK(s, root) {   // globe malam + kartu "tulis 1 bangunan"; contoh komentar bergulir
+    const sc = newScene({ sky: ['#0B1F3A', '#264E86'], hemi: .8, sunI: 2.8, sunPos: [10, 8, 12] }); stars(sc);
+    const gl = globe(sc, 3.6, { highlight: ['Indonesia'] }); gl.position.y = -1.6; gl.pin(-6.2, 106.8);
+    const blds = ['🏥', '🚉', '🏫', '⚓', '✈️'].map((e, i) => { const sp = txtSprite(e, '#FFFFFF', NAVY, .9); sc.add(sp); return sp });
+    const cam = camera(40);
+    const C = [['🚫 nggak ada A/B', 'Nggak ada'], ['✍️ tulis 1 bangunan', 'satu bangunan'], ['🏗️ terbanyak = dibangun', 'langsung dibangun'], ['❤ 10 like = +1 penduduk', 'sepuluh like']].map(([tx, cu], i) => ({ cu, e: chip(root, tx, { left: 60, top: 300 + i * 105, fontSize: '40px' }, i === 2 ? TERRA : NAVY) }));
+    return { scene: sc, cam, upd(t, dur) {
+      gl.rotation.y = -106.8 * Math.PI / 180 + Math.sin(t * .3) * .25; gl.rotation.x = -.11; orbit(cam, Math.sin(t * .2) * 6, 2.4, 17, [0, .2, 0]);
+      blds.forEach((b, i) => { const a = t * .6 + i * 1.256; b.position.set(Math.sin(a) * 5, 1.2 + Math.sin(t * 2 + i) * .2, Math.cos(a) * 2); b.visible = t > popAt(s, 'satu bangunan', 2) });
+      C.forEach(c => { const q = popAt(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) });
+    } };
+  },
 };
 
 // HUD bumi + kartu judul adegan + transisi pesawat kertas

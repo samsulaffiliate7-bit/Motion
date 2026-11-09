@@ -95,6 +95,17 @@ const signText = (txt, bg = YEL) => (x, W, H) => { x.fillStyle = bg; x.fillRect(
 function reeds(parent, x, z, n = 6) { const g = group(parent, [x, 0, z]); for (let i = 0; i < n; i++) { const h = .8 + (i % 3) * .3; g.add(mesh(G.cyl(.03, .03, h, 4), '#5E8F3A', [Math.sin(i * 2.3) * .3, h / 2, Math.cos(i * 1.7) * .3], { rot: [Math.sin(i) * .15, 0, Math.cos(i) * .15] })); g.add(mesh(G.cyl(.06, .06, .22, 6), '#7A5230', [Math.sin(i * 2.3) * .3, h, Math.cos(i * 1.7) * .3])) } return g }
 function tarum(parent, x, z) { const g = group(parent, [x, 0, z]); g.add(mesh(G.ico(.45, 0), '#4E8F3A', [0, .4, 0])); [0, 1, 2, 3].forEach(i => g.add(mesh(G.sph(.08, 6, 5), '#5B5FC7', [Math.sin(i * 1.6) * .35, .65 + (i % 2) * .1, Math.cos(i * 1.6) * .35], { cast: false }))); return g }
 
+function cat(parent, p) {   // kucing oyen low-poly
+  const g = group(parent, p); const O = '#F28C28'; g.add(mesh(G.box(.5, .28, .26), O, [0, .3, 0])); const hd = group(g, [.3, .5, 0]); hd.add(mesh(G.box(.26, .24, .24), O, [0, 0, 0]));
+  [-1, 1].forEach(z => hd.add(mesh(G.cone(.06, .12, 4), O, [0, .17, z * .07]))); [-1, 1].forEach(z => hd.add(mesh(G.sph(.025, 6, 4), '#1E1E1E', [.13, .03, z * .06], { cast: false })));
+  [[-.18, -.08], [-.18, .08], [.18, -.08], [.18, .08]].forEach(([x, z]) => g.add(mesh(G.box(.07, .18, .07), O, [x, .09, z])));
+  const tail = mesh(G.box(.06, .06, .34), O, [-.3, .45, 0], { rot: [0, Math.PI / 2, .6] }); g.add(tail); g.userData = { tail, hd }; return g;
+}
+function crop(parent, x, z, col) { const g = group(parent, [x, 0, z]); g.add(mesh(G.cyl(.04, .04, .5, 4), '#5E8F3A', [0, .25, 0])); g.add(mesh(G.ico(.22, 0), '#4E8F3A', [0, .5, 0])); g.add(mesh(G.sph(.1, 6, 5), col, [.1, .55, .1], { cast: false })); return g }
+function posRonda(parent, p) { const g = group(parent, p); g.add(mesh(G.box(2.4, .3, 2), '#9C6B3E', [0, .55, 0])); [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([x, z]) => g.add(mesh(G.box(.14, 2.4, .14), '#7A4E2C', [x * 1.1, 1.2, z * .9])));
+  const r = new THREE.Mesh(new THREE.CylinderGeometry(0, 1, 1, 4, 1), mat('#C9472F')); r.scale.set(2.2, .9, 1.9); r.rotation.y = Math.PI / 4; r.position.y = 2.8; r.castShadow = true; g.add(r);
+  const kent = mesh(G.cyl(.14, .14, .7, 8), '#C9A36B', [1.05, 1.6, .95]); g.add(kent); return g }
+
 export async function setup(ctx) { X = ctx }
 
 export const SHOTS = {
@@ -391,6 +402,84 @@ export const SHOTS = {
       const tn = at(s, 'nama desa', 1.5), tl = at(s, 'like', 4);
       cards.forEach((e, i) => { const q = seg(t, tn + i * .4, tn + i * .4 + .4); e.style.opacity = q; e.style.transform = `translateY(${(1 - E.out(q)) * 30}px) rotate(${i % 2 ? 2 : -2}deg)`; e.querySelector('.lk').textContent = Math.round(Math.max(0, t - tl) * [9, 14, 6][i]) });
       X.pop(rule, seg(t, tl, tl + .4)); const k = t < tn ? -1 : Math.floor((t - tn) / 1.6) % 3; if (k !== last) { last = k; sign.userData.redraw(signText(k < 0 ? 'DESA ???' : V.contoh[k])) } } };
+  },
+
+  // ===== HARI 3: rumah berjarak, warga quest, kebun vs pos ronda =====
+  K3H3_HOOK(s, root) {   // kamera menukik dari atas: lima rumah berhalaman tumbuh, angka 19 vs 2
+    const sc = newScene(SUNNY({ sky: ['#7CC6F2', '#F2FAFF'] })); lahan(sc, { well: true }); const V = X.TL.vars;
+    const hs = rowHouses(sc, -6.4, -3, 1.6); const yards = hs.map(h => { const y = mesh(G.box(2.6, .05, 2.4), '#6FB04A', [h.position.x, .04, -.6], { cast: false }); sc.add(y); return y });
+    const cam = camera(42);
+    const hook = X.ab({ left: 70, top: 300, width: 940, background: CREAM, border: `8px solid ${INK}`, borderRadius: '36px', padding: '20px 26px', textAlign: 'center', fontSize: '56px', lineHeight: 1.12, color: INK, fontFamily: 'Fredoka', fontWeight: 700, boxShadow: `0 12px 0 ${DG}`, opacity: 0 }, root,
+      `<span style="color:#3E8FC4">B ${V.b}</span> vs <span style="color:#C98A00">A ${V.a}</span><br><span style="font-size:44px;color:#C9472F">tapi anggaran tinggal ${V.juta_sisa} juta...</span>`);
+    return { scene: sc, cam, upd(t, dur) { const p = E.inout(seg(t, 0, 3.5)); orbit(cam, lerp(60, 15, p), lerp(28, 9, p), lerp(30, 20, p), [0, .5, -2]); if (t > 3.5) orbit(cam, 15 - (t - 3.5) * 2, 9, 20 - (t - 3.5) * .2, [0, .5, -2]);
+      hs.forEach((h, i) => { const q = E.back(seg(t, 1 + i * .25, 1.4 + i * .25)); h.scale.setScalar(Math.max(.001, q)); yards[i].visible = q > 0 }); X.pop(hook, seg(t, .1, .5)) } };
+  },
+  K3H3_BUILD(s, root) {   // timelapse proyek: perancah, tukang, rumah naik; label api tidak merambat
+    const sc = newScene(SUNNY({ sky: ['#F7D9A8', '#FFF6E6'], sun: '#FFE0B0', sunPos: [-12, 12, 8] })); island(sc, 16, 14, GREEN, '#8D6E4A');
+    const H = [house(sc, [-2.4, 0, 0], { wall: '#FFF3D6', roofC: '#D9603B' }), house(sc, [2.4, 0, 0], { wall: '#FCE9C8', roofC: '#C9472F' })]; const gap = mesh(G.box(2, .05, 2.6), '#6FB04A', [0, .04, 0], { cast: false }); sc.add(gap);
+    const scaf = H.map(h => { const g = group(sc, [h.position.x, 0, 1.4]); [-1.2, 1.2].forEach(x => g.add(mesh(G.box(.08, 3, .08), '#B0B7BF', [x, 1.5, 0]))); [1, 2].forEach(y => g.add(mesh(G.box(2.5, .08, .4), '#C9A36B', [0, y, .1]))); return g });
+    const ws = [0, 1].map(i => { const w = warga([i ? 1.4 : -3.4, 0, 2.2], i + 2, { hat: 'cap', hatC: '#F5C542' }); sc.add(w); return w }); const V = X.TL.vars;
+    const C = [[`💰 ${V.juta_jarak} juta`, 'Biayanya'], ['🌳 halaman + terang', 'halaman'], ['🔥 api nggak gampang merambat', 'merambat'], ['🔒 privasi terjaga', 'privasi']].map(([tx, cu], i) => ({ cu, e: card(root, tx, { left: 60, top: 300 + i * 105, fontSize: '40px' }, i === 2 ? '#C9472F' : INK) }));
+    const gp = tag3(root, '↔ ada jarak', DG); const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { orbit(cam, lerp(-30, 25, E.inout(seg(t, 0, dur))), 4, 15, [0, 1.2, 0]);
+      H.forEach((h, i) => { const q = E.out(seg(t, .3 + i * .5, 3 + i * .5)); h.scale.set(1, Math.max(.001, q), 1) }); scaf.forEach(g => g.visible = t < 4.2);
+      ws.forEach((w, i) => w.pose(t + i, { hold: true, nod: t < 4, cheer: t > 4.2 && t < 6 })); const tm = at(s, 'merambat', 5); gp.at(gap, cam, [0, 1.2, 0], seg(t, tm, tm + .4));
+      C.forEach(c => { const q = at(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) }) } };
+  },
+  K3H3_WARGA(s, root) {   // gapura: barisan penduduk baru dari quest, penghitung naik, kucing oyen lari masuk
+    const sc = newScene(SUNNY({ sky: ['#86CBEF', '#FFF0D9'] })); village(sc); gapura(sc, [0, 0, 5.6]); const V = X.TL.vars;
+    const n = Math.min(V.warga, 12); const ppl = Array.from({ length: n }, (_, i) => { const w = warga([0, 0, 10], i + 1); sc.add(w); return w }); const C = cat(sc, [0, 0, 12]);
+    const big = X.ab({ left: 0, top: 960, width: 1080, textAlign: 'center', fontFamily: 'Fredoka', fontWeight: 700, fontSize: '120px', color: YEL, WebkitTextStroke: `14px ${INK}`, paintOrder: 'stroke fill', opacity: 0 }, root, '');
+    const q1 = card(root, `💬 ${V.warga} komentar WARGA`, { left: 60, top: 300, fontSize: '42px' }), q2 = card(root, '🐈 kucing oyen ikut daftar', { left: 60, top: 410, fontSize: '42px' }, '#E07B39');
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { cam.position.set(lerp(-3, 2, seg(t, 0, dur)), 3.6, 19); cam.lookAt(0, 1.6, 5);
+      const t0 = at(s, 'komen WARGA', 1.5); let k = 0; ppl.forEach((w, i) => { const q = seg(t, t0 + i * .35, t0 + i * .35 + 2.6); w.visible = q > 0; if (q >= .6) k++; w.position.set((i % 4 - 1.5) * .8, 0, lerp(11, 2 - Math.floor(i / 4) * .9, q)); w.rotation.y = Math.PI; w.pose(t + i, { walk: q < 1 ? 1 : 0, wave: q >= 1 }) });
+      X.pop(big, seg(t, t0, t0 + .3)); big.innerHTML = `👥 5 + ${k} = ${5 + k}`; X.pop(q1, seg(t, t0, t0 + .4));
+      const tc = at(s, 'kucing', dur - 3); const cq = seg(t, tc, tc + 2); C.visible = cq > 0; C.position.set(Math.sin(t * 3) * .3 + 1.8, 0, lerp(12, 4.4, E.out(cq))); C.rotation.y = -Math.PI / 2; C.userData.tail.rotation.z = .6 + Math.sin(t * 8) * .3; X.pop(q2, seg(t, tc, tc + .4));
+    } };
+  },
+  K3H3_WISH(s, root) {   // papan usulan desa di balai: kertas usulan menempel, kades melingkari dua
+    const sc = newScene(SUNNY({ sky: ['#8CCDF2', '#EAF7FF'] })); island(sc, 16, 12, GREEN, '#8D6E4A'); const NB = noticeBoard(sc, [0, 0, -1]); const V = X.TL.vars;
+    const K = kades([3, 0, 1.6]); sc.add(K); K.rotation.y = -.6;
+    const notes = V.usulan.map((u, i) => { const pl = canvasPlane(1.25, .62, signText(u, ['#FFF59D', '#B3E5FC', '#FFCCBC', '#C8E6C9'][i % 4])); pl.position.set(-1.45 + (i % 3) * 1.45, 3 - Math.floor(i / 3) * .75, -.75); pl.rotation.z = ((i * 37) % 10 - 5) / 70; sc.add(pl); return pl });
+    const ring = [0, 1].map(i => { const r = new THREE.Mesh(new THREE.TorusGeometry(.72, .05, 6, 24), mat('#E5484D')); r.position.copy(notes[i].position); r.position.z += .05; r.scale.y = .55; sc.add(r); return r });
+    const cc = V.komentar.slice(0, 2).map(([u, tx], i) => commentCard(root, u, `“${tx}”`, 300 + i * 190, i ? 300 : 60)); cc.forEach(e => { e.style.width = '700px'; const ds = e.querySelectorAll('div'); ds[ds.length - 1].style.fontSize = '34px' });
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(-1, .5, p), 2.6, lerp(13, 11.5, p)); cam.lookAt(0, 2.2, -1);
+      notes.forEach((m, i) => { const q = E.back(seg(t, .3 + i * .3, .6 + i * .3)); m.scale.setScalar(Math.max(.001, q)) }); K.pose(t, { point: true, talk: true });
+      const td = at(s, 'ada dua', dur - 3); ring.forEach((r, i) => { r.visible = t > td + i * .6; r.rotation.z = -t });
+      cc.forEach((e, i) => { const q = seg(t, 1 + i * 1.2, 1.4 + i * 1.2) * (1 - seg(t, td - .5, td)); e.style.opacity = q; e.style.transform = `rotate(${i ? 2 : -2}deg)` }) } };
+  },
+  K3H3_KEBUN(s, root) {   // kamera rendah menyusuri bedeng kebun; tanaman tumbuh, keranjang panen
+    const sc = newScene(SUNNY({ sky: ['#A7DDF7', '#F4FBFF'] })); island(sc, 16, 16, '#7FB04A', '#6E5A40'); const V = X.TL.vars;
+    const beds = [], plants = []; for (let r = 0; r < 4; r++) { const b = mesh(G.box(8, .25, .9), '#7A5230', [0, .12, -4 + r * 2]); sc.add(b); beds.push(b); for (let c = 0; c < 7; c++) plants.push(crop(sc, -3.4 + c * 1.1, -4 + r * 2, ['#E5484D', '#F28C28', '#8E44AD', '#F5C542'][r])) }
+    const basket = group(sc, [4.6, 0, 3]); basket.add(mesh(G.cyl(.45, .35, .5, 10), '#C9A36B', [0, .25, 0])); [0, 1, 2].forEach(i => basket.add(mesh(G.sph(.14, 8, 6), ['#E5484D', '#F28C28', '#8BC34A'][i], [-.15 + i * .15, .55, 0])));
+    const big = X.ab({ left: 820, top: 300, width: 170, height: 170, borderRadius: '50%', background: YEL, border: `8px solid ${INK}`, color: INK, fontSize: '110px', fontFamily: 'Fredoka', fontWeight: 700, textAlign: 'center', lineHeight: '160px', opacity: 0 }, root, 'A');
+    const C = [[`💰 ${V.juta_kebun} juta`, 'Biayanya'], ['🥬 bisa dimakan + dijual', 'dijual'], ['📈 desa punya pemasukan', 'pemasukan'], ['⏳ panen beberapa minggu lagi', 'minggu']].map(([tx, cu], i) => ({ cu, e: card(root, tx, { left: 60, top: 300 + i * 105, fontSize: '38px' }, i === 3 ? '#C9472F' : INK) }));
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { const p = seg(t, 0, dur); cam.position.set(lerp(-6, 5, p), 1.6, 7); cam.lookAt(lerp(-3, 3, p), .4, -1); X.pop(big, seg(t, 0, .4));
+      plants.forEach((m, i) => { const q = E.back(seg(t, .5 + (i % 7) * .12 + Math.floor(i / 7) * .3, 1 + (i % 7) * .12 + Math.floor(i / 7) * .3)); m.scale.setScalar(Math.max(.001, q)) }); basket.visible = t > at(s, 'dijual', 4);
+      C.forEach(c => { const q = at(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) }) } };
+  },
+  K3H3_RONDA(s, root) {   // malam terang: pos ronda + lampu jalan menyala, warga jaga bergantian
+    const sc = newScene(SUNNY({ sky: ['#24335A', '#5A76A8'], hemi: 1.1, sunI: 1.4, sun: '#B8C8FF', sunPos: [-8, 12, 6] })); lahan(sc, { well: true }); const V = X.TL.vars;
+    const P = posRonda(sc, [-2.4, 0, 2.6]); const lamps = [-5, 0, 5].map(z => { const g = group(sc, [1.6, 0, z]); g.add(mesh(G.cyl(.06, .06, 3, 6), '#333', [0, 1.5, 0])); g.add(mesh(G.sph(.25, 10, 8), '#FFE7A0', [0, 3.1, 0], { mat: { emissive: '#FFD86B', emissiveIntensity: 1.6 } })); const L = new THREE.PointLight('#FFD86B', 7, 9); L.position.set(0, 3, 0); g.add(L); return g });
+    const gs = [0, 1].map(i => { const w = warga([-2.8 + i * .9, .7, 2.6], i + 3); sc.add(w); return w }); const st = [0, 1, 2, 3, 4].map(i => { const m = mesh(G.sph(.06, 6, 5), '#FFFFFF', [Math.sin(i * 2) * 8, 9 + i % 2, -8 + i * 2], { mat: { emissive: '#FFFFFF', emissiveIntensity: 1 }, cast: false }); sc.add(m); return m });
+    const big = X.ab({ left: 820, top: 300, width: 170, height: 170, borderRadius: '50%', background: '#3E8FC4', border: `8px solid ${INK}`, color: '#fff', fontSize: '110px', fontFamily: 'Fredoka', fontWeight: 700, textAlign: 'center', lineHeight: '160px', opacity: 0 }, root, 'B');
+    const C = [[`💰 ${V.juta_ronda} juta`, 'Biayanya'], ['💡 lampu jalan', 'lampu'], ['🛡️ malam lebih aman', 'aman'], ['💸 nggak menghasilkan uang', 'uang']].map(([tx, cu], i) => ({ cu, e: card(root, tx, { left: 60, top: 300 + i * 105, fontSize: '38px' }, i === 3 ? '#C9472F' : INK) }));
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { orbit(cam, lerp(30, -10, E.inout(seg(t, 0, dur))), 4.5, 15, [-1, 1.2, 1]); X.pop(big, seg(t, 0, .4));
+      const tl = at(s, 'lampu', 3); lamps.forEach((g, i) => g.visible = t > tl + i * .3); gs.forEach((w, i) => w.pose(t + i * 2, { look: Math.sin(t + i) * .6, talk: i === Math.floor(t / 3) % 2 }));
+      C.forEach(c => { const q = at(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) }) } };
+  },
+  K3H3_VOTE(s, root) {   // tombol A/B + meteran like menuju target; kades dan kucing melambai
+    const sc = newScene(SUNNY({ sky: ['#F7B77A', '#FFF0D9'], sun: '#FFC58A', sunPos: [-12, 8, 6] })); village(sc); const K = kades([0, 0, 3]); sc.add(K); const C = cat(sc, [1.2, 0, 3.4]); C.rotation.y = -.4; const V = X.TL.vars;
+    const btn = X.ab({ left: 60, top: 300, width: 960, display: 'flex', gap: '30px', justifyContent: 'center', opacity: 0 }, root,
+      `<div style="background:#FFC93C;color:${INK};font-family:Fredoka;font-weight:700;font-size:90px;width:300px;padding:16px 0;border-radius:30px;border:8px solid ${INK};text-align:center;box-shadow:0 12px 0 ${DG}">A<div style="font-size:34px">🥬 kebun</div></div><div style="background:#3E8FC4;color:#fff;font-family:Fredoka;font-weight:700;font-size:90px;width:300px;padding:16px 0;border-radius:30px;border:8px solid ${INK};text-align:center;box-shadow:0 12px 0 ${DG}">B<div style="font-size:34px">🛡️ pos ronda</div></div>`);
+    const meter = X.ab({ left: 120, top: 640, width: 840, height: 64, background: CREAM, border: `6px solid ${INK}`, borderRadius: '34px', overflow: 'hidden', opacity: 0 }, root, `<div style="height:100%;width:0;background:linear-gradient(90deg,#E5484D,#FF8A80)"></div>`);
+    const lbl = card(root, `❤ ${V.target} like = dua-duanya dibangun!`, { left: 140, top: 730, fontSize: '40px' }, '#C9472F'); const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { orbit(cam, t * 5 - 12, 3.6, 10, [0, 1.2, 3]); K.pose(t, { wave: true, talk: true }); C.userData.tail.rotation.z = .6 + Math.sin(t * 8) * .3;
+      const q = seg(t, .3, .8); btn.style.opacity = q; btn.style.transform = `scale(${E.back(q)})`; const tb = at(s, 'bonus', 3); meter.style.opacity = seg(t, tb, tb + .3); meter.firstChild.style.width = (E.inout(seg(t, tb, tb + 3)) * 100) + '%'; X.pop(lbl, seg(t, tb + .5, tb + .9)) } };
   },
 };
 
