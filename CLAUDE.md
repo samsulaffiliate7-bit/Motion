@@ -3,6 +3,7 @@
 Pipeline video pendek 9:16 (TikTok, Instagram Reels, YouTube Shorts) untuk 6 akun faceless. Pemilik bekerja dari HP, tanpa PC, dan ingin kerja seminimal mungkin. Komunikasi dengan pemilik dalam bahasa Indonesia santai.
 
 ## Alur repo
+- **Sejak 9 Nov 2026 akun GitHub pemilik di-suspend: push dan clone repo tidak bisa. Kode disimpan di Artifact privat (lihat bagian SIMPAN KODE DI ARTIFACT). Poin GitHub/branch/PR di bawah hanya sejarah.**
 - `main` = versi terbaru untuk semua akun. Tiap sesi kerja di branch sendiri, lalu digabung ke `main` lewat pull request. Pemisahan per akun memakai folder (`motion/accounts/<akun>`, `motion/episodes/<akun>/<ep>`), BUKAN branch per akun.
 - Repo: `samsulaffiliate7-bit/Motion` (pindah dari `threadspoco-dev/Sandbox` 7 Nov 2026). Satu repo untuk 6 akun; kode mesin dipakai bersama, isi per akun dipisah folder.
 - Tiga lingkungan cloud, masing-masing 2 akun (keputusan pemilik 7 Nov): "Motion - Kades Denah", "Motion - Dompet Meja", "Motion - Balai Hewan", semuanya repo `samsulaffiliate7-bit/Motion`. Satu sesi hanya mengerjakan akun milik lingkungan sesi itu; jangan kerjakan akun pasangan lain. Kuota TTS (10/hari per model per kunci) dibagi dua akun sepasang: Kades+Denah sama-sama flash-lite, Dompet+Meja sama-sama flash, Balai (flash-lite) + Hewan (flash) beda model. Lingkungan "Default"/"Tes" = umum, untuk kerja mesin/dokumen lintas akun (tanpa kunci TTS akun).
@@ -15,6 +16,22 @@ Baca dulu:
 - `docs/KONSEP-V3.md`: makro, mikro, format rotasi isi untuk Dompet, Meja, Balai, Hewan. WAJIB dibaca sebelum bikin episode 4 akun itu.
 - `docs/BANK-TOPIK.md`: topik + hook per akun (bagian v3 bertanda format). Tandai yang sudah dipakai.
 - `docs/jadwal/`: daftar jadwal posting per tanggal.
+
+## SIMPAN KODE DI ARTIFACT (sejak 9 Nov 2026)
+- Lingkungan ini (`$MOTION_AKUN` = kades,denah) menyimpan kode di halaman Artifact privat "Arsip Kode Kades Denah": https://claude.ai/artifact/V2PgcJXscV4GWMGrUcrDcc . Kerjakan HANYA akun di `$MOTION_AKUN`.
+- Isi halaman (file pendukung, teks base64):
+  - `bundle-<tanggal>-partN.txt`: cadangan git lengkap semua akun (git bundle --all, base64, dipecah 15 MB). Pulih: `cat bundle-<tgl>-part0.txt ... partN.txt | base64 -d > full.bundle && git clone full.bundle Motion`.
+  - `inti-<tanggal>.txt`: paket inti Kades + Denah (mesin, dunia 3D `desa3d.js`/`bumi.js`, config, logo JPG, data peta, aturan, CLAUDE.md, `pulihkan.sh`). Tanpa three.js, font, wav, folder out.
+  - `ep-<akun>-<ep>.txt`: satu folder episode (tar.xz + base64, termasuk wav TTS).
+- Pulih di sesi baru:
+  1. Artifact action `read`, `url` halaman di atas, `paths` = [inti terbaru, semua `ep-*.txt`], `out_dir` = folder kosong (mis. `pulih/`).
+  2. `mkdir Motion && cd Motion && base64 -d ../pulih/inti-<tgl>.txt | tar xJf -`
+  3. `for f in ../pulih/ep-*.txt; do base64 -d "$f" | tar xJf -; done`
+  4. `bash pulihkan.sh` (npm pack three@0.170.0 + @fontsource baloo-2/nunito/fredoka/poppins 5.3.0, cek md5 three, git init lokal).
+- Tiap episode baru WAJIB disimpan: `tar cf - motion/episodes/<akun>/<ep> | xz -9e | base64 -w0 > ep-<akun>-<ep>.txt`, lalu publish ke halaman yang SAMA (parameter `files`, tambahkan juga baris tabel di index.html halaman). Kalau mesin/dunia 3D berubah, simpan paket inti baru `inti-<tanggal>.txt` (nama baru, jangan timpa).
+- Sesi baru yang belum punya file halaman: Artifact `read` url dulu (dapat index.html), edit tabel, lalu publish dengan `url` yang sama.
+- Batas: 16 MB per file teks, 64 MB per publish (lebih dari itu bagi beberapa publish ke halaman yang sama).
+- File lama di halaman TIDAK dihapus tanpa izin pemilik.
 
 ## Keputusan pemilik (jangan diubah tanpa tanya)
 - 3 video per hari per akun mulai 10 Nov 2026 (sebelumnya 2; keputusan pemilik 7 Nov). Durasi 60-120 detik.
