@@ -94,5 +94,5 @@ Baca dulu:
 - Denah: Hari 2 menunggu voting Hari 1 (A perumahan / B kawasan usaha) setelah tayang 8 Nov.
 - Data awal performa (ep001, < 2 hari): Denah paling kuat (TikTok 59% bertahan di detik 3, IG 34 simpan); akun cerita banyak kehilangan penonton di 1-3 detik pertama.
 - Sampingan TERJADWAL di Repliz (8 Nov, atas perintah pemilik; daftar di `docs/jadwal/`): Kades `sq01` "kenapa nggak tanya warga" (9 Nov; mekanik komentar WARGA = +1 penduduk, hitung di Hari 3), `sq02` "desa belum punya nama" (10 Nov; usulan nama, like komentar terbanyak menang); Denah `lore01` tebak negara (9 Nov; skor + negara tujuan), `lore02` rumah vs pajak (10 Nov; komentar A/B/C aturan pajak kota).
-- Sinkron hari cerita (usulan, tunggu keputusan pemilik): 9 Nov Kades hanya sampingan, Denah Hari 2 + sampingan, supaya mulai 10 Nov keduanya sama-sama Hari 3 + Hari 4.
+- Sinkron hari cerita (dijalankan 9 Nov, pemilik minta lanjut 9-10 Nov): 9 Nov Kades hanya sampingan, Denah Hari 2 terjadwal 17:46/19:23/20:51 WIB; mulai 10 Nov keduanya Hari 3 (pagi) + Hari 4 (malam). Kades `hari003` siap visual, TTS menunggu hitungan WARGA (pengingat otomatis 10 Nov 05:10 dan 15:10 WIB). Di Repliz ada 1 file `denah-hari002.mp4` berstatus pending ukuran 1 byte (salah init), tidak dipakai; hapus hanya dengan izin pemilik.
 - Belum ada: efek suara, jadwal otomatis harian, analisis mingguan pertama.
