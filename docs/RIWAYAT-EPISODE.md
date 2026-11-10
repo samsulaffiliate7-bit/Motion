@@ -32,3 +32,9 @@ Isi lengkap episode lama ada di cadangan motion-backup-8nov.bundle (punya pemili
 - meja ep011 (11 Nov): Seri Jenis Bos yang cuma ingat kesalahan (dari komentar YouTube), suara Puck. META: pilar performa, musiman evaluasi akhir tahun
 - meja ep012 (11 Nov): Seri Jenis Staf si paling siap pak, suara Sadachbia (pertama). META: pilar komunikasi kerja
 - meja ep013 (11 Nov): Full POV Bos manajer baru dijepit target + tim, narator bos perempuan, suara Laomedeia (pertama). META: pilar jadi atasan baru, musiman target akhir tahun
+- dompet ep014 (12 Nov): Mesin Waktu mi instan 3.500 (dari komentar TikTok), Nana, suara Zephyr (pertama). META: pilar inflasi/nilai uang
+- dompet ep015 (12 Nov): Ini yang Gue Lakuin, Raka freelance 2 jt bersih 1,4 jt, suara Zubenelgenubi (pertama). META: pilar penghasilan sampingan
+- dompet ep016 (12 Nov): Cerita Keputusan A/B adik minta HP 3 jt, Nana, suara Kore. META: pilar duit dan keluarga
+- meja ep014 (12 Nov): Kamus HRD jilid 2 (kalimat lowongan + pertanyaan interview), suara Laomedeia. META: pilar cari kerja
+- meja ep015 (12 Nov): Full POV Staf anak rantau gaji 5,4 jt sisa 400 rb, suara Puck. META: pilar gaji dan negosiasi
+- meja ep016 (12 Nov): Split Staf vs Bos cuti mendadak sehari sebelum presentasi, suara Sadachbia. META: pilar komunikasi kerja (split ke-1 minggu ini)

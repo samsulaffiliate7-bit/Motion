@@ -107,7 +107,7 @@ Aturan pakai:
 - [ ] [Ini yang Gue Lakuin] Raka pisah 4 pos tiap gajian — "Gaji gue 5,5 juta. Ini 4 pos yang gue pisah tiap tanggal 25."
 - [x] [Ini yang Gue Lakuin] Nana isi dana darurat pelan-pelan — "Dana darurat 6 kali pengeluaran. Gue isi dari 200 ribu." (dompet ep008, 3D v3, 10 Nov 2026)
 - [ ] [Ini yang Gue Lakuin] Urutan pakai gaji pertama — "Gaji pertama gue nggak langsung buat jajan. Ini urutannya."
-- [ ] [Ini yang Gue Lakuin] Raka hitung untung bersih kerja sampingan — "Freelance dapat 2 juta. Bersihnya ternyata segini."
+- [x] [Ini yang Gue Lakuin] Raka hitung untung bersih kerja sampingan — "Freelance dapat 2 juta. Bersihnya ternyata segini."
 - [ ] [Cerita Keputusan A/B] Bonus akhir tahun: liburan atau lunasi utang — "Bonus cair 4 juta. Liburan atau lunasin utang?"
 - [ ] [Cerita Keputusan A/B] Pindah kerja gaji naik tapi jauh — "Gaji naik 1 juta. Ongkosnya naik berapa?"
 
@@ -543,7 +543,7 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 
 **v3 (format rotasi, sudut pandang bergantian; lihat `docs/KONSEP-V3.md`)**
 - [x] [Full POV Staf] Hari pertama: "pelajari sendiri ya" — "Hari pertama kerja, gue disuruh 'pelajari sendiri ya'." (meja ep008, 3D v3, 10 Nov 2026)
-- [ ] [Full POV Staf] Anak rantau: gaji habis buat kos dan makan — "Gaji kota besar. Sisanya kok kayak gaji kampung?"
+- [x] [Full POV Staf] Anak rantau: gaji habis buat kos dan makan — "Gaji kota besar. Sisanya kok kayak gaji kampung?"
 - [x] [Full POV Bos] Manajer baru dijepit target atas dan tim bawah — "Jadi manajer ternyata: gaji naik dikit, beban naik 3x." (meja ep013, 11 Nov 2026)
 - [ ] [Full POV Bos] Bos harus memberhentikan staf yang dia suka — "Staf terbaik gue. Dan gue yang harus bilang 'maaf'."
 - [x] [Full POV Bos] Bos baca grup chat tim yang lupa ada dia — "Grup tim rame ngomongin gue. Mereka lupa gue di situ." (meja ep009, 3D v3, 10 Nov 2026)
@@ -559,7 +559,7 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 - [x] [Kamus HRD] "Gaji kompetitif" dan cara tanya angka saat interview — "'Gaji kompetitif.' Kompetitif sama siapa?" (meja ep007)
 - [x] [Kamus HRD] "Kami akan menghubungi Anda" — "Udah 3 minggu. 'Kami akan menghubungi Anda.'" (meja ep007)
 - [x] [Hari 1 vs Bulan ke-6] Semangat jadi hambar — "Hari 1: datang jam 7. Bulan ke-6: ..." (meja ep010, 3D v3, 10 Nov 2026)
-- [ ] [Split Staf vs Bos] Cuti mendadak sehari sebelum — "Staf: 'Besok cuti ya.' Bos: 'Besok presentasi klien.'"
+- [x] [Split Staf vs Bos] Cuti mendadak sehari sebelum — "Staf: 'Besok cuti ya.' Bos: 'Besok presentasi klien.'"
 - [ ] [Split Staf vs Bos] Resign sebulan setelah naik gaji — "Baru naik gaji bulan lalu. Hari ini kirim surat resign."
 
 **Usulan penonton:** (isi dari komentar)
