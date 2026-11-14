@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """UJI JAM TAYANG: rencanakan jam posting per blok untuk satu akun di satu tanggal.
 Pakai: python3 motion/engine/jadwal_blok.py <akun> <YYYY-MM-DD> <ep_pagi> <ep_siang> <ep_malam>
-Membaca docs/JAM-TAYANG.md (14 hari terakhir), memilih per platform 3 blok yang paling jarang dipakai akun itu,
+Membaca docs/JAM-TAYANG-KD.md (14 hari terakhir), memilih per platform 3 blok yang paling jarang dipakai akun itu,
 urutan blok naik dipasang ke ep_pagi < ep_siang < ep_malam (Hari N tetap sebelum Hari N+1), menit acak tidak bulat,
 satu video tidak tayang di dua platform dalam selisih < 20 menit. Cetak JSON: [{ep, platform, jam, blok, utc}]."""
 import sys, re, json, random, datetime as dt
@@ -9,7 +9,7 @@ BLOK = {'A': (7*60, 8*60+59), 'B': (9*60, 11*60+59), 'C': (12*60, 13*60+59), 'D'
 PF = ['TikTok', 'IG', 'YouTube']
 akun, tgl, eps = sys.argv[1], sys.argv[2], sys.argv[3:6]
 d0 = dt.date.fromisoformat(tgl); cnt = {p: {b: 0 for b in BLOK} for p in PF}
-for ln in open('docs/JAM-TAYANG.md'):
+for ln in open('docs/JAM-TAYANG-KD.md'):
     m = re.match(r'\| (\d{4}-\d\d-\d\d) \| (\w+) \| (\w+) \| (\w+) \| (\d\d:\d\d) \| ([A-F]) \|', ln)
     if m and m[2] == akun and m[4] in cnt and 0 <= (d0 - dt.date.fromisoformat(m[1])).days <= 14: cnt[m[4]][m[6]] += 1
 rnd = random.Random(sum(map(ord, akun + tgl)))
