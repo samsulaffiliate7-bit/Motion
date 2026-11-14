@@ -430,10 +430,10 @@ export const SHOTS = {
     const sc = newScene(SUNNY({ sky: ['#86CBEF', '#FFF0D9'] })); village(sc); gapura(sc, [0, 0, 5.6]); const V = X.TL.vars;
     const n = Math.min(V.warga, 12); const ppl = Array.from({ length: n }, (_, i) => { const w = warga([0, 0, 10], i + 1); sc.add(w); return w }); const C = cat(sc, [0, 0, 12]);
     const big = X.ab({ left: 0, top: 960, width: 1080, textAlign: 'center', fontFamily: 'Fredoka', fontWeight: 700, fontSize: '120px', color: YEL, WebkitTextStroke: `14px ${INK}`, paintOrder: 'stroke fill', opacity: 0 }, root, '');
-    const q1 = card(root, `💬 ${V.warga} komentar WARGA`, { left: 60, top: 300, fontSize: '42px' }), q2 = card(root, '🐈 kucing oyen ikut daftar', { left: 60, top: 410, fontSize: '42px' }, '#E07B39');
+    const q1 = card(root, `💬 ${V.warga} warga daftar lewat komentar`, { left: 60, top: 300, fontSize: '42px' }), q2 = card(root, '🐈 kucing oyen ikut daftar', { left: 60, top: 410, fontSize: '42px' }, '#E07B39');
     const cam = camera(42);
     return { scene: sc, cam, upd(t, dur) { cam.position.set(lerp(-3, 2, seg(t, 0, dur)), 3.6, 19); cam.lookAt(0, 1.6, 5);
-      const t0 = at(s, 'komen WARGA', 1.5); let k = 0; ppl.forEach((w, i) => { const q = seg(t, t0 + i * .35, t0 + i * .35 + 2.6); w.visible = q > 0; if (q >= .6) k++; w.position.set((i % 4 - 1.5) * .8, 0, lerp(11, 2 - Math.floor(i / 4) * .9, q)); w.rotation.y = Math.PI; w.pose(t + i, { walk: q < 1 ? 1 : 0, wave: q >= 1 }) });
+      const t0 = at(s, 'daftar duluan', 1.5); let k = 0; ppl.forEach((w, i) => { const q = seg(t, t0 + i * .35, t0 + i * .35 + 2.6); w.visible = q > 0; if (q >= .6) k++; w.position.set((i % 4 - 1.5) * .8, 0, lerp(11, 2 - Math.floor(i / 4) * .9, q)); w.rotation.y = Math.PI; w.pose(t + i, { walk: q < 1 ? 1 : 0, wave: q >= 1 }) });
       X.pop(big, seg(t, t0, t0 + .3)); big.innerHTML = `👥 5 + ${k} = ${5 + k}`; X.pop(q1, seg(t, t0, t0 + .4));
       const tc = at(s, 'kucing', dur - 3); const cq = seg(t, tc, tc + 2); C.visible = cq > 0; C.position.set(Math.sin(t * 3) * .3 + 1.8, 0, lerp(12, 4.4, E.out(cq))); C.rotation.y = -Math.PI / 2; C.userData.tail.rotation.z = .6 + Math.sin(t * 8) * .3; X.pop(q2, seg(t, tc, tc + .4));
     } };
@@ -481,6 +481,70 @@ export const SHOTS = {
     return { scene: sc, cam, upd(t, dur) { orbit(cam, t * 5 - 12, 3.6, 10, [0, 1.2, 3]); K.pose(t, { wave: true, talk: true }); C.userData.tail.rotation.z = .6 + Math.sin(t * 8) * .3;
       const q = seg(t, .3, .8); btn.style.opacity = q; btn.style.transform = `scale(${E.back(q)})`; const tb = at(s, 'bonus', 3); meter.style.opacity = seg(t, tb, tb + .3); meter.firstChild.style.width = (E.inout(seg(t, tb, tb + 3)) * 100) + '%'; X.pop(lbl, seg(t, tb + .5, tb + .9)) } };
   },
+
+  // ===== HARI 4: malam gelap, oyen hilang, lampu surya, quest follower =====
+  K4_DARK_HOOK(s, root) {   // kamera menukik ke desa malam, rumah gelap, satu jendela, tanda seru "oyen hilang"
+    const NIGHT = SUNNY({ sky: ['#1A2A4F', '#41608F'], hemi: .95, sunI: 1.1, sun: '#AFC4FF', sunPos: [-8, 14, 6] }); const sc = newScene(NIGHT); lahan(sc, { well: true });
+    const hs = rowHouses(sc, -6.4, -3, 1.6); const W = warga([0, 0, 1.2], 2); sc.add(W); const moon = mesh(G.sph(1.2, 16, 12), '#FFF6D6', [-8, 14, -20], { mat: { emissive: '#FFF6D6', emissiveIntensity: 1 }, cast: false }); sc.add(moon);
+    const ex = txtSprite('!', '#E5484D', '#fff', 1); sc.add(ex);
+    const hook = X.ab({ left: 70, top: 300, width: 940, background: INK, border: `8px solid ${YEL}`, borderRadius: '36px', padding: '20px 26px', textAlign: 'center', fontSize: '56px', lineHeight: 1.12, color: CREAM, fontFamily: 'Fredoka', fontWeight: 700, boxShadow: '0 12px 0 #00000050', opacity: 0 }, root,
+      `Malam pertama: desa gelap 🌑<br><span style="color:${YEL}">kucing oyen hilang!</span>`);
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { const p = E.inout(seg(t, 0, dur)); orbit(cam, lerp(50, 10, p), lerp(22, 5, p), lerp(28, 12, p), [0, 1, 0]);
+      W.pose(t, { cheer: t > 2.5, shake: t > 2.5, look: Math.sin(t * 3) * .6 }); ex.visible = t > at(s, 'kucing oyen', 3); ex.position.set(0, 3 + Math.sin(t * 8) * .1, 1.2); X.pop(hook, seg(t, .1, .5)) } };
+  },
+  K4_SEARCH(s, root) {   // POV gang malam: tiga sorot senter menyapu, warga berjalan
+    const sc = newScene(SUNNY({ sky: ['#1A2A4F', '#41608F'], hemi: .9, sunI: .9, sun: '#AFC4FF', sunPos: [6, 12, -6] })); lahan(sc, { tents: false }); rowHouses(sc, -6.4, -3, 1.6); const V = X.TL.vars;
+    const ppl = [0, 1, 2].map(i => { const w = warga([-1.2 + i * 1.2, 0, 3 + (i % 2) * .6], i + 1); sc.add(w); const L = new THREE.SpotLight('#FFF2B0', 25, 14, .35, .5); L.position.set(0, 1.2, .3); const tg = new THREE.Object3D(); tg.position.set(0, 0, -6); w.add(tg); L.target = tg; w.add(L); w.add(mesh(G.cyl(.06, .05, .3, 8), '#333', [.35, 1, .25], { rot: [Math.PI / 2, 0, 0] })); return w });
+    const C = [['🔦 senter cuma ' + V.senter, 'Senternya'], ['⚡ belum ada listrik', 'listrik'], ['🪫 baterai hampir habis', 'baterai']].map(([tx, cu], i) => ({ cu, e: card(root, tx, { left: 60, top: 300 + i * 105, fontSize: '40px' }, i === 2 ? '#C9472F' : INK) }));
+    const cam = camera(44);
+    return { scene: sc, cam, upd(t, dur) { const p = seg(t, 0, dur); cam.position.set(Math.sin(t * .8) * .3, 2.8, lerp(12, 8, p)); cam.lookAt(0, 1, -2);
+      ppl.forEach((w, i) => { w.position.z = 3 + (i % 2) * .6 - t * .35; w.rotation.y = Math.PI + Math.sin(t * 1.3 + i * 2) * .6; w.pose(t + i, { walk: 1 }); w.children.forEach(c => { if (c.isSpotLight) c.intensity = 25 * (t > at(s, 'baterai', 99) ? (.6 + .4 * Math.abs(Math.sin(t * 9 + i))) : 1) }) });
+      C.forEach(c => { const q = at(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) }) } };
+  },
+  K4_FOUND(s, root) {   // close-up atap sumur: oyen santai, senter menyorot, warga lega
+    const sc = newScene(SUNNY({ sky: ['#22345E', '#4A6A9C'], hemi: 1, sunI: 1, sun: '#B8C8FF', sunPos: [-6, 10, 8] })); const L0 = lahan(sc, { well: true }); const w0 = L0.well.position;
+    const O = cat(sc, [w0.x, 2.05, w0.z]); O.rotation.y = .6; const spot = new THREE.SpotLight('#FFF2B0', 40, 12, .3, .4); spot.position.set(w0.x + 3, 2, w0.z + 4); spot.target = O; sc.add(spot);
+    const ws = [0, 1, 2].map(i => { const w = warga([w0.x - 1.5 + i * 1.5, 0, w0.z + 3], i + 1); sc.add(w); w.lookAt(w0.x, 0, w0.z); return w }); const K = kades([w0.x + 2.4, 0, w0.z + 2]); sc.add(K); K.lookAt(w0.x, 0, w0.z);
+    const C = [['🐈 oyen di atap sumur', 'atap sumur'], ['⚠️ desa gelap = rawan', 'rawan']].map(([tx, cu], i) => ({ cu, e: card(root, tx, { left: 60, top: 300 + i * 105, fontSize: '42px' }, i ? '#C9472F' : '#E07B39') }));
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { orbit(cam, lerp(30, -20, E.inout(seg(t, 0, dur))), 2.6, lerp(6, 9, seg(t, 0, dur)), [w0.x, 1.6, w0.z]);
+      O.userData.tail.rotation.z = .6 + Math.sin(t * 5) * .4; O.userData.hd.rotation.y = Math.sin(t * .8) * .5; ws.forEach((w, i) => w.pose(t + i, { cheer: t > 1 && t < 4, nod: t >= 4 })); K.pose(t, { talk: t > at(s, 'sadar', 4), shake: t > at(s, 'rawan', 99) });
+      C.forEach(c => { const q = at(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) }) } };
+  },
+  K4_SOLAR(s, root) {   // lampu surya: siang panel mengisi baterai (indikator), lalu langit menggelap dan lampu menyala sendiri
+    const sc = newScene(SUNNY()); island(sc, 14, 12, GREEN, '#8D6E4A'); sc.add(mesh(G.box(14, .05, 2.2), '#C9A36B', [0, .03, 1.5]));
+    const poles = [-4, 0, 4].map(x => { const g = group(sc, [x, 0, 0]); g.add(mesh(G.cyl(.07, .09, 3.4, 8), '#7D8A94', [0, 1.7, 0])); g.add(mesh(G.box(1.1, .06, .7), '#2B4A7A', [0, 3.5, 0], { rot: [-.4, 0, 0] })); g.add(mesh(G.box(.24, .4, .16), '#555', [0, 2.6, .1]));
+      const bulb = mesh(G.box(.5, .1, .25), '#DDD', [0, 3.15, .45], { mat: { emissive: '#FFE7A0', emissiveIntensity: 0 } }); g.add(bulb); const L = new THREE.PointLight('#FFE7A0', 0, 8); L.position.set(0, 3, .6); g.add(L); return { g, bulb, L } });
+    const sun = mesh(G.sph(.8, 14, 10), '#FFD54A', [5, 9, -10], { mat: { emissive: '#FFD54A', emissiveIntensity: 1 }, cast: false }); sc.add(sun);
+    const bat = X.ab({ left: 760, top: 300, width: 220, height: 90, border: `7px solid ${INK}`, borderRadius: '16px', background: CREAM, overflow: 'hidden', opacity: 0 }, root, `<div style="height:100%;width:0;background:#8BC34A"></div>`);
+    const C = [['☀️ siang: isi baterai', 'baterai'], ['🌙 gelap: nyala sendiri', 'sendiri'], ['🔌 tanpa kabel panjang', 'kabel']].map(([tx, cu], i) => ({ cu, e: card(root, tx, { left: 60, top: 300 + i * 105, fontSize: '40px' }) }));
+    const cam = camera(42); const sky0 = new THREE.Color('#7CC6F2'), sky1 = new THREE.Color('#1A2A4F');
+    return { scene: sc, cam, upd(t, dur) { orbit(cam, lerp(-15, 15, seg(t, 0, dur)), 3, 13, [0, 2, 0]); const tb = at(s, 'baterai', 2), tn = at(s, 'gelap', 5);
+      const n = seg(t, tn - .5, tn + 1); sc.background = sky0.clone().lerp(sky1, n); sc.userData.sun.intensity = lerp(2.4, .5, n); sc.userData.hemi.intensity = lerp(1.2, .7, n); sun.position.y = lerp(9, 2, n);
+      poles.forEach((p, i) => { const on = seg(t, tn + .6 + i * .25, tn + .9 + i * .25); p.bulb.material.emissiveIntensity = on * 1.8; p.L.intensity = on * 8 });
+      bat.style.opacity = seg(t, tb, tb + .3); bat.firstChild.style.width = (E.out(seg(t, tb, tn)) * 100) + '%';
+      C.forEach(c => { const q = at(s, c.cu, 99); X.pop(c.e, seg(t, q, q + .4)) }) } };
+  },
+  K4_IDEAS(s, root) {   // buku desa terbuka di meja balai, kartu usulan melayang masuk
+    const sc = newScene(SUNNY({ sky: ['#F2C98A', '#FFF3DE'], sun: '#FFD9A0', sunPos: [-10, 12, 6] })); island(sc, 12, 10, '#9C6B3E', '#7A4E2C');
+    const table = mesh(G.box(5, .25, 3), '#B5835A', [0, 1, 0]); sc.add(table); [[-2.2, -1.2], [2.2, -1.2], [-2.2, 1.2], [2.2, 1.2]].forEach(([x, z]) => sc.add(mesh(G.box(.2, 1, .2), '#7A4E2C', [x, .5, z])));
+    const book = group(sc, [0, 1.15, 0]); [-1, 1].forEach(sx => { const pg = canvasPlane(1.6, 2, (x, W, H) => { x.fillStyle = '#FFFDF4'; x.fillRect(0, 0, W, H); x.strokeStyle = '#C9B79C'; x.lineWidth = 3; for (let y = 60; y < H; y += 46) { x.beginPath(); x.moveTo(20, y); x.lineTo(W - 20, y); x.stroke() } }); pg.rotation.x = -Math.PI / 2; pg.rotation.y = sx * .08; pg.position.set(sx * .82, .02, 0); book.add(pg) });
+    const K = kades([0, 0, -2.4]); sc.add(K); const V = X.TL.vars;
+    const cc = V.usulan.map(([u, tx], i) => commentCard(root, u, `“${tx}”`, 300 + i * 175, i % 2 ? 300 : 60)); cc.forEach(e => { e.style.width = '680px' });
+    const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(-2, 2, p), lerp(7, 5, p), lerp(6, 5, p)); cam.lookAt(0, 1.2, -.4); K.pose(t, { talk: true, nod: true, hold: true });
+      const t0 = at(s, 'mobil', 3); cc.forEach((e, i) => { const q = seg(t, t0 + i * .8, t0 + i * .8 + .4); e.style.opacity = q * (1 - seg(t, dur - 1.2, dur - .8)); e.style.transform = `translateY(${(1 - E.out(q)) * 40}px) rotate(${i % 2 ? 2 : -2}deg)` }) } };
+  },
+  K4_FOLLOW(s, root) {   // desa senja: tombol follow, tiap klik satu lampu surya muncul di sepanjang jalan
+    const sc = newScene(SUNNY({ sky: ['#F09A6B', '#FFE0C2'], sun: '#FFB27A', sunPos: [-12, 6, 6], hemi: 1.05 })); village(sc); const K = kades([1.6, 0, 3]); sc.add(K); const O = cat(sc, [2.4, 0, 3.4]); O.rotation.y = -.5; const V = X.TL.vars;
+    const lamps = Array.from({ length: 6 }, (_, i) => { const g = group(sc, [i % 2 ? 1.9 : -1.9, 0, -6 + i * 2.2]); g.add(mesh(G.cyl(.06, .08, 2.8, 8), '#7D8A94', [0, 1.4, 0])); g.add(mesh(G.box(.8, .05, .5), '#2B4A7A', [0, 2.9, 0], { rot: [-.4, 0, 0] })); g.add(mesh(G.box(.4, .08, .2), '#FFE7A0', [0, 2.6, i % 2 ? -.3 : .3], { mat: { emissive: '#FFE7A0', emissiveIntensity: 1.6 } })); return g });
+    const btn = X.ab({ left: 240, top: 300, width: 600, padding: '18px 0', textAlign: 'center', background: '#E5484D', color: '#fff', fontFamily: 'Fredoka', fontWeight: 700, fontSize: '64px', borderRadius: '24px', border: `8px solid ${INK}`, boxShadow: '0 12px 0 #00000040', opacity: 0 }, root, '+ FOLLOW');
+    const rule = card(root, `👥 ${V.per} follower = 💡 1 lampu surya`, { left: 130, top: 470, fontSize: '42px' }); const cam = camera(42);
+    return { scene: sc, cam, upd(t, dur) { cam.position.set(0, 4, lerp(14, 11, seg(t, 0, dur))); cam.lookAt(0, 1.2, -1); K.pose(t, { wave: true, talk: true }); O.userData.tail.rotation.z = .6 + Math.sin(t * 8) * .3;
+      const tf = at(s, 'follower baru', 2); X.pop(btn, seg(t, tf, tf + .3)); btn.style.transform += ` scale(${1 + Math.max(0, Math.sin((t - tf) * 6)) * .06})`; X.pop(rule, seg(t, tf + .5, tf + .9));
+      lamps.forEach((g, i) => { const q = E.back(seg(t, tf + 1 + i * .5, tf + 1.4 + i * .5)); g.visible = q > 0; g.scale.setScalar(Math.max(.001, q)) }) } };
+  },
 };
 
 // HUD game + label kuning + kilat putih
@@ -497,3 +561,6 @@ export function frame(T, idx, t) {
   label.style.opacity = q * (1 - o); label.style.transform = `scale(${E.back(q)})`;
   let f = 0; X.TL.scenes.forEach((x, i) => { if (i) f = Math.max(f, 1 - Math.abs(T - x.start) / .18) }); flash.style.opacity = clamp(f);
 }
+
+// helper untuk shot per episode (episodes/kades/<ep>/shots.js): import { X, kades, warga, ... } from '../../../engine/w3d/desa3d.js'
+export { X, GREEN, DG, YEL, CREAM, INK, SUNNY, kades, warga, card, at, tag3, roadSection, drops, village, lahan, rowHouses, commentCard, txtSprite, sit, ballotBox, pendopo, noticeBoard, gapura, canvasPlane, signText, reeds, tarum, cat, crop, posRonda };
