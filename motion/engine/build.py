@@ -230,6 +230,7 @@ def main():
     tl = dict(w=1080, h=1920, fps=30, duration=total, theme=cfg["theme"], style=cfg["style"], engine="3d",
               brand=dict(name=cfg["name"], handle=cfg["handle"], tagline=cfg["tagline"], disclaimer=cfg["disclaimer"], logo=cfg.get("logo")),
               scenes=scenes, caps=caps, vars=v, draft=draft)
+    if os.path.exists(f"{epdir}/shots.js"): tl["shots"] = f"episodes/{acc}/{ep}/shots.js"   # shot 3D khusus episode ini
     json.dump(tl, open(f"{outdir}/timeline.json", "w"), ensure_ascii=False, indent=1)
     print(f"timeline ok: {len(scenes)} adegan, {total}s -> {outdir}")
     if total < 60 or total > 120:
