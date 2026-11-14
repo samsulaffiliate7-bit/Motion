@@ -16,7 +16,7 @@ Revisi dari profil fase 1, ditambah masukan yang sudah disetujui pemilik akun (r
 ## Aturan umum semua akun (keputusan pemilik)
 
 **Jadwal dan durasi**
-- 3 video per hari per akun (18 video/hari total; diubah pemilik 7 Nov 2026, dari 2).
+- 3 video per hari per akun (18 video/hari total; naik dari 2 per keputusan pemilik 7 Nov 2026, demi growth).
 - Durasi 60-120 detik. `build.py` memberi peringatan di luar rentang itu.
 - Tiap video beda topik dari video sebelumnya di akun yang sama. Ambil dari bank topik, tandai yang sudah dipakai.
 
@@ -213,6 +213,6 @@ Cek akhir: nama tetap terbaca saat dipotong bulat.
 Akun lain di workspace Repliz yang sama (threads kidblirezky, tiktok azzlaffaa, tiktok my.ootd.kalcer) BUKAN bagian proyek ini. Jangan posting ke sana.
 
 **Media:**
-- Aturan storage (diubah 6 Nov 2026): storage aktif 10 GB, file TIDAK dihapus otomatis; beri peringatan ke pemilik saat terpakai >= 85%. Pemakaian ±190 MB/hari (12 video), naik jadi ±285 MB/hari dengan 18 video/hari (mulai 10 Nov 2026), jadi 85% (±8,5 GB) tercapai sekitar 30 hari. Video tidak dikompres (keputusan pemilik).
+- Aturan storage (diubah 6 Nov 2026): storage aktif 10 GB, file TIDAK dihapus otomatis; beri peringatan ke pemilik saat terpakai >= 85%. Pemakaian ±190 MB/hari (12 video), jadi 85% (±8,5 GB) tercapai sekitar 45 hari. Sejak 3 video/hari (18 video): ±285 MB/hari, 85% tercapai sekitar 30 hari. Video tidak dikompres (keputusan pemilik).
 
 **Komentar:** Repliz bisa membaca komentar konten. Dipakai untuk akun 2 (penonton memilih keputusan) dan bahan topik.

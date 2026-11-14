@@ -18,7 +18,7 @@ Baca dulu:
 - `docs/jadwal/`: daftar jadwal posting per tanggal.
 
 ## Keputusan pemilik (jangan diubah tanpa tanya)
-- 3 video per hari per akun (diubah pemilik 7 Nov 2026, dari 2; target growth). Durasi 60-120 detik.
+- 3 video per hari per akun (naik dari 2, keputusan pemilik 7 Nov, demi growth). Durasi 60-120 detik.
 - Tidak ada label "cerita fiksi" di dalam video (cukup di bio). Tidak ada bar progres/durasi.
 - Tanpa musik latar.
 - Semua akun 3D (three.js low-poly). Visual dan gerak tiap akun WAJIB beda (latar, kamera, transisi, gerak). Tiap kejadian = lokasi 3D baru; variasikan shot, jangan template yang sama.
@@ -32,7 +32,7 @@ Baca dulu:
 
 ## Isi v3 (Dompet, Meja, Balai, Hewan; detail di `docs/KONSEP-V3.md`)
 - Rotasi format: format sama tidak dua kali berturut-turut, minimal 4 format beda per 7 hari. Kades dan Denah tetap serial harian.
-- Dompet: tokoh Nana atau Raka (cowok). Boleh info investasi/sukses sebelum 30. Disclaimer gaya cerita: "Ini yang gue lakuin, bukan nasihat keuangan ya. Tapi angka ini penting banget lo tahu." + kalimat risiko singkat di video investasi, tanpa janji untung. Raka butuh suara cowok: tanya pemilik dulu, pakai `CONFIG_OVERRIDE = {"tts": {"voice": ...}}`.
+- Dompet: tokoh Nana atau Raka (cowok). Boleh info investasi/sukses sebelum 30. Disclaimer gaya cerita: "Ini yang gue lakuin, bukan nasihat keuangan ya. Tapi angka ini penting banget lo tahu." + kalimat risiko singkat di video investasi, tanpa janji untung. Raka pakai suara cowok dari kolam suara Dompet (lihat bagian TTS), mis. `CONFIG_OVERRIDE = {"tts": {"voice": "Fenrir"}}`.
 - Meja: POV bergantian (full staf, full bos, jenis bos, jenis staf, kamus HRD); split staf vs bos maksimal 1-2x seminggu.
 - Balai: satu sindiran halus per video, logis dan relate, semua rekaan tanpa nama.
 - Hewan: setting wajib berganti (kantor maksimal 1 dari 4), tokoh tamu bebas (sudah ada Ular).
@@ -49,7 +49,9 @@ Baca dulu:
 - Penyetel di `episode.py`: `END_PAD` (tahan adegan terakhir, untuk durasi >= 60 dtk), `SPLIT_SHIFT` (geser batas potongan suara, mis. `{3: -1}` = batas adegan 4->5 mundur satu jeda).
 
 ## TTS (Gemini, tier gratis)
-- Model per akun (disetujui pemilik): `gemini-3.8-flash-tts` untuk Dompet (Kore), Meja (Puck), Hewan (Algenib); `gemini-3.8-flash-lite-tts` untuk Denah (Sulafat), Kades (Achird), Balai (Charon). Jangan ganti model/suara tanpa izin.
+- Model per akun (disetujui pemilik): `gemini-3.8-flash-tts` untuk Dompet (Kore), Meja (Puck), Hewan (Algenib); `gemini-3.8-flash-lite-tts` untuk Denah (Sulafat), Kades (Achird), Balai (Charon). Jangan ganti MODEL tanpa izin (kuota dibagi per model).
+- Suara boleh dirotasi (keputusan pemilik 8 Nov): tiap akun punya kolam sampai 3 suara, pilih yang terbaik, supaya tidak itu-itu terus. Suara boleh sama antar akun (umum di luar sana). Ganti suara TIDAK menambah kuota (tetap 1 panggilan per video). Pakai `CONFIG_OVERRIDE = {"tts": {"voice": ...}}` di `episode.py`, catat di `META["suara"]`. Jenis kelamin suara ikut narator/tokoh utama. Syarat wajib: logat dan intonasi bahasa Indonesia harus natural (pemilik, 8 Nov). Gemini tidak punya suara khusus Indonesia; semua suara bisa bahasa Indonesia dan bahasanya ikut naskah, tapi logat tiap suara beda. Suara yang terdengar logat asing atau intonasinya janggal dicoret dari kolam.
+- Kolam suara: Dompet = Nana: Kore, Leda, Zephyr; Raka: Fenrir, Sadachbia, Zubenelgenubi. Meja = Puck, Sadachbia, Laomedeia. Akun lain: suara awal di atas, sesi pasangannya boleh menambah 2 suara dan mencatatnya di sini.
 - Kunci terpasang sebagai Network secret di lingkungan akun (host generativelanguage.googleapis.com, header x-goog-api-key): jalankan build dengan `GOOGLE_API_KEY=dummy`. Kalau TTS gagal 401/403, kunci lingkungan itu belum diisi: minta pemilik mengisinya di pengaturan lingkungan. Jangan tulis kunci asli ke file/log, jangan minta pemilik menempel kunci di chat.
 - Kuota 10 permintaan/hari PER MODEL (reset ~08:00 UTC = 15:00 WIB). Satu panggilan TTS per video (`full.wav`), dipotong per adegan otomatis. Kalau build mencetak PERINGATAN potongan, buat ulang dengan `--calls 2`. Jangan bikin akun/proyek Google tambahan untuk menambah kuota akun yang sama (melanggar ToS); kunci berbeda hanya karena pemilik akunnya berbeda.
 - Cek potongan suara: `GOOGLE_API_KEY=dummy python3 motion/engine/cek_potongan.py <akun> <ep>` (kirim tiap potongan berlabel "POTONGAN s1" ke gemini-3.5-flash, JSON per id; 503 = ulangi sebentar lagi). Kalau kuota pemeriksa habis (429), bandingkan rasio durasi/huruf antar adegan.
@@ -71,7 +73,7 @@ Baca dulu:
 ## Balai + Hewan (lingkungan "Motion - Balai Hewan", status 14 Nov 2026)
 - Terjadwal di Repliz sampai 12 Nov (3 video/akun/hari). Daftar: `docs/jadwal/2026-11-1{0,1,2}-balai-hewan.md`, semua posting + blok jam di `docs/JAM-TAYANG-BH.md`.
 - Tugas terjadwal produksi otomatis (harian 15:39, laporan 23:03, analisis Senin, arsip bulanan) DIMATIKAN 10 Nov atas perintah pemilik (kuota langganan habis). Nyalakan lagi hanya kalau pemilik minta (`update_trigger` enabled=true; ID: trig_015eDb9KwLKgchspCZLv6Bxi, trig_01HsHZbrvkgjwymftf5kGZzn, trig_01RmYFVBJvdfZcTAbhKzpciJ, trig_01Hz3tkJkeibb6r8mA5rQdpd).
-- Alat: `motion/engine/jam_tayang.py <akun> <tgl> <ep1> <ep2> <ep3>` (UJI JAM TAYANG, file `docs/JAM-TAYANG-<BH|KD|DM>.md`), `bash motion/engine/lembar.sh <akun> <ep>` (stills + lembar kontak), `cek_potongan.py` juga menilai logat.
+- Alat: `motion/engine/jam_tayang.py <akun> <tgl> <ep1> <ep2> <ep3>` (UJI JAM TAYANG, file `docs/JAM-TAYANG-<BH|KD|DM>.md`), `bash motion/engine/lembar.sh <akun> <ep>` (stills + lembar kontak), `cek_logat.py` (cek potongan + nilai logat natural/kaku).
 - Render memakai CRF 23 (keputusan pemilik 9 Nov). Rotasi suara: `tts.pool` di config, dipilih lewat `META["suara"]` (Balai: Charon, Achird, Algenib; Hewan: Algenib, Puck, Achird; semua dinilai logat natural).
 - Kalender topik: `docs/KALENDER-BH.md` (musiman sampai 31 Des; detail 2 minggu). Tokoh tamu Hewan: Ular, Beo, Bunglon, Merak, Ayam, Rakun (usulan penonton).
 - Format terakhir. Balai 12 Nov: Kalkulator Warga, Liputan Darurat, Siaran Pers Balai. Hewan 12 Nov: Pepatah Baru, Senjata Makan Tuan, Hewan di Sekitarmu.

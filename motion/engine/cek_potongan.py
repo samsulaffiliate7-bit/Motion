@@ -1,30 +1,40 @@
-#!/usr/bin/env python3
-"""Cek potongan suara per adegan dengan gemini-3.5-flash (kuota terpisah dari TTS).
-
-Pakai: GOOGLE_API_KEY=dummy python3 engine/cek_potongan.py <akun> <ep>
-Membaca out/<akun>-<ep>/timeline.json + narration.wav, mengirim tiap potongan berlabel ("POTONGAN s1") beserta naskahnya,
-lalu mencetak JSON per id: apakah awal/akhir potongan cocok dengan naskah (tidak terpotong / tidak kemasukan kalimat adegan lain).
-"""
-import base64, io, json, os, sys, urllib.request, wave
+"""Cek potongan suara per adegan dengan Gemini (gemini-3.5-flash, kuota terpisah dari TTS).
+Pakai: GOOGLE_API_KEY=dummy python3 motion/engine/cek_potongan.py <akun> <ep>
+Tiap adegan dipotong dari out/<akun>-<ep>/narration.wav sesuai timeline, dikirim berlabel "POTONGAN s1" dst.,
+Gemini menuliskan apa yang terdengar per id, lalu dibandingkan dengan naskah (awal dan akhir kalimat)."""
+import base64, io, json, os, re, sys, urllib.request, wave, difflib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 acc, ep = sys.argv[1], sys.argv[2]
-out = f"{ROOT}/out/{acc}-{ep}"
-tl = json.load(open(f"{out}/timeline.json"))
-w = wave.open(f"{out}/narration.wav"); sr = w.getframerate(); pcm = w.readframes(w.getnframes()); w.close()
-parts = [{"text": "Berikut potongan audio narasi per adegan. Untuk tiap potongan, dengarkan dan bandingkan dengan naskahnya. "
-          "Jawab HANYA JSON object: kunci = id potongan, nilai = {\"ok\": true/false, \"awal\": kata pertama yang terdengar, \"akhir\": kata terakhir yang terdengar, "
-          "\"masalah\": \"\" atau penjelasan singkat (terpotong di awal/akhir, ada kata dari adegan lain, salah baca angka), "
-          "\"logat\": \"natural\" atau \"kaku\" (apakah terdengar seperti penutur bahasa Indonesia asli; kaku = aksen asing/intonasi aneh)}."}]
+d = f"{ROOT}/out/{acc}-{ep}"; tl = json.load(open(f"{d}/timeline.json"))
+w = wave.open(f"{d}/narration.wav"); sr = w.getframerate(); pcm = w.readframes(w.getnframes())
+parts = []
 for s in tl["scenes"]:
     a, b = int(s["start"] * sr) * 2, int((s["start"] + s["dur"]) * sr) * 2
-    buf = io.BytesIO(); x = wave.open(buf, "wb"); x.setnchannels(1); x.setsampwidth(2); x.setframerate(sr); x.writeframes(pcm[a:b]); x.close()
-    parts += [{"text": f"POTONGAN {s['id']} | naskah: {s['say']}"}, {"inlineData": {"mimeType": "audio/wav", "data": base64.b64encode(buf.getvalue()).decode()}}]
-body = json.dumps({"contents": [{"parts": parts}], "generationConfig": {"responseMimeType": "application/json"}}).encode()
-req = urllib.request.Request("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent", data=body,
-                             headers={"Content-Type": "application/json", "x-goog-api-key": os.environ.get("GOOGLE_API_KEY", "dummy")})
-r = json.load(urllib.request.urlopen(req, timeout=300))
-txt = r["candidates"][0]["content"]["parts"][0]["text"]
-res = json.loads(txt); print(json.dumps(res, ensure_ascii=False, indent=1))
-bad = [k for k, v in res.items() if not v.get("ok") or v.get("logat") == "kaku"]
-print("SEMUA OK" if not bad else f"BERMASALAH: {', '.join(bad)}")
+    buf = io.BytesIO(); o = wave.open(buf, "wb"); o.setnchannels(1); o.setsampwidth(2); o.setframerate(sr); o.writeframes(pcm[a:b]); o.close()
+    parts += [{"text": f"POTONGAN {s['id']}"}, {"inlineData": {"mimeType": "audio/wav", "data": base64.b64encode(buf.getvalue()).decode()}}]
+ids = [s["id"] for s in tl["scenes"]]
+parts.append({"text": "Tuliskan kata demi kata (bahasa Indonesia) apa yang terdengar di tiap POTONGAN. Jawab JSON object saja, kunci = id (" + ", ".join(ids) + "), nilai = transkrip. Tulis angka sebagai kata (mis. dua ratus ribu), jangan digit."})
+body = {"contents": [{"parts": parts}], "generationConfig": {"responseMimeType": "application/json"}}
+req = urllib.request.Request("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent", json.dumps(body).encode(),
+                             {"Content-Type": "application/json", "x-goog-api-key": os.environ.get("GOOGLE_API_KEY", "dummy")})
+import time
+for k in range(4):   # 503/429 = server sibuk, coba lagi
+    try: r = json.load(urllib.request.urlopen(req, timeout=300)); break
+    except urllib.error.HTTPError as e:
+        if e.code not in (429, 500, 503) or k == 3: raise
+        time.sleep(15 * (k + 1))
+txt = r["candidates"][0]["content"]["parts"][0]["text"]; got = json.loads(txt)
+if isinstance(got, list): got = {k: v for x in got for k, v in x.items()} if all(isinstance(x, dict) for x in got) else dict(zip(ids, got))
+if set(got) != set(ids): got = dict(zip(ids, got.values()))   # kunci kadang ditulis lain (mis. s100), cocokkan urutan
+if "-v" in sys.argv: print(txt)
+SAMA = {"gua": "gue", "lu": "lo", "enggak": "nggak", "gak": "nggak"}
+norm = lambda x: [SAMA.get(w, w) for w in re.sub(r"[^a-z0-9 ]", " ", x.lower()).split()]
+bad = 0
+for s in tl["scenes"]:
+    want, heard = norm(s["say"]), norm(got.get(s["id"], ""))
+    ratio = difflib.SequenceMatcher(None, want, heard).ratio()
+    ok = ratio > .8 and heard[:2] == want[:2] and heard[-2:] == want[-2:]
+    bad += not ok
+    print(f"{s['id']}: {'OK ' if ok else 'CEK'} kemiripan {ratio:.2f} | awal '{' '.join(heard[:3])}' akhir '{' '.join(heard[-3:])}'")
+print("SEMUA OK" if not bad else f"{bad} adegan perlu dicek")
