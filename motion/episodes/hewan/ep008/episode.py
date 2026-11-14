@@ -2,7 +2,7 @@
 Fabel fiksi; menyindir perilaku umum di grup chat, tanpa platform/orang/kejadian nyata."""
 META = {"format": "Hewan di Sekitarmu", "pilar": "media sosial", "tokoh": ["Beo (tamu)", "Bunglon (tamu)", "Kucing Berdasi", "Kerbau"],
         "lokasi": ["panggung grup chat di atas kota", "halte malam", "taman kota malam", "ruang tamu Kucing", "panggung grup chat (podium ke-4)"],
-        "hook": "pertanyaan", "variasi": [3, 5, 6]}
+        "hook": "pertanyaan", "variasi": [3, 5, 6], "suara": "Algenib"}
 
 
 def compute():

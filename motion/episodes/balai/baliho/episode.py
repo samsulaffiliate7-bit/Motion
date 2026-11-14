@@ -2,7 +2,7 @@
 Cerita fiksi: desa, tokoh, calon, dan angka rekaan. Tidak menyebut orang, partai, instansi, atau daerah nyata."""
 META = {"format": "Dulu vs Menjelang Pemilihan", "pilar": "gercep menjelang pemilihan", "tokoh": ["Bu Ketua PKK (kader posyandu)", "warga", "pemuda"],
         "lokasi": ["gang pagi (truk + baliho)", "posyandu bawah pohon mangga (dulu)", "lapangan sore (neraca raksasa)", "gang (wawancara)", "posyandu (bulan berikutnya)"],
-        "hook": "kontras", "variasi": [1, 4, 5]}
+        "hook": "kontras", "variasi": [1, 4, 5], "suara": "Charon"}
 PARAMS = dict(rumah=120, beras_kg=5, harga_beras=14, titik=12, harga_baliho=1200, harga_timbangan=600, baliho_m=5, tahun=4)   # harga dalam ribu rupiah (rekaan)
 
 

@@ -68,6 +68,15 @@ Baca dulu:
 - Jadwal: jangan bersamaan di tiga platform; beri jeda, acak urutan, menit tidak bulat. Caption: hook + pertanyaan + 3-5 hashtag akun; YouTube pakai judul pendek + `#shorts`.
 - Posting ke akun publik = tindakan keluar: konfirmasi ke pemilik dulu kecuali dia sudah menyuruh untuk episode itu.
 
+## Balai + Hewan (lingkungan "Motion - Balai Hewan", status 14 Nov 2026)
+- Terjadwal di Repliz sampai 12 Nov (3 video/akun/hari). Daftar: `docs/jadwal/2026-11-1{0,1,2}-balai-hewan.md`, semua posting + blok jam di `docs/JAM-TAYANG-BH.md`.
+- Tugas terjadwal produksi otomatis (harian 15:39, laporan 23:03, analisis Senin, arsip bulanan) DIMATIKAN 10 Nov atas perintah pemilik (kuota langganan habis). Nyalakan lagi hanya kalau pemilik minta (`update_trigger` enabled=true; ID: trig_015eDb9KwLKgchspCZLv6Bxi, trig_01HsHZbrvkgjwymftf5kGZzn, trig_01RmYFVBJvdfZcTAbhKzpciJ, trig_01Hz3tkJkeibb6r8mA5rQdpd).
+- Alat: `motion/engine/jam_tayang.py <akun> <tgl> <ep1> <ep2> <ep3>` (UJI JAM TAYANG, file `docs/JAM-TAYANG-<BH|KD|DM>.md`), `bash motion/engine/lembar.sh <akun> <ep>` (stills + lembar kontak), `cek_potongan.py` juga menilai logat.
+- Render memakai CRF 23 (keputusan pemilik 9 Nov). Rotasi suara: `tts.pool` di config, dipilih lewat `META["suara"]` (Balai: Charon, Achird, Algenib; Hewan: Algenib, Puck, Achird; semua dinilai logat natural).
+- Kalender topik: `docs/KALENDER-BH.md` (musiman sampai 31 Des; detail 2 minggu). Tokoh tamu Hewan: Ular, Beo, Bunglon, Merak, Ayam, Rakun (usulan penonton).
+- Format terakhir. Balai 12 Nov: Kalkulator Warga, Liputan Darurat, Siaran Pers Balai. Hewan 12 Nov: Pepatah Baru, Senjata Makan Tuan, Hewan di Sekitarmu.
+- Saat GitHub di-suspend (9-14 Nov) kode juga dicadangkan di Artifact privat https://claude.ai/artifact/4kHjkq21Dag48gkXGHF5kL (inti + ep-*.txt). Sejak 14 Nov GitHub bisa lagi; repo ini sumber utama.
+
 ## Status (7 Nov 2026)
 - Terjadwal di Repliz: 7 Nov (36 posting), 8 Nov (33), 9 Nov (24: dompet ep006/ep007, meja ep006/ep007, balai jalan/viral, hewan ep006/ep007). Daftar di `docs/jadwal/`.
 - Berikutnya untuk Dompet/Meja/Balai/Hewan: video 10 Nov dengan format yang belum dipakai (lihat KONSEP-V3 dan BANK-TOPIK v3).

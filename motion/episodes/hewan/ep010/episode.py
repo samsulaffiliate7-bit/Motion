@@ -2,7 +2,7 @@
 Fabel fiksi; kompleks, harga, dan kejadian rekaan."""
 META = {"format": "Pepatah Baru", "pilar": "kos dan perumahan", "tokoh": ["Kerbau", "Kucing Berdasi", "Bunglon (disebut)", "warga kompleks"],
         "lokasi": ["jalan kompleks malam (pinjam bor)", "jalan kompleks (setahun dari atas)", "garasi Kucing", "bazar kompleks malam", "teras Kerbau (pepatah)"],
-        "hook": "kontras", "variasi": [4, 5]}
+        "hook": "kontras", "variasi": [4, 5], "suara": "Algenib"}
 
 
 def compute():

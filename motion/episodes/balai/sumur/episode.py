@@ -2,7 +2,7 @@
 Cerita fiksi: desa, tokoh, dan angka rekaan. Tidak menyebut orang, instansi, atau daerah nyata."""
 META = {"format": "Siaran Pers Balai", "pilar": "seremonial dan pencitraan", "tokoh": ["Pak Kades", "perangkat desa", "pemuda", "ibu-ibu warga"],
         "lokasi": ["lapangan peresmian sumur", "balai (konferensi pers)", "lokasi peresmian dari atas (rincian biaya)", "belakang tenda (mobil tangki)", "sumur pagi berikutnya (antre jerigen)"],
-        "hook": "kontras", "variasi": [2, 4, 5]}
+        "hook": "kontras", "variasi": [2, 4, 5], "suara": "Charon"}
 ACARA = [["Tenda", 6], ["Konsumsi", 7], ["Sound system", 3], ["Plakat & pita", 2], ["Spanduk & dokumentasi", 3]]   # juta rupiah (rekaan)
 SUMUR = 18
 

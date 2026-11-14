@@ -2,7 +2,7 @@
 Cerita fiksi: desa, gang, tokoh, dan angka rekaan. Tidak menyebut orang, instansi, atau daerah nyata."""
 META = {"format": "Kalkulator Warga", "pilar": "iuran dan pungutan", "tokoh": ["Bu Sari (warga)", "petugas iuran", "warga"],
         "lokasi": ["teras senja (kuitansi)", "gang siang (pintu ke pintu)", "dapur malam (kalkulator)", "tempat sampah gang + pos ronda", "gang (wawancara)"],
-        "hook": "kontras", "variasi": [1, 3, 5]}
+        "hook": "kontras", "variasi": [1, 3, 5], "suara": "Charon"}
 # iuran per tahun dalam ribu rupiah (rekaan); True = iuran baru/naik tahun ini
 IURAN = [["Sampah", 2 * 20 + 10 * 35, True], ["Keamanan", 6 * 25 + 6 * 40, True], ["Kas RT", 12 * 10, False], ["Tujuh belasan", 50, False],
          ["Gapura baru", 150, True], ["Lomba desa", 50, True], ["Tenda peresmian", 40, True]]

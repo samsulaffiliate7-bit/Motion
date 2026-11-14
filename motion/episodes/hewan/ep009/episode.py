@@ -2,7 +2,7 @@
 Fabel fiksi; kampus, dosen, dan nilai rekaan."""
 META = {"format": "Dari Mata Korban", "pilar": "kampus", "tokoh": ["Tikus Kecil (narator)", "Kucing Berdasi", "Beo (tamu)", "Bunglon (tamu)", "Ular (tamu)", "Burung Hantu (dosen)"],
         "lokasi": ["perpustakaan kampus malam", "perpustakaan (grup kelompok)", "ruang kelas (presentasi)", "ruang kelas (pertanyaan dosen)", "koridor kampus (papan nilai)"],
-        "hook": "kontras", "variasi": [4, 5]}
+        "hook": "kontras", "variasi": [4, 5], "suara": "Algenib"}
 
 
 def compute():

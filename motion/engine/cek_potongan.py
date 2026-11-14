@@ -14,7 +14,8 @@ tl = json.load(open(f"{out}/timeline.json"))
 w = wave.open(f"{out}/narration.wav"); sr = w.getframerate(); pcm = w.readframes(w.getnframes()); w.close()
 parts = [{"text": "Berikut potongan audio narasi per adegan. Untuk tiap potongan, dengarkan dan bandingkan dengan naskahnya. "
           "Jawab HANYA JSON object: kunci = id potongan, nilai = {\"ok\": true/false, \"awal\": kata pertama yang terdengar, \"akhir\": kata terakhir yang terdengar, "
-          "\"masalah\": \"\" atau penjelasan singkat (terpotong di awal/akhir, ada kata dari adegan lain, salah baca angka)}."}]
+          "\"masalah\": \"\" atau penjelasan singkat (terpotong di awal/akhir, ada kata dari adegan lain, salah baca angka), "
+          "\"logat\": \"natural\" atau \"kaku\" (apakah terdengar seperti penutur bahasa Indonesia asli; kaku = aksen asing/intonasi aneh)}."}]
 for s in tl["scenes"]:
     a, b = int(s["start"] * sr) * 2, int((s["start"] + s["dur"]) * sr) * 2
     buf = io.BytesIO(); x = wave.open(buf, "wb"); x.setnchannels(1); x.setsampwidth(2); x.setframerate(sr); x.writeframes(pcm[a:b]); x.close()
@@ -25,5 +26,5 @@ req = urllib.request.Request("https://generativelanguage.googleapis.com/v1beta/m
 r = json.load(urllib.request.urlopen(req, timeout=300))
 txt = r["candidates"][0]["content"]["parts"][0]["text"]
 res = json.loads(txt); print(json.dumps(res, ensure_ascii=False, indent=1))
-bad = [k for k, v in res.items() if not v.get("ok")]
+bad = [k for k, v in res.items() if not v.get("ok") or v.get("logat") == "kaku"]
 print("SEMUA OK" if not bad else f"BERMASALAH: {', '.join(bad)}")
