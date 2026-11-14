@@ -5,6 +5,7 @@ Pipeline video 9:16 (TikTok, Reels, Shorts): narasi Gemini TTS + visual 3D low-p
 ```
 GOOGLE_API_KEY=dummy python3 motion/engine/build.py <akun> <ep>          # timeline + narasi (TTS di-cache)
 python3 motion/engine/build.py <akun> <ep> --draft                       # draf tanpa TTS, untuk cek visual
+GOOGLE_API_KEY=dummy python3 motion/engine/cek_potongan.py <akun> <ep>   # cek potongan suara per adegan
 node motion/engine/render.js <akun> <ep> --stills 3,12,30                # cek beberapa frame
 node motion/engine/render.js <akun> <ep> --workers 4                     # render MP4 ke motion/out/<akun>-<ep>/
 ```

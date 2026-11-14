@@ -17,7 +17,12 @@
  },
  "tts": {
   "model": "gemini-3.8-flash-tts",
-  "voice": "Algenib"
+  "voice": "Algenib",
+  "pool": [
+   "Algenib",
+   "Puck",
+   "Achird"
+  ]
  },
  "disclaimer": "",
  "logo": "assets/logos/small/03-hewan-berdasi-kotor.png",

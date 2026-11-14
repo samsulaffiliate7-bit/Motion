@@ -154,6 +154,12 @@ def main():
     mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
     for k, v in getattr(mod, "CONFIG_OVERRIDE", {}).items():   # mis. {"tts": {"voice": ...}} untuk tokoh dengan suara lain
         cfg[k] = {**cfg[k], **v} if isinstance(v, dict) and isinstance(cfg.get(k), dict) else v
+    # rotasi suara (keputusan pemilik 9 Nov): META["suara"] memilih suara dari kolam config tts.pool; model tetap
+    sv = getattr(mod, "META", {}).get("suara")
+    if sv:
+        pool = cfg["tts"].get("pool", [cfg["tts"]["voice"]])
+        if sv not in pool: sys.exit(f"META suara {sv} tidak ada di kolam {pool} (accounts/{acc}/config.json)")
+        cfg["tts"] = {**cfg["tts"], "voice": sv}
     v = mod.compute()
     cache = f"{epdir}/audio_{acc}"; os.makedirs(cache, exist_ok=True)
     outdir = f"{ROOT}/out/{acc}-{ep}"; os.makedirs(outdir, exist_ok=True)

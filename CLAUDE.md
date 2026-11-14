@@ -89,7 +89,7 @@ Baca dulu:
 - Kolam suara: Dompet = Nana: Kore, Leda, Zephyr; Raka: Fenrir, Sadachbia, Zubenelgenubi. Meja = Puck, Sadachbia, Laomedeia. Kades = Achird (utama), Iapetus, Algieba; Denah = Sulafat (utama), Despina, Aoede (dua terakhir dipakai setelah lolos uji). Akun lain: suara awal di atas, sesi pasangannya boleh menambah 2 suara dan mencatatnya di sini.
 - Kunci terpasang sebagai Network secret di lingkungan akun (host generativelanguage.googleapis.com, header x-goog-api-key): jalankan build dengan `GOOGLE_API_KEY=dummy`. Kalau TTS gagal 401/403, kunci lingkungan itu belum diisi: minta pemilik mengisinya di pengaturan lingkungan. Jangan tulis kunci asli ke file/log, jangan minta pemilik menempel kunci di chat.
 - Kuota 10 permintaan/hari PER MODEL (reset ~08:00 UTC = 15:00 WIB). Satu panggilan TTS per video (`full.wav`), dipotong per adegan otomatis. Kalau build mencetak PERINGATAN potongan, buat ulang dengan `--calls 2`. Jangan bikin akun/proyek Google tambahan untuk menambah kuota akun yang sama (melanggar ToS); kunci berbeda hanya karena pemilik akunnya berbeda.
-- Cek potongan suara: kirim tiap potongan berlabel ("POTONGAN s1") ke gemini-3.5-flash, minta JSON object per id. Kalau kuota pemeriksa habis (429), bandingkan rasio durasi/huruf antar adegan.
+- Cek potongan suara: `GOOGLE_API_KEY=dummy python3 motion/engine/cek_potongan.py <akun> <ep>` (kirim tiap potongan berlabel "POTONGAN s1" ke gemini-3.5-flash, JSON per id; 503 = ulangi sebentar lagi). Kalau kuota pemeriksa habis (429), bandingkan rasio durasi/huruf antar adegan.
 - Tempo: jeda antar adegan ~0,7 dtk (LEAD 0,22 / TAIL 0,28 / GAP 0,10 di `build.py`), disetujui pemilik.
 - Hook: bikin penasaran + jelaskan isi video dalam ~5 detik pertama; frame pertama langsung "aksi".
 
@@ -105,6 +105,15 @@ Baca dulu:
 - File `.mp4` tidak di-commit. Kirim video ke pemilik untuk dicek sebelum dijadwalkan.
 - Jadwal: jangan bersamaan di tiga platform; beri jeda, acak urutan, menit tidak bulat. Caption: hook + pertanyaan + 3-5 hashtag akun; YouTube pakai judul pendek + `#shorts`.
 - Posting ke akun publik = tindakan keluar: konfirmasi ke pemilik dulu kecuali dia sudah menyuruh untuk episode itu.
+
+## Balai + Hewan (lingkungan "Motion - Balai Hewan", status 14 Nov 2026)
+- Terjadwal di Repliz sampai 12 Nov (3 video/akun/hari). Daftar: `docs/jadwal/2026-11-1{0,1,2}-balai-hewan.md`, semua posting + blok jam di `docs/JAM-TAYANG-BH.md`.
+- Tugas terjadwal produksi otomatis (harian 15:39, laporan 23:03, analisis Senin, arsip bulanan) DIMATIKAN 10 Nov atas perintah pemilik (kuota langganan habis). Nyalakan lagi hanya kalau pemilik minta (`update_trigger` enabled=true; ID: trig_015eDb9KwLKgchspCZLv6Bxi, trig_01HsHZbrvkgjwymftf5kGZzn, trig_01RmYFVBJvdfZcTAbhKzpciJ, trig_01Hz3tkJkeibb6r8mA5rQdpd).
+- Alat: `motion/engine/jam_tayang.py <akun> <tgl> <ep1> <ep2> <ep3>` (UJI JAM TAYANG, file `docs/JAM-TAYANG-<BH|KD|DM>.md`), `bash motion/engine/lembar.sh <akun> <ep>` (stills + lembar kontak), `cek_logat.py` (cek potongan + nilai logat natural/kaku).
+- Render memakai CRF 23 (keputusan pemilik 9 Nov). Rotasi suara: `tts.pool` di config, dipilih lewat `META["suara"]` (Balai: Charon, Achird, Algenib; Hewan: Algenib, Puck, Achird; semua dinilai logat natural).
+- Kalender topik: `docs/KALENDER-BH.md` (musiman sampai 31 Des; detail 2 minggu). Tokoh tamu Hewan: Ular, Beo, Bunglon, Merak, Ayam, Rakun (usulan penonton).
+- Format terakhir. Balai 12 Nov: Kalkulator Warga, Liputan Darurat, Siaran Pers Balai. Hewan 12 Nov: Pepatah Baru, Senjata Makan Tuan, Hewan di Sekitarmu.
+- Saat GitHub di-suspend (9-14 Nov) kode juga dicadangkan di Artifact privat https://claude.ai/artifact/4kHjkq21Dag48gkXGHF5kL (inti + ep-*.txt). Sejak 14 Nov GitHub bisa lagi; repo ini sumber utama.
 
 ## Status (9 Nov 2026)
 - Terjadwal di Repliz: 7 Nov (36 posting), 8 Nov (33), 9 Nov (24: dompet ep006/ep007, meja ep006/ep007, balai jalan/viral, hewan ep006/ep007). Daftar di `docs/jadwal/`.
