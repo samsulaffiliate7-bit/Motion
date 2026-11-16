@@ -1,6 +1,6 @@
 # BANK TOPIK (60 per akun)
 
-Cukup untuk ~30 hari dengan jadwal 2 video/hari/akun. Format: **topik** — hook (teks frame pertama + kalimat pembuka narasi).
+Awalnya cukup ~30 hari dengan 2 video/hari/akun; sejak 7 Nov 2026 jadwal 3 video/hari/akun, jadi bank cepat habis: tambah topik terus. Balai + Hewan: topik detail 2 minggu ke depan di docs/KALENDER-BH.md. Format: **topik** — hook (teks frame pertama + kalimat pembuka narasi).
 
 Aturan pakai:
 - Tandai `[x]` setelah dipakai dan tulis tanggal + id episode. Jangan ulang topik yang sudah tayang di akun yang sama.
@@ -90,12 +90,12 @@ Aturan pakai:
 - [ ] Mulai investasi pertama — "Uang 1 juta pertama buat investasi. Gue takut." [cek sumber, penegas]
 
 **v3 (format rotasi, lihat `docs/KONSEP-V3.md`; tokoh Nana atau Raka)**
-- [ ] [Mesin Waktu] Kopi 25 ribu sehari, dihitung 20 tahun + inflasi [cek sumber] — "Kopi 25 ribu ini, 20 tahun lagi harganya segini."
+- [x] [Mesin Waktu] Kopi 25 ribu sehari, dihitung 20 tahun + inflasi [cek sumber] — "Kopi 25 ribu ini, 20 tahun lagi harganya segini." (dompet ep009, 3D v3, 10 Nov 2026)
 - [ ] [Mesin Waktu] Uang 10 juta disimpan di lemari 10 tahun [cek sumber] — "Uang 10 juta di lemari. 10 tahun lagi tinggal 'segini'."
 - [ ] [Mesin Waktu] Mulai sisihkan umur 22 vs umur 32 (ilustrasi bunga majemuk, asumsi jelas) — "Beda mulai 10 tahun. Hasilnya beda segini."
-- [ ] [Dua Timeline] Raka: motor baru cicilan vs motor bekas + nabung selisih — "Motor sama-sama jalan. 3 tahun lagi saldonya beda jauh."
+- [x] [Dua Timeline] Raka: motor baru cicilan vs motor bekas + nabung selisih — "Motor sama-sama jalan. 3 tahun lagi saldonya beda jauh." (dompet ep012, 11 Nov 2026)
 - [ ] [Dua Timeline] Nana: pesta nikah besar vs sederhana + DP rumah — "Pestanya sehari. Cicilannya 3 tahun."
-- [ ] [Checklist Sebelum 30] 5 hal keuangan yang beres sebelum 30 — "5 hal ini kalau belum beres di umur 30, bahaya."
+- [x] [Checklist Sebelum 30] 5 hal keuangan yang beres sebelum 30 — "5 hal ini kalau belum beres di umur 30, bahaya." (dompet ep010, 3D v3, 10 Nov 2026)
 - [ ] [Checklist Sebelum 30] 3 pengeluaran yang gue stop umur 25 — "Umur 25 gue stop 3 hal ini. Tabungan langsung napas."
 - [x] [Bongkar Jebakan] Untung 10% per bulan = tanda bahaya + cek izin [cek sumber] — "Untung 10% per bulan? Ini hitungan kenapa mustahil." (dompet ep006, 3D v3, 6 Nov 2026)
 - [ ] [Bongkar Jebakan] "Titip dana" dan skema ajak 2 teman — "Temen nawarin 'titip dana'. Gue hitung dulu."
@@ -103,11 +103,11 @@ Aturan pakai:
 - [ ] [Bongkar Jebakan] Paylater "cicilan 0%" tapi ada biaya [cek sumber] — "Cicilan 0%. Kok totalnya lebih mahal?"
 - [x] [Mitos vs Fakta] "Investasi nunggu kaya dulu" — "Investasi harus nunggu kaya dulu? Salah." (dompet ep007, 3D v3, 7 Nov 2026)
 - [ ] [Mitos vs Fakta] "Emas pasti untung" (selisih harga beli-jual) [cek sumber] — "Beli emas hari ini, jual besok. Kok rugi?"
-- [ ] [Mitos vs Fakta] "Nabung aja cukup" vs inflasi [cek sumber] — "Rajin nabung, kok tetap nggak kebeli?"
+- [x] [Mitos vs Fakta] "Nabung aja cukup" vs inflasi [cek sumber] — "Rajin nabung, kok tetap nggak kebeli?" (dompet ep013 versi 'nabung di lemari', 11 Nov 2026)
 - [ ] [Ini yang Gue Lakuin] Raka pisah 4 pos tiap gajian — "Gaji gue 5,5 juta. Ini 4 pos yang gue pisah tiap tanggal 25."
-- [ ] [Ini yang Gue Lakuin] Nana isi dana darurat pelan-pelan — "Dana darurat 6 kali pengeluaran. Gue isi dari 200 ribu."
+- [x] [Ini yang Gue Lakuin] Nana isi dana darurat pelan-pelan — "Dana darurat 6 kali pengeluaran. Gue isi dari 200 ribu." (dompet ep008, 3D v3, 10 Nov 2026)
 - [ ] [Ini yang Gue Lakuin] Urutan pakai gaji pertama — "Gaji pertama gue nggak langsung buat jajan. Ini urutannya."
-- [ ] [Ini yang Gue Lakuin] Raka hitung untung bersih kerja sampingan — "Freelance dapat 2 juta. Bersihnya ternyata segini."
+- [x] [Ini yang Gue Lakuin] Raka hitung untung bersih kerja sampingan — "Freelance dapat 2 juta. Bersihnya ternyata segini."
 - [ ] [Cerita Keputusan A/B] Bonus akhir tahun: liburan atau lunasi utang — "Bonus cair 4 juta. Liburan atau lunasin utang?"
 - [ ] [Cerita Keputusan A/B] Pindah kerja gaji naik tapi jauh — "Gaji naik 1 juta. Ongkosnya naik berapa?"
 
@@ -275,18 +275,24 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 - [x] [Arisan, Ular] Arisan bodong, yang narik duluan hilang — "Arisan baru jalan dua putaran. Bandarnya hilang." (hewan ep006, 3D v3, 6 Nov 2026)
 - [ ] [Komunitas, Ular] Skema "ajak 2 teman" — "Cukup ajak 2 teman, katanya. Teman lo ajak siapa?"
 - [x] [Pasar, Kucing pedagang] Timbangan dikurangi — "Beli sekilo. Sampai rumah 8 ons." (hewan ep007, 3D v3, 7 Nov 2026)
+- [x] [Hewan di Sekitarmu, Rakun usulan penonton] 3 tipe teman saat patungan (hewan ep016, 12 Nov 2026)
+- [x] [Senjata Makan Tuan, Merak] Live pamer liburan cicilan, penagih ikut nonton (hewan ep015, 12 Nov 2026)
+- [x] [Pepatah Baru] Rapat panitia 4 jam, keputusannya rapat lagi (hewan ep014, 12 Nov 2026)
+- [x] [Fabel klasik, Ular] Jam "asli" stikernya luntur kena hujan — "Jam tangan asli, Rp100 ribu. Labelnya masih basah." (hewan ep013, 11 Nov 2026)
+- [x] [Dari Mata Korban] Paket COD atas nama Tikus — "Paket COD Rp350rb atas nama gue. Gue nggak pernah pesan." (hewan ep012, 11 Nov 2026)
+- [x] [Hewan di Sekitarmu, Merak] 3 tipe hewan saat promo 11.11 — "Promo 11.11 dimulai. Ada 3 tipe hewan." (hewan ep011, 11 Nov 2026)
 - [ ] [Pasar] Harga naik menjelang hari raya — "Minggu lalu 30 ribu. Menjelang lebaran 55."
 - [ ] [Kampus, Beo] Titip absen — "Yang hadir 12. Yang absen 40."
-- [ ] [Kampus] Kerja kelompok yang dikerjakan satu ekor — "Tugas kelompok lima. Yang ngerjain Tikus."
+- [x] [Kampus] Kerja kelompok yang dikerjakan satu ekor — "Tugas kelompok lima. Yang ngerjain Tikus." (hewan ep009, 3D v3, 10 Nov 2026, Dari Mata Korban)
 - [ ] [Panitia, Bunglon] Bendahara acara, laporan rapi uang kurang — "Laporannya rapi. Uangnya kurang."
 - [ ] [Perumahan] Ketua RT pilih kasih bantuan — "Bantuan datang. Yang dapat tetangga Pak RT."
-- [ ] [Perumahan] Pinjam barang tidak kembali — "Pinjam bor 'sebentar'. Sudah setahun."
+- [x] [Perumahan] Pinjam barang tidak kembali — "Pinjam bor 'sebentar'. Sudah setahun." (hewan ep010, 3D v3, 10 Nov 2026, Pepatah Baru)
 - [ ] [Keluarga besar] Saudara utang pas lebaran — "Ketemu tiap lebaran. Utangnya juga ketemu tiap lebaran."
 - [ ] [Senjata Makan Tuan] Kucing ketahuan memalsukan laporan sendiri — "Kucing rajin bikin laporan palsu. Sampai laporan itu dibaca bos besar."
-- [ ] [Hewan di Sekitarmu] 3 tipe teman di grup chat — "Di grup chat lo pasti ada 3 hewan ini."
+- [x] [Hewan di Sekitarmu] 3 tipe teman di grup chat — "Di grup chat lo pasti ada 3 hewan ini." (hewan ep008, 3D v3, 10 Nov 2026: Beo, Bunglon, Kucing)
 - [ ] [Dari Mata Korban] Tikus cerita kenapa dia berhenti percaya — "Gue Tikus. Ini terakhir kali gue minjemin uang."
 
-**Usulan penonton:** (isi dari komentar)
+**Usulan penonton:** Rakun "maling stiker" grup chat (TikTok 10 Nov, dipakai ep016).
 
 ---
 
@@ -366,21 +372,21 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 
 **v3 (satu sindiran per video, logis dan relate; semua rekaan; lihat `docs/KONSEP-V3.md`)**
 - [x] [Jejak Anggaran] Dana perbaikan jalan turun lewat 5 meja — "Dana turun 500 juta. Sampai jalan desa tinggal 'segini'." (balai jalan, 3D v3, 6 Nov 2026)
-- [ ] [Jejak Anggaran] Bantuan bibit: yang datang separuh, foto penyerahan lengkap — "Bibitnya separuh. Fotonya lengkap."
+- [x] [Jejak Anggaran] Bantuan bibit: yang datang separuh, foto penyerahan lengkap — "Bibitnya separuh. Fotonya lengkap." (balai bibit, 11 Nov 2026)
 - [ ] [Jejak Anggaran] Pelatihan usaha warga: honor narasumber > modal peserta — "Pelatihan usaha 3 hari. Modal usahanya nggak ada."
 - [ ] [Jejak Anggaran] Renovasi sekolah: "biaya koordinasi" makan sepertiga — "Atap sekolah bocor. Rapatnya di hotel."
-- [ ] [Kalkulator Warga] Semua iuran warga dijumlah setahun — "Gaji warga nggak naik. Iurannya naik 5 kali tahun ini."
+- [x] [Kalkulator Warga] Semua iuran warga dijumlah setahun — "Gaji warga nggak naik. Iurannya naik 5 kali tahun ini." (balai iuran, 3D v3, 10 Nov 2026)
 - [ ] [Kalkulator Warga] Retribusi pasar naik, pasar tetap becek — "Retribusi naik dua kali. Becek-nya tetap."
 - [ ] [Liputan Warga] Iuran "sukarela" yang ditagih door to door — "Sumbangannya sukarela. Yang belum bayar dicatat."
-- [ ] [Liputan Warga] Musyawarah desa, keputusan sudah dicetak — "Warga diminta usul. Keputusannya udah dicetak kemarin."
+- [x] [Liputan Warga] Musyawarah desa, keputusan sudah dicetak — "Warga diminta usul. Keputusannya udah dicetak kemarin." (balai musyawarah, 11 Nov 2026)
 - [x] [Liputan Warga] Aduan warga dibalas stiker, viral baru ditangani — "Lapor tiga bulan nggak dibalas. Viral sehari, langsung datang." (balai viral, 3D v3, 7 Nov 2026)
 - [ ] [Dulu vs Menjelang Pemilihan] Jalan rusak 5 tahun, beres 3 hari — "Jalan rusak 5 tahun, beres 3 hari. Bulan depan pemilihan kades."
-- [ ] [Dulu vs Menjelang Pemilihan] Bantuan datang bareng baliho — "Berasnya 5 kilo. Balihonya 5 meter."
+- [x] [Dulu vs Menjelang Pemilihan] Bantuan datang bareng baliho — "Berasnya 5 kilo. Balihonya 5 meter." (balai baliho, 3D v3, 10 Nov 2026)
 - [ ] [Liputan Darurat] Asap lahan terbakar 2 minggu, rapat minggu depan — "Asap udah 2 minggu. Rapatnya minggu depan."
 - [ ] [Liputan Darurat] Tanggul baru diresmikan, jebol hujan pertama — "Tanggul diresmikan Senin. Jebol Kamis."
-- [ ] [Siaran Pers Balai] Peresmian sumur: tenda 3, airnya belum keluar — "Peresmian sumur: tenda 3, pejabat 12, airnya belum keluar."
+- [x] [Siaran Pers Balai] Peresmian sumur: tenda 3, airnya belum keluar — "Peresmian sumur: tenda 3, pejabat 12, airnya belum keluar." (balai sumur, 3D v3, 10 Nov 2026; versi twist: air dari mobil tangki)
 - [ ] [Siaran Pers Balai] Lomba desa dadakan, warga disuruh ngecat pagar sendiri — "Juri datang besok. Warga disuruh ngecat pagar malam ini."
-- [ ] [Wawancara Jalanan] Urusan surat cepat kalau ada "uang kopi" — "Surat jadi 2 minggu. Atau 2 jam, kalau 'ngopi'."
+- [x] [Wawancara Jalanan] Urusan surat cepat kalau ada "uang kopi" — "Surat jadi 2 minggu. Atau 2 jam, kalau 'ngopi'." (balai surat, 11 Nov 2026)
 - [ ] [Wawancara Jalanan] Pajak/retribusi naik, warga tanya hasilnya ke mana — "Bayarnya rajin. Hasilnya di mana?"
 
 **Usulan penonton:** (isi dari komentar)
@@ -542,24 +548,24 @@ Status desa (hari, penduduk, anggaran) disimpan di data episode. Daftar ini urut
 - [ ] Burnout yang nggak kelihatan — "Staf paling rajin tiba-tiba minta resign."
 
 **v3 (format rotasi, sudut pandang bergantian; lihat `docs/KONSEP-V3.md`)**
-- [ ] [Full POV Staf] Hari pertama: "pelajari sendiri ya" — "Hari pertama kerja, gue disuruh 'pelajari sendiri ya'."
-- [ ] [Full POV Staf] Anak rantau: gaji habis buat kos dan makan — "Gaji kota besar. Sisanya kok kayak gaji kampung?"
-- [ ] [Full POV Bos] Manajer baru dijepit target atas dan tim bawah — "Jadi manajer ternyata: gaji naik dikit, beban naik 3x."
+- [x] [Full POV Staf] Hari pertama: "pelajari sendiri ya" — "Hari pertama kerja, gue disuruh 'pelajari sendiri ya'." (meja ep008, 3D v3, 10 Nov 2026)
+- [x] [Full POV Staf] Anak rantau: gaji habis buat kos dan makan — "Gaji kota besar. Sisanya kok kayak gaji kampung?"
+- [x] [Full POV Bos] Manajer baru dijepit target atas dan tim bawah — "Jadi manajer ternyata: gaji naik dikit, beban naik 3x." (meja ep013, 11 Nov 2026)
 - [ ] [Full POV Bos] Bos harus memberhentikan staf yang dia suka — "Staf terbaik gue. Dan gue yang harus bilang 'maaf'."
-- [ ] [Full POV Bos] Bos baca grup chat tim yang lupa ada dia — "Grup tim rame ngomongin gue. Mereka lupa gue di situ."
+- [x] [Full POV Bos] Bos baca grup chat tim yang lupa ada dia — "Grup tim rame ngomongin gue. Mereka lupa gue di situ." (meja ep009, 3D v3, 10 Nov 2026)
 - [x] [Seri Jenis Bos] Bos killer yang tidak pernah teriak — "Bos killer bukan yang teriak. Yang ini lebih serem." (meja ep006, 3D v3, 6 Nov 2026)
 - [ ] [Seri Jenis Bos] Bos micromanage update tiap jam — "Jam 9: progres? Jam 10: progres? Jam 11..."
 - [ ] [Seri Jenis Bos] Bos hilang saat ditanya, muncul saat deadline — "Ditanya seminggu nggak bales. Jam 4 sore: 'Kok belum?'"
 - [ ] [Seri Jenis Bos] Bos baik tapi tidak berani memutuskan — "Bosnya baik banget. Masalahnya, dia nggak pernah mutusin."
 - [ ] [Seri Jenis Staf] Gen Z pulang tepat jam 5 (dua sisi adil) — "Jam 5 tepat, laptop ditutup. Salah?"
 - [ ] [Seri Jenis Staf] Senior "zaman gue dulu" — "'Zaman gue dulu lebih parah.' Terus?"
-- [ ] [Seri Jenis Staf] Si paling "siap pak" tapi tidak dikerjakan — "Jawabnya selalu 'siap pak'. Hasilnya nggak pernah siap."
+- [x] [Seri Jenis Staf] Si paling "siap pak" tapi tidak dikerjakan — "Jawabnya selalu 'siap pak'. Hasilnya nggak pernah siap." (meja ep012, 11 Nov 2026)
 - [x] [Kamus HRD] "Suasana kekeluargaan" — "'Suasana kekeluargaan' artinya apa sih?" (meja ep007 (4 kalimat HRD sekaligus), 3D v3, 7 Nov 2026)
 - [x] [Kamus HRD] "Mampu bekerja di bawah tekanan" — "Di lowongan: 'mampu bekerja di bawah tekanan'. Artinya..." (meja ep007)
 - [x] [Kamus HRD] "Gaji kompetitif" dan cara tanya angka saat interview — "'Gaji kompetitif.' Kompetitif sama siapa?" (meja ep007)
 - [x] [Kamus HRD] "Kami akan menghubungi Anda" — "Udah 3 minggu. 'Kami akan menghubungi Anda.'" (meja ep007)
-- [ ] [Hari 1 vs Bulan ke-6] Semangat jadi hambar — "Hari 1: datang jam 7. Bulan ke-6: ..."
-- [ ] [Split Staf vs Bos] Cuti mendadak sehari sebelum — "Staf: 'Besok cuti ya.' Bos: 'Besok presentasi klien.'"
+- [x] [Hari 1 vs Bulan ke-6] Semangat jadi hambar — "Hari 1: datang jam 7. Bulan ke-6: ..." (meja ep010, 3D v3, 10 Nov 2026)
+- [x] [Split Staf vs Bos] Cuti mendadak sehari sebelum — "Staf: 'Besok cuti ya.' Bos: 'Besok presentasi klien.'"
 - [ ] [Split Staf vs Bos] Resign sebulan setelah naik gaji — "Baru naik gaji bulan lalu. Hari ini kirim surat resign."
 
 **Usulan penonton:** (isi dari komentar)

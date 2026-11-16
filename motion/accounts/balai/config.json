@@ -18,7 +18,12 @@
  },
  "tts": {
   "model": "gemini-3.8-flash-lite-tts",
-  "voice": "Charon"
+  "voice": "Charon",
+  "pool": [
+   "Charon",
+   "Achird",
+   "Algenib"
+  ]
  },
  "disclaimer": "",
  "logo": "assets/logos/small/04-balai-desa-bocor.png",

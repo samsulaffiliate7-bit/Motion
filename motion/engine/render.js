@@ -53,7 +53,7 @@ async function worker(browser, times, outFn, q) {
   console.log(`frames: ${n} dalam ${((Date.now() - t0) / 1000).toFixed(0)} dtk`);
   const out = path.join(dir, `${acc}-${ep}.mp4`);
   execFileSync('ffmpeg', ['-y', '-v', 'error', '-framerate', String(fps), '-i', path.join(fdir, 'f_%05d.jpg'), '-i', path.join(dir, 'narration.wav'),
-    '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-shortest', out], { stdio: 'inherit' });
+    '-c:v', 'libx264', '-preset', 'medium', '-crf', '23', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-shortest', out], { stdio: 'inherit' });
   fs.rmSync(fdir, { recursive: true, force: true });
   console.log('selesai:', out);
 })();
