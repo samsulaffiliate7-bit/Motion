@@ -1,13 +1,21 @@
 // Dunia 3D akun Kades Magang Juara: diorama desa ala game, siang cerah.
 // Bahasa visual khas: kamera terbang tinggi lalu menukik, benda "pop" dari tanah, HUD game (hari/penduduk/anggaran),
 // label kuning, transisi kilat putih.
-import { THREE, clamp, lerp, seg, E, mat, mesh, G, group, newScene, camera, orbit, island, tree, house, person, rain } from './kit.js';
+import { THREE, clamp, lerp, seg, E, mat, mesh, G, group, newScene, camera, orbit, island, tree, house, person, rain, setLook, grade } from './kit.js';
 
 let X; const GREEN = '#8BC34A', DG = '#5E9B2F', YEL = '#FFC93C', CREAM = '#FFF6D6', INK = '#23411F';
 const SUNNY = o => Object.assign({ sky: ['#7CC6F2', '#E6F6FF'], sunPos: [10, 18, 8], hemi: 1.2, shadow: 14 }, o);
 const kades = (p, o = {}) => person(o.parent, p, Object.assign({ body: '#F3E6C4', pants: '#4A5A3A', hat: 'peci', skin: '#C98E64', tie: YEL }, o));
 const warga = (p, i, o = {}) => person(o.parent, p, Object.assign({ body: ['#3E8FC4', '#E07B39', '#C2457A', '#6B8E5A'][i % 4], pants: '#4A4A4A', skin: ['#E2A97E', '#C98E64', '#B97A52'][i % 3], hair: '#2A1A10' }, o));
-const card = (root, html, css = {}, col = INK) => { const e = X.ab(Object.assign({ background: CREAM, border: `7px solid ${INK}`, borderRadius: '30px', padding: '12px 26px', fontSize: '42px', fontWeight: 700, color: col, whiteSpace: 'nowrap', boxShadow: `0 10px 0 ${DG}`, fontFamily: 'Fredoka' }, css), root, html); e.style.opacity = 0; return e };
+// look premium (theme.look = "premium"): panel hijau tua transparan, huruf Poppins, bayangan lembut, tanpa garis tebal
+const PREM = () => X && X.TH && X.TH.look === 'premium';
+const PFONT = 'Poppins,Fredoka,sans-serif', PANEL = 'rgba(21,53,42,.93)', PCREAM = '#F4EBD3', PGOLD = '#E8B94A';
+const onDark = c => ({ [INK]: PCREAM, [DG]: '#B5D39A', '#C9472F': '#FFB4A8', '#E5484D': '#FFB4A8', '#3E8FC4': '#9ED0EE', [YEL]: PGOLD })[c] || c;
+const card = (root, html, css = {}, col = INK) => { const P = PREM();
+  const base = P ? { background: PANEL, borderRadius: '18px', padding: '14px 28px', fontSize: '40px', fontWeight: 700, color: onDark(col), whiteSpace: 'nowrap', boxShadow: '0 14px 30px #0000005c', border: '1px solid #ffffff1c', fontFamily: PFONT }
+    : { background: CREAM, border: `7px solid ${INK}`, borderRadius: '30px', padding: '12px 26px', fontSize: '42px', fontWeight: 700, color: col, whiteSpace: 'nowrap', boxShadow: `0 10px 0 ${DG}`, fontFamily: 'Fredoka' };
+  if (P) { css = Object.assign({}, css); delete css.border; delete css.boxShadow; if (css.background === CREAM || css.background === YEL || css.background === '#FFFFFF') delete css.background; if (css.color) css.color = onDark(css.color); if (css.fontFamily) css.fontFamily = PFONT; html = html.replace(/color:\s*(#[0-9A-Fa-f]{6})/g, (m, c) => 'color:' + onDark(c)) }
+  const e = X.ab(Object.assign(base, css), root, html); e.style.opacity = 0; return e };
 const at = (s, rx, fb) => X.C(s, rx, fb);
 function tag3(root, html, col = INK) { const w = X.ab({ left: 0, top: 0 }, root); const e = card(w, html, { position: 'relative', transform: 'translate(-50%,-100%)', fontSize: '34px', padding: '6px 18px' }, col);
   return { at(obj, cam, off, p) { const [x, y] = X.proj(obj, cam, off); w.style.left = x + 'px'; w.style.top = y + 'px'; e.style.opacity = p > 0 ? 1 : 0; e.style.transform = `translate(-50%,-100%) scale(${p > 0 ? E.back(Math.min(1, p)) : 0})` } } }
@@ -49,7 +57,7 @@ function lahan(sc, o = {}) {
   return out;
 }
 function rowHouses(parent, x0, z, gap, n = 5, cols) { return Array.from({ length: n }, (_, i) => house(parent, [x0 + i * (1.6 + gap), 0, z], { w: 1.6, d: 1.8, h: 1.3, roofH: .7, wall: (cols || ['#FFF3D6', '#FCE9C8', '#F5F0E0', '#FFE7C8', '#EDE3D0'])[i % 5], roofC: ['#D9603B', '#C9472F', '#E07B39', '#B5452B', '#D9603B'][i % 5] })) }
-function commentCard(root, user, text, top, left) { return X.ab({ left, top, width: 720, background: '#FFFFFF', borderRadius: '30px', padding: '18px 26px', fontFamily: 'Fredoka', color: '#1E1E1E', boxShadow: '0 10px 0 #00000030', opacity: 0, border: `5px solid ${INK}` }, root,
+function commentCard(root, user, text, top, left) { const P = PREM(); return X.ab({ left, top, width: 720, background: P ? '#FBF8F0' : '#FFFFFF', borderRadius: P ? '22px' : '30px', padding: '18px 26px', fontFamily: P ? PFONT : 'Fredoka', color: '#1E1E1E', boxShadow: P ? '0 14px 30px #0000005c' : '0 10px 0 #00000030', opacity: 0, border: P ? 'none' : `5px solid ${INK}` }, root,
   `<div style="display:flex;align-items:center;gap:14px"><div style="width:58px;height:58px;border-radius:50%;background:#C9D6E2;display:flex;align-items:center;justify-content:center;font-size:30px">👤</div><div><div style="font-size:28px;color:#888">${user} · komentar</div><div style="font-size:44px;font-weight:700">${text}</div></div></div>`) }
 
 
@@ -90,7 +98,7 @@ function canvasPlane(w, h, draw, pw = 512) {   // papan/kertas bergambar (teks, 
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({ map: t, roughness: .9 }));
   m.userData.redraw = f => { x.clearRect(0, 0, c.width, c.height); f(x, c.width, c.height); t.needsUpdate = true }; return m;
 }
-const signText = (txt, bg = YEL) => (x, W, H) => { x.fillStyle = bg; x.fillRect(0, 0, W, H); x.strokeStyle = INK; x.lineWidth = 14; x.strokeRect(7, 7, W - 14, H - 14);
+const signText = (txt, bg = YEL) => (x, W, H) => { x.fillStyle = grade(bg); x.fillRect(0, 0, W, H); x.strokeStyle = INK; x.lineWidth = 14; x.strokeRect(7, 7, W - 14, H - 14);
   x.fillStyle = INK; let fs = 88; x.font = `700 ${fs}px Fredoka`; while (x.measureText(txt).width > W - 50 && fs > 30) { fs -= 4; x.font = `700 ${fs}px Fredoka` } x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(txt, W / 2, H / 2 + 6) };
 function reeds(parent, x, z, n = 6) { const g = group(parent, [x, 0, z]); for (let i = 0; i < n; i++) { const h = .8 + (i % 3) * .3; g.add(mesh(G.cyl(.03, .03, h, 4), '#5E8F3A', [Math.sin(i * 2.3) * .3, h / 2, Math.cos(i * 1.7) * .3], { rot: [Math.sin(i) * .15, 0, Math.cos(i) * .15] })); g.add(mesh(G.cyl(.06, .06, .22, 6), '#7A5230', [Math.sin(i * 2.3) * .3, h, Math.cos(i * 1.7) * .3])) } return g }
 function tarum(parent, x, z) { const g = group(parent, [x, 0, z]); g.add(mesh(G.ico(.45, 0), '#4E8F3A', [0, .4, 0])); [0, 1, 2, 3].forEach(i => g.add(mesh(G.sph(.08, 6, 5), '#5B5FC7', [Math.sin(i * 1.6) * .35, .65 + (i % 2) * .1, Math.cos(i * 1.6) * .35], { cast: false }))); return g }
@@ -106,7 +114,7 @@ function posRonda(parent, p) { const g = group(parent, p); g.add(mesh(G.box(2.4,
   const r = new THREE.Mesh(new THREE.CylinderGeometry(0, 1, 1, 4, 1), mat('#C9472F')); r.scale.set(2.2, .9, 1.9); r.rotation.y = Math.PI / 4; r.position.y = 2.8; r.castShadow = true; g.add(r);
   const kent = mesh(G.cyl(.14, .14, .7, 8), '#C9A36B', [1.05, 1.6, .95]); g.add(kent); return g }
 
-export async function setup(ctx) { X = ctx }
+export async function setup(ctx) { X = ctx; setLook(ctx.TH.look) }
 
 export const SHOTS = {
   K3_HOOK(s, root) {
@@ -548,19 +556,28 @@ export const SHOTS = {
 };
 
 // HUD game + label kuning + kilat putih
-let hud, label, flash;
+let hud, label, flash, P;
 export function chrome(ctx) {
-  const v = ctx.TL.vars.hud || { hari: 1, penduduk: 5, anggaran: 100 };
+  const v = ctx.TL.vars.hud || { hari: 1, penduduk: 5, anggaran: 100 }; P = PREM();
+  if (P) {   // vignette + color grade hangat di atas dunia 3D, HUD kalem
+    ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, zIndex: 7, pointerEvents: 'none', background: 'radial-gradient(ellipse 78% 62% at 50% 46%, rgba(11,31,20,0) 58%, rgba(11,31,20,.55) 100%), linear-gradient(160deg, rgba(255,226,160,.13), rgba(255,226,160,0) 55%, rgba(11,42,42,.16))' }, ctx.ov);
+    hud = ctx.ab({ left: 36, top: 56, display: 'flex', gap: '12px', zIndex: 8, fontFamily: PFONT, fontWeight: 600 }, ctx.ov,
+      [`HARI ${v.hari}`, `👥 ${v.penduduk.toLocaleString('id-ID')}`, `💰 Rp${v.anggaran} jt`].map(t => `<div style="background:${PANEL};color:${PCREAM};font-size:28px;letter-spacing:2px;padding:9px 20px;border-radius:10px;border:1px solid #ffffff22;box-shadow:0 6px 16px #0000004d">${t}</div>`).join(''));
+    label = ctx.ab({ left: 36, top: 150, zIndex: 8, fontFamily: PFONT }, ctx.ov); flash = ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, background: '#0B1F14', opacity: 0, zIndex: 9 }, ctx.ov); return }
   hud = ctx.ab({ left: 36, top: 56, display: 'flex', gap: '12px', zIndex: 8, fontFamily: 'Fredoka', fontWeight: 700 }, ctx.ov,
     [[`HARI ${v.hari}`, YEL, INK], [`👥 ${v.penduduk}`, CREAM, INK], [`💰 Rp${v.anggaran} jt`, CREAM, INK]].map(([t, bg, c]) => `<div style="background:${bg};color:${c};font-size:38px;padding:8px 20px;border-radius:18px;border:5px solid ${INK};box-shadow:0 6px 0 ${DG}">${t}</div>`).join(''));
   label = ctx.ab({ left: 0, top: 1240, width: 1080, textAlign: 'center', zIndex: 8 }, ctx.ov); flash = ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, background: '#fff', opacity: 0, zIndex: 9 }, ctx.ov);
 }
 export function frame(T, idx, t) {
-  const s = X.TL.scenes[idx]; const q = seg(t, .1, .4), o = seg(t, 2.4, 2.8);
+  const s = X.TL.scenes[idx];
+  if (P) { const q = E.out(seg(t, .1, .5)), o = seg(t, 2.8, 3.2);
+    label.innerHTML = `<div style="background:${PANEL};color:${PCREAM};border-radius:16px;padding:14px 28px 16px;box-shadow:0 12px 26px #0000005c;border:1px solid #ffffff1c"><div style="font-size:20px;letter-spacing:4px;color:#A9C79A;font-weight:600">${s.kicker}</div><div style="font-size:44px;font-weight:700;line-height:1.1">${s.sub}</div><div style="width:46px;height:4px;background:${PGOLD};margin-top:10px;border-radius:2px"></div></div>`;
+    label.style.opacity = q * (1 - o); label.style.transform = `translateX(${(1 - q) * -50}px)`;
+    let f = 0; X.TL.scenes.forEach((x, i) => { if (i) f = Math.max(f, 1 - Math.abs(T - x.start) / .16) }); flash.style.opacity = clamp(f) * .85; return }
+  const q = seg(t, .1, .4), o = seg(t, 2.4, 2.8);
   label.innerHTML = `<span style="display:inline-block;background:${YEL};color:${INK};font-family:Fredoka;font-weight:700;font-size:48px;padding:10px 30px;border-radius:16px;border:6px solid ${INK};transform:rotate(-2deg)">${s.kicker}<span style="font-size:34px"> · ${s.sub}</span></span>`;
   label.style.opacity = q * (1 - o); label.style.transform = `scale(${E.back(q)})`;
   let f = 0; X.TL.scenes.forEach((x, i) => { if (i) f = Math.max(f, 1 - Math.abs(T - x.start) / .18) }); flash.style.opacity = clamp(f);
 }
-
 // helper untuk shot per episode (episodes/kades/<ep>/shots.js): import { X, kades, warga, ... } from '../../../engine/w3d/desa3d.js'
-export { X, GREEN, DG, YEL, CREAM, INK, SUNNY, kades, warga, card, at, tag3, roadSection, drops, village, lahan, rowHouses, commentCard, txtSprite, sit, ballotBox, pendopo, noticeBoard, gapura, canvasPlane, signText, reeds, tarum, cat, crop, posRonda };
+export { X, PREM, PFONT, PANEL, PCREAM, PGOLD, onDark, GREEN, DG, YEL, CREAM, INK, SUNNY, kades, warga, card, at, tag3, roadSection, drops, village, lahan, rowHouses, commentCard, txtSprite, sit, ballotBox, pendopo, noticeBoard, gapura, canvasPlane, signText, reeds, tarum, cat, crop, posRonda };

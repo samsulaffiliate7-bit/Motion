@@ -1,6 +1,6 @@
 // Shot Kades Hari 7: 1.200 warga baru, profesi + sapi, gapura Banyusegara, papan suara + tandon, 94 lampu surya, pilihan rumah susun / perumahan.
 import { THREE, lerp, seg, E, mat, mesh, G, group, newScene, camera, orbit, island, tree, house } from '../../../engine/w3d/kit.js';
-import { X, DG, YEL, CREAM, INK, SUNNY, kades, warga, card, at, village, lahan, rowHouses, commentCard, txtSprite, gapura, canvasPlane, signText, cat, crop } from '../../../engine/w3d/desa3d.js';
+import { X, PREM, PFONT, PANEL, PCREAM, PGOLD, DG, YEL, CREAM, INK, SUNNY, kades, warga, card, at, village, lahan, rowHouses, commentCard, txtSprite, gapura, canvasPlane, signText, cat, crop } from '../../../engine/w3d/desa3d.js';
 function sapi(parent, p) {   // sapi low-poly putih belang
   const g = group(parent, p); g.add(mesh(G.box(1.3, .6, .6), '#F4F1EA', [0, .75, 0])); g.add(mesh(G.box(.45, .32, .62), '#3A2E28', [.15, .9, 0], { cast: false }));
   const hd = group(g, [.8, 1, 0]); hd.add(mesh(G.box(.42, .38, .4), '#F4F1EA', [0, 0, 0])); hd.add(mesh(G.box(.2, .18, .34), '#F2B8A0', [.24, -.08, 0]));
@@ -14,6 +14,8 @@ function bedeng(parent, x0, z0, rows = 4, len = 6, grow = 0) {   // bedeng tanah
 }
 const grow = (objs, t, t0, gap = .04) => objs.forEach((o, i) => { const q = E.back(seg(t, t0 + i * gap, t0 + i * gap + .4)); o.scale.setScalar(Math.max(.001, q)) });
 const popAt = (s, rx, fb) => at(s, rx, fb);
+// angka besar versi premium: Poppins krem-emas, bayangan lembut, tanpa garis tebal
+const BIGP = { top: 330, fontFamily: 'Poppins,Fredoka,sans-serif', color: '#F6E7B8', WebkitTextStroke: '0', textShadow: '0 6px 0 #6B4A1E, 0 14px 34px rgba(0,0,0,.55)', letterSpacing: '2px' };
 
 const NIGHT = o => newScene(Object.assign({ sky: ['#13204A', '#3A4E8A'], hemi: 1.0, sunI: 1.2, sun: '#B8C8FF', sunPos: [-6, 12, 8], shadow: 14 }, o));
 function crowd(sc, n, x0, z0, cols = 14, gap = .55) { const g = group(sc, [0, 0, 0]); const C = ['#3E8FC4', '#E07B39', '#C2457A', '#6B8E5A', '#8E44AD', '#F2C14E', '#2E7D5B'];
@@ -26,7 +28,7 @@ function tandon(parent, p) { const g = group(parent, p); [[-.6, -.6], [.6, -.6],
 export const SHOTS = {
   K_H007_HOOK(s, root) {   // frame 1: lautan orang di jalan desa menuju gapura, kamera menukik dari atas, angka +1.200 meledak
     const sc = newScene(SUNNY({ sky: ['#8FD3F5', '#FFF6E0'] })); village(sc); const g = gapura(sc, [0, 0, 6.2]); const V = X.TL.vars;
-    const ppl = crowd(sc, 420, -3.4, 7.4, 14, .5); const big = X.ab({ left: 0, top: 290, width: 1080, textAlign: 'center', fontFamily: 'Fredoka', fontWeight: 700, fontSize: '160px', color: YEL, WebkitTextStroke: `16px ${INK}`, paintOrder: 'stroke fill', opacity: 0 }, root, '+1.200');
+    const ppl = crowd(sc, 420, -3.4, 7.4, 14, .5); const big = X.ab(Object.assign({ left: 0, top: 290, width: 1080, textAlign: 'center', fontFamily: 'Fredoka', fontWeight: 700, fontSize: '160px', color: YEL, WebkitTextStroke: `16px ${INK}`, paintOrder: 'stroke fill', opacity: 0 }, PREM() ? BIGP : {}), root, '+1.200');
     const sub = card(root, '👥 komen WARGA semua!', { left: 240, top: 500, fontSize: '50px' }); const K = kades([0, 0, 4.4]); sc.add(K); K.rotation.y = 0; const cam = camera(44);
     return { scene: sc, cam, upd(t, dur) { const p = E.inout(seg(t, 0, dur)); cam.position.set(lerp(3, 1, p), lerp(16, 6, p), lerp(30, 14, p)); cam.lookAt(0, 0, lerp(12, 7, p));
       ppl.forEach((m, i) => { m.position.y = Math.abs(Math.sin(t * 6 + i)) * .08 }); K.pose(t, { shake: t < 2, cheer: t > popAt(s, 'resmi', 6) }); X.pop(big, seg(t, .1, .45)); X.pop(sub, seg(t, .5, .9)) } };
@@ -55,7 +57,7 @@ export const SHOTS = {
       [['TikTok', 3, 2], ['Instagram', 1, 0], ['YouTube', 3, 2]].forEach(([n, a, b], i) => { x.fillStyle = '#FFFFFF'; x.fillText(n, 30, 80 + i * 72); x.fillStyle = YEL; x.fillText('A ' + '|'.repeat(a), 260, 80 + i * 72); x.fillStyle = '#9ED8F5'; x.fillText('B ' + '|'.repeat(b), 400, 80 + i * 72) });
       x.font = '700 48px Fredoka'; x.fillStyle = YEL; x.fillText(`🥬 A ${V.a}  vs  B ${V.b}`, 30, 320) }); board.position.set(-2.4, 2.6, 0); sc.add(board); [-5.2, .4].forEach(px => sc.add(mesh(G.box(.22, 4.6, .22), '#7A4E2C', [px, 2.3, -.1])));
     const T = tandon(sc, [4, 0, .5]); const crops = bedeng(sc, 2, 2.6, 2, 4);
-    const meter = X.ab({ left: 90, top: 300, width: 900, height: 66, background: '#FFFFFF', border: `6px solid ${INK}`, borderRadius: '40px', overflow: 'hidden', opacity: 0 }, root, `<div style="height:100%;width:0%;background:#E5484D"></div>`);
+    const meter = X.ab(Object.assign({ left: 90, top: 300, width: 900, height: 66, background: '#FFFFFF', border: `6px solid ${INK}`, borderRadius: '40px', overflow: 'hidden', opacity: 0 }, PREM() ? { top: 330, height: 40, background: PANEL, border: '1px solid #ffffff2a', boxShadow: '0 10px 24px #0000005c' } : {}), root, `<div style="height:100%;width:0%;background:${PREM() ? 'linear-gradient(90deg,#C9573F,#E8866A)' : '#E5484D'}"></div>`);
     const ml = card(root, `❤️ ${V.like} / ${V.target} like · pos ronda ditunda`, { left: 150, top: 385, fontSize: '38px' }, '#C9472F'); const tc = card(root, '💧 TANDON menang telak', { left: 230, top: 1060, fontSize: '48px' }, '#3E8FC4');
     const ac = card(root, `🏦 sisa ${V.juta_ang} juta`, { left: 330, top: 1160, fontSize: '46px' }); const cam = camera(44);
     return { scene: sc, cam, upd(t, dur) { const tt = popAt(s, 'tandon', 7); const p = E.inout(seg(t, tt - .5, tt + 1.5)); cam.position.set(lerp(-2, 2.5, p), 3.4, 15); cam.lookAt(lerp(-2.2, 2, p), 2.4, 0);
@@ -65,7 +67,7 @@ export const SHOTS = {
   K_H007_LAMP(s, root) {   // senja -> malam: 94 tiang lampu surya menyala berurutan di sepanjang jalan, penghitung follower
     const sc = NIGHT({ hemi: 1.1 }); village(sc); const V = X.TL.vars; const lamps = []; for (let i = 0; i < 24; i++) { const side = i % 2 ? 1 : -1; lamps.push(lampPost(sc, [side * 2.1, 0, -7.5 + Math.floor(i / 2) * 1.35])) }
     const extra = []; for (let i = 0; i < 18; i++) extra.push(lampPost(sc, [-7 + (i % 6) * 2.8, 0, -7 + Math.floor(i / 6) * 7]));
-    const all = lamps.concat(extra); const cnt = X.ab({ left: 0, top: 300, width: 1080, textAlign: 'center', fontFamily: 'Fredoka', fontWeight: 700, fontSize: '120px', color: '#FFE38A', WebkitTextStroke: `12px ${INK}`, paintOrder: 'stroke fill', opacity: 0 }, root, '0');
+    const all = lamps.concat(extra); const cnt = X.ab(Object.assign({ left: 0, top: 300, width: 1080, textAlign: 'center', fontFamily: 'Fredoka', fontWeight: 700, fontSize: '120px', color: '#FFE38A', WebkitTextStroke: `12px ${INK}`, paintOrder: 'stroke fill', opacity: 0 }, PREM() ? BIGP : {}), root, '0');
     const fc = card(root, `👤 +${V.follow} follower`, { left: 290, top: 470, fontSize: '50px' }); const eq = card(root, '10 follower = 1 lampu 💡', { left: 240, top: 570, fontSize: '44px' }, DG); const cam = camera(44);
     return { scene: sc, cam, upd(t, dur) { orbit(cam, lerp(-20, 25, seg(t, 0, dur)), 9, 18, [0, 0, 0]); const tl = popAt(s, 'lampu jalan', 4); const k = E.inout(seg(t, tl - .5, tl + 3));
       all.forEach((L, i) => { const on = k * all.length > i; L.userData.bulb.material.emissiveIntensity = on ? 2.2 : 0 }); cnt.style.opacity = seg(t, tl - .5, tl); cnt.textContent = '💡 ' + Math.round(k * V.lampu);

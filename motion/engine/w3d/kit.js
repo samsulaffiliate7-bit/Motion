@@ -12,9 +12,24 @@ export const E = {
   back: t => { const c = 1.70158, c3 = c + 1; return 1 + c3 * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2) },
 };
 const MC = new Map();
+// LOOK "premium" (dipakai per episode lewat theme.look): warna diturunkan kejenuhannya, sedikit hangat, langit berkabut, cahaya lembut.
+export const LOOK = { premium: false };
+export function setLook(l) { LOOK.premium = l === 'premium'; MC.clear() }
+const HSL = {}, GC = new Map();
+export function grade(c) {
+  if (!LOOK.premium || typeof c !== 'string' || c[0] !== '#') return c;
+  if (GC.has(c)) return GC.get(c);
+  const col = new THREE.Color(c); col.getHSL(HSL); let { h, s, l } = HSL;
+  if (h > .17 && h < .45) h = lerp(h, .2, .25);          // hijau -> zaitun
+  if (h > .52 && h < .7 && l > .45) s *= .8;              // biru terang -> teal kalem
+  s *= .8; l = .02 + l * .93; if (l > .6) l = .6 + (l - .6) * .85;
+  const out = '#' + col.setHSL(h, s, l).getHexString(); GC.set(c, out); return out;
+}
 export function mat(color, o = {}) {
   const k = color + JSON.stringify(o);
-  if (!MC.has(k)) MC.set(k, new THREE.MeshStandardMaterial(Object.assign({ color, roughness: .85, metalness: 0, flatShading: true }, o)));
+  if (!MC.has(k)) { const q = Object.assign({ color: grade(color), roughness: .85, metalness: 0, flatShading: true }, o);
+    if (LOOK.premium) { if (o.emissive) q.emissive = grade(o.emissive); q.roughness = Math.max(q.roughness, .8) }
+    MC.set(k, new THREE.MeshStandardMaterial(q)) }
   return MC.get(k);
 }
 export function mesh(geo, color, p = [0, 0, 0], o = {}) {
@@ -29,6 +44,7 @@ export const G = {
 };
 export function group(parent, p = [0, 0, 0]) { const g = new THREE.Group(); g.position.set(...p); if (parent) parent.add(g); return g }
 
+export function lerpHex(a, b, t) { return '#' + new THREE.Color(a).lerp(new THREE.Color(b), t).getHexString() }
 // latar langit gradasi
 export function skyTex(top, bottom) {
   const c = document.createElement('canvas'); c.width = 4; c.height = 256; const x = c.getContext('2d');
@@ -36,10 +52,12 @@ export function skyTex(top, bottom) {
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
 export function newScene(o = {}) {
-  const sc = new THREE.Scene(); sc.background = o.sky ? skyTex(...o.sky) : new THREE.Color(o.bg || '#BFE6F7');
-  if (o.fog) sc.fog = new THREE.Fog(...o.fog);
-  const hemi = new THREE.HemisphereLight(o.hemiSky || '#FFFFFF', o.hemiGround || '#8BA06A', o.hemi ?? 1.15); sc.add(hemi);
-  const sun = new THREE.DirectionalLight(o.sun || '#FFF1D6', o.sunI ?? 2.4); sun.position.set(...(o.sunPos || [10, 18, 8]));
+  const P = LOOK.premium, sky = o.sky && (P ? [grade(o.sky[0]), lerpHex(grade(o.sky[1]), '#F3E2C2', new THREE.Color(o.sky[1]).getHSL({}).l > .5 ? .3 : 0)] : o.sky);
+  const sc = new THREE.Scene(); sc.background = sky ? skyTex(...sky) : new THREE.Color(grade(o.bg || '#BFE6F7'));
+  if (o.fog) sc.fog = new THREE.Fog(grade(o.fog[0]), o.fog[1], o.fog[2]);
+  else if (P) sc.fog = new THREE.Fog(sky ? sky[1] : grade(o.bg || '#BFE6F7'), 70, 190);   // kabut tipis = kedalaman
+  const hemi = new THREE.HemisphereLight(grade(o.hemiSky || (P ? '#FFF4E0' : '#FFFFFF')), grade(o.hemiGround || (P ? '#6E7F4A' : '#8BA06A')), (o.hemi ?? 1.15) * (P ? .82 : 1)); sc.add(hemi);
+  const sun = new THREE.DirectionalLight(P ? lerpHex(o.sun || '#FFF1D6', '#FFD9A6', .45) : (o.sun || '#FFF1D6'), (o.sunI ?? 2.4) * (P ? 1.2 : 1)); sun.position.set(...(o.sunPos || [10, 18, 8]));
   sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); const S = o.shadow || 14;
   Object.assign(sun.shadow.camera, { left: -S, right: S, top: S, bottom: -S, near: .5, far: 80 }); sun.shadow.bias = -.0005; sc.add(sun);
   sc.userData = { hemi, sun }; return sc;
@@ -52,7 +70,15 @@ export function orbit(cam, ang, h, dist, tgt = [0, 0, 0]) {
 
 // ===== benda =====
 export function island(parent, w = 14, d = 14, top = '#8BC34A', soil = '#8D6E4A') {
-  const g = group(parent); g.add(mesh(G.box(w, .6, d), top, [0, -.3, 0])); g.add(mesh(G.box(w + .3, 1.6, d + .3), soil, [0, -1.4, 0])); return g;
+  const g = group(parent); g.add(mesh(G.box(w, .6, d), top, [0, -.3, 0])); g.add(mesh(G.box(w + .3, 1.6, d + .3), soil, [0, -1.4, 0]));
+  if (LOOK.premium && w >= 8) {   // detail: rumput, bunga, kerikil, lapisan tanah
+    let r = 11; const R = () => (r = (r * 16807) % 2147483647) / 2147483647;
+    g.add(mesh(G.box(w + .32, .16, d + .32), '#6B5233', [0, -.68, 0], { cast: false })); g.add(mesh(G.box(w + .34, .1, d + .34), '#A88A60', [0, -1.6, 0], { cast: false }));
+    for (let i = 0; i < Math.round(w * d * .35); i++) { const x = (R() - .5) * (w - .4), z = (R() - .5) * (d - .4), k = R();
+      if (k < .78) g.add(mesh(G.cone(.07, .22 + R() * .14, 3), R() < .5 ? '#5E8F3A' : '#7FAF4A', [x, .1, z], { cast: false, rot: [0, R() * 3, 0] }));
+      else if (k < .9) g.add(mesh(G.sph(.06, 5, 4), ['#F2E6C2', '#E8A3B5', '#F2C14E'][i % 3], [x, .05, z], { cast: false }));
+      else g.add(mesh(G.ico(.09 + R() * .06, 0), '#A9A49A', [x, .03, z], { cast: false, s: [1, .55, 1] })) } }
+  return g;
 }
 export function tree(parent, p, s = 1, leaf = '#4E8F3A', kind = 'round') {
   const g = group(parent, p); g.scale.setScalar(s);

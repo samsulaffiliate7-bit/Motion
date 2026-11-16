@@ -54,3 +54,6 @@ SCENES = [
          say="Tapi rumahnya cuma *lima*. Pilihan *A*: bangun *rumah susun*, hemat lahan. Pilihan *B*: buka *perumahan baru* di lahan timur, lebih lega tapi kebun kegeser. Tulis A atau B, hasilnya *dua hari lagi*.", data=["hud"]),
 ]
 END_PAD = 2.5
+
+# revisi visual 16 Nov (permintaan pemilik): look premium, konsep dan naskah tetap
+CONFIG_OVERRIDE = {"theme": {"look": "premium"}}
