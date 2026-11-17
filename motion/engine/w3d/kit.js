@@ -13,8 +13,8 @@ export const E = {
 };
 const MC = new Map();
 // LOOK "premium" (dipakai per episode lewat theme.look): warna diturunkan kejenuhannya, sedikit hangat, langit berkabut, cahaya lembut.
-export const LOOK = { premium: false };
-export function setLook(l) { LOOK.premium = l === 'premium'; MC.clear() }
+export const LOOK = { premium: false, stick: false };
+export function setLook(l, fig) { LOOK.premium = l === 'premium'; LOOK.stick = fig === 'stick'; MC.clear() }
 const HSL = {}, GC = new Map();
 export function grade(c) {
   if (!LOOK.premium || typeof c !== 'string' || c[0] !== '#') return c;
@@ -39,7 +39,7 @@ export function mesh(geo, color, p = [0, 0, 0], o = {}) {
 }
 export const G = {
   box: (w, h, d) => new THREE.BoxGeometry(w, h, d), cyl: (rt, rb, h, n = 10) => new THREE.CylinderGeometry(rt, rb, h, n),
-  cone: (r, h, n = 4) => new THREE.ConeGeometry(r, h, n), sph: (r, w = 12, h = 10) => new THREE.SphereGeometry(r, w, h),
+  cone: (r, h, n = 4) => new THREE.ConeGeometry(r, h, n), sph: (r, w = 12, h = 10, ...a) => new THREE.SphereGeometry(r, w, h, ...a),
   ico: (r, d = 0) => new THREE.IcosahedronGeometry(r, d), plane: (w, h) => new THREE.PlaneGeometry(w, h),
 };
 export function group(parent, p = [0, 0, 0]) { const g = new THREE.Group(); g.position.set(...p); if (parent) parent.add(g); return g }
@@ -116,6 +116,7 @@ export function house(parent, p, o = {}) {
 
 // tokoh low-poly (chibi): pose(t, {walk, wave, talk, look})
 export function person(parent, p, o = {}) {
+  if (LOOK.stick) return stickPerson(parent, p, o);
   const g = group(parent, p); const s = o.s || 1; g.scale.setScalar(s);
   const legs = [-1, 1].map(i => { const L = group(g, [i * .14, .55, 0]); L.add(mesh(G.box(.17, .55, .2), o.pants || '#3B3B4F', [0, -.27, 0])); L.add(mesh(G.box(.2, .1, .3), '#2A2A2A', [0, -.55, .05])); return L });
   const body = mesh(G.cyl(.27, .33, .7, 8), o.body || '#2E7D5B', [0, .92, 0]); g.add(body);
@@ -191,4 +192,56 @@ export function globe(parent, r = 5, o = {}) {
   g.face = (lat, lon) => { g.rotation.y = -lon * Math.PI / 180; g.rotation.x = lat * Math.PI / 180 };   // titik lat/lon menghadap +Z
   g.pin = (lat, lon, color = '#E5484D') => { const P = group(g); const v = ll2v(lat, lon, r); P.position.copy(v); P.lookAt(v.clone().multiplyScalar(2)); P.add(mesh(G.cone(.12, .5, 10), color, [0, 0, .25], { rot: [-Math.PI / 2, 0, 0] })); P.add(mesh(G.sph(.17, 12, 10), color, [0, 0, .55])); return P };
   return g;
+}
+
+// kerumunan stickman mini (untuk ratusan orang di kejauhan): geometri dipakai bersama
+const MINI = {};
+export function miniStick(parent, p, col, skin = '#C98E64') {
+  if (!MINI.b) { MINI.b = new THREE.CapsuleGeometry(.075, .26, 3, 8); MINI.l = new THREE.CapsuleGeometry(.035, .3, 2, 6); MINI.h = new THREE.SphereGeometry(.13, 12, 10) }
+  const SM = { flatShading: false, roughness: .6 }, g = group(parent, p);
+  g.add(mesh(MINI.b, col, [0, .62, 0], { cast: false, mat: SM })); [-1, 1].forEach(i => g.add(mesh(MINI.l, '#2E2E33', [i * .045, .22, 0], { cast: false, mat: SM }))); g.add(mesh(MINI.h, skin, [0, .97, 0], { cast: false, mat: SM })); return g;
+}
+// tokoh stickman 3D (theme.figure = "stick"): kepala bulat halus, badan + tungkai garis kapsul dengan sendi siku/lutut.
+// API sama dengan person(): g.pose(t, q), g.userData.st = { legs, arms, head, mouth, body }.
+export function stickPerson(parent, p, o = {}) {
+  const g = group(parent, p); g.scale.setScalar(o.s || 1);
+  const SM = { flatShading: false, roughness: .6 }, R = .055;
+  const cap = (len, col, r = R) => mesh(new THREE.CapsuleGeometry(r, len, 4, 10), col, [0, -len / 2, 0], { mat: SM });
+  const shirt = o.body || '#2E7D5B', pants = o.pants || '#3B3B4F', skin = o.skin || '#E9B98F';
+  const body = group(g, [0, .92, 0]); body.add(mesh(new THREE.CapsuleGeometry(.1, .42, 4, 12), shirt, [0, .3, 0], { mat: SM }));
+  if (o.tie) body.add(mesh(G.box(.05, .26, .03), o.tie, [0, .34, .1], { cast: false }));
+  const legs = [-1, 1].map(i => { const L = group(g, [i * .07, .92, 0]); L.add(cap(.36, pants)); const K = group(L, [0, -.44, 0]); K.add(cap(.36, pants));
+    K.add(mesh(G.box(.11, .07, .2), '#2A2A2A', [0, -.47, .05], { mat: SM })); L.userData.knee = K; return L });
+  const arms = [-1, 1].map(i => { const A = group(g, [i * .13, 1.4, 0]); A.add(cap(.27, shirt, .05)); const El = group(A, [0, -.32, 0]); El.add(cap(.25, skin, .045));
+    El.add(mesh(G.sph(.06, 10, 8), skin, [0, -.31, 0], { mat: SM })); A.userData.elbow = El; return A });
+  const head = group(g, [0, 1.66, 0]); const hs = group(head); hs.scale.setScalar(.62); hs.position.y = .04;
+  hs.add(mesh(G.sph(.36, 20, 16), skin, [0, 0, 0], { mat: SM }));
+  [-1, 1].forEach(i => hs.add(mesh(G.sph(.045, 10, 8), '#1E1E1E', [i * .12, .04, .33], { cast: false, mat: SM })));
+  const mouth = mesh(G.box(.12, .025, .02), '#5A2A1A', [0, -.12, .34], { cast: false }); hs.add(mouth);
+  if (o.hair) hs.add(mesh(G.sph(.375, 20, 12, 0, Math.PI * 2, 0, Math.PI * .45), o.hair, [0, .02, -.02], { mat: SM }));
+  if (o.hat === 'peci') hs.add(mesh(G.cyl(.3, .33, .22, 20), '#1E1E1E', [0, .3, 0], { mat: SM }));
+  if (o.hat === 'cap') { hs.add(mesh(G.sph(.37, 16, 10), o.hatC || '#D9772B', [0, .1, 0], { s: [1, .6, 1], mat: SM })); hs.add(mesh(G.box(.4, .04, .3), o.hatC || '#D9772B', [0, .12, .38])) }
+  if (o.hat === 'bowler') { hs.add(mesh(G.cyl(.25, .28, .28, 16), o.hatC || '#2B2B2B', [0, .42, 0], { mat: SM })); hs.add(mesh(G.cyl(.45, .45, .04, 20), o.hatC || '#2B2B2B', [0, .29, 0], { mat: SM })) }
+  if (o.glasses) [-1, 1].forEach(i => hs.add(mesh(G.cyl(.08, .08, .02, 14), '#1E1E1E', [i * .13, .04, .35], { rot: [Math.PI / 2, 0, 0], cast: false })));
+  if (o.mustache) hs.add(mesh(G.box(.22, .045, .04), '#2A1A10', [0, -.06, .35], { cast: false }));
+  const hand = group(arms[1].userData.elbow, [0, -.31, 0]);
+  if (o.prop === 'suitcase') { hand.add(mesh(G.box(.5, .36, .14), '#7A3B1E', [0, -.2, 0])); hand.add(mesh(G.box(.2, .06, .05), '#F5C542', [0, .02, 0])) }
+  if (o.prop === 'clipboard') { hand.add(mesh(G.box(.3, .4, .03), '#C9A36B', [0, -.1, .1], { rot: [-.6, 0, 0] })); hand.add(mesh(G.box(.24, .28, .01), '#FFFFFF', [0, -.08, .12], { rot: [-.6, 0, 0] })) }
+  if (o.prop === 'umbrella') { hand.add(mesh(G.cyl(.02, .02, 1.3, 6), '#333', [0, .6, 0])); hand.add(mesh(G.cone(.8, .35, 8), o.umbC || '#E5484D', [0, 1.3, 0], { recv: false })) }
+  if (o.prop === 'mic') { hand.add(mesh(G.cyl(.04, .03, .3, 6), '#222', [0, .05, .08])); hand.add(mesh(G.sph(.07, 8, 6), '#555', [0, .22, .08])) }
+  const st = { legs, arms, head, mouth, body };
+  g.pose = (t, q = {}) => {
+    const w = q.walk || 0, ph = t * 8;
+    legs.forEach((L, i) => { const a = Math.sin(ph + i * Math.PI); L.rotation.x = a * .5 * w; L.userData.knee.rotation.x = Math.max(0, -Math.cos(ph + i * Math.PI)) * .9 * w });
+    arms.forEach((A, i) => { A.rotation.x = Math.sin(ph + (i ? 0 : Math.PI)) * .45 * w; A.rotation.z = (i ? 1 : -1) * .14; A.userData.elbow.rotation.x = -.25 - .3 * w });
+    if (q.hold) { arms[1].rotation.x = -.5; arms[1].userData.elbow.rotation.x = -1.1 }
+    if (q.wave) { arms[0].rotation.z = -2.5; arms[0].rotation.x = 0; arms[0].userData.elbow.rotation.x = 0; arms[0].userData.elbow.rotation.z = -.5 - Math.sin(t * 10) * .45 } else arms[0].userData.elbow.rotation.z = 0;
+    if (q.point) { arms[0].rotation.x = -1.45; arms[0].rotation.z = -.15; arms[0].userData.elbow.rotation.x = 0 }
+    if (q.cheer) arms.forEach((A, i) => { A.rotation.z = (i ? 1 : -1) * (2.3 + Math.sin(t * 12 + i) * .18); A.rotation.x = 0; A.userData.elbow.rotation.x = 0; A.userData.elbow.rotation.z = (i ? -1 : 1) * .15 });
+    const by = Math.abs(Math.sin(ph)) * .05 * w + (q.bounce ? Math.abs(Math.sin(t * 6)) * .08 : 0);
+    body.position.y = .92 + by; arms.forEach(A => A.position.y = 1.4 + by);
+    head.position.y = 1.66 + by; head.rotation.y = q.look || 0; head.rotation.x = q.nod ? Math.sin(t * 7) * .15 : 0; head.rotation.z = q.shake ? Math.sin(t * 9) * .15 : 0;
+    mouth.scale.y = q.talk ? 1 + 3 * Math.abs(Math.sin(t * 13)) : 1;
+  };
+  g.pose(0); g.userData.st = st; return g;
 }

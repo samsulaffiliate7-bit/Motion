@@ -56,4 +56,4 @@ SCENES = [
 END_PAD = 2.5
 
 # revisi visual 16 Nov (permintaan pemilik): look premium, konsep dan naskah tetap
-CONFIG_OVERRIDE = {"theme": {"look": "premium"}}
+CONFIG_OVERRIDE = {"theme": {"look": "premium", "figure": "stick"}}

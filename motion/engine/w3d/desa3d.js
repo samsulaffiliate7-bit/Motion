@@ -114,7 +114,7 @@ function posRonda(parent, p) { const g = group(parent, p); g.add(mesh(G.box(2.4,
   const r = new THREE.Mesh(new THREE.CylinderGeometry(0, 1, 1, 4, 1), mat('#C9472F')); r.scale.set(2.2, .9, 1.9); r.rotation.y = Math.PI / 4; r.position.y = 2.8; r.castShadow = true; g.add(r);
   const kent = mesh(G.cyl(.14, .14, .7, 8), '#C9A36B', [1.05, 1.6, .95]); g.add(kent); return g }
 
-export async function setup(ctx) { X = ctx; setLook(ctx.TH.look) }
+export async function setup(ctx) { X = ctx; setLook(ctx.TH.look, ctx.TH.figure) }
 
 export const SHOTS = {
   K3_HOOK(s, root) {

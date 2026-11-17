@@ -1,5 +1,5 @@
 // Shot Kades Hari 7: 1.200 warga baru, profesi + sapi, gapura Banyusegara, papan suara + tandon, 94 lampu surya, pilihan rumah susun / perumahan.
-import { THREE, lerp, seg, E, mat, mesh, G, group, newScene, camera, orbit, island, tree, house } from '../../../engine/w3d/kit.js';
+import { THREE, lerp, seg, E, mat, mesh, G, group, newScene, camera, orbit, island, tree, house, LOOK, miniStick } from '../../../engine/w3d/kit.js';
 import { X, PREM, PFONT, PANEL, PCREAM, PGOLD, DG, YEL, CREAM, INK, SUNNY, kades, warga, card, at, village, lahan, rowHouses, commentCard, txtSprite, gapura, canvasPlane, signText, cat, crop } from '../../../engine/w3d/desa3d.js';
 function sapi(parent, p) {   // sapi low-poly putih belang
   const g = group(parent, p); g.add(mesh(G.box(1.3, .6, .6), '#F4F1EA', [0, .75, 0])); g.add(mesh(G.box(.45, .32, .62), '#3A2E28', [.15, .9, 0], { cast: false }));
@@ -20,7 +20,7 @@ const BIGP = { top: 330, fontFamily: 'Poppins,Fredoka,sans-serif', color: '#F6E7
 const NIGHT = o => newScene(Object.assign({ sky: ['#13204A', '#3A4E8A'], hemi: 1.0, sunI: 1.2, sun: '#B8C8FF', sunPos: [-6, 12, 8], shadow: 14 }, o));
 function crowd(sc, n, x0, z0, cols = 14, gap = .55) { const g = group(sc, [0, 0, 0]); const C = ['#3E8FC4', '#E07B39', '#C2457A', '#6B8E5A', '#8E44AD', '#F2C14E', '#2E7D5B'];
   const geo = G.cyl(.16, .2, .55, 6), hg = G.sph(.15, 6, 5); const list = [];
-  for (let i = 0; i < n; i++) { const p = group(g, [x0 + (i % cols) * gap + ((Math.floor(i / cols)) % 2) * gap / 2, 0, z0 + Math.floor(i / cols) * gap]); p.add(mesh(geo, C[i % 7], [0, .3, 0], { cast: false })); p.add(mesh(hg, '#C98E64', [0, .7, 0], { cast: false })); list.push(p) } return list }
+  for (let i = 0; i < n; i++) { const p = group(g, [x0 + (i % cols) * gap + ((Math.floor(i / cols)) % 2) * gap / 2, 0, z0 + Math.floor(i / cols) * gap]); if (LOOK.stick) miniStick(p, [0, 0, 0], C[i % 7], ['#C98E64', '#E2A97E', '#B97A52'][i % 3]); else { p.add(mesh(geo, C[i % 7], [0, .3, 0], { cast: false })); p.add(mesh(hg, '#C98E64', [0, .7, 0], { cast: false })) } list.push(p) } return list }
 function lampPost(parent, p) { const g = group(parent, p); g.add(mesh(G.box(.08, 2, .08), '#4A4F56', [0, 1, 0])); g.add(mesh(G.box(.5, .04, .3), '#1E3A5F', [.1, 2.05, 0], { rot: [0, 0, .2] }));
   const bulb = mesh(G.sph(.22, 10, 8), '#FFF3B0', [0, 1.85, .05], { mat: { emissive: '#FFE38A', emissiveIntensity: 0 }, cast: false }); g.add(bulb); g.userData.bulb = bulb; return g }
 function tandon(parent, p) { const g = group(parent, p); [[-.6, -.6], [.6, -.6], [-.6, .6], [.6, .6]].forEach(([x, z]) => g.add(mesh(G.box(.12, 2.4, .12), '#7A8A9A', [x, 1.2, z])));
