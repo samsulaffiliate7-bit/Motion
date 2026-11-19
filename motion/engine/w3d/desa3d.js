@@ -562,7 +562,7 @@ export function chrome(ctx) {
   if (P) {   // vignette + color grade hangat di atas dunia 3D, HUD kalem
     ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, zIndex: 7, pointerEvents: 'none', background: 'radial-gradient(ellipse 78% 62% at 50% 46%, rgba(11,31,20,0) 58%, rgba(11,31,20,.55) 100%), linear-gradient(160deg, rgba(255,226,160,.13), rgba(255,226,160,0) 55%, rgba(11,42,42,.16))' }, ctx.ov);
     hud = ctx.ab({ left: 36, top: 56, display: 'flex', gap: '12px', zIndex: 8, fontFamily: PFONT, fontWeight: 600 }, ctx.ov,
-      [`HARI ${v.hari}`, `👥 ${v.penduduk.toLocaleString('id-ID')}`, `💰 Rp${v.anggaran} jt`].map(t => `<div style="background:${PANEL};color:${PCREAM};font-size:28px;letter-spacing:2px;padding:9px 20px;border-radius:10px;border:1px solid #ffffff22;box-shadow:0 6px 16px #0000004d">${t}</div>`).join(''));
+      (v.items || [`HARI ${v.hari}`, `👥 ${v.penduduk.toLocaleString('id-ID')}`, `💰 Rp${v.anggaran} jt`]).map(t => `<div style="background:${PANEL};color:${PCREAM};font-size:28px;letter-spacing:2px;padding:9px 20px;border-radius:10px;border:1px solid #ffffff22;box-shadow:0 6px 16px #0000004d">${t}</div>`).join(''));
     label = ctx.ab({ left: 36, top: 150, zIndex: 8, fontFamily: PFONT }, ctx.ov); flash = ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, background: '#0B1F14', opacity: 0, zIndex: 9 }, ctx.ov); return }
   hud = ctx.ab({ left: 36, top: 56, display: 'flex', gap: '12px', zIndex: 8, fontFamily: 'Fredoka', fontWeight: 700 }, ctx.ov,
     [[`HARI ${v.hari}`, YEL, INK], [`👥 ${v.penduduk}`, CREAM, INK], [`💰 Rp${v.anggaran} jt`, CREAM, INK]].map(([t, bg, c]) => `<div style="background:${bg};color:${c};font-size:38px;padding:8px 20px;border-radius:18px;border:5px solid ${INK};box-shadow:0 6px 0 ${DG}">${t}</div>`).join(''));
@@ -570,9 +570,9 @@ export function chrome(ctx) {
 }
 export function frame(T, idx, t) {
   const s = X.TL.scenes[idx];
-  if (P) { const q = E.out(seg(t, .1, .5)), o = seg(t, 2.8, 3.2);
+  if (P) { const q = E.out(seg(t, .1, .5)), o = seg(t, 2.8, 3.2); if (!s.kicker) { label.style.opacity = 0 } else {
     label.innerHTML = `<div style="background:${PANEL};color:${PCREAM};border-radius:16px;padding:14px 28px 16px;box-shadow:0 12px 26px #0000005c;border:1px solid #ffffff1c"><div style="font-size:20px;letter-spacing:4px;color:#A9C79A;font-weight:600">${s.kicker}</div><div style="font-size:44px;font-weight:700;line-height:1.1">${s.sub}</div><div style="width:46px;height:4px;background:${PGOLD};margin-top:10px;border-radius:2px"></div></div>`;
-    label.style.opacity = q * (1 - o); label.style.transform = `translateX(${(1 - q) * -50}px)`;
+    label.style.opacity = q * (1 - o); label.style.transform = `translateX(${(1 - q) * -50}px)` }
     let f = 0; X.TL.scenes.forEach((x, i) => { if (i) f = Math.max(f, 1 - Math.abs(T - x.start) / .16) }); flash.style.opacity = clamp(f) * .85; return }
   const q = seg(t, .1, .4), o = seg(t, 2.4, 2.8);
   label.innerHTML = `<span style="display:inline-block;background:${YEL};color:${INK};font-family:Fredoka;font-weight:700;font-size:48px;padding:10px 30px;border-radius:16px;border:6px solid ${INK};transform:rotate(-2deg)">${s.kicker}<span style="font-size:34px"> · ${s.sub}</span></span>`;

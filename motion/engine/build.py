@@ -239,8 +239,8 @@ def main():
     if os.path.exists(f"{epdir}/shots.js"): tl["shots"] = f"episodes/{acc}/{ep}/shots.js"   # shot 3D khusus episode ini
     json.dump(tl, open(f"{outdir}/timeline.json", "w"), ensure_ascii=False, indent=1)
     print(f"timeline ok: {len(scenes)} adegan, {total}s -> {outdir}")
-    if total < 60 or total > 120:
-        print(f"PERINGATAN: durasi {total:.0f} detik di luar rentang 60-120 detik (tambah/kurangi adegan)")
+    if total < 45 or total > 75:
+        print(f"PERINGATAN: durasi {total:.0f} detik di luar rentang 45-75 detik (tambah/kurangi adegan)")
 
 
 if __name__ == "__main__":
