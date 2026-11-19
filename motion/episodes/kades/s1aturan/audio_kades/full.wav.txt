@@ -10,4 +10,9 @@ Tiap komen, jadi aduan warga. Aduan paling rame, besoknya gue kerjain.
 
 Tiap akhir pekan ada kejadian besar. Dan tiap pilihan kalian, ada akibatnya.
 
-Mulai dari Hari Nol. Tonton berurutan, dan jangan lompat episode.|Achird|gemini-3.8-flash-lite-tts
+Mulai dari Hari Nol. Tonton berurutan, dan jangan lompat episode.|Iapetus|gemini-3.8-flash-lite-tts|# AUDIO PROFILE: Juara, 23, the charismatic young narrator of a premium animated series.
+## SCENE: telling his own funny, slightly dramatic village story to the audience.
+### DIRECTOR'S NOTES
+Style: warm, expressive, confident storyteller; lively pitch variation; amused at punchlines.
+Pacing: brisk but clear; short dramatic pause before punchlines (marked ...).
+Accent: natural casual Jakarta Indonesian.

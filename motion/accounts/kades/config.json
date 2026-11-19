@@ -19,8 +19,13 @@
  },
  "tts": {
   "model": "gemini-3.8-flash-lite-tts",
-  "voice": "Achird",
-  "style": "# AUDIO PROFILE: Juara, 23, the charismatic young narrator of a premium animated series.\n## SCENE: telling his own funny, slightly dramatic village story to the audience.\n### DIRECTOR'S NOTES\nStyle: warm, expressive, confident storyteller; lively pitch variation; amused at punchlines.\nPacing: brisk but clear; short dramatic pause before punchlines (marked ...).\nAccent: natural casual Jakarta Indonesian."
+  "voice": "Iapetus",
+  "style": "# AUDIO PROFILE: Juara, 23, the charismatic young narrator of a premium animated series.\n## SCENE: telling his own funny, slightly dramatic village story to the audience.\n### DIRECTOR'S NOTES\nStyle: warm, expressive, confident storyteller; lively pitch variation; amused at punchlines.\nPacing: brisk but clear; short dramatic pause before punchlines (marked ...).\nAccent: natural casual Jakarta Indonesian.",
+  "pool": [
+   "Iapetus",
+   "Achird",
+   "Algieba"
+  ]
  },
  "disclaimer": "",
  "logo": "assets/logos/small/02-kades-magang-juara.jpg",

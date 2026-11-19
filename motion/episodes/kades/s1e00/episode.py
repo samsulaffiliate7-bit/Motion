@@ -2,7 +2,7 @@
 Storyboard: STORYBOARD.md. Angka cerita fiksi (dana desa = like x Rp10.000)."""
 
 META = dict(format="serial Season 1", pilar="bangun desa", tokoh="Juara, Mbah Darmo, Bu Wati, Bejo", lokasi="gapura berkarat, jalan desa, balai, bale, stasiun, papan pengumuman",
-            hook="30 hari sebelum dipecat", variasi="episode 0", interaksi="komen: air / listrik / sinyal", suara="Achird", season=1, episode=0, babak=1)
+            hook="30 hari sebelum dipecat", variasi="episode 0", interaksi="komen: air / listrik / sinyal", suara="Iapetus", season=1, episode=0, babak=1)
 STATE = dict(hari=0, target_hari=30, target_warga=100, pulang=0, dana=0)
 KURS = dict(follow="1 perantau pulang", like=10_000)
 

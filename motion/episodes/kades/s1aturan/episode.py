@@ -1,7 +1,7 @@
 """Kades Magang Juara · Season 1 · video ATURAN MAIN (dipin di profil bersama Ep 0). Storyboard: STORYBOARD.md."""
 
 META = dict(format="aturan main (pin)", pilar="cara main", tokoh="Juara", lokasi="udara desa, jalan, stasiun, balai, kotak aduan, gapura",
-            hook="desa ini kalian yang gerakin", variasi="pin", interaksi="follow/like/komen", suara="Achird", season=1, episode=-1)
+            hook="desa ini kalian yang gerakin", variasi="pin", interaksi="follow/like/komen", suara="Iapetus", season=1, episode=-1)
 
 
 def compute():

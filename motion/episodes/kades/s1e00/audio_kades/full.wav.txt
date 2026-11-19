@@ -10,4 +10,9 @@ Terus datang Bu Wati dari kecamatan, bawa map merah. Isinya: seratus warga, dala
 
 Harapan gue cuma stasiun ini. Tiap perantau yang pulang, turun di sini. Sekarang papannya masih nol.
 
-Kalian bisa bantu. Follow, satu perantau pulang. Like, dana desa nambah. Komen, apa yang gue beresin duluan. Besok hari pertama. Air, listrik, atau sinyal?|Achird|gemini-3.8-flash-lite-tts
+Kalian bisa bantu. Follow, satu perantau pulang. Like, dana desa nambah. Komen, apa yang gue beresin duluan. Besok hari pertama. Air, listrik, atau sinyal?|Iapetus|gemini-3.8-flash-lite-tts|# AUDIO PROFILE: Juara, 23, the charismatic young narrator of a premium animated series.
+## SCENE: telling his own funny, slightly dramatic village story to the audience.
+### DIRECTOR'S NOTES
+Style: warm, expressive, confident storyteller; lively pitch variation; amused at punchlines.
+Pacing: brisk but clear; short dramatic pause before punchlines (marked ...).
+Accent: natural casual Jakarta Indonesian.
