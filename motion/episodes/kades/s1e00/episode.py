@@ -30,4 +30,4 @@ SCENES = [
          say="Kalian bisa bantu. *Follow*, satu perantau pulang. *Like*, dana desa nambah. *Komen*, apa yang gue beresin duluan. Besok hari pertama. *Air*, *listrik*, atau *sinyal*?"),
 ]
 END_PAD = 1.5
-CONFIG_OVERRIDE = {"theme": {"look": "premium", "figure": "stick"}}
+CONFIG_OVERRIDE = {"theme": {"look": "premium", "figure": "stick", "exposure": 1.18}}

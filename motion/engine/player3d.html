@@ -27,7 +27,7 @@ window.init = async tl => {
   ov.style.fontFamily = `${TH.font || 'Baloo'},Baloo,sans-serif`;
   R = new THREE.WebGLRenderer({ canvas: document.getElementById('gl'), antialias: true, preserveDrawingBuffer: true });
   R.setPixelRatio(1); R.setSize(1080, 1920, false); R.shadowMap.enabled = true; R.shadowMap.type = THREE.PCFSoftShadowMap;
-  R.toneMapping = THREE.ACESFilmicToneMapping; R.toneMappingExposure = 1.05; R.outputColorSpace = THREE.SRGBColorSpace;
+  R.toneMapping = THREE.ACESFilmicToneMapping; R.toneMappingExposure = TH.exposure || 1.05; R.outputColorSpace = THREE.SRGBColorSpace;
   const cue = (s, rx, fb) => { if (!rx) return fb; const c = TL.caps.find(c => c.t0 >= s.start - .01 && c.t0 < s.start + s.dur && rx.test(c.text)); return c ? c.t0 - s.start - .15 : fb };
   const ctx = { TL, TH, ab, pop, ov, cue, C: (s, x, fb) => x == null ? fb : (typeof x === 'number' ? x : cue(s, new RegExp(x, 'i'), fb)),
     proj: (obj, cam, off = [0, 0, 0]) => { cam.updateMatrixWorld(); obj.updateWorldMatrix(true, false); V.set(...off).applyMatrix4(obj.matrixWorld).project(cam); return [(V.x + 1) / 2 * 1080, (1 - V.y) / 2 * 1920, V.z] } };

@@ -18,4 +18,4 @@ SCENES = [
     dict(id="r7", type="KA_MULAI", kicker="", sub="", data=["hud"], say="Mulai dari *Hari Nol*. Tonton berurutan, dan *jangan lompat episode*."),
 ]
 END_PAD = 1.5
-CONFIG_OVERRIDE = {"theme": {"look": "premium", "figure": "stick"}}
+CONFIG_OVERRIDE = {"theme": {"look": "premium", "figure": "stick", "exposure": 1.18}}

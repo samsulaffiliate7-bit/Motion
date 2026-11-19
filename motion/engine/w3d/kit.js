@@ -22,7 +22,7 @@ export function grade(c) {
   const col = new THREE.Color(c); col.getHSL(HSL); let { h, s, l } = HSL;
   if (h > .17 && h < .45) h = lerp(h, .2, .25);          // hijau -> zaitun
   if (h > .52 && h < .7 && l > .45) s *= .8;              // biru terang -> teal kalem
-  s *= .8; l = .02 + l * .93; if (l > .6) l = .6 + (l - .6) * .85;
+  s *= .9; l = .02 + l * .95; if (l > .6) l = .6 + (l - .6) * .85;
   const out = '#' + col.setHSL(h, s, l).getHexString(); GC.set(c, out); return out;
 }
 export function mat(color, o = {}) {
@@ -56,7 +56,7 @@ export function newScene(o = {}) {
   const sc = new THREE.Scene(); sc.background = sky ? skyTex(...sky) : new THREE.Color(grade(o.bg || '#BFE6F7'));
   if (o.fog) sc.fog = new THREE.Fog(grade(o.fog[0]), o.fog[1], o.fog[2]);
   else if (P) sc.fog = new THREE.Fog(sky ? sky[1] : grade(o.bg || '#BFE6F7'), 70, 190);   // kabut tipis = kedalaman
-  const hemi = new THREE.HemisphereLight(grade(o.hemiSky || (P ? '#FFF4E0' : '#FFFFFF')), grade(o.hemiGround || (P ? '#6E7F4A' : '#8BA06A')), (o.hemi ?? 1.15) * (P ? .82 : 1)); sc.add(hemi);
+  const hemi = new THREE.HemisphereLight(grade(o.hemiSky || (P ? '#FFF4E0' : '#FFFFFF')), grade(o.hemiGround || (P ? '#6E7F4A' : '#8BA06A')), (o.hemi ?? 1.15) * (P ? .95 : 1)); sc.add(hemi);
   const sun = new THREE.DirectionalLight(P ? lerpHex(o.sun || '#FFF1D6', '#FFD9A6', .45) : (o.sun || '#FFF1D6'), (o.sunI ?? 2.4) * (P ? 1.2 : 1)); sun.position.set(...(o.sunPos || [10, 18, 8]));
   sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); const S = o.shadow || 14;
   Object.assign(sun.shadow.camera, { left: -S, right: S, top: S, bottom: -S, near: .5, far: 80 }); sun.shadow.bias = -.0005; sc.add(sun);

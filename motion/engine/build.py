@@ -32,6 +32,8 @@ def fill(text, v):
 
 def tts(text, cfg, key):
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{cfg['model']}:generateContent"
+    if cfg.get("style"):   # arahan gaya bicara (catatan sutradara); hanya bagian TRANSCRIPT yang dibacakan
+        text = cfg["style"].rstrip() + "\n\n#### TRANSCRIPT\n" + text
     body = json.dumps({
         "contents": [{"parts": [{"text": text}]}],
         "generationConfig": {"responseModalities": ["AUDIO"],
@@ -189,7 +191,7 @@ def main():
         for gi, g in enumerate(groups):
             full_text = "\n\n".join(says[i] for i in g)
             name = "full.wav" if len(groups) == 1 else f"full{gi + 1}of{len(groups)}.wav"
-            f = f"{cache}/{name}"; m = f + ".txt"; mkey = full_text + "|" + tcfg["voice"] + "|" + tcfg["model"]
+            f = f"{cache}/{name}"; m = f + ".txt"; mkey = full_text + "|" + tcfg["voice"] + "|" + tcfg["model"] + ("|" + tcfg["style"] if tcfg.get("style") else "")
             if not (os.path.exists(f) and os.path.exists(m) and open(m).read() == mkey):
                 if not key: sys.exit("GOOGLE_API_KEY belum ada di environment dan audio belum di-cache")
                 print(f"TTS panggilan {gi + 1}/{len(groups)} ({tcfg['model']}, {tcfg['voice']}): {len(full_text)} huruf")

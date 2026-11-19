@@ -1,7 +1,7 @@
 // Shot Kades S1 Ep 0 "Hari Nol" (lihat STORYBOARD.md). Tiap adegan = lokasi/kamera berbeda.
 import { lerp, seg, E, mesh, G, group, camera, island, tree } from '../../../engine/w3d/kit.js';
 import { X, at } from '../../../engine/w3d/desa3d.js';
-import { SORE, SENJA, juara, darmo, wati, bejo, desaSepi, gapuraTua, angkot, balai, bale, stasiun, papanAturan, BIG, show, pulse } from '../_s1/dunia.js';
+import { SORE, SENJA, juara, darmo, wati, bejo, desaSepi, desaBesar, labelFasum, gapuraTua, angkot, balai, bale, stasiun, papanAturan, BIG, show, pulse } from '../_s1/dunia.js';
 
 const ease = (t, a, b) => E.inout(seg(t, a, b));
 function debu(sc, n = 16, col = '#CDB892') { const d = Array.from({ length: n }, (_, i) => { const m = mesh(G.sph(.14, 8, 6), col, [0, -5, 0], { cast: false, mat: { transparent: true, opacity: .55 } }); sc.add(m); return m });
@@ -20,13 +20,15 @@ export const SHOTS = {
       pulse(h, seg(t, .25, .65)); show(sub, seg(t, at(s, 'dipecat', 4) - .2, at(s, 'dipecat', 4) + .3)) } };
   },
   K0_SEPI(s, root) {   // tracking samping: Juara menyusuri jalan desa, rumah-rumah dipaku papan, daun kering beterbangan
-    const sc = SORE({ sky: ['#E3A062', '#F9E2C0'] }); const D = desaSepi(sc); const J = juara([0, 0, 12]); sc.add(J); J.rotation.y = Math.PI; const cam = camera(42);
-    const lbl = BIG(root, 'dipaku semua', { top: 420, fontSize: '70px' });
+    const sc = SORE(); const D = desaSepi(sc); const J = juara([0, 0, 12]); sc.add(J); J.rotation.y = Math.PI; const cam = camera(42);
+    const lbl = BIG(root, 'dipaku semua', { top: 420, fontSize: '70px' }); const lab = labelFasum(root, D.big); const luas = BIG(root, `${Math.floor(D.big.rumah / 100) * 100}+ rumah`, { top: 330, fontSize: '84px' });
     return { scene: sc, cam, upd(t, dur) { const q = seg(t, 0, dur); const jz = lerp(12, -2, q); J.position.z = jz; J.pose(t, { walk: 1, look: Math.sin(t * .9) * .6 }); D.angin(t);
-      cam.position.set(lerp(3.2, 2.6, q), 2.1, jz + 4.4); cam.lookAt(lerp(-1.4, -.8, q), 1.2, jz - 1.5); const tp = at(s, 'dipaku', 2.5); show(lbl, seg(t, tp, tp + .4) * (1 - seg(t, tp + 2.4, tp + 2.8))) } };
+      const a = E.inout(seg(t, .4, dur * .55)); const tx = lerp(3.2, 2.6, q), ty = 2.1, tz = jz + 4.4;
+      cam.position.set(lerp(38, tx, a), lerp(58, ty, a), lerp(78, tz, a)); cam.lookAt(lerp(0, lerp(-1.4, -.8, q), a), lerp(0, 1.2, a), lerp(-6, jz - 1.5, a));
+      lab(cam, 1 - seg(t, dur * .3, dur * .42)); show(luas, seg(t, .2, .6) * (1 - seg(t, dur * .38, dur * .46))); const tp = at(s, 'dipaku', 2.5); show(lbl, seg(t, tp, tp + .4) * (1 - seg(t, tp + 2.4, tp + 2.8))) } };
   },
   K0_BALAI(s, root) {   // pintu kantor kades copot jatuh rata, debu mengepul, kamera bergetar
-    const sc = SORE({ sky: ['#E9A866', '#FBE6C4'] }); island(sc, 16, 14, '#8FB45A', '#7A5C3E'); const B = balai(sc, [0, 0, -1]); tree(sc, [-5, 0, -2], 1.3, '#5E8F3A'); tree(sc, [5.2, 0, -1], 1.1, '#5E8F3A', 'palm');
+    const sc = SORE(); island(sc, 16, 14, '#8FB45A', '#7A5C3E'); desaBesar(sc, { hole: (x, z) => Math.abs(x) < 10 && Math.abs(z) < 9 }); const B = balai(sc, [0, 0, -1]); tree(sc, [-5, 0, -2], 1.3, '#5E8F3A'); tree(sc, [5.2, 0, -1], 1.1, '#5E8F3A', 'palm');
     const J = juara([-.9, 0, 2.2]); sc.add(J); J.rotation.y = Math.PI - .5; const dust = debu(sc, 22, '#BFAE8C'); const cam = camera(42);
     const brak = BIG(root, 'BRAK!', { top: 420, fontSize: '120px', color: '#FFE2A0' });
     return { scene: sc, cam, upd(t, dur) { const tc = at(s, 'copot', 3.2) - .5; const f = E.in(seg(t, tc, tc + .55)); B.userData.door.rotation.x = f * Math.PI / 2; dust(t, tc + .5, [0, 0, 1.6]);
@@ -35,7 +37,7 @@ export const SHOTS = {
       pulse(brak, seg(t, tc + .5, tc + .8)); if (t > tc + 1.6) brak.style.opacity = 1 - seg(t, tc + 1.6, tc + 2) } };
   },
   K0_DARMO(s, root) {   // Mbah Darmo ngopi di bale, Bejo makan kertas, satu kata: kabur
-    const sc = SORE({ sky: ['#E09A5C', '#F8DDB8'] }); island(sc, 16, 14, '#8FB45A', '#7A5C3E'); balai(sc, [1.5, 0, -3.5]); bale(sc, [-1.4, 0, 0]);
+    const sc = SORE(); island(sc, 16, 14, '#8FB45A', '#7A5C3E'); desaBesar(sc, { hole: (x, z) => Math.abs(x) < 10 && Math.abs(z) < 9 }); balai(sc, [1.5, 0, -3.5]); bale(sc, [-1.4, 0, 0]);
     const M = darmo([-1.6, 0, 0]); sc.add(M); duduk(M, -.29); const kopi = mesh(G.cyl(.08, .07, .16, 10), '#F2EFE6', [-.7, .65, .2]); sc.add(kopi);
     const J = juara([2.3, 0, -.3]); sc.add(J); J.rotation.y = -1.3; const BJ = bejo(sc, [1.9, 0, 2.2]); BJ.scale.setScalar(.75); BJ.rotation.y = -2.2; const kertas = mesh(G.box(.2, .02, .26), '#FFFFFF', [.68, .7, 0], { cast: false }); BJ.add(kertas);
     const kb = BIG(root, 'kabur.', { top: 400, fontSize: '130px', fontStyle: 'italic' }); const nama = BIG(root, 'MBAH DARMO · warga terakhir', { top: 1180, fontSize: '40px', fontWeight: 700, color: '#F4EBD3' }); const cam = camera(42);
@@ -45,7 +47,7 @@ export const SHOTS = {
       show(nama, seg(t, .6, 1.1) * (1 - seg(t, 3.4, 3.8))); pulse(kb, seg(t, tk, tk + .35)) } };
   },
   K0_WATI(s, root) {   // Bu Wati datang membawa map merah; dokumen target muncul, cap GAGAL = DIPECAT
-    const sc = SORE({ sky: ['#D98E56', '#F6D6AE'] }); island(sc, 18, 14, '#8FB45A', '#7A5C3E'); balai(sc, [0, 0, -3.5]); tree(sc, [-5.5, 0, -3], 1.3, '#5E8F3A');
+    const sc = SORE(); island(sc, 18, 14, '#8FB45A', '#7A5C3E'); desaBesar(sc, { hole: (x, z) => Math.abs(x) < 10 && Math.abs(z) < 9 }); balai(sc, [0, 0, -3.5]); tree(sc, [-5.5, 0, -3], 1.3, '#5E8F3A');
     const J = juara([-1, 0, .8]); sc.add(J); J.rotation.y = .9; const W = wati([5, 0, .6]); sc.add(W); W.rotation.y = -Math.PI / 2; const cam = camera(42);
     const V = X.TL.vars; const doc = X.ab({ left: 120, top: 330, width: 840, background: '#FBF7EC', borderRadius: '14px', padding: '34px 44px', fontFamily: 'Poppins,sans-serif', color: '#2A2A2A', boxShadow: '0 18px 40px rgba(0,0,0,.5)', opacity: 0 }, root,
       `<div style="font-size:24px;letter-spacing:4px;color:#8A4B32;font-weight:700">SURAT TUGAS · MASA PERCOBAAN</div><div style="height:3px;background:#B5302A;margin:12px 0 20px"></div>
@@ -56,7 +58,7 @@ export const SHOTS = {
       show(doc, seg(t, tm - .3, tm + .2)); const c = seg(t, td - .1, td + .25); cap.style.opacity = c > 0 ? 1 : 0; cap.style.transform = `rotate(-12deg) scale(${c > 0 ? 1.8 - .8 * E.out(c) : 1.8})` } };
   },
   K0_STASIUN(s, root) {   // stasiun senja: kereta lewat tanpa berhenti, papan PULANG KAMPUNG masih 0
-    const sc = SENJA(); island(sc, 30, 14, '#7FA34E', '#6B5440'); const S = stasiun(sc, [0, 0, 0]); [[-9, 3], [9, 3.5], [-12, -5], [12, -6]].forEach(([x, z], i) => tree(sc, [x, 0, z], 1.2, '#4E7A34', i % 2 ? 'palm' : 'round'));
+    const sc = SENJA(); island(sc, 30, 14, '#7FA34E', '#6B5440'); desaBesar(sc, { hole: (x, z) => z > -12 }); const S = stasiun(sc, [0, 0, 0]); [[-9, 3], [9, 3.5], [-12, -5], [12, -6]].forEach(([x, z], i) => tree(sc, [x, 0, z], 1.2, '#4E7A34', i % 2 ? 'palm' : 'round'));
     const J = juara([1.2, .5, .5]); sc.add(J); J.rotation.y = Math.PI + .3; const cam = camera(42);
     return { scene: sc, cam, upd(t, dur) { const tk = 1.2; S.userData.kereta.position.x = lerp(-34, 30, seg(t, tk, tk + 2.6)); J.pose(t, { wave: t > tk - .6 && t < tk + 2.6, shake: t > tk + 3 });
       const tn = at(s, 'papannya', dur - 3); const z = ease(t, tn - .3, tn + 1.2); const p = ease(t, 0, dur);

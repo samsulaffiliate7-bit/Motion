@@ -560,7 +560,7 @@ let hud, label, flash, P;
 export function chrome(ctx) {
   const v = ctx.TL.vars.hud || { hari: 1, penduduk: 5, anggaran: 100 }; P = PREM();
   if (P) {   // vignette + color grade hangat di atas dunia 3D, HUD kalem
-    ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, zIndex: 7, pointerEvents: 'none', background: 'radial-gradient(ellipse 78% 62% at 50% 46%, rgba(11,31,20,0) 58%, rgba(11,31,20,.55) 100%), linear-gradient(160deg, rgba(255,226,160,.13), rgba(255,226,160,0) 55%, rgba(11,42,42,.16))' }, ctx.ov);
+    ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, zIndex: 7, pointerEvents: 'none', background: 'radial-gradient(ellipse 78% 62% at 50% 46%, rgba(11,31,20,0) 64%, rgba(11,31,20,.3) 100%), linear-gradient(160deg, rgba(255,230,170,.12), rgba(255,226,160,0) 55%, rgba(11,42,42,.05))' }, ctx.ov);
     hud = ctx.ab({ left: 36, top: 56, display: 'flex', gap: '12px', zIndex: 8, fontFamily: PFONT, fontWeight: 600 }, ctx.ov,
       (v.items || [`HARI ${v.hari}`, `👥 ${v.penduduk.toLocaleString('id-ID')}`, `💰 Rp${v.anggaran} jt`]).map(t => `<div style="background:${PANEL};color:${PCREAM};font-size:28px;letter-spacing:2px;padding:9px 20px;border-radius:10px;border:1px solid #ffffff22;box-shadow:0 6px 16px #0000004d">${t}</div>`).join(''));
     label = ctx.ab({ left: 36, top: 150, zIndex: 8, fontFamily: PFONT }, ctx.ov); flash = ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, background: '#0B1F14', opacity: 0, zIndex: 9 }, ctx.ov); return }
