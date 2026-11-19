@@ -32,9 +32,9 @@ export const SHOTS = {
     return { scene: sc, cam, upd(t, dur) { const po = E.out(seg(t, .2, .7)); K.userData.pintu.rotation.x = po * 1.9;
       const j = seg(t, .6, 1.5); const jy = Math.max(0, 1.2 * (1 - j) + Math.sin(j * Math.PI) * .6); D.position.set(lerp(.9, 1.7, j), j < 1 ? jy : 0, lerp(1.6, 3.1, j)); D.rotation.x = j < 1 ? j * Math.PI * 2 : 0;
       const tg = seg(t, 1.5, 2.2); if (j >= 1) { D.rotation.x = 0; D.rotation.y = lerp(.6, .25, tg) } D.pose(t, { talk: t > 2.3, panik: t > at(s, 'panik', 3.5) - .1 && t < at(s, 'panik', 3.5) + 1.2, bounce: t > 2.2 && t < 3 });
-      const tr = at(s, 'Ini', 5); R.visible = t > tr - 1; const rq = seg(t, tr - 1, tr + .4); R.position.set(lerp(.8, -1.2, rq), lerp(1, 0, Math.min(1, rq * 1.6)), lerp(1.4, 3, rq)); R.rotation.y = .35;
+      const tr = at(s, 'Ini', 5); R.visible = t > tr - 1; const rq = seg(t, tr - 1, tr + .4); R.position.set(lerp(.8, -.9, rq), lerp(1, 0, Math.min(1, rq * 1.6)), lerp(1.4, 3, rq)); R.rotation.y = .35;
       R.pose(t, { roll: rq > 0 && rq < 1 ? 1 : 0, wave: t > tr + .4 && t < tr + 2.5, bingung: t > at(s, 'polos', dur - 1.5) - .2, senang: t > tr + .4 });
-      const p = ease(t, 0, dur); const foc = seg(t, tr - .5, tr + .8); cam.position.set(lerp(2.4, 1.2, p) - foc * .7, lerp(1.7, 1.8, p), lerp(12.5, 11.6, p)); cam.lookAt(lerp(.9, .35, foc), 1.5, 1.8);
+      const p = ease(t, 0, dur); const foc = seg(t, tr - .5, tr + .8); cam.position.set(lerp(2.4, 1.2, p) - foc * .5, lerp(1.7, 1.8, p), lerp(12.5, 12.4, p)); cam.lookAt(lerp(.9, .45, foc), 1.5, 1.8);
       tempel(tD, D, cam, [0, 2.15, 0], seg(t, 2.2, 2.6) * (1 - seg(t, tr - .6, tr - .2))); tempel(tR, R, cam, [0, 2.25, 0], seg(t, tr + .2, tr + .6) * (1 - seg(t, dur - .8, dur - .4))) } };
   },
   D0_DENAH(s, root) {   // KHAS: tampak atas lurus seperti denah (grid cetak biru) lalu menukik ke Dena di padang luas
