@@ -17,7 +17,13 @@
  },
  "tts": {
   "model": "gemini-3.8-flash-lite-tts",
-  "voice": "Sulafat"
+  "voice": "Sulafat",
+  "style": "# AUDIO PROFILE: Dena, a bright young female architect (early twenties), the narrator of a premium animated series.\n## SCENE: telling her own funny, slightly chaotic space-colony story to the audience, right after crash-landing on an empty alien planet.\n### DIRECTOR'S NOTES\nStyle: smart, chatty and cheerful; fast and full of energy; a perfectionist who gets playfully panicky when measurements are off; lively pitch variation; amused at punchlines.\nPacing: quick and bubbly but every word clear; short comic pause before punchlines (marked ...).\nAccent: natural casual Jakarta Indonesian, like a young Indonesian content creator; never sounds foreign.",
+  "pool": [
+   "Sulafat",
+   "Despina",
+   "Aoede"
+  ]
  },
  "disclaimer": "",
  "logo": "assets/logos/small/05-denah-rumah-dunia.jpg",
