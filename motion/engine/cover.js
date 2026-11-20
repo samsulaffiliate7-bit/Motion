@@ -5,7 +5,10 @@ const A = { kades: ['KADES MAGANG JUARA', '#1F4D33', '#E8B94A', '30 HARI ATAU DI
   dompet: ['DOMPET GUE NANGIS', '#4A2E1A', '#F2C14E', 'RP100 RIBU DI JAKARTA'], meja: ['MEJA SEBERANG BOS', '#1E3A5F', '#F28C28', 'DARI WARUNG LIPAT'],
   balai: ['DESA TERAKHIR', '#5A1E1E', '#E8B94A', 'HARI KE-0 · WABAH ZOMBIE'], hewan: ['KERAJAAN BERDASI', '#3B2463', '#F2C14E', 'NEW GAME · LEVEL 1'] };
 (async () => { const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
-  for (const a in A) for (const e of ['s1e00', 's1aturan']) { const [nm, bg, ac, hook] = A[a]; const big = e === 's1e00' ? 'EPISODE 0' : 'ATURAN MAIN', sub = e === 's1e00' ? hook : 'TONTON INI DULU · SEASON 1';
+  // mode satu cover: cover.js <dir> <akun> <ep> "EPISODE 1" "SUB" (sub kosong = hook akun)
+  const one = process.argv[3] ? [[process.argv[3], process.argv[4], process.argv[5], process.argv[6]]] : null;
+  const jobs = one || Object.keys(A).flatMap(a => ['s1e00', 's1aturan'].map(e => [a, e, e === 's1e00' ? 'EPISODE 0' : 'ATURAN MAIN', e === 's1e00' ? '' : 'TONTON INI DULU · SEASON 1']));
+  for (const [a, e, big, sub0] of jobs) { const [nm, bg, ac, hook] = A[a]; const sub = sub0 || hook;
     const img = 'data:image/jpeg;base64,' + fs.readFileSync(path.join(D, `bg-${a}-${e}.jpg`)).toString('base64');
     await p.setContent(`<html><head><style>@font-face{font-family:P;font-weight:800;src:url(${f64(800)})}@font-face{font-family:P;font-weight:700;src:url(${f64(700)})}
       body{margin:0;width:1080px;height:1920px;background:url(${img}) center/cover;font-family:P;position:relative;overflow:hidden}
