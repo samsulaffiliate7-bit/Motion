@@ -108,3 +108,15 @@ Aturan isi jadwal baru:
 | 2026-11-12 | hewan | ep015 | IG | 17:25 | E | 6af318621ea65c2f4ef3a55e | |
 | 2026-11-12 | hewan | ep016 | IG | 20:10 | F | 6af318631ea65c2f4ef3a575 | |
 | 2026-11-12 | hewan | ep015 | YouTube | 20:59 | F | 6af31864717841e194b72042 | |
+| 2026-11-20 | balai | s1e00 | TikTok | 12:17 | C | 6affcb69b49d09cff2de73af | |
+| 2026-11-20 | balai | s1e00 | IG | 12:43 | C | 6affcb6ab49d09cff2de73db | |
+| 2026-11-20 | balai | s1e00 | YouTube | 13:11 | C | 6affcb6bb49d09cff2de740b | |
+| 2026-11-20 | balai | s1aturan | TikTok | 18:23 | E | 6affcb6cc3733bf16aa9fcc5 | |
+| 2026-11-20 | balai | s1aturan | IG | 18:47 | E | 6affcb6d857c4e0110949a52 | |
+| 2026-11-20 | balai | s1aturan | YouTube | 19:14 | E | 6affcb6d857c4e0110949aa5 | |
+| 2026-11-20 | hewan | s1e00 | IG | 12:29 | C | 6affcb6eb49d09cff2de752a | |
+| 2026-11-20 | hewan | s1e00 | TikTok | 12:52 | C | 6affcb6fb49d09cff2de7567 | |
+| 2026-11-20 | hewan | s1e00 | YouTube | 13:26 | C | 6affcb70c3733bf16aa9fe11 | |
+| 2026-11-20 | hewan | s1aturan | IG | 18:36 | E | 6affcb71c3733bf16aa9fe4c | |
+| 2026-11-20 | hewan | s1aturan | TikTok | 19:03 | E | 6affcb72b49d09cff2de7628 | |
+| 2026-11-20 | hewan | s1aturan | YouTube | 19:31 | E | 6affcb73c3733bf16aa9fe85 | |
