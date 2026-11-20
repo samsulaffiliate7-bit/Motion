@@ -72,7 +72,7 @@ export const SHOTS = {
     const st = LABEL(root, '👥 2 · 🧱 0', 'penduduk dua, bata nol', 330); const sw = papanDOM(root, 'FONDASI?! 😱', { fontSize: '44px', background: '#FF9F45' });
     return { scene: sc, cam, upd(t, dur) { const tw = at(s, 'Pak Mandor', 2.8), tg = at(s, 'tengah sawah', dur - 1.6); const pan = ease(t, tw - .6, tw + .8);
       M.pose(t, { gali: true }); mud(t, [3.6, .05, -9.2], true); D.pose(t, { facepalm: t > tg - .1, talk: t < tg }); L.J.angin(t);
-      cam.position.set(lerp(.6, -.2, pan), lerp(2.3, 2.4, pan), lerp(4.6, -2.4, pan)); cam.lookAt(lerp(3.6, 2.6, pan), lerp(1.9, 1, pan), lerp(-4.2, -9, pan));
+      cam.position.set(lerp(.2, -.2, pan), lerp(2.4, 2.4, pan), lerp(7.2, -2.4, pan)); cam.lookAt(lerp(3.6, 2.6, pan), lerp(1.9, 1, pan), lerp(-4.2, -9, pan));
       show(st, seg(t, .2, .6) * (1 - seg(t, tw - .4, tw))); tempel(sw, M, cam, [0, 2.4, 0], seg(t, tg - .1, tg + .3)) } };
   },
   D0_AJAK(s, root) {   // meja kayu dengan 3 maket rumah Jawa; aturan main; pertanyaan rumah pertama
