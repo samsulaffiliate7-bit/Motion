@@ -113,6 +113,7 @@ Baca dulu:
 - Render memakai CRF 23 (keputusan pemilik 9 Nov). Rotasi suara: `tts.pool` di config, dipilih lewat `META["suara"]` (Balai: Charon, Achird, Algenib; Hewan: Algenib, Puck, Achird; semua dinilai logat natural).
 - Kalender topik: `docs/KALENDER-BH.md` (musiman sampai 31 Des; detail 2 minggu). Tokoh tamu Hewan: Ular, Beo, Bunglon, Merak, Ayam, Rakun (usulan penonton).
 - Format terakhir. Balai 12 Nov: Kalkulator Warga, Liputan Darurat, Siaran Pers Balai. Hewan 12 Nov: Pepatah Baru, Senjata Makan Tuan, Hewan di Sekitarmu.
+- 20 Nov: Season 1 (docs/KONSEP-S1.md) dimulai. Balai "Desa Terakhir" (zombie, Gilang; suara Charon) dan Hewan "Kerajaan Berdasi" (MMORPG, Belang; suara Algenib): `s1aturan` + `s1e00` jadi (render, cek potongan OK). Dunia season `episodes/<akun>/_s1/dunia.js`; gaya layar baru `engine/w3d/zombie.js` (Balai) dan `engine/w3d/rpg.js` (Hewan, `setHUD` untuk ubah gold/XP) dipilih lewat `CONFIG_OVERRIDE["style"]`. `TEMPO` di episode.py (mis. 1.07) mempercepat audio tanpa panggilan TTS baru bila durasi > 75 dtk.
 - Saat GitHub di-suspend (9-14 Nov) kode juga dicadangkan di Artifact privat https://claude.ai/artifact/4kHjkq21Dag48gkXGHF5kL (inti + ep-*.txt). Sejak 14 Nov GitHub bisa lagi; repo ini sumber utama.
 
 ## Status (9 Nov 2026)

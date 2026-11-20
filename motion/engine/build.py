@@ -63,6 +63,13 @@ def pcm_of(wav_bytes):
     return struct.unpack("<%dh" % w.getnframes(), w.readframes(w.getnframes()))
 
 
+def tempo(pcm, f):
+    import subprocess
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", "-filter:a", f"atempo={f}", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-"],
+                         input=struct.pack("<%dh" % len(pcm), *pcm), capture_output=True, check=True).stdout
+    return struct.unpack("<%dh" % (len(raw) // 2), raw[:len(raw) // 2 * 2])
+
+
 def trim(samples, thr=350, pad=0.06):
     a = 0
     while a < len(samples) and abs(samples[a]) < thr: a += 1
@@ -196,7 +203,9 @@ def main():
                 if not key: sys.exit("GOOGLE_API_KEY belum ada di environment dan audio belum di-cache")
                 print(f"TTS panggilan {gi + 1}/{len(groups)} ({tcfg['model']}, {tcfg['voice']}): {len(full_text)} huruf")
                 open(f, "wb").write(tts(full_text, tcfg, key)); open(m, "w").write(mkey)
-            seg = split_full(pcm_of(open(f, "rb").read()), [says[i] for i in g], getattr(mod, "SPLIT_SHIFT", None) if len(groups) == 1 else None) if len(g) > 1 else [pcm_of(open(f, "rb").read())]
+            full = pcm_of(open(f, "rb").read())
+            if getattr(mod, "TEMPO", 1) != 1: full = tempo(full, mod.TEMPO)   # percepat/lambatkan tanpa ubah nada (ffmpeg atempo), tanpa panggilan TTS baru
+            seg = split_full(full, [says[i] for i in g], getattr(mod, "SPLIT_SHIFT", None) if len(groups) == 1 else None) if len(g) > 1 else [full]
             pcms += [trim(p) for p in seg]
 
     scenes, caps, t, clips = [], [], 0.0, []
