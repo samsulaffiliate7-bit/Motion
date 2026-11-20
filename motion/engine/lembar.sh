@@ -2,7 +2,7 @@
 # Stills + lembar kontak satu episode: bash motion/engine/lembar.sh <akun> <ep>  -> motion/out/<akun>-<ep>/lembar.jpg
 set -e; A=$1; E=$2; D=motion/out/$A-$E
 TS=$(python3 -c "import json;t=json.load(open('$D/timeline.json'));print(','.join(['0.3']+[str(round(s['start']+s['dur']*f,1)) for s in t['scenes'] for f in (0.35,0.85)]))")
-rm -rf "$D/stills"; node motion/engine/render.js $A $E --stills $TS >/dev/null 2>&1
+rm -rf "$D/stills"; node motion/engine/render.js $A $E --stills $TS 2>&1 | grep -i error | head -5 || true
 python3 - "$D" <<'PY'
 import sys,glob,re
 from PIL import Image

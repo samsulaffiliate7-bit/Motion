@@ -2,7 +2,7 @@
  "id": "meja",
  "name": "Meja Seberang Bos",
  "handle": "@mejaseberangbos",
- "tagline": "satu masalah kerja, dua sisi",
+ "tagline": "dari warung lipat",
  "style": "kantor",
  "theme": {
   "bg": "#DCE3EC",
@@ -18,7 +18,13 @@
  },
  "tts": {
   "model": "gemini-3.8-flash-tts",
-  "voice": "Puck"
+  "voice": "Puck",
+  "style": "# AUDIO PROFILE: Bima, 27, a laid-off office worker who just opened a tiny street stall, narrating his own comedic business story for a premium animated series.\n## SCENE: telling the audience his underdog story with mock-corporate seriousness, as if presenting to a board of directors, then breaking into playful self-mockery.\n### DIRECTOR'S NOTES\nStyle: charismatic, expressive storyteller; confident corporate tone that cracks into deadpan humor; lively pitch variation; amused at punchlines.\nPacing: brisk but clear; short comedic pause before punchlines (marked ...).\nAccent: natural casual Jakarta Indonesian (gue/lo), native Indonesian pronunciation, no foreign accent.",
+  "pool": [
+   "Puck",
+   "Sadachbia",
+   "Laomedeia"
+  ]
  },
  "disclaimer": "",
  "logo": "assets/logos/small/06-meja-seberang-bos.jpg",

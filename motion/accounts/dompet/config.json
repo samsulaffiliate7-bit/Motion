@@ -2,7 +2,7 @@
  "id": "dompet",
  "name": "Dompet Gue Nangis",
  "handle": "@dompetguenangis",
- "tagline": "cerita fiksi soal duit",
+ "tagline": "Rp100 ribu di Jakarta",
  "theme": {
   "bg": "#FCEBD0",
   "bg2": "#F6DDB5",
@@ -15,7 +15,16 @@
  },
  "tts": {
   "model": "gemini-3.8-flash-tts",
-  "voice": "Kore"
+  "voice": "Kore",
+  "style": "# AUDIO PROFILE: Nana, 22, a cheerful, resilient young woman from a small Indonesian town, narrating her own comedic survival story in Jakarta for a premium animated series.\n## SCENE: telling the audience, like a close friend, about her broke first day in the big city, laughing at her own bad luck.\n### DIRECTOR'S NOTES\nStyle: warm, expressive, playful storyteller with a smile in the voice; self-deprecating humor; a little dramatic on money amounts; lively pitch variation.\nPacing: brisk but clear; short comedic pause before punchlines (marked ...).\nAccent: natural casual Jakarta Indonesian (gue/lo), native Indonesian pronunciation, no foreign accent.",
+  "pool": [
+   "Kore",
+   "Leda",
+   "Zephyr",
+   "Fenrir",
+   "Sadachbia",
+   "Zubenelgenubi"
+  ]
  },
  "disclaimer": "",
  "logo": "assets/logos/small/01-dompet-gue-nangis.jpg",
