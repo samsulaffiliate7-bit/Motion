@@ -1,26 +1,18 @@
-// Dunia Denah Rumah Dunia Season 1 "Planet Denah": tokoh + lokasi yang dipakai ulang semua episode season ini.
-// Planet asing CERAH: tanah oranye dengan bercak ungu, dua bulan di langit siang, kristal, batu, tanaman aneh, bukit mesa.
-// Kamera khas akun: tampak atas lurus seperti denah (grid cetak biru) lalu menukik ke tokoh.
-import { THREE, lerp, seg, E, mat, mesh, G, group, newScene, camera, person, grade } from '../../../engine/w3d/kit.js';
-import { X, canvasPlane, PFONT, PANEL, PCREAM, PORANGE, PTEAL } from '../../../engine/w3d/planet.js';
+// Dunia Denah Rumah Dunia Season 1 "Bumi Dimulai dari Jawa": tokoh + lokasi yang dipakai ulang semua episode season ini.
+// Jawa tropis CERAH: langit biru, awan putih, sawah & terasering, gunung biru di kejauhan, kelapa, bambu, sungai.
+// Lokasi proyek: patok + benang, terpal biru, gerobak, tumpukan bata, papan PENDUDUK BUMI. Kamera khas: tampak atas (denah) lalu menukik.
+import { THREE, lerp, seg, E, mat, mesh, G, group, newScene, camera, person, grade, cloud, globe } from '../../../engine/w3d/kit.js';
+import { X, canvasPlane, PFONT, PANEL, PCREAM, PORANGE, PTEAL } from '../../../engine/w3d/rumahdunia.js';
 
 // ---- suasana (selalu cerah) ----
-export const PAGI = o => newScene(Object.assign({ sky: ['#6FA8E8', '#FFD2B0'], sun: '#FFE6C8', sunPos: [-14, 18, 10], hemi: 1.3, sunI: 2.6, shadow: 20, hemiGround: '#B07A9A', fog: ['#F6D2C0', 70, 260] }, o));
-export const SIANG = o => newScene(Object.assign({ sky: ['#78B4F0', '#F7E0D0'], sun: '#FFF0DA', sunPos: [10, 22, 6], hemi: 1.35, sunI: 2.5, shadow: 20, hemiGround: '#B07A9A', fog: ['#F2DCD2', 70, 260] }, o));
-export const SORE = o => newScene(Object.assign({ sky: ['#7A86D8', '#FFB98A'], sun: '#FFC89A', sunPos: [-16, 9, 6], hemi: 1.25, sunI: 2.4, shadow: 20, hemiGround: '#A06A8A', fog: ['#F3B99A', 70, 240] }, o));
-
-// ---- dua bulan (tidak kena kabut) ----
-export function bulan(sc, o = {}) {
-  const mk = (r, c, p) => { const m = new THREE.Mesh(new THREE.SphereGeometry(r, 32, 24), new THREE.MeshBasicMaterial({ color: grade(c), fog: false })); m.position.set(...p); sc.add(m);
-    const halo = new THREE.Mesh(new THREE.SphereGeometry(r * 1.18, 24, 16), new THREE.MeshBasicMaterial({ color: grade(c), fog: false, transparent: true, opacity: .22 })); m.add(halo); halo.position.set(0, 0, 0); halo.scale.setScalar(1); return m };
-  const a = mk(o.r1 || 16, '#FFE3EE', o.p1 || [-60, 70, -170]); const b = mk(o.r2 || 7, '#BDF2EA', o.p2 || [55, 92, -180]);
-  [[-.35, .2, .9, 2.6], [.3, -.3, .9, 1.8], [.1, .45, .88, 1.3]].forEach(([x, y, z, r]) => { const k = new THREE.Mesh(new THREE.SphereGeometry(r, 12, 8), new THREE.MeshBasicMaterial({ color: grade('#F0C6D8'), fog: false })); k.position.set(x * 16, y * 16, z * 14.5); k.scale.z = .25; a.add(k) });
-  return { a, b };
-}
+export const PAGI = o => newScene(Object.assign({ sky: ['#4F9BE0', '#DDEFFA'], sun: '#FFF0D2', sunPos: [-14, 20, 12], hemi: 1.3, sunI: 2.6, shadow: 20, hemiGround: '#7AA05A', fog: ['#D8ECF4', 80, 300] }, o));
+export const SIANG = o => newScene(Object.assign({ sky: ['#3F92DE', '#D2EAF8'], sun: '#FFF6E2', sunPos: [10, 24, 8], hemi: 1.35, sunI: 2.5, shadow: 20, hemiGround: '#7AA05A', fog: ['#D2E8F4', 80, 300] }, o));
+export const SORE = o => newScene(Object.assign({ sky: ['#5B8FD6', '#FFD7A8'], sun: '#FFD2A0', sunPos: [-16, 10, 8], hemi: 1.25, sunI: 2.4, shadow: 20, hemiGround: '#7A905A', fog: ['#F2D8BC', 80, 280] }, o));
+export const awan = (sc, n = 12, R = 1) => { const L = []; for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2 + i, r = 60 + (i * 37) % 60; const c = cloud(sc, [Math.cos(a) * r, 26 + (i % 4) * 5, Math.sin(a) * r - 40], 3 + (i % 3) * 1.5); L.push(c) } return L };
 
 // ---- tokoh ----
-export function dena(p, o = {}) {   // arsitek muda: helm proyek kuning, kemeja teal, rompi oranye, kuncir kuda, gulungan cetak biru
-  const g = person(o.parent, p, Object.assign({ body: '#2FA39A', pants: '#3A3256', skin: '#D9A07A', hair: '#2A1A12' }, o));
+export function dena(p, o = {}) {   // arsitek muda: helm proyek kuning, kemeja tosca, rompi oranye, kuncir kuda, gulungan denah biru
+  const g = person(o.parent, p, Object.assign({ body: '#2FA39A', pants: '#2F3550', skin: '#D9A07A', hair: '#2A1A12' }, o));
   const st = g.userData.st, b = st.body, h = st.head;
   b.add(mesh(new THREE.CapsuleGeometry(.112, .3, 4, 12), '#FF8A3D', [0, .32, 0], { s: [1, 1, .9], mat: { flatShading: false, roughness: .6 } }));
   b.add(mesh(G.box(.24, .03, .02), '#FFF2B0', [0, .38, .11], { cast: false })); b.add(mesh(G.box(.24, .03, .02), '#FFF2B0', [0, .26, .11], { cast: false }));
@@ -28,143 +20,163 @@ export function dena(p, o = {}) {   // arsitek muda: helm proyek kuning, kemeja 
   h.add(mesh(G.cyl(.29, .29, .025, 20), '#FFC93C', [0, .1, .02], { mat: { flatShading: false } }));
   h.add(mesh(G.sph(.075, 10, 8), '#2A1A12', [0, .02, -.24], { mat: { flatShading: false } }));
   const ekor = group(h, [0, -.02, -.27]); ekor.add(mesh(new THREE.CapsuleGeometry(.05, .2, 4, 8), '#2A1A12', [0, -.14, -.03], { mat: { flatShading: false } })); st.ekor = ekor;
-  if (o.gulung !== false) { const r = mesh(G.cyl(.05, .05, .5, 10), '#8FC8F2', [0, -.28, .06], { rot: [0, 0, Math.PI / 2] }); st.arms[1].userData.elbow?.add(r); g.userData.gulung = r }
-  const pose = g.pose; g.pose = (t, q = {}) => { pose(t, q); ekor.rotation.x = Math.sin(t * 5) * .25 * ((q.walk || 0) + (q.bounce ? 1 : 0) + .3); if (q.panik) { h.rotation.z = Math.sin(t * 22) * .12; st.arms.forEach((A, i) => { A.rotation.z = (i ? 1 : -1) * (2.0 + Math.sin(t * 18 + i * 2) * .35); A.userData.elbow.rotation.x = -1.2 }) } };
+  if (o.gulung !== false) { const r = mesh(G.cyl(.05, .05, .5, 10), '#6FB4EA', [0, -.28, .06], { rot: [0, 0, Math.PI / 2] }); st.arms[1].userData.elbow?.add(r); g.userData.gulung = r }
+  const pose = g.pose; g.pose = (t, q = {}) => { pose(t, q); ekor.rotation.x = Math.sin(t * 5) * .25 * ((q.walk || 0) + (q.bounce ? 1 : 0) + .3);
+    if (q.panik) { h.rotation.z = Math.sin(t * 22) * .12; st.arms.forEach((A, i) => { A.rotation.z = (i ? 1 : -1) * (2.0 + Math.sin(t * 18 + i * 2) * .35); A.userData.elbow.rotation.x = -1.2 }) }
+    if (q.facepalm) { st.arms[0].rotation.x = -2.3; st.arms[0].rotation.z = .25; st.arms[0].userData.elbow.rotation.x = -1.9; h.rotation.x = .25 } };
   g.pose(0); return g;
 }
-export function penggaris(parent, p, o = {}) {   // robot PENGGARIS: badan = penggaris kuning berdiri (strip ukur), kepala layar, satu roda, lengan tipis
-  const g = group(parent, p); const SM = { flatShading: false, roughness: .45 };
-  const rig = group(g, [0, 0, 0]);
-  const wheel = mesh(G.cyl(.2, .2, .12, 18), '#2F2F3A', [0, .2, 0], { rot: [0, 0, Math.PI / 2], mat: SM }); rig.add(wheel); rig.add(mesh(G.cyl(.08, .08, .14, 10), '#C9C9D2', [0, .2, 0], { rot: [0, 0, Math.PI / 2], mat: SM }));
-  const body = group(rig, [0, .38, 0]);
-  body.add(mesh(G.box(.42, 1.25, .1), '#FFD23F', [0, .62, 0], { mat: SM }));
-  const tick = canvasPlane(.4, 1.2, (x, W, H) => { x.fillStyle = '#FFD23F'; x.fillRect(0, 0, W, H); x.fillStyle = '#2A2140'; for (let i = 0; i <= 24; i++) { const y = H - 8 - i * (H - 16) / 24; const L = i % 5 === 0 ? W * .42 : W * .2; x.fillRect(0, y - 2, L, 4); if (i % 5 === 0 && i) { x.font = `700 ${Math.round(W * .2)}px Poppins`; x.fillText(String(i / 5 * 10), W * .5, y + 8) } } }, 200);
-  tick.position.set(0, .62, .051); body.add(tick);
-  const head = group(body, [0, 1.42, 0]); head.add(mesh(G.box(.56, .38, .3), '#E9E6F2', [0, 0, 0], { mat: SM })); head.add(mesh(G.box(.46, .28, .02), '#1C1838', [0, 0, .151], { cast: false }));
-  const eyes = [-1, 1].map(i => { const e = mesh(G.box(.07, .1, .01), '#5FE0D0', [i * .1, .02, .163], { cast: false, mat: { emissive: '#5FE0D0', emissiveIntensity: 1.2 } }); head.add(e); return e });
-  const mulut = mesh(G.box(.14, .02, .01), '#5FE0D0', [0, -.07, .163], { cast: false, mat: { emissive: '#5FE0D0', emissiveIntensity: 1.2 } }); head.add(mulut);
-  head.add(mesh(G.cyl(.012, .012, .2, 6), '#9A96AA', [.16, .28, 0])); const lamp = mesh(G.sph(.045, 10, 8), '#FF6B5A', [.16, .4, 0], { mat: { emissive: '#FF6B5A', emissiveIntensity: .8 } }); head.add(lamp);
-  const arms = [-1, 1].map(i => { const A = group(body, [i * .25, 1.0, 0]); A.add(mesh(new THREE.CapsuleGeometry(.03, .38, 3, 8), '#9A96AA', [0, -.2, 0], { mat: SM })); A.add(mesh(G.box(.1, .08, .06), '#E9E6F2', [0, -.43, 0], { mat: SM })); return A });
-  g.pose = (t, q = {}) => {
-    const r = q.roll || 0; rig.position.y = Math.abs(Math.sin(t * 9)) * .03 * r; wheel.rotation.x = -t * 8 * r; body.rotation.x = r * .08 + (q.lean || 0);
-    arms.forEach((A, i) => { A.rotation.z = (i ? 1 : -1) * (.2 + (q.wave && !i ? 2.3 + Math.sin(t * 10) * .4 : 0) + (q.cheer ? 2.5 + Math.sin(t * 12 + i) * .2 : 0)); A.rotation.x = q.ukur ? -1.4 : (q.kerja ? -1 + Math.sin(t * 14 + i * 3) * .5 : 0) });
-    const blink = (t % 3.1) < .12 ? .15 : 1; eyes.forEach(e => e.scale.y = blink * (q.senang ? .5 : 1)); mulut.scale.x = q.talk ? 1 + .8 * Math.abs(Math.sin(t * 13)) : (q.senang ? 1.5 : 1);
-    head.rotation.z = q.bingung ? Math.sin(t * 2) * .22 : 0; head.rotation.y = q.look || 0; lamp.material.emissiveIntensity = .5 + .5 * Math.abs(Math.sin(t * 4));
-  };
-  g.userData = { head, body, eyes, arms }; g.scale.setScalar(o.s || 1); g.pose(0); return g;
+export function mandor(p, o = {}) {   // Pak Mandor: helm putih kusam, kumis, kaos oblong, handuk oranye di leher, meteran kuning di pinggang, celana kerja
+  const g = person(o.parent, p, Object.assign({ body: '#EDE6D6', pants: '#5A5642', skin: '#A86E48', hair: '#3A2A1E', mustache: true }, o));
+  const st = g.userData.st, b = st.body, h = st.head;
+  b.add(mesh(new THREE.CapsuleGeometry(.13, .22, 4, 12), '#EDE6D6', [0, .2, .02], { mat: { flatShading: false, roughness: .7 } }));   // perut buncit
+  b.add(mesh(new THREE.TorusGeometry(.12, .035, 8, 16), '#F08A3A', [0, .5, 0], { rot: [Math.PI / 2, 0, 0], mat: { flatShading: false } }));
+  b.add(mesh(G.box(.06, .2, .03), '#F08A3A', [.06, .38, .11], { cast: false }));
+  b.add(mesh(G.box(.12, .12, .08), '#F2C230', [.13, .02, .06], { mat: { roughness: .5 } }));   // meteran
+  h.add(mesh(G.sph(.245, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2), '#F2F0EA', [0, .1, 0], { mat: { flatShading: false, roughness: .5 } }));
+  h.add(mesh(G.cyl(.3, .3, .025, 20), '#F2F0EA', [0, .1, .03], { mat: { flatShading: false } }));
+  h.add(mesh(G.box(.22, .05, .04), '#2A1A10', [0, .07, .2], { cast: false }));   // alis tebal
+  if (o.kopi) { const c = mesh(G.cyl(.06, .05, .12, 10), '#F4F1EA', [0, -.3, .06]); st.arms[1].userData.elbow?.add(c) }
+  if (o.cangkul) { const c = group(st.arms[1].userData.elbow, [0, -.3, 0]); c.add(mesh(G.cyl(.025, .025, 1.1, 6), '#8A5A3A', [0, .1, 0])); c.add(mesh(G.box(.3, .26, .03), '#9AA0A6', [0, -.45, .1], { rot: [.5, 0, 0] })); g.userData.cangkul = c }
+  const pose = g.pose; g.pose = (t, q = {}) => { pose(t, q);
+    if (q.gali) { const k = Math.sin(t * 6); st.arms.forEach(A => { A.rotation.x = -1.2 + k * .8; A.userData.elbow.rotation.x = -.6 }); b.rotation.x = .25 + k * .15 } else b.rotation.x = 0;
+    if (q.langkah) { st.legs.forEach((L, i) => L.rotation.x = Math.sin(t * 5 + i * Math.PI) * .7) } };
+  g.pose(0); return g;
 }
-export function pendatang(parent, p, i = 0) {   // pendatang baru (jaket antariksa warna-warni)
-  return person(parent, p, { body: ['#E9E6F2', '#7FB3E8', '#F2A65A', '#B18BE0'][i % 4], pants: '#3A3256', skin: ['#E2A97E', '#C98E64', '#B97A52', '#F0C49E'][i % 4], hair: ['#2A1A10', '#5A3A20', '#1A1A1A'][i % 3] });
+export function warga(parent, p, i = 0) {   // penduduk baru
+  return person(parent, p, { body: ['#E05A4A', '#4A8FD0', '#F2B33A', '#6AAE5A', '#B06AC8'][i % 5], pants: '#3A3A4A', skin: ['#E2A97E', '#C98E64', '#B97A52', '#D9A07A'][i % 4], hair: ['#2A1A10', '#1A1A1A', '#3A2A1E'][i % 3] });
 }
 
-// ---- benda / lokasi ----
-export function kapsul(parent, p, o = {}) {   // kapsul pendaratan: badan putih-oranye, jendela bulat, sirip, pintu berengsel (userData.pintu)
-  const g = group(parent, p); const SM = { flatShading: false, roughness: .45 }; const s = o.s || 1; g.scale.setScalar(s);
-  const body = group(g, [0, 0, 0]);
-  body.add(mesh(new THREE.CapsuleGeometry(1.15, 1.6, 8, 24), '#F2EEF6', [0, 1.95, 0], { mat: SM }));
-  body.add(mesh(G.cyl(1.17, 1.17, .3, 24), '#FF8A3D', [0, 1.4, 0], { mat: SM })); body.add(mesh(G.cyl(1.17, 1.17, .12, 24), '#2A1E56', [0, 2.6, 0], { mat: SM }));
-  body.add(mesh(G.cone(.25, .7, 10), '#FF8A3D', [0, 3.95, 0], { mat: SM }));
-  [0, 1, 2].forEach(i => { const a = i / 3 * Math.PI * 2 + .5; const f = mesh(G.box(.12, 1.1, .7), '#FF8A3D', [Math.sin(a) * 1.1, .7, Math.cos(a) * 1.1], { rot: [0, a, 0], mat: SM }); body.add(f) });
-  const win = mesh(G.cyl(.32, .32, .1, 20), '#5FC8E8', [.0, 2.95, .98], { rot: [Math.PI / 2 - .25, 0, 0], mat: { roughness: .15, emissive: '#2A8AB0', emissiveIntensity: .25 } }); body.add(win);
-  body.add(mesh(new THREE.TorusGeometry(.34, .05, 8, 24), '#2A1E56', [0, 2.95, 1.0], { rot: [-.25, 0, 0], mat: SM }));
-  const pintu = group(body, [-.0, 1.05, 1.08]); pintu.add(mesh(G.box(.95, 1.25, .1), '#E2DCEA', [0, .62, 0], { mat: SM })); pintu.add(mesh(G.box(.95, .12, .12), '#FF8A3D', [0, .2, .02], { mat: SM }));
-  const nama = canvasPlane(1.3, .32, (x, W, H) => { x.fillStyle = '#2A1E56'; x.fillRect(0, 0, W, H); x.fillStyle = '#FFF3E2'; x.font = `800 ${Math.round(H * .6)}px Poppins`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(o.label || 'DENAH-01', W / 2, H / 2 + 2) }, 400);
-  nama.position.set(0, 2.2, 1.17); body.add(nama);
-  g.userData = { body, pintu, win }; return g;
-}
-export function kawah(parent, p, r = 3) {   // bekas jatuh: cincin tanah gelap + gosong
-  const g = group(parent, p); g.add(mesh(new THREE.TorusGeometry(r, r * .22, 8, 28), '#B86A4A', [0, 0, 0], { rot: [Math.PI / 2, 0, 0], s: [1, 1, .5] })); g.add(mesh(G.cyl(r, r, .04, 28), '#5E3A4A', [0, .02, 0], { cast: false })); return g;
-}
-export function papanPenduduk(parent, p, n = 0) {   // papan PENDUDUK (follow = 1 pendatang)
-  const g = group(parent, p); [-1, 1].forEach(x => g.add(mesh(G.box(.14, 2.4, .14), '#4A3A6A', [x * 1.15, 1.2, 0])));
-  const pap = canvasPlane(2.6, 1.3, () => { }, 600); pap.position.set(0, 2.1, .08); g.add(pap); g.add(mesh(G.box(2.72, 1.42, .1), '#2A1E56', [0, 2.1, 0]));
-  g.userData.set = v => pap.userData.redraw((x, W, H) => { x.fillStyle = '#2A1E56'; x.fillRect(0, 0, W, H); x.strokeStyle = '#FF9F45'; x.lineWidth = 8; x.strokeRect(8, 8, W - 16, H - 16);
-    x.fillStyle = '#5FE0D0'; x.textAlign = 'center'; x.font = `700 ${Math.round(H * .17)}px Poppins`; x.fillText('PENDUDUK', W / 2, H * .3); x.fillStyle = '#FFF3E2'; x.font = `800 ${Math.round(H * .46)}px Poppins`; x.fillText(String(v), W / 2, H * .82) });
+// ---- benda lokasi proyek ----
+export function papanPenduduk(parent, p, n = 0) {   // papan kayu PENDUDUK BUMI, tiang bambu
+  const g = group(parent, p); [-1, 1].forEach(x => g.add(mesh(G.cyl(.08, .09, 2.6, 8), '#C9A85A', [x * 1.15, 1.3, 0], { mat: { flatShading: false } })));
+  g.add(mesh(G.box(2.75, 1.45, .1), '#8A5A34', [0, 2.05, -.02]));
+  const pap = canvasPlane(2.6, 1.3, () => { }, 600); pap.position.set(0, 2.05, .04); g.add(pap);
+  g.userData.set = v => pap.userData.redraw((x, W, H) => { x.fillStyle = '#FBF6EA'; x.fillRect(0, 0, W, H); x.fillStyle = '#C8452E'; x.fillRect(0, 0, W, H * .3);
+    x.fillStyle = '#FFFFFF'; x.textAlign = 'center'; x.font = `800 ${Math.round(H * .17)}px Poppins`; x.fillText('PENDUDUK BUMI', W / 2, H * .21); x.fillStyle = '#1F2A3A'; x.font = `800 ${Math.round(H * .5)}px Poppins`; x.fillText(String(v), W / 2, H * .86) });
   g.userData.set(n); return g;
 }
-export function tumpukanBata(parent, p, max = 240) {   // tumpukan bata (like = 10 bata); setN(n) menampilkan n bata
-  const g = group(parent, p); const m = new THREE.InstancedMesh(new THREE.BoxGeometry(.42, .2, .2), new THREE.MeshStandardMaterial({ color: '#FFFFFF', roughness: .85 }), max); m.castShadow = m.receiveShadow = true; g.add(m);
-  const M = new THREE.Matrix4(), Q = new THREE.Quaternion(), Y = new THREE.Vector3(0, 1, 0), col = new THREE.Color();
-  for (let i = 0; i < max; i++) { const lay = Math.floor(i / 12), k = i % 12, off = lay % 2 ? .1 : -.1; const a = (k % 3) * .44 - .44 + off, b = Math.floor(k / 3) * .22 - .33;
-    Q.setFromAxisAngle(Y, 0); M.compose(new THREE.Vector3(a, .24 + lay * .2, b), Q, new THREE.Vector3(1, 1, 1)); m.setMatrixAt(i, M); m.setColorAt(i, col.set(grade(['#C8553D', '#B5452B', '#D2694A'][(i * 7) % 3]))) }
+export function tumpukanBata(parent, p, max = 240) {   // palet + tumpukan bata (like = 10 bata); setN(n)
+  const g = group(parent, p); g.add(mesh(G.box(1.6, .14, 1.1), '#B08A5A', [0, .07, 0]));
+  const m = new THREE.InstancedMesh(new THREE.BoxGeometry(.42, .2, .2), new THREE.MeshStandardMaterial({ color: '#FFFFFF', roughness: .85 }), max); m.castShadow = m.receiveShadow = true; g.add(m);
+  const M = new THREE.Matrix4(), Q = new THREE.Quaternion(), col = new THREE.Color();
+  for (let i = 0; i < max; i++) { const lay = Math.floor(i / 12), k = i % 12, off = lay % 2 ? .1 : -.1; M.compose(new THREE.Vector3((k % 3) * .44 - .44 + off, .24 + lay * .2, Math.floor(k / 3) * .22 - .33), Q, new THREE.Vector3(1, 1, 1)); m.setMatrixAt(i, M); m.setColorAt(i, col.set(grade(['#C8553D', '#B5452B', '#D2694A'][(i * 7) % 3]))) }
   m.count = 0; g.userData.setN = n => { m.count = Math.max(0, Math.min(max, Math.round(n))) }; return g;
 }
-export function pintuSaja(parent, p) {   // hasil kerja PENGGARIS: kusen + daun pintu berdiri sendirian di padang (pivot daun = userData.daun)
-  const g = group(parent, p); const K = '#8A5A3A';
-  g.add(mesh(G.box(.14, 2.2, .18), K, [-.55, 1.1, 0])); g.add(mesh(G.box(.14, 2.2, .18), K, [.55, 1.1, 0])); g.add(mesh(G.box(1.24, .14, .18), K, [0, 2.2, 0])); g.add(mesh(G.box(1.5, .06, .5), '#9A8A7A', [0, .03, 0]));
-  const daun = group(g, [-.48, 0, 0]); daun.add(mesh(G.box(.96, 2.06, .07), '#E8B04A', [.48, 1.08, 0])); daun.add(mesh(G.sph(.05, 8, 6), '#4A3A2A', [.86, 1.05, .06], { cast: false }));
-  [.55, 1.55].forEach(y => daun.add(mesh(G.box(.7, .6, .02), '#D49A38', [.48, y, .045], { cast: false })));
-  g.userData.daun = daun; return g;
-}
-export function garisDenah(parent, p, w, d, o = {}) {   // garis denah di tanah (putih + angka ukuran): tampak atas = cetak biru
-  const g = group(parent, p); const C = o.c || '#FFFFFF', T = o.t || .07; const M = { emissive: C, emissiveIntensity: .5 };
-  [[0, -d / 2, w, T], [0, d / 2, w, T]].forEach(([x, z, a, b]) => g.add(mesh(G.box(a, .03, b), C, [x, .03, z], { cast: false, mat: M })));
-  [[-w / 2, 0, T, d], [w / 2, 0, T, d]].forEach(([x, z, a, b]) => g.add(mesh(G.box(a, .03, b), C, [x, .03, z], { cast: false, mat: M })));
-  if (o.ukur !== false) { const lab = (txt, x, z, r) => { const m = canvasPlane(1.6, .4, (c, W, H) => { c.fillStyle = '#FFFFFF'; c.font = `800 ${Math.round(H * .7)}px Poppins`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(txt, W / 2, H / 2 + 2) }, 300);
-      m.material.transparent = true; m.rotation.set(-Math.PI / 2, 0, r); m.position.set(x, .05, z); g.add(m) };
-    lab(o.lw || `${w} m`, 0, d / 2 + .5, 0); lab(o.ld || `${d} m`, w / 2 + .5, 0, Math.PI / 2) }
+export function patokBenang(parent, p, w, d, o = {}) {   // patok kayu di 4 sudut + benang putih = garis denah di lapangan
+  const g = group(parent, p); const T = .035;
+  [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => g.add(mesh(G.box(.08, .5, .08), '#9A6A3A', [a * w / 2, .25, b * d / 2])));
+  [[0, -d / 2, w, T], [0, d / 2, w, T]].forEach(([x, z, a, b]) => g.add(mesh(G.box(a, T, b), '#FFFFFF', [x, .4, z], { cast: false, mat: { emissive: '#FFFFFF', emissiveIntensity: .35 } })));
+  [[-w / 2, 0, T, d], [w / 2, 0, T, d]].forEach(([x, z, a, b]) => g.add(mesh(G.box(a, T, b), '#FFFFFF', [x, .4, z], { cast: false, mat: { emissive: '#FFFFFF', emissiveIntensity: .35 } })));
+  if (o.ukur) { const lab = (txt, x, z, r) => { const m = canvasPlane(2.2, .5, (c, W, H) => { c.fillStyle = '#FFFFFF'; c.font = `800 ${Math.round(H * .62)}px Poppins`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(txt, W / 2, H / 2 + 2) }, 360);
+      m.material.transparent = true; m.rotation.set(-Math.PI / 2, 0, r); m.position.set(x, .06, z); g.add(m) }; lab(o.ukur[0], 0, d / 2 + .55, 0); lab(o.ukur[1], w / 2 + .55, 0, Math.PI / 2) }
   return g;
 }
-export function hologram(parent, p, items) {   // papan hologram dari kapsul: pelat aturan menyala satu-satu (userData.plates)
-  const g = group(parent, p); g.add(mesh(G.cyl(.6, .75, .3, 16), '#2A1E56', [0, .15, 0], { mat: { flatShading: false } })); g.add(mesh(G.cyl(.5, .5, .04, 16), '#5FE0D0', [0, .31, 0], { mat: { emissive: '#5FE0D0', emissiveIntensity: 1 } }));
-  const beam = new THREE.Mesh(new THREE.CylinderGeometry(2.6, .5, 4.2, 20, 1, true), new THREE.MeshBasicMaterial({ color: '#7FF0E2', transparent: true, opacity: .12, side: THREE.DoubleSide, depthWrite: false })); beam.position.y = 2.4; g.add(beam);
-  const plates = items.map(([a, b], i) => { const m = canvasPlane(4.4, .78, (x, W, H) => { x.fillStyle = 'rgba(30,22,70,.9)'; x.fillRect(0, 0, W, H); x.strokeStyle = '#5FE0D0'; x.lineWidth = 6; x.strokeRect(3, 3, W - 6, H - 6);
-      x.textBaseline = 'middle'; x.fillStyle = '#FF9F45'; x.font = `800 ${Math.round(H * .42)}px Poppins`; x.fillText(a, 26, H / 2 + 2); x.textAlign = 'right'; x.fillStyle = '#FFF3E2'; x.font = `700 ${Math.round(H * .32)}px Poppins`; x.fillText(b, W - 26, H / 2 + 2) }, 760);
-    m.material.emissive = new THREE.Color('#6A6090'); m.material.emissiveMap = m.material.map; m.position.set(0, 3.7 - i * .95, 0); g.add(m); m.scale.setScalar(.001); return m });
-  g.userData.plates = plates; return g;
+export function terpal(parent, p) {   // bedeng mandor: tiang bambu + terpal biru + bangku
+  const g = group(parent, p); [[-1.2, -.9], [1.2, -.9], [-1.2, .9], [1.2, .9]].forEach(([x, z]) => g.add(mesh(G.cyl(.06, .06, 2.1, 6), '#C9A85A', [x, 1.05, z])));
+  g.add(mesh(G.box(2.8, .05, 2.2), '#2F7FD0', [0, 2.15, 0], { rot: [.1, 0, 0] })); g.add(mesh(G.box(2, .08, .5), '#9A6A3A', [0, .45, -.4])); [-.8, .8].forEach(x => g.add(mesh(G.box(.08, .45, .4), '#7A4E2C', [x, .22, -.4])));
+  return g;
+}
+export function gerobak(parent, p) {   // gerobak dorong (arco)
+  const g = group(parent, p); g.add(mesh(G.box(.8, .35, .6), '#3A7A5A', [0, .55, 0], { rot: [0, 0, -.1] })); g.add(mesh(G.cyl(.2, .2, .1, 14), '#2A2A2A', [.5, .2, 0], { rot: [Math.PI / 2, 0, 0] }));
+  [-1, 1].forEach(z => g.add(mesh(G.cyl(.025, .025, 1.2, 6), '#9A9A9A', [-.2, .55, z * .25], { rot: [0, 0, Math.PI / 2 - .25] }))); return g;
+}
+export function bale(parent, p) { const g = group(parent, p); g.add(mesh(G.box(2, .12, 1.1), '#D2B06A', [0, .5, 0])); [[-.9, -.45], [.9, -.45], [-.9, .45], [.9, .45]].forEach(([x, z]) => g.add(mesh(G.cyl(.05, .05, .5, 6), '#B0904A', [x, .25, z]))); return g }
+export function rumahMini(parent, p, kind) {   // maket rumah Jawa: joglo (atap tumpang tinggi), limasan (atap perisai), kampung (atap pelana)
+  const g = group(parent, p); g.add(mesh(G.box(1.3, .08, 1), '#E8DCC0', [0, .04, 0])); g.add(mesh(G.box(1.1, .55, .8), '#C9955A', [0, .35, 0]));
+  const R = '#7A3E26';
+  if (kind === 'joglo') { const a = new THREE.Mesh(new THREE.CylinderGeometry(.3, .95, .3, 4), mat(R)); a.rotation.y = Math.PI / 4; a.scale.set(1, 1, .8); a.position.y = .78; g.add(a);
+    const b = new THREE.Mesh(new THREE.CylinderGeometry(.02, .32, .5, 4), mat(R)); b.rotation.y = Math.PI / 4; b.scale.set(1, 1, .8); b.position.y = 1.18; g.add(b) }
+  if (kind === 'limasan') { const a = new THREE.Mesh(new THREE.CylinderGeometry(.05, .85, .55, 4), mat(R)); a.rotation.y = Math.PI / 4; a.scale.set(1.25, 1, .8); a.position.y = .9; g.add(a) }
+  if (kind === 'kampung') { const s = new THREE.Shape(); s.moveTo(-.55, 0); s.lineTo(0, .45); s.lineTo(.55, 0); s.lineTo(-.55, 0); const e = new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 1.2, bevelEnabled: false }), mat(R)); e.rotation.y = Math.PI / 2; e.position.set(-.6, .62, 0); e.castShadow = true; g.add(e) }
+  g.traverse(o => { if (o.isMesh) o.castShadow = true }); return g;
 }
 
-// ---- planet luas: tanah oranye + bercak ungu, ratusan batu/kristal/tanaman aneh (instanced), bukit mesa, kawah ----
+// ---- alam Jawa luas (instanced): sawah, terasering, gunung, kelapa, bambu, pisang, semak, sungai ----
 const RNG = seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 function inst(geo, n, o = {}) { const m = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial(Object.assign({ color: '#FFFFFF', roughness: .8, flatShading: true }, o)), n); m.castShadow = m.receiveShadow = true; return m }
-export function planet(sc, o = {}) {
-  const R = RNG(o.seed || 11), S = o.size || 120, hole = o.hole || (() => false), out = {};
-  sc.add(mesh(G.box(S * 4, .02, S * 4), '#E89A62', [0, -.03, 0], { cast: false }));
-  const M = new THREE.Matrix4(), Q = new THREE.Quaternion(), V = new THREE.Vector3(), Sc = new THREE.Vector3(), col = new THREE.Color(), Y = new THREE.Vector3(0, 1, 0);
-  const put = (im, i, x, y, z, sx, sy, sz, ry, c) => { Q.setFromAxisAngle(Y, ry); M.compose(V.set(x, y, z), Q, Sc.set(sx, sy, sz)); im.setMatrixAt(i, M); im.setColorAt(i, col.set(grade(c))) };
-  const spot = (r = S) => { for (let k = 0; k < 20; k++) { const x = (R() - .5) * 2 * r, z = (R() - .5) * 2 * r; if (!hole(x, z)) return [x, z] } return [r * 3, r * 3] };
-  // bercak tanah ungu/merah muda/oranye tua (cakram datar)
-  const pat = inst(new THREE.CylinderGeometry(1, 1, .02, 14), 260); pat.castShadow = false; for (let i = 0; i < 260; i++) { const [x, z] = spot(S * 1.3); const r = 2 + R() * 7; put(pat, i, x, .005 + i * .00002, z, r, 1, r * (.6 + R() * .5), R() * 6, ['#A86AB8', '#C27AB0', '#D9805A', '#9C64B0', '#F0B07A'][Math.floor(R() * 5)]) } sc.add(pat);
-  // batu
-  const bt = inst(new THREE.IcosahedronGeometry(1, 0), 340); for (let i = 0; i < 340; i++) { const [x, z] = spot(); const s = .2 + Math.pow(R(), 3) * 1.6; put(bt, i, x, s * .35, z, s * (1 + R() * .4), s * (.6 + R() * .4), s, R() * 6, ['#7A5A8A', '#8E6A7A', '#6A4E7A', '#A0786A'][Math.floor(R() * 4)]) } sc.add(bt);
-  // kristal (oktahedron memanjang, sedikit bercahaya)
-  const kr = inst(new THREE.OctahedronGeometry(1, 0), 300, { roughness: .25, emissive: '#3A8A9A', emissiveIntensity: .25 }); for (let i = 0; i < 300; i++) { const [x, z] = spot(); const s = .15 + R() * .5; put(kr, i, x + (i % 3) * .3, s * 1.4, z, s * .6, s * 2.2, s * .6, R() * 6, ['#6FE0E0', '#FF9AD5', '#B79AFF', '#7FD8FF'][Math.floor(R() * 4)]); kr.setMatrixAt(i, M.multiply(new THREE.Matrix4().makeRotationZ((R() - .5) * .6))) } sc.add(kr);
-  // tanaman aneh: batang melengkung + bola bercahaya di ujung
-  const N = 320, tb = inst(new THREE.CylinderGeometry(.05, .09, 1, 6), N), tk = inst(new THREE.SphereGeometry(1, 10, 8), N, { flatShading: false, emissive: '#FF7AA8', emissiveIntensity: .2, roughness: .5 }); tk.castShadow = false;
-  for (let i = 0; i < N; i++) { const [x, z] = spot(); const h = .6 + R() * 1.6, r = .12 + R() * .2; put(tb, i, x, h / 2, z, 1, h, 1, R() * 6, ['#5FA88A', '#3F9A9A', '#7AB86A'][Math.floor(R() * 3)]);
-    put(tk, i, x, h + r * .6, z, r, r * 1.2, r, 0, ['#FF7AA8', '#FFD25A', '#9AF0C8', '#C79AFF'][Math.floor(R() * 4)]) } sc.add(tb); sc.add(tk);
-  // semak bulat ungu
-  const sm = inst(new THREE.IcosahedronGeometry(1, 1), 220); for (let i = 0; i < 220; i++) { const [x, z] = spot(); const s = .3 + R() * .5; put(sm, i, x, s * .5, z, s, s * .7, s, R() * 6, ['#8A5AB8', '#A86AC8', '#6E9AD0'][Math.floor(R() * 3)]) } sc.add(sm);
-  // kawah kecil
-  for (let i = 0; i < 18; i++) { const [x, z] = spot(); kawah(sc, [x, 0, z], 1.5 + R() * 3) }
-  // bukit mesa (berlapis) + bukit kerucut di cakrawala
-  for (let k = 0; k < 22; k++) { const a = k / 22 * Math.PI * 2 + R() * .2, r = S * .9 + R() * S * .6, x = Math.cos(a) * r, z = Math.sin(a) * r, w = 10 + R() * 18, h = 6 + R() * 14;
-    const c = ['#D9805A', '#B86AA0', '#C9906A', '#9C6AB8'][k % 4]; sc.add(mesh(G.cyl(w * .75, w, h, 9), c, [x, h / 2, z], { cast: false })); sc.add(mesh(G.cyl(w * .78, w * .78, 1.2, 9), '#F0B48A', [x, h * .62, z], { cast: false })) }
-  for (let k = 0; k < 16; k++) { const a = k / 16 * Math.PI * 2 + .15, r = S * 1.7 + R() * 40; sc.add(mesh(G.cone(30 + R() * 25, 20 + R() * 22, 7), ['#B07AB8', '#C28AA8', '#9A7AC0'][k % 3], [Math.cos(a) * r, 9, Math.sin(a) * r], { cast: false })) }
+export function jawa(sc, o = {}) {
+  const R = RNG(o.seed || 23), S = o.size || 110, hole = o.hole || (() => false), out = {};
+  sc.add(mesh(G.box(S * 5, .02, S * 5), '#86BE4E', [0, -.03, 0], { cast: false }));
+  const O = new THREE.Object3D(), col = new THREE.Color();
+  const put = (im, i, x, y, z, sx, sy, sz, rx, ry, rz, c) => { O.position.set(x, y, z); O.rotation.set(rx, ry, rz); O.scale.set(sx, sy, sz); O.updateMatrix(); im.setMatrixAt(i, O.matrix); if (c) im.setColorAt(i, col.set(grade(c))) };
+  const free = (x, z, r = 0) => !hole(x, z) && !hole(x + r, z) && !hole(x - r, z) && !hole(x, z + r) && !hole(x, z - r);
+  // sawah: petak-petak + pematang (grid miring sedikit), sebagian baru ditanami (air biru muda)
+  const NP = 1400, pet = inst(new THREE.BoxGeometry(1, .04, 1), NP); pet.castShadow = false; let n = 0;
+  for (let gx = -S; gx < S && n < NP; gx += 4.2) for (let gz = -S; gz < S && n < NP; gz += 3.4) { const x = gx + (R() - .5) * .3, z = gz; if (!free(x, z, 2.5) || (Math.abs(x - (o.sungaiX ?? 18)) < 5)) continue; if (R() < .1) continue;
+    put(pet, n++, x, .01, z, 3.8, 1, 3.0, 0, 0, 0, ['#9ACD4A', '#8CC43E', '#B4D85A', '#7FC0A8', '#A8D25A', '#C9D86A'][Math.floor(R() * 6)]) }
+  pet.count = n; sc.add(pet);
+  // padi (rumpun kecil) di petak hijau dekat kamera
+  const NR = 1600, pd = inst(new THREE.ConeGeometry(.08, .45, 4), NR); pd.castShadow = false; let pr = 0;
+  for (let k = 0; k < 6000 && pr < NR; k++) { const x = (R() - .5) * 60, z = (R() - .5) * 60; if (!free(x, z, 1)) continue; put(pd, pr++, x, .22, z, 1, 1, 1, 0, R() * 3, 0, ['#5FA83A', '#6FB842', '#4E9A36'][Math.floor(R() * 3)]) }
+  pd.count = pr; sc.add(pd);
+  // terasering: bukit bertingkat (cincin hijau berselang)
+  for (let k = 0; k < (o.teras ?? 7); k++) { const a = k / 7 * Math.PI * 2 + .6, r = S * .55 + R() * S * .3, x = Math.cos(a) * r, z = Math.sin(a) * r; if (!free(x, z, 14)) continue; const base = 12 + R() * 8;
+    for (let l = 0; l < 7; l++) { const rr = base * (1 - l / 8); sc.add(mesh(G.cyl(rr, rr + .3, 1.3, 18), l % 2 ? '#8CC43E' : '#A8D25A', [x, .65 + l * 1.3, z], { cast: false })) } }
+  // gunung biru-hijau di kejauhan + asap tipis di satu puncak
+  out.gunung = [];
+  [[-.9, 1.0, 70, 44], [-.35, 1.15, 55, 34], [.5, 1.05, 80, 52], [1.2, 1.2, 50, 30], [2.2, 1.1, 64, 40], [3.4, 1.1, 58, 36], [4.4, 1.2, 70, 42], [5.3, 1.1, 52, 32]].forEach(([a, k, w, h], i) => {
+    const r = S * 1.6 * k, x = Math.sin(a) * r, z = -Math.cos(a) * r; const gm = mesh(G.cone(w, h, 9), ['#5E9A7E', '#6FA88A', '#5A8FA0'][i % 3], [x, h / 2 - 1, z], { cast: false }); sc.add(gm);
+    sc.add(mesh(G.cone(w * .28, h * .28, 9), '#8FB8A8', [x, h - 1 - h * .14 + .2, z], { cast: false })); out.gunung.push(gm) });
+  out.asap = Array.from({ length: 6 }, (_, i) => { const m = mesh(G.sph(4, 10, 8), '#F4F4F4', [0, -50, 0], { cast: false, mat: { transparent: true, opacity: .55, flatShading: false } }); sc.add(m); return m });
+  const g0 = out.gunung[2]; out.angin = t => out.asap.forEach((m, i) => { const q = (t * .05 + i / 6) % 1; m.position.set(g0.position.x + q * 18, 52 + q * 16, g0.position.z); m.scale.setScalar(.6 + q * 1.6); m.material.opacity = .6 * (1 - q) });
+  // kelapa: batang miring + 7 pelepah melengkung + buah
+  const NK = 160, kb = inst(new THREE.CylinderGeometry(.12, .2, 1, 6), NK), kd = inst(new THREE.BoxGeometry(.32, .04, 1.9), NK * 7), kf = inst(new THREE.SphereGeometry(.16, 6, 5), NK * 3); let nk = 0;
+  for (let k = 0; k < 900 && nk < NK; k++) { const x = (R() - .5) * S * 1.8, z = (R() - .5) * S * 1.8; if (!free(x, z, 3)) continue; const h = 5 + R() * 4, lx = (R() - .5) * .3, lz = (R() - .5) * .3;
+    put(kb, nk, x + lx * h / 2, h / 2, z + lz * h / 2, 1, h, 1, lz, 0, -lx, '#9A7A5A'); const tx = x + lx * h, tz = z + lz * h;
+    for (let j = 0; j < 7; j++) { const a = j / 7 * Math.PI * 2 + R(); O.position.set(tx + Math.sin(a) * .8, h - .2, tz + Math.cos(a) * .8); O.rotation.set(0, a, 0); O.rotateX(.55); O.scale.set(1, 1, 1); O.updateMatrix(); kd.setMatrixAt(nk * 7 + j, O.matrix); kd.setColorAt(nk * 7 + j, col.set(grade(['#3E9A3A', '#4FAA42', '#368A32'][j % 3]))) }
+    for (let j = 0; j < 3; j++) put(kf, nk * 3 + j, tx + Math.sin(j * 2.1) * .2, h - .35, tz + Math.cos(j * 2.1) * .2, 1, 1, 1, 0, 0, 0, '#6A8A2A'); nk++ }
+  kb.count = nk; kd.count = nk * 7; kf.count = nk * 3; sc.add(kb); sc.add(kd); sc.add(kf);
+  // bambu (rumpun) + pisang + semak bulat
+  const NB = 70 * 7, bb = inst(new THREE.CylinderGeometry(.06, .07, 1, 6), NB); let nb = 0;
+  for (let k = 0; k < 400 && nb < NB; k++) { const x = (R() - .5) * S * 1.6, z = (R() - .5) * S * 1.6; if (!free(x, z, 3)) continue; for (let j = 0; j < 7; j++) { const h = 4 + R() * 3; put(bb, nb++, x + (R() - .5) * .8, h / 2, z + (R() - .5) * .8, 1, h, 1, (R() - .5) * .25, 0, (R() - .5) * .25, ['#7AB04A', '#8ABA52', '#6A9A3A'][j % 3]) } }
+  bb.count = nb; sc.add(bb);
+  const NS = 420, sm = inst(new THREE.IcosahedronGeometry(1, 1), NS); let ns = 0;
+  for (let k = 0; k < 2000 && ns < NS; k++) { const x = (R() - .5) * S * 1.6, z = (R() - .5) * S * 1.6; if (!free(x, z, 1.5)) continue; const s = .5 + R() * 1.1; put(sm, ns++, x, s * .5, z, s, s * .75, s, 0, R() * 3, 0, ['#4E9A3E', '#5FA846', '#3F8A3A', '#6AB04A'][Math.floor(R() * 4)]) }
+  sm.count = ns; sc.add(sm);
+  const NF = 260, fl = inst(new THREE.SphereGeometry(.12, 6, 5), NF); fl.castShadow = false; let nf = 0;
+  for (let k = 0; k < 1500 && nf < NF; k++) { const x = (R() - .5) * 50, z = (R() - .5) * 50; if (!free(x, z, .6)) continue; put(fl, nf++, x, .15, z, 1, 1, 1, 0, 0, 0, ['#FF6A8A', '#FFD23A', '#FFFFFF', '#FF9A3A'][Math.floor(R() * 4)]) }
+  fl.count = nf; sc.add(fl);
+  // sungai + batu kali
+  const sx = o.sungaiX ?? 18; sc.add(mesh(G.box(6, .05, S * 5), '#5AAAD8', [sx, .02, 0], { cast: false, mat: { roughness: .2, emissive: '#2A7AB0', emissiveIntensity: .12 } }));
+  const bt = inst(new THREE.IcosahedronGeometry(.4, 0), 120); for (let i = 0; i < 120; i++) put(bt, i, sx + (R() < .5 ? -3.2 : 3.2) + (R() - .5), .15, (R() - .5) * S * 2, 1 + R(), .6, 1 + R(), 0, R() * 3, 0, ['#9A9A92', '#8A8A84', '#AAA69A'][i % 3]); sc.add(bt);
   return out;
 }
-export function bulanDanPlanet(sc, o = {}) { bulan(sc, o); return planet(sc, o) }
+
+// ---- bola Bumi (untuk pindah lokasi) ----
+export const JAWA_LL = [-7.3, 110.2];
+export function bumi(sc, r = 5) { const g = globe(sc, r, { highlight: ['Indonesia'], hlColor: '#F5C542' }); return g }
 
 // ---- grid cetak biru di layar (tampak atas) ----
 export function gridDenah(root) {
-  const e = X.ab({ left: 0, top: 0, width: 1080, height: 1920, opacity: 0, pointerEvents: 'none', background: 'rgba(31,95,175,.28)' }, root,
-    `<div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,#ffffff38 0 2px,transparent 2px 90px),repeating-linear-gradient(0deg,#ffffff38 0 2px,transparent 2px 90px)"></div>
+  const e = X.ab({ left: 0, top: 0, width: 1080, height: 1920, opacity: 0, pointerEvents: 'none', background: 'rgba(31,95,175,.25)' }, root,
+    `<div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,#ffffff40 0 2px,transparent 2px 90px),repeating-linear-gradient(0deg,#ffffff40 0 2px,transparent 2px 90px)"></div>
      <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,#ffffff18 0 1px,transparent 1px 18px),repeating-linear-gradient(0deg,#ffffff18 0 1px,transparent 1px 18px)"></div>`);
   return op => { e.style.opacity = op };
 }
 
 // ---- teks DOM ----
-export const BIG = (root, html, css = {}) => X.ab(Object.assign({ left: 0, top: 360, width: 1080, textAlign: 'center', fontFamily: PFONT, fontWeight: 800, fontSize: '150px', color: '#FFF3E2', textShadow: '0 6px 0 #2A1E56, 0 16px 38px rgba(30,10,60,.55)', letterSpacing: '2px', opacity: 0 }, css), root, html);
+export const BIG = (root, html, css = {}) => X.ab(Object.assign({ left: 0, top: 360, width: 1080, textAlign: 'center', fontFamily: PFONT, fontWeight: 800, fontSize: '150px', color: '#FFF6E2', textShadow: '0 6px 0 #12344F, 0 16px 38px rgba(0,20,40,.5)', letterSpacing: '2px', opacity: 0 }, css), root, html);
 export const LABEL = (root, a, b, top = 330) => X.ab({ left: 60, top, width: 960, textAlign: 'center', opacity: 0, fontFamily: PFONT }, root,
   `<div style="display:inline-block;background:${PANEL};color:${PCREAM};border-radius:18px;padding:16px 34px;box-shadow:0 12px 28px #0000005c;border:1px solid #ffffff22">
    <div style="font-size:64px;font-weight:800;color:${PORANGE};letter-spacing:2px">${a}</div><div style="font-size:40px;font-weight:700">${b}</div></div>`);
+export const tagNama = (root, a, b) => X.ab({ left: 0, top: 0, opacity: 0, transform: 'translate(-50%,-100%)', fontFamily: PFONT, textAlign: 'center', whiteSpace: 'nowrap' }, root,
+  `<div style="background:${PANEL};color:${PCREAM};border-radius:14px;padding:8px 22px;box-shadow:0 10px 24px #0000005c;border:1px solid #ffffff22"><div style="font-size:40px;font-weight:800;color:${PORANGE};letter-spacing:2px">${a}</div><div style="font-size:26px;font-weight:600">${b}</div></div>`);
+export function tempel(e, obj, cam, off, op) { const [x, y, z] = X.proj(obj, cam, off); e.style.left = x + 'px'; e.style.top = y + 'px'; e.style.opacity = z < 1 ? op : 0 }
 export const show = (e, p, dy = 30) => { const q = E.out(Math.max(0, Math.min(1, p))); e.style.opacity = q; e.style.transform = `translateY(${(1 - q) * dy}px)` };
 export const pulse = (e, p) => { const q = Math.max(0, Math.min(1, p)); e.style.opacity = q > 0 ? 1 : 0; e.style.transform = `scale(${q > 0 ? .7 + .3 * E.back(q) : .7})` };
 export const ease = (t, a, b) => E.inout(seg(t, a, b));
-export function debu(sc, n = 18, col = '#C98AA8') { const d = Array.from({ length: n }, () => { const m = mesh(G.sph(.22, 8, 6), col, [0, -5, 0], { cast: false, mat: { transparent: true, opacity: .5 } }); sc.add(m); return m });
-  return (t, t0, p, r = 3) => d.forEach((m, i) => { const q = seg(t, t0, t0 + 1.8); m.visible = q > 0 && q < 1; const a = i / n * Math.PI * 2; m.position.set(p[0] + Math.cos(a) * q * r, p[1] + .2 + Math.abs(Math.sin(i * 1.7)) * q * 1.4, p[2] + Math.sin(a) * q * r); m.scale.setScalar(.6 + q * 2.2) }) }
-export function api(sc) {   // ekor api + asap kapsul jatuh
-  const f = Array.from({ length: 18 }, (_, i) => { const m = mesh(G.sph(.7, 8, 6), i % 2 ? '#FFB347' : '#FF6B3D', [0, -9, 0], { cast: false, mat: { emissive: i % 2 ? '#FFB347' : '#FF6B3D', emissiveIntensity: 1.2, transparent: true, opacity: .85 } }); sc.add(m); return m });
-  return (t, base, dir, on) => f.forEach((m, i) => { const q = ((t * 3 + i / 14) % 1); m.visible = on; m.position.set(base.x - dir[0] * (q * 7 - .8) + Math.sin(i * 2.1) * q * .8, base.y + 1.5 - dir[1] * (q * 7 - .8), base.z - dir[2] * (q * 7 - .8) + Math.cos(i * 2.1) * q * .8); m.scale.setScalar((1 - q) * 1.6 + .3) });
+export function lumpur(sc, n = 14) { const d = Array.from({ length: n }, () => { const m = mesh(G.sph(.08, 6, 5), '#6A4A2A', [0, -5, 0], { cast: false }); sc.add(m); return m });
+  return (t, p, on) => d.forEach((m, i) => { const q = (t * 1.6 + i / n) % 1; m.visible = on; const a = i * 2.4; m.position.set(p[0] + Math.cos(a) * q * .9, p[1] + Math.sin(q * Math.PI) * .8, p[2] + Math.sin(a) * q * .9) }) }
+export { lerp, seg, E, PANEL, PCREAM, PORANGE, PTEAL };
+
+// ---- lokasi proyek Season 1 di Jawa (dipakai banyak shot): lahan berpatok di tengah, bedeng terpal, bale, papan, bata, gerobak ----
+export function lokasiProyek(sc, o = {}) {
+  const J = jawa(sc, Object.assign({ hole: (x, z) => Math.abs(x) < 8.5 && Math.abs(z) < 7 }, o.jawa || {}));
+  sc.add(mesh(G.box(17, .03, 14), '#C9A878', [0, .0, 0], { cast: false }));   // tanah lahan
+  const P = patokBenang(sc, [.5, 0, .6], 5, 4, o.ukur ? { ukur: o.ukur } : {});
+  const T = terpal(sc, [-5.4, 0, -3.6]); const B = bale(sc, [-5.4, 0, -1.2]); const pap = papanPenduduk(sc, [3.6, 0, -4.2], o.penduduk ?? 2); pap.rotation.y = -.25;
+  const bata = tumpukanBata(sc, [5.6, 0, -1.6]); bata.userData.setN(o.bata ?? 0); const ger = gerobak(sc, [-1.6, 0, -4.6]); ger.rotation.y = .6;
+  awan(sc);
+  return { J, P, T, B, pap, bata, ger };
 }
-export { lerp, seg, E };

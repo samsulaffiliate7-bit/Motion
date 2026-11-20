@@ -1,11 +1,11 @@
-// Gaya "planet" (Denah Rumah Dunia Season 1 "Planet Denah"): look premium, HUD panel ungu tua, label adegan,
+// Gaya "rumahdunia" (Denah Rumah Dunia Season 1 "Bumi Dimulai dari Jawa"): look premium, HUD panel biru tua, label adegan,
 // transisi khas = lembar cetak biru (blueprint) menyapu layar dengan garis ukur. Shot ada di episodes/denah/<ep>/shots.js,
 // dunia season di episodes/denah/_s1/dunia.js. Helper teks/papan diambil dari desa3d.js (setup-nya ikut dipanggil).
-import { clamp, lerp, seg, E, setLook } from './kit.js';
+import { clamp, lerp, seg, E, setLook, loadWorld } from './kit.js';
 import * as D3 from './desa3d.js';
 
-let X; export const PANEL = 'rgba(42,30,86,.93)', PCREAM = '#FFF3E2', PORANGE = '#FF9F45', PTEAL = '#5FE0D0', PFONT = 'Poppins,Fredoka,sans-serif', BLUE = '#1F5FAF';
-export async function setup(ctx) { X = ctx; await D3.setup(ctx); setLook(ctx.TH.look, ctx.TH.figure) }
+let X; export const PANEL = 'rgba(18,52,86,.93)', PCREAM = '#FFF3E2', PORANGE = '#FF9F45', PTEAL = '#9FE0B0', PFONT = 'Poppins,Fredoka,sans-serif', BLUE = '#1F5FAF';
+export async function setup(ctx) { X = ctx; await D3.setup(ctx); setLook(ctx.TH.look, ctx.TH.figure); await loadWorld('../assets/geo/world360.json') }
 export const SHOTS = {};
 export const at = (s, rx, fb) => X.C(s, rx, fb);
 export const canvasPlane = D3.canvasPlane;
@@ -13,7 +13,7 @@ export const canvasPlane = D3.canvasPlane;
 let hud, label, sweep, P;
 export function chrome(ctx) {
   const v = ctx.TL.vars.hud || { items: [] };
-  ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, zIndex: 7, pointerEvents: 'none', background: 'radial-gradient(ellipse 80% 64% at 50% 46%, rgba(40,20,70,0) 66%, rgba(40,20,70,.26) 100%), linear-gradient(170deg, rgba(255,214,170,.10), rgba(255,214,170,0) 50%)' }, ctx.ov);
+  ctx.ab({ left: 0, top: 0, width: 1080, height: 1920, zIndex: 7, pointerEvents: 'none', background: 'radial-gradient(ellipse 80% 64% at 50% 46%, rgba(10,30,40,0) 66%, rgba(10,30,40,.26) 100%), linear-gradient(170deg, rgba(255,214,170,.10), rgba(255,214,170,0) 50%)' }, ctx.ov);
   hud = ctx.ab({ left: 36, top: 56, display: 'flex', gap: '12px', zIndex: 8, fontFamily: PFONT, fontWeight: 600 }, ctx.ov,
     v.items.map((t, i) => `<div style="background:${i ? PANEL : PORANGE};color:${i ? PCREAM : '#2A1E56'};font-size:28px;letter-spacing:2px;padding:9px 20px;border-radius:10px;border:1px solid #ffffff2a;box-shadow:0 6px 16px #0000004d;font-weight:${i ? 600 : 800}">${t}</div>`).join(''));
   label = ctx.ab({ left: 36, top: 150, zIndex: 8, fontFamily: PFONT }, ctx.ov);

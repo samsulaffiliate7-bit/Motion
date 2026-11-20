@@ -22,11 +22,13 @@ Juara (23, kades magang, semangat & sok tahu) punya 30 hari menyelamatkan desa y
 Follow = 1 perantau pulang (papan stasiun "PULANG KAMPUNG"), Like = dana desa Rp10.000/like, Komen = aduan warga jadi misi.
 Babak: 1 Desa Hantu (air, sinyal; puncak rapor pertama) · 2 Pulang Kampung (puncak ribut tanah warisan) · 3 Musim Hujan (puncak banjir) · 4 Bangkit (pasar; puncak pasar tandingan desa sebelah) · 5 Penilaian Akhir (festival; diangkat jadi kades tetap?).
 
-## 2. DENAH RUMAH DUNIA — "Planet Denah"
-Bumi penuh; arsitek muda Dena (perfeksionis, panik kalau ukuran meleset) + robot PENGGARIS (polos, salah paham perintah) mendarat di planet kosong (tanah ungu-oranye, dua bulan, malam 30 jam). Tiap episode membangun & membedah SATU rumah asli dari satu negara (fakta nyata bersumber) — kamera khas: tampak atas seperti denah lalu menukik masuk rumah.
-Follow = 1 pendatang turun dari kapsul (papan "PENDUDUK"), Like = 10 bata/like (tumpukan bata), Komen = negara berikutnya (pertanyaan terarah, mis. "rumah negara mana paling kuat lawan badai?").
-Babak: 1 Pendaratan (rumah pertama sebelum malam 30 jam; puncak badai pasir) · 2 Distrik Dunia (6 rumah 6 negara; puncak bata kurang, satu dibongkar) · 3 Musim Air (puncak banjir planet) · 4 Kota Pertama (jalan, balai kota; puncak gempa) · 5 Sinyal (kapsul raksasa ribuan pendatang = cliffhanger).
-Ep 0: kapsul jatuh miring, PENGGARIS membangun pintu saja di tengah padang, malam 30 jam tinggal 2 hari.
+## 2. DENAH RUMAH DUNIA — "Bumi Dimulai dari Jawa" (konsep ulang pemilik 20 Nov 2026; konsep "Planet Denah" + robot PENGGARIS DIBATALKAN)
+Bumi di-reset: tidak ada satu rumah pun. Dena (23, arsitek baru lulus, perfeksionis, ukurannya sampai milimeter, ceriwis) membangun rumah pertama di dunia di PULAU JAWA, lalu pelan-pelan ke seluruh Nusantara dan dunia. Pembantu: PAK MANDOR (tukang senior logat Jawa, serba kira-kira, ngukur pakai langkah kaki, "teori arsitek beda sama lapangan, Mbak"; kontras lucu dengan Dena). Tiap episode membangun & membedah SATU rumah asli (rumah adat/khas daerah atau negara; fakta wajib bersumber). Kamera khas: tampak atas seperti denah (grid cetak biru) lalu menukik; globe Bumi untuk pindah lokasi.
+Dunia: Jawa tropis CERAH (langit biru, awan putih, sawah & terasering hijau, gunung biru di kejauhan, kelapa, bambu, sungai), lokasi proyek dengan patok + benang, terpal biru, gerobak, tumpukan bata, papan PENDUDUK BUMI.
+Follow = 1 penduduk baru datang (papan "PENDUDUK BUMI"), Like = 10 bata/like (tumpukan bata), Komen = rumah/negara berikutnya (pertanyaan terarah 2-3 pilihan).
+Babak: 1 Tanah Jawa (rumah pertama sebelum musim hujan; puncak hujan badai) · 2 Nusantara (rumah adat pulau lain; puncak gempa) · 3 Asia (puncak angin topan) · 4 Benua Lain (puncak musim dingin/salju) · 5 Kota Dunia (rumah-rumah jadi kota; kapal ribuan pendatang = cliffhanger).
+Ep 0: Bumi di-reset, lahan di Jawa, kenalan Pak Mandor, denah milimeter vs langkah kaki, hujan pertama 3 hari lagi, Pak Mandor gali fondasi di tengah sawah; pertanyaan: rumah pertama Joglo, Limasan, atau Kampung?
+Suara: narator Dena (cewek); sampel 20 Nov (Sulafat/Despina flash, Sulafat/Aoede flash-lite) menunggu pilihan pemilik. Jangan dipercepat (atempo) — bikin janggal.
 
 ## 3. DOMPET GUE NANGIS — "Rp100 Ribu di Jakarta"
 Nana (22, dari kota kecil fiksi, polos-ulet, menertawakan nasib) pindah ke Jakarta cuma bawa Rp100 ribu. Si Dompet (dompet cokelat berwajah, ekspresi ikut saldo, maskot), Bu Ratna (ibu kos galak tapi baik, "bayar Sabtu"), Raka (tetangga kos, ojol, sok hemat tapi tekor). Dunia: Jakarta kartun senja-cerah, KRL, gang kos, warteg, gedung tinggi; luas & padat.

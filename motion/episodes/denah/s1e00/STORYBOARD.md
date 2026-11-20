@@ -1,20 +1,18 @@
-# Denah Rumah Dunia · Season 1 "Planet Denah" · Episode 0 · "Pendaratan"
+# Denah Rumah Dunia · Season 1 "Bumi Dimulai dari Jawa" · Episode 0 · "Rumah Nol"
 
-Babak 1 "Pendaratan" (pembuka). Target 55-65 dtk. Narator: Dena (orang pertama, cepat, ceriwis, perfeksionis).
-Tujuan episode: kenalkan Dena + robot PENGGARIS, planet kosong, taruhan (rumah pertama sebelum malam 30 jam, tinggal 2 hari), lelucon pintu saja, aturan main; tutup pertanyaan terarah negara rumah pertama.
-Episode 0 belum memakai fakta rumah negara (mulai Ep 1 tiap rumah asli wajib bersumber).
+Babak 1 "Tanah Jawa" (pembuka). Target 60-72 dtk. Narator: Dena (orang pertama, ceriwis, natural, TIDAK dipercepat).
+Tujuan: premis (Bumi di-reset, rumah pertama di dunia dibangun di Jawa), kenalan Dena + Pak Mandor, konflik lucu (denah milimeter vs langkah kaki), taruhan (hujan pertama 3 hari lagi), cliffhanger (Pak Mandor gali fondasi di tengah sawah), pertanyaan terarah rumah pertama.
 
 | # | Detik | Lokasi | Kamera | Aksi | Teks di layar | VO (inti) | SFX |
 |---|---|---|---|---|---|---|---|
-| s1 HOOK | 0-6 | langit planet, padang oranye-ungu | rendah dari tanah, kapsul membara jatuh miring ke arah kamera, guncang | kapsul menghantam tanah MIRING, debu ungu mengepul | "EPISODE 0" + "PLANET DENAH" | bumi penuh, gue dikirim bangun rumah pertama di planet kosong, kapsulnya jatuh miring | desing, BRUK |
-| s2 | 6-15 | samping kapsul miring | medium, sedikit dari bawah | pintu kapsul terbuka miring, Dena terguling keluar; PENGGARIS menggelinding keluar, menyapa | nama tokoh: DENA · arsitek / PENGGARIS · robot ukur | kenalan Dena (arsitek, panik kalau ukuran meleset) + PENGGARIS (polos) | klek, gedebuk |
-| s3 DENAH | 15-25 | planet dari udara | KHAS: tampak atas lurus + grid cetak biru, lalu menukik turun ke Dena | padang luas: ratusan batu, kristal, tanaman aneh, kawah, dua bulan | "0 RUMAH" + garis denah kosong | planet kosong, tanah ungu-oranye, bulan dua, rumah nol | angin |
-| s4 | 25-34 | Dena di samping kapsul, langit sore | dekat ke Dena + jam hologram | jam hologram berhitung mundur, Dena menggigil membayangkan | "MALAM 30 JAM" · "TINGGAL 2 HARI" | malam di sini 30 jam & dingin, datang 2 hari lagi; tanpa rumah = beku | tik-tik |
-| s5 LELUCON | 34-45 | tengah padang | lebar lalu dekat | Dena memerintah "bangun rumah", PENGGARIS bekerja kilat, hasilnya PINTU SAJA berdiri sendiri; Dena buka pintu, lewat, tetap di luar; panik | "PRESISI 100%" (tanda dari robot) | dia bangun pintunya doang, ukurannya pas sih | ting! |
-| s6 | 45-53 | papan PENDUDUK + tumpukan bata kosong | geser dari papan ke palet bata | papan PENDUDUK = 1 (robot nggak dihitung, "perabot"), palet bata kosong | PENDUDUK 1 · BATA 0 | penduduk satu, bata nol | angin |
-| s7 AJAK | 53-64 | hologram dari kapsul | push-in, Dena menunjuk | 3 pelat aturan menyala satu-satu; pilihan negara | FOLLOW = 1 pendatang turun · LIKE = 10 bata · KOMEN = negara rumah berikutnya; RUMAH PERTAMA: ISLANDIA / MONGOLIA / KANADA | follow/like/komen; rumah pertama harus tahan dingin: tiru negara mana? | — |
+| s1 HOOK | 0-7 | bola Bumi di langit biru | globe berputar cepat lalu berhenti di Indonesia, dorong masuk ke Jawa, satu pin kuning muncul | penghitung RUMAH DI BUMI: 0 | "BUMI DI-RESET" · "RUMAH: 0" | Bumi di-reset, nggak ada satu rumah pun; rumah pertama di dunia harus gue bangun di Pulau Jawa | whoosh, ting |
+| s2 | 7-16 | lahan di Jawa (sawah, terasering, gunung biru, kelapa, sungai) | KHAS: tampak atas lurus + grid cetak biru, menukik ke Dena | Dena jalan membawa gulungan denah | "0 RUMAH" | kenalan Dena, lahannya: gunung, sawah, sungai; rumah nol | angin, burung |
+| s3 | 16-24 | bedeng terpal biru + bale bambu di bawah kelapa | medium, push-in | Pak Mandor ngopi di bale, berdiri melambai santai | tag PAK MANDOR · tukang senior | tim cuma satu: Pak Mandor, tukang paling senior di dunia, soalnya cuma dia | seruput kopi |
+| s4 LELUCON | 24-35 | lahan berpatok + benang | dekat bergantian | Dena buka denah (overlay cetak biru "5.000 mm"), Pak Mandor ngukur pakai langkah kaki (hitungan 1-2-3 "kira-kira lima meter"), Dena panik | "5.000 mm" vs "± 3 LANGKAH" | denah milimeter vs langkah kaki; teori arsitek beda sama lapangan, Mbak | tap-tap langkah |
+| s5 TARUHAN | 35-45 | lahan, awan kelabu datang dari arah gunung | lebar, kamera menengadah | awan hujan bergerak, Dena menengadah, beberapa tetes air | "HUJAN PERTAMA: 3 HARI LAGI" | musim hujan Jawa dekat, tiga hari lagi; belum ada atap = kehujanan | guruh jauh |
+| s6 CLIFF | 45-53 | papan PENDUDUK BUMI + palet bata kosong -> sawah | geser ke sawah | papan 2, bata 0; Pak Mandor mencangkul di tengah sawah, lumpur muncrat; Dena tepuk jidat | "PENDUDUK 2 · BATA 0" | penduduk dua, bata nol, Pak Mandor gali fondasi di tengah sawah | cplok lumpur |
+| s7 AJAK | 53-68 | meja kayu dengan 3 maket rumah Jawa | push-in, Dena menunjuk | maket JOGLO / LIMASAN / KAMPUNG menyala satu-satu; papan aturan | FOLLOW = 1 penduduk baru · LIKE = 10 bata · KOMEN = rumah berikutnya; RUMAH PERTAMA: JOGLO / LIMASAN / KAMPUNG | follow/like/komen; rumah pertama di dunia: Joglo, Limasan, atau Kampung? | — |
 
-Hook 3 dtk: frame pertama kapsul sudah membara di udara + teks EPISODE 0; kalimat pertama premis + taruhan (bumi penuh, planet kosong, rumah pertama).
-Rekap: tidak ada (episode pertama).
-Cliffhanger/ajakan: pertanyaan terarah 3 negara beriklim dingin (jalur babak 1: rumah pertama tahan malam dingin). Pilihan apa pun menuju puncak babak (badai pasir).
-Pembeda dari Kades: planet asing cerah (oranye-ungu, dua bulan), kamera tampak atas cetak biru lalu menukik, transisi lembar blueprint, robot sidekick polos.
+Hook 3 dtk: frame pertama globe sudah berputar + teks BUMI DI-RESET; kalimat pertama premis.
+Rekap: tidak ada. Pilihan apa pun menuju puncak babak 1 (hujan badai).
+Pembeda dari Kades: skala Bumi (globe), Jawa alam terbuka (sawah, gunung), lokasi proyek (patok, benang, terpal biru), duo arsitek-mandor, transisi lembar cetak biru, kamera tampak atas -> menukik.

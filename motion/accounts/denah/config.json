@@ -18,7 +18,7 @@
  "tts": {
   "model": "gemini-3.8-flash-lite-tts",
   "voice": "Sulafat",
-  "style": "# AUDIO PROFILE: Dena, a bright young female architect (early twenties), the narrator of a premium animated series.\n## SCENE: telling her own funny, slightly chaotic space-colony story to the audience, right after crash-landing on an empty alien planet.\n### DIRECTOR'S NOTES\nStyle: smart, chatty and cheerful; fast and full of energy; a perfectionist who gets playfully panicky when measurements are off; lively pitch variation; amused at punchlines.\nPacing: quick and bubbly but every word clear; short comic pause before punchlines (marked ...).\nAccent: natural casual Jakarta Indonesian, like a young Indonesian content creator; never sounds foreign.",
+  "style": "# AUDIO PROFILE: Dena, perempuan Indonesia 23 tahun, arsitek muda, narator serial animasi.\n## SCENE: ngobrol santai ke penonton seperti content creator Indonesia yang lagi cerita pengalaman lucu, bukan membaca naskah.\n### DIRECTOR'S NOTES\nStyle: hangat, ekspresif, intonasi naik-turun wajar seperti percakapan sehari-hari; senyum terdengar; penekanan pada kata penting.\nPacing: sedang, jeda alami di koma dan titik, jeda dramatis singkat sebelum punchline (...).\nAccent: bahasa Indonesia gaul Jakarta yang natural, pelafalan Indonesia asli, tidak terdengar seperti orang asing.",
   "pool": [
    "Sulafat",
    "Despina",
