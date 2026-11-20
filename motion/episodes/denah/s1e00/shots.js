@@ -69,7 +69,7 @@ export const SHOTS = {
   D0_SAWAH(s, root) {   // papan PENDUDUK 2, bata 0 -> geser ke sawah: Pak Mandor mencangkul fondasi di tengah sawah; Dena tepuk jidat
     const sc = SIANG(); const L = lokasiProyek(sc); const M = mandor([3.2, 0, -9.6], { cangkul: true }); sc.add(M); M.rotation.y = -.5; const D = dena([1.5, 0, -7.8]); sc.add(D); D.rotation.y = 2.4;
     const mud = lumpur(sc); sc.add(mesh(G.cyl(.7, .7, .03, 14), '#6A4A2A', [3.6, .03, -9.2], { cast: false })); const cam = camera(42);
-    const st = LABEL(root, '👥 2 · 🧱 0', 'penduduk dua, bata nol', 330); const sw = papanDOM(root, 'FONDASI?! 😱', { fontSize: '44px', background: '#FF9F45' });
+    const st = LABEL(root, '👥 2 · 🏠 0', 'penduduk dua, rumah nol', 330); const sw = papanDOM(root, 'FONDASI?! 😱', { fontSize: '44px', background: '#FF9F45' });
     return { scene: sc, cam, upd(t, dur) { const tw = at(s, 'Pak Mandor', 2.8), tg = at(s, 'tengah sawah', dur - 1.6); const pan = ease(t, tw - .6, tw + .8);
       M.pose(t, { gali: true }); mud(t, [3.6, .05, -9.2], true); D.pose(t, { facepalm: t > tg - .1, talk: t < tg }); L.J.angin(t);
       cam.position.set(lerp(.2, -.2, pan), lerp(2.4, 2.4, pan), lerp(7.2, -2.4, pan)); cam.lookAt(lerp(3.6, 2.6, pan), lerp(1.9, 1, pan), lerp(-4.2, -9, pan));
@@ -80,7 +80,7 @@ export const SHOTS = {
     const K = ['joglo', 'limasan', 'kampung'].map((k, i) => { const r = rumahMini(meja, [(i - 1) * 1.45, .96, 0], k); r.scale.setScalar(.01); return r });
     const D = dena([-1.7, 0, 1.2]); sc.add(D); D.rotation.y = .6; const M = mandor([2.7, 0, 1.2], { kopi: true }); sc.add(M); M.rotation.y = -.6; const cam = camera(50);
     const NM = ['JOGLO', 'LIMASAN', 'KAMPUNG'].map(n => papanDOM(root, n, { fontSize: '36px', background: 'rgba(18,52,86,.95)', color: '#FFF6E2', border: '2px solid #FF9F45' }));
-    const at3 = X.ab({ left: 60, top: 300, width: 960, opacity: 0, fontFamily: 'Poppins,sans-serif' }, root, ['FOLLOW|= 1 penduduk baru', 'LIKE|= 10 bata', 'KOMEN|= rumah berikutnya'].map(x => { const [a, b] = x.split('|');
+    const at3 = X.ab({ left: 60, top: 300, width: 960, opacity: 0, fontFamily: 'Poppins,sans-serif' }, root, ['FOLLOW|= 1 penduduk baru', 'LIKE|= 1 tempat tinggal', 'KOMEN|= rumah berikutnya'].map(x => { const [a, b] = x.split('|');
       return `<div class="r" style="display:flex;justify-content:space-between;align-items:center;background:rgba(18,52,86,.93);border:1px solid #ffffff2a;border-radius:14px;padding:12px 30px;margin-bottom:12px;box-shadow:0 10px 22px #0005;opacity:0"><span style="font-size:48px;font-weight:800;color:#FF9F45">${a}</span><span style="font-size:36px;font-weight:700;color:#FFF6E2">${b}</span></div>` }).join(''));
     const q = X.ab({ left: 40, top: 1250, width: 1000, textAlign: 'center', opacity: 0, fontFamily: 'Poppins,sans-serif', fontSize: '40px', fontWeight: 800, color: '#FFF6E2', textShadow: '0 4px 14px #000' }, root, 'RUMAH PERTAMA DI DUNIA? 👇');
     return { scene: sc, cam, upd(t, dur) { const rows = at3.querySelectorAll('.r'); ['Follow', 'Like', 'Komen'].forEach((w, i) => { const tc = at(s, w, 1 + i * 2); rows[i].style.opacity = E.out(seg(t, tc - .1, tc + .3)) });

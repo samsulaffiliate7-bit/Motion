@@ -1,7 +1,7 @@
 // Shot Denah S1 video ATURAN MAIN (lihat STORYBOARD.md). Bumi -> Jawa; kamera khas tampak atas lalu menukik.
-import { THREE, mesh, G, group, camera, newScene } from '../../../engine/w3d/kit.js';
+import { THREE, mesh, G, group, camera, newScene, house } from '../../../engine/w3d/kit.js';
 import { X, at } from '../../../engine/w3d/rumahdunia.js';
-import { PAGI, SIANG, SORE, dena, mandor, warga, lokasiProyek, rumahMini, bumi, JAWA_LL, gridDenah, BIG, LABEL, tagNama, tempel, show, pulse, ease, lerp, seg, E } from '../_s1/dunia.js';
+import { PAGI, SIANG, SORE, dena, mandor, warga, lokasiProyek, jawa, awan, rumahMini, bumi, JAWA_LL, gridDenah, BIG, LABEL, tagNama, tempel, show, pulse, ease, lerp, seg, E } from '../_s1/dunia.js';
 
 const UP = new THREE.Vector3(), U0 = new THREE.Vector3(0, 0, -1), U1 = new THREE.Vector3(0, 1, 0);
 
@@ -26,12 +26,22 @@ export const SHOTS = {
       const n = w >= 1 ? 3 : 2; if (n !== shown) { L.pap.userData.set(n); shown = n } D.pose(t, { cheer: w >= 1, talk: w < 1 }); L.J.angin(t);
       const p = ease(t, 0, dur); cam.position.set(lerp(-.6, .4, p), lerp(2.6, 2.4, p), lerp(9.5, 7.6, p)); cam.lookAt(2.4, 1.6, -2.6); show(l, seg(t, .2, .6)) } };
   },
-  DA_LIKE(s, root) {   // palet bata menumpuk lapis demi lapis; penghitung bata naik 10 per like
-    const sc = PAGI(); const L = lokasiProyek(sc); const M = mandor([4.4, 0, -.4]); sc.add(M); M.rotation.y = -.5; const D = dena([6.9, 0, -.6]); sc.add(D); D.rotation.y = -.7; const cam = camera(42);
-    const l = LABEL(root, 'LIKE', '= 10 bata'); const cnt = X.ab({ left: 0, top: 560, width: 1080, textAlign: 'center', fontFamily: 'Poppins,sans-serif', fontWeight: 800, fontSize: '84px', color: '#FFF6E2', textShadow: '0 6px 0 #12344F, 0 14px 30px #0008', opacity: 0 }, root, '');
-    return { scene: sc, cam, upd(t, dur) { const n = Math.floor(seg(t, .5, dur - .8) * 24) * X.TL.vars.kurs_bata; L.bata.userData.setN(n / 2); cnt.innerHTML = `🧱 ${n} bata`; cnt.style.opacity = seg(t, .4, .7);
-      M.pose(t, { nod: true }); D.pose(t, { cheer: t > dur - 1.4, talk: true }); L.J.angin(t);
-      const p = ease(t, 0, dur); cam.position.set(lerp(5.4, 5.6, p), lerp(2.6, 2.2, p), lerp(6.8, 5.6, p)); cam.lookAt(5.6, 1.1, -1.4); show(l, seg(t, .2, .6)) } };
+  DA_LIKE(s, root) {   // like = 1 tempat tinggal: rumah-rumah kecil bermunculan satu-satu, lalu apartemen tumbuh lantai demi lantai
+    const sc = PAGI(); const J = jawa(sc, { hole: (x, z) => Math.abs(x) < 13 && z < 6 && z > -16 }); awan(sc); sc.add(mesh(G.box(26, .03, 22), '#C9B48A', [0, 0, -5], { cast: false }));
+    const WALL = ['#F2E6CC', '#E8D8B8', '#F4EEE2', '#EAD2C0'], ROOF = ['#B5452B', '#C25A34', '#9C4A2E', '#A85A3A'];
+    const R = []; for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { const h = house(sc, [-10 + j * 2.9, 0, -1 - i * 3.2], { w: 2, d: 1.8, h: 1.4, wall: WALL[(i + j) % 4], roofC: ROOF[(i * 3 + j) % 4] }); h.scale.setScalar(.01); R.push(h) }
+    const apt = group(sc, [5.4, 0, -6]); const NF = 12, F = []; for (let f = 0; f < NF; f++) { const fl = group(apt, [0, f * 1.05, 0]); fl.add(mesh(G.box(5.4, 1.0, 4.2), f % 2 ? '#EEE6D6' : '#E6DCC8', [0, .5, 0]));
+      [-1.8, -.6, .6, 1.8].forEach(x => fl.add(mesh(G.box(.8, .5, .05), '#7FB8DE', [x, .55, 2.11], { cast: false }))); fl.add(mesh(G.box(5.6, .08, .5), '#C9B9A0', [0, .04, 2.3])); fl.scale.set(1, .01, 1); fl.visible = false; F.push(fl) }
+    const atap = mesh(G.box(5.8, .25, 4.6), '#8A6A5A', [0, NF * 1.05 + .12, 0]); apt.add(atap); atap.visible = false;
+    const D = dena([-1.6, 0, 3.4]); sc.add(D); D.rotation.y = .3; const M = mandor([.2, 0, 3.6]); sc.add(M); M.rotation.y = -.2; const cam = camera(44);
+    const l = LABEL(root, 'LIKE', '= 1 tempat tinggal baru'); const cnt = X.ab({ left: 0, top: 560, width: 1080, textAlign: 'center', fontFamily: 'Poppins,sans-serif', fontWeight: 800, fontSize: '76px', color: '#FFF6E2', textShadow: '0 6px 0 #12344F, 0 14px 30px #0008', opacity: 0 }, root, '');
+    const tagR = X.ab({ left: 200, top: 1300, fontFamily: 'Poppins,sans-serif', fontWeight: 800, fontSize: '40px', color: '#12344F', background: '#FFF6E2', padding: '8px 22px', borderRadius: '12px', opacity: 0 }, root, 'RUMAH'), tagA = X.ab({ left: 640, top: 1300, fontFamily: 'Poppins,sans-serif', fontWeight: 800, fontSize: '40px', color: '#12344F', background: '#FF9F45', padding: '8px 22px', borderRadius: '12px', opacity: 0 }, root, 'APARTEMEN');
+    return { scene: sc, cam, upd(t, dur) { const ta = at(s, 'apartemen', dur * .5); let n = 0;
+      R.forEach((h, i) => { const q = seg(t, .4 + i * .14, .7 + i * .14); h.scale.setScalar(Math.max(.01, E.back(q))); if (q > 0) n++ });
+      F.forEach((fl, f) => { const q = seg(t, ta - .4 + f * .22, ta - .1 + f * .22); fl.visible = q > 0; fl.scale.y = Math.max(.01, E.out(q)); if (q >= 1) n += 8 }); atap.visible = F[NF - 1].scale.y >= 1;
+      cnt.innerHTML = `🏠 ${n} tempat tinggal`; cnt.style.opacity = seg(t, .4, .7); D.pose(t, { talk: true, point: t > ta - .5, cheer: t > dur - 1.4 }); M.pose(t, { nod: true, look: .3 }); J.angin(t);
+      const p = ease(t, 0, dur), u = ease(t, ta - .3, ta + NF * .22); cam.position.set(lerp(-1.5, .5, p), lerp(4.5, 6.5, u), lerp(16, 19, u)); cam.lookAt(lerp(-2, 3.4, u), lerp(1.5, 5.4, u), -4);
+      show(l, seg(t, .2, .6)); show(tagR, seg(t, 1, 1.4) * (1 - seg(t, ta - .6, ta - .3))); show(tagA, seg(t, ta, ta + .4)) } };
   },
   DA_KOMEN(s, root) {   // gelembung komen terbang ke tiga maket rumah; satu menang
     const sc = SORE(); const L = lokasiProyek(sc); const meja = group(sc, [.5, 0, .4]); meja.add(mesh(G.box(4.6, .12, 1.6), '#A8743E', [0, .9, 0])); [[-2.1, -.6], [2.1, -.6], [-2.1, .6], [2.1, .6]].forEach(([x, z]) => meja.add(mesh(G.box(.12, .9, .12), '#7A4E2C', [x, .45, z])));
