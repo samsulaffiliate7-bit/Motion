@@ -25,6 +25,7 @@ async function worker(browser, times, outFn, q) {
   await page.goto(player);
   await page.waitForFunction(() => typeof window.init === 'function');
   await page.evaluate(tl => init(tl), TL);
+  if (rest.includes('--nocap')) await page.evaluate(() => { const c = document.getElementById('cap'); if (c) c.style.opacity = '0' });
   for (const [i, t] of times) {
     await page.evaluate(t => renderAt(t), t);
     await page.screenshot({ path: outFn(i), type: 'jpeg', quality: q });

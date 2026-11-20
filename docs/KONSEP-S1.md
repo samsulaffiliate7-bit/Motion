@@ -53,3 +53,8 @@ Belang (kucing oren prajurit level 1, satu-satunya yang menolak pakai dasi; neka
 Follow = anggota "Guild Netizen" (daftar party), Like = gold (1 like = 1 gold) + XP (10 like = +1 XP), Komen = pilih kerajaan (KUCING/BURUNG/REPTIL/SERIGALA, spanduk populasi di peta) + keputusan quest (terarah).
 Babak: 1 Level 1 (puncak bos tikus raksasa penjaga lumbung) · 2 Guild (puncak dungeon pertama) · 3 Pajak Ikan (puncak Belang dituduh pengkhianat & dibuang) · 4 Perang Utara (puncak perang perbatasan) · 5 Takhta (duel Raja Berdasi; cliffhanger tiga kerajaan bersatu).
 Ep 0: "NEW GAME. Level 1. Senjata: sendok." Belang menolak dasi di upacara, dihukum jaga lumbung; lumbung kosong, ikan rakyat hilang.
+
+## Cover (wajib tiap unggah, sejak 20 Nov)
+- Tiap video WAJIB punya cover seragam: pita warna akun di atas, nama serial, judul besar "EPISODE N" / "ATURAN MAIN", satu baris hook. Alat: `motion/engine/cover.js` (frame bersih dari `render.js --stills <t> --nocap`). Contoh: `motion/media/covers/`.
+- Unggah cover (image/jpeg) ke storage Repliz, lalu di jadwal: `medias: [{type:"video", url:<video>, thumbnail:<url cover>, customThumbnail:true}]`.
+- 20 Nov: Ep 0 Balai & Hewan (semua platform), Kades TT, Dompet TT, Meja IG sudah tayang TANPA cover (terlewat); 27 jadwal lain sudah diberi cover.

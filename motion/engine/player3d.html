@@ -40,7 +40,7 @@ window.init = async tl => {
   style.chrome && style.chrome(ctx);
   // logo
   if (tl.brand.logo) { const b = ab({ right: 54, top: 58, width: 104, height: 104, borderRadius: '50%', background: '#fff', border: `6px solid ${TH.ink}`, overflow: 'hidden', zIndex: 8 }, ov); const im = document.createElement('img'); im.src = '../' + tl.brand.logo; Object.assign(im.style, { width: '100%', height: '100%', objectFit: 'cover' }); b.appendChild(im); await new Promise(r => { if (im.complete) r(); im.onload = r; im.onerror = r }) }
-  capEl = ab({ left: 50, top: 1450, width: 980, height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }, ov);
+  capEl = ab({ left: 50, top: 1450, width: 980, height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }, ov); capEl.id = 'cap';
   window.__ready = true;
 };
 window.renderAt = T => {
