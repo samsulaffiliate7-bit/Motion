@@ -180,3 +180,48 @@ export function lokasiProyek(sc, o = {}) {
   awan(sc);
   return { J, P, T, B, pap, bata, ger };
 }
+
+// ---- rumah kampung Jawa ukuran asli (Ep 1): 8 tiang utama, atap pelana dua bidang, dinding gedek (anyaman bambu), emper depan ----
+// userData: tiang[8], balok, atapL/atapR (pivot di bubungan), dinding[], set(p) membangun bertahap 0..1
+export function rumahKampung(parent, p, o = {}) {
+  const g = group(parent, p); const W = o.w || 6, D = o.d || 4.4, H = o.h || 2.4, KAYU = '#8A5A34';
+  const umpak = [], tiang = []; [-1, -1 / 3, 1 / 3, 1].forEach(fx => [-1, 1].forEach(fz => { const x = fx * W / 2, z = fz * D / 2;
+    const u = mesh(G.box(.3, .2, .3), '#B8B2A6', [x, .1, z]); g.add(u); umpak.push(u); const t = mesh(G.box(.16, H, .16), KAYU, [x, .2 + H / 2, z]); g.add(t); tiang.push(t) }));
+  const lantai = mesh(G.box(W + .4, .14, D + .4), '#C9B08A', [0, .07, 0]); g.add(lantai);
+  const balok = group(g); [[0, -D / 2, W + .3, .14], [0, D / 2, W + .3, .14]].forEach(([x, z, a, b]) => balok.add(mesh(G.box(a, .16, b), KAYU, [x, H + .2, z]))); [-W / 2, W / 2].forEach(x => balok.add(mesh(G.box(.14, .16, D + .3), KAYU, [x, H + .2, 0])));
+  const gedek = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d'); x.fillStyle = '#D8BE86'; x.fillRect(0, 0, 128, 128);
+    for (let i = 0; i < 8; i++) for (let j = 0; j < 8; j++) { x.fillStyle = (i + j) % 2 ? '#C9A86A' : '#E2CC98'; x.fillRect(i * 16, j * 16, 16, 16) } const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(4, 2); return t })();
+  const GM = new THREE.MeshStandardMaterial({ map: gedek, roughness: .9 });
+  const dinding = [[0, -D / 2 + .02, W, 0], [-W / 2 + .02, 0, D, Math.PI / 2], [W / 2 - .02, 0, D, Math.PI / 2], [-W / 4 - .5, D / 2 - .02, W / 2 - 1, 0], [W / 4 + .5, D / 2 - .02, W / 2 - 1, 0]].map(([x, z, w, r]) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, H, .06), GM); m.position.set(x, .2 + H / 2, z); m.rotation.y = r; m.castShadow = m.receiveShadow = true; g.add(m); return m });
+  const pintu = mesh(G.box(1, 1.9, .06), '#7A4E2C', [0, 1.15, D / 2 - .01]); g.add(pintu); dinding.push(pintu);
+  // atap pelana: dua bidang miring bertemu di bubungan (sumbu x)
+  const RH = o.rh || 1.7, half = D / 2 + .7, slope = Math.hypot(half, RH), ang = Math.atan2(RH, half), top = H + .3 + RH;
+  const genteng = '#B5452B'; const atapL = group(g, [0, top, 0]), atapR = group(g, [0, top, 0]);
+  atapL.add(mesh(G.box(W + 1.2, .1, slope), genteng, [0, 0, -slope / 2])); atapL.rotation.x = -ang; atapR.add(mesh(G.box(W + 1.2, .1, slope), genteng, [0, 0, slope / 2])); atapR.rotation.x = ang;
+  for (let k = 1; k < 6; k++) { atapL.add(mesh(G.box(W + 1.22, .03, .05), '#8E3420', [0, .06, -k * slope / 6], { cast: false })); atapR.add(mesh(G.box(W + 1.22, .03, .05), '#8E3420', [0, .06, k * slope / 6], { cast: false })) }
+  const bubungan = mesh(G.box(W + 1.3, .16, .2), '#8E3420', [0, top + .04, 0]); g.add(bubungan);
+  const segi = [-1, 1].map(s => { const sh = new THREE.Shape(); sh.moveTo(-D / 2, 0); sh.lineTo(0, RH); sh.lineTo(D / 2, 0); sh.lineTo(-D / 2, 0); const m = new THREE.Mesh(new THREE.ExtrudeGeometry(sh, { depth: .06, bevelEnabled: false }), GM); m.rotation.y = Math.PI / 2; m.position.set(s * W / 2, H + .3, 0); g.add(m); return m });
+  const emper = group(g, [0, H + .1, D / 2 + .7]); emper.add(mesh(G.box(W + .4, .08, 1.5), genteng, [0, 0, .2], { rot: [.25, 0, 0] })); [-W / 2, 0, W / 2].forEach(x => emper.add(mesh(G.box(.12, H - .1, .12), KAYU, [x, -(H - .1) / 2, .85])));
+  g.userData = { tiang, umpak, balok, dinding, atapL, atapR, bubungan, segi, emper, W, D, H, top };
+  const S = (o3, q) => { o3.visible = q > 0; o3.scale.y = Math.max(.01, Math.min(1, q)) };
+  g.userData.set = q => { umpak.forEach((u, i) => u.visible = q > i / 80); tiang.forEach((t, i) => { const k = seg(q, .05 + i * .03, .12 + i * .03); t.visible = k > 0; t.scale.y = Math.max(.01, k); t.position.y = .2 + H * k / 2 });
+    balok.visible = q > .38; const a = seg(q, .42, .62); atapL.visible = atapR.visible = a > 0; atapL.scale.z = atapR.scale.z = Math.max(.01, a); bubungan.visible = a >= 1; segi.forEach(m => m.visible = a > .5);
+    const d = seg(q, .65, .9); dinding.forEach((m, i) => { const k = seg(d, i / 7, (i + 1) / 7); m.visible = k > 0; m.scale.y = Math.max(.01, k) }); emper.visible = q > .92 };
+  g.userData.set(o.jadi === false ? 0 : 1); return g;
+}
+// deretan rumah kampung kecil (instanced) untuk "like = tempat tinggal"; tampil(n) menampilkan n rumah pertama
+export function kampungBanyak(sc, n, o = {}) {
+  const R = RNG(o.seed || 5), body = inst(new THREE.BoxGeometry(1, 1, 1), n), roof = inst(new THREE.CylinderGeometry(.62, .62, 1, 3), n), pos = [];
+  const cx = o.cx ?? 0, cz = o.cz ?? -14, cols = o.cols || 12, sx = o.sx || 4.2, sz = o.sz || 4.6;
+  for (let i = 0; i < n; i++) { const c = i % cols, r = Math.floor(i / cols); pos.push([cx + (c - (cols - 1) / 2) * sx + (r % 2) * sx / 2, cz - r * sz]) }
+  const O = new THREE.Object3D(), col = new THREE.Color();
+  const set = (i, k) => { const [x, z] = pos[i]; const s = Math.max(.001, k); O.position.set(x, .7 * s, z); O.rotation.set(0, 0, 0); O.scale.set(2.6, 1.4 * s, 2.1); O.updateMatrix(); body.setMatrixAt(i, O.matrix);
+    O.position.set(x, 1.4 * s + .45 * s, z); O.rotation.set(0, 0, Math.PI / 2); O.rotation.y = 0; O.scale.set(.85 * s, 3.0, 2.2); O.updateMatrix(); roof.setMatrixAt(i, O.matrix) };
+  for (let i = 0; i < n; i++) { set(i, 1); body.setColorAt(i, col.set(grade(['#E2CC98', '#D8BE86', '#E8D6A8'][Math.floor(R() * 3)]))); roof.setColorAt(i, col.set(grade(['#B5452B', '#A83E26', '#C25A34'][Math.floor(R() * 3)]))) }
+  sc.add(body); sc.add(roof);
+  return { pos, tampil: (t, t0, dt) => { for (let i = 0; i < n; i++) set(i, E.back(seg(t, t0 + i * dt, t0 + i * dt + .3))); body.instanceMatrix.needsUpdate = roof.instanceMatrix.needsUpdate = true } };
+}
+export function hujan(sc, N = 600, area = [-10, 10, -8, 8]) {
+  const m = new THREE.InstancedMesh(new THREE.BoxGeometry(.025, .5, .025), new THREE.MeshBasicMaterial({ color: '#D6ECFA', transparent: true, opacity: .75 }), N); sc.add(m); const O = new THREE.Object3D();
+  return (t, on) => { m.visible = on; if (!on) return; for (let i = 0; i < N; i++) { const q = (t * 1.6 + i / N * 7) % 1; O.position.set(area[0] + ((i * 37) % 1000) / 1000 * (area[1] - area[0]) + q * 1.2, 10 - q * 10, area[2] + ((i * 61) % 1000) / 1000 * (area[3] - area[2])); O.rotation.z = .12; O.updateMatrix(); m.setMatrixAt(i, O.matrix) } m.instanceMatrix.needsUpdate = true };
+}
