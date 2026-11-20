@@ -222,3 +222,36 @@ export function hpBesar(root, rows, tanya, pilihan, css = {}) {
     `<div class="q" style="font-family:Baloo;font-size:46px;color:#4A2410;font-weight:800;text-align:center;margin:18px 0 10px;line-height:1.05">${tanya}</div>
      <div class="o" style="display:flex;gap:12px;justify-content:center">` + pilihan.map(x => `<div style="background:#C8501E;color:#FFF6E6;font-size:34px;font-weight:800;padding:12px 18px;border-radius:18px;text-align:center;line-height:1.1">${x}</div>`).join('') + `</div></div></div>`);
 }
+
+// ==== tambahan Ep 1 (20 Nov): masjid dekat stasiun, Pak Marbot, ibu jamaah, suasana malam terang & subuh ====
+export const MALAM = o => newScene(Object.assign({ sky: ['#34408A', '#9C86C8'], sun: '#C9C8FF', sunPos: [-10, 14, 10], hemi: 1.25, sunI: 1.5, shadow: 18, fog: ['#7E74B0', 90, 360] }, o));
+export const SUBUH = o => newScene(Object.assign({ sky: ['#4F72C4', '#FFC2A0'], sun: '#FFC9A6', sunPos: [16, 6, 10], hemi: 1.35, sunI: 2.1, shadow: 18, fog: ['#E9B9A6', 90, 360] }, o));
+export function marbot(p, o = {}) {   // Pak Marbot: peci hitam, baju koko putih, sarung kotak hijau
+  const g = person(o.parent, p, Object.assign({ body: '#F4F4EE', pants: '#3E7A5A', skin: '#C98E64', hair: '#D8D8D8', hat: 'peci' }, o)); const st = g.userData.st;
+  st.body.add(mesh(G.cyl(.17, .24, .5, 12), '#3E7A5A', [0, -.22, 0], { mat: { flatShading: false } })); st.body.add(mesh(G.box(.36, .04, .23), '#2E5A44', [0, -.05, 0], { cast: false })); return g;
+}
+export function jamaah(p, o = {}) {   // ibu jamaah: mukena putih (tudung menutup kepala & bahu), wajah terlihat
+  const c = o.c || '#F7F5EE'; const g = person(o.parent, p, Object.assign({ body: c, pants: c, skin: o.skin || '#D9A07A', hair: c }, o)); const st = g.userData.st, SM = { flatShading: false };
+  st.head.add(mesh(G.sph(.31, 20, 14, Math.PI * .5 + Math.PI * .36, Math.PI * 2 - Math.PI * .72, 0, Math.PI * .78), c, [0, .01, -.01], { mat: Object.assign({ side: THREE.DoubleSide }, SM) }));
+  st.body.add(mesh(G.cyl(.16, .36, .55, 14), c, [0, .28, 0], { mat: SM })); return g;
+}
+export function masjid(parent, p, o = {}) {   // masjid kampung fiktif: aula krem, kubah hijau + emas, menara, teras keramik berpilar, bedug, lampu teras
+  const g = group(parent, p), SM = { flatShading: false };
+  g.add(mesh(G.box(17, .4, 14), '#D8D2C6', [0, .2, -2])); g.add(mesh(G.box(11, 5.2, 7), '#F7F2E6', [0, 2.8, -4.6])); g.add(mesh(G.box(11.4, .35, 7.4), '#2E8B57', [0, 5.55, -4.6]));
+  g.add(mesh(G.cyl(2.5, 2.7, 1, 18), '#F7F2E6', [0, 6.2, -4.6])); g.add(mesh(G.sph(2.6, 28, 16, 0, Math.PI * 2, 0, Math.PI / 2), '#2E9C6A', [0, 6.7, -4.6], { mat: SM }));
+  g.add(mesh(G.cyl(.06, .06, 1.1, 6), '#F2C14E', [0, 9.8, -4.6])); g.add(mesh(G.sph(.22, 14, 10), '#F2C14E', [0, 10.45, -4.6], { mat: SM }));
+  g.add(mesh(G.cyl(.65, .75, 13, 12), '#F7F2E6', [6.8, 6.6, -7])); g.add(mesh(G.cyl(1, 1, .4, 14), '#2E8B57', [6.8, 10.6, -7])); g.add(mesh(G.sph(.75, 18, 10, 0, Math.PI * 2, 0, Math.PI / 2), '#2E9C6A', [6.8, 13.1, -7], { mat: SM }));
+  g.add(mesh(G.cyl(.05, .05, 1, 6), '#F2C14E', [6.8, 14.3, -7]));
+  for (let i = -2; i <= 2; i++) { g.add(mesh(G.box(1, 1.7, .06), '#3E6E8E', [i * 2.1, 2.4, -1.07], { cast: false })); g.add(mesh(G.sph(.5, 14, 8), '#3E6E8E', [i * 2.1, 3.25, -1.07], { s: [1, 1, .08], cast: false })) }
+  g.add(mesh(G.box(1.5, 2.6, .06), '#8B5A2B', [0, 1.7, -1.06], { cast: false }));
+  g.add(mesh(G.box(11.6, .12, 4.2), '#EDE6D6', [0, .46, 1], { cast: false })); for (let i = 0; i < 12; i++) g.add(mesh(G.box(.02, .125, 4.2), '#CFC6B4', [-5.5 + i, .462, 1], { cast: false }));
+  g.add(mesh(G.box(12, .28, 4.6), '#2E8B57', [0, 3.75, 1.05], { cast: false })); g.add(mesh(G.box(12.1, .1, 4.7), '#F2C14E', [0, 3.58, 1.05], { cast: false }));
+  [-5.4, -2.7, 2.7, 5.4].forEach(x => g.add(mesh(G.box(.28, 3.2, .28), '#F7F2E6', [x, 2.05, 3])));
+  const lamps = [-4, 0, 4].map(x => { const L = mesh(G.sph(.16, 12, 10), '#FFF4C8', [x, 3.35, 1.4], { cast: false, mat: { emissive: '#FFD98A', emissiveIntensity: o.lampu ?? .4 } }); g.add(L); return L });
+  if (o.lampu) [-4, 4].forEach(x => { const pl = new THREE.PointLight('#FFD9A0', 4 * o.lampu, 10, 1.6); pl.position.set(x, 3.1, 1.6); g.add(pl) });
+  const pp = canvasPlane(4.6, .7, papanTeks('MASJID NUR SENJA', '#2E8B57', '#FFF6E0', 'Baloo'), 512); pp.position.set(0, 4.35, 3.4); g.add(pp);
+  const bd = group(g, [-4.4, .52, -.1]); bd.add(mesh(G.cyl(.55, .55, 1.1, 18), '#A86B35', [0, .9, 0], { rot: [0, 0, Math.PI / 2], mat: SM })); [-1, 1].forEach(s => bd.add(mesh(G.cyl(.5, .5, .03, 18), '#F2E6C8', [s * .56, .9, 0], { rot: [0, 0, Math.PI / 2] })));
+  [-1, 1].forEach(s => bd.add(mesh(G.box(.08, .9, .08), '#5A3A1A', [s * .4, .4, 0])));
+  for (let i = 0; i < 6; i++) g.add(mesh(G.box(.28, .05, .12), ['#2E6FB0', '#E5484D', '#3A3A3A', '#F2C14E'][i % 4], [2.6 + (i % 3) * .34, .55, 2.6 + Math.floor(i / 3) * .2], { cast: false }));
+  g.add(mesh(G.box(11.6, .2, .6), '#CFC6B4', [0, .3, 3.4])); g.userData = { lamps, lantai: .52 }; return g;
+}

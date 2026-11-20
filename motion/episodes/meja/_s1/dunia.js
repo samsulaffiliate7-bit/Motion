@@ -166,3 +166,29 @@ export function tag(root, html) { const e = X.ab({ left: 0, top: 0, fontFamily: 
   return (obj, cam, off, op) => { const [x, y] = X.proj(obj, cam, off); e.style.left = x + 'px'; e.style.top = y + 'px'; e.style.opacity = op } }
 export function duduk(p, y = -.36) { p.userData.st.legs.forEach(L => { L.rotation.x = -1.45; L.userData.knee && (L.userData.knee.rotation.x = 1.45) }); p.position.y = y }
 export function kursi(parent, p, rot = 0, c = '#2E6FB0') { const g = group(parent, p); g.rotation.y = rot; g.add(mesh(G.box(.5, .06, .5), c, [0, .5, 0])); g.add(mesh(G.box(.5, .55, .06), c, [0, .78, -.22])); [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => g.add(mesh(G.box(.04, .5, .04), '#555', [a * .22, .25, b * .22]))); return g }
+
+// ==== tambahan Ep 1 (20 Nov): kopi sachet, termos bekas, gelas plastik, ojol, tukang bangunan, lapak grosir ====
+export function ojol(p, o = {}) {   // pengemudi ojol generik: jaket hijau tosca + strip oranye, helm
+  const g = person(o.parent, p, Object.assign({ body: o.c || '#1F8A84', pants: '#2F3540', skin: o.skin || '#C98E64', hair: '#1A1410' }, o)); const st = g.userData.st;
+  st.body.add(mesh(G.box(.22, .06, .21), '#F28C28', [0, .3, 0], { cast: false })); st.head.add(mesh(G.sph(.27, 18, 12, 0, Math.PI * 2, 0, Math.PI * .55), o.helm || '#F2F2F2', [0, .04, 0], { mat: { flatShading: false } })); return g;
+}
+export function tukang(p, o = {}) {   // tukang bangunan: kaos abu kusam, celana pendek, helm proyek kuning, handuk di leher
+  const g = person(o.parent, p, Object.assign({ body: o.c || '#8A8F96', pants: '#4A4036', skin: o.skin || '#A86F48', hair: '#1A1410' }, o)); const st = g.userData.st;
+  st.head.add(mesh(G.sph(.28, 18, 12, 0, Math.PI * 2, 0, Math.PI * .5), '#F2C14E', [0, .06, 0], { mat: { flatShading: false } })); st.head.add(mesh(G.cyl(.33, .33, .03, 18), '#F2C14E', [0, .06, 0]));
+  st.body.add(mesh(new THREE.TorusGeometry(.13, .035, 6, 14), '#FFFFFF', [0, .45, 0], { rot: [Math.PI / 2, 0, 0], cast: false })); return g;
+}
+export function termos(parent, p, s = 1) {   // termos air panas bekas: badan merah pudar, tutup abu, pegangan
+  const g = group(parent, p); g.scale.setScalar(s); const SM = { flatShading: false }; g.add(mesh(G.cyl(.13, .14, .42, 16), '#C8584A', [0, .21, 0], { mat: SM })); g.add(mesh(G.cyl(.1, .13, .08, 16), '#9AA0A8', [0, .46, 0], { mat: SM }));
+  g.add(mesh(G.cyl(.04, .04, .06, 10), '#7E8A90', [0, .52, 0])); g.add(mesh(new THREE.TorusGeometry(.08, .015, 6, 12, Math.PI), '#4E5A66', [0, .34, -.14], { rot: [0, 0, 0] })); g.add(mesh(G.box(.18, .08, .002), '#F2E6C8', [0, .22, .14], { cast: false })); return g;
+}
+export function gelas(parent, p, isi = true) { const g = group(parent, p); g.add(mesh(G.cyl(.05, .038, .12, 12), '#EAF2F6', [0, .06, 0], { mat: { transparent: true, opacity: .75, flatShading: false } })); if (isi) g.add(mesh(G.cyl(.046, .04, .09, 12), '#5A3220', [0, .05, 0], { cast: false })); return g }
+export function renceng(parent, p, c = '#5A3220', n = 10) {   // renceng kopi sachet: deret bungkus kecil menjuntai
+  const g = group(parent, p); for (let i = 0; i < n; i++) { g.add(mesh(G.box(.1, .12, .015), c, [0, -i * .125, 0], { cast: false })); g.add(mesh(G.box(.1, .03, .016), '#F2C14E', [0, -i * .125 + .03, 0], { cast: false })) } return g;
+}
+export function lapakGrosir(parent, p) {   // lapak grosir pinggir jalan: rak, tumpukan dus, renceng kopi warna-warni bergantungan, terpal biru
+  const g = group(parent, p); g.add(mesh(G.box(5, 3, 2.6), '#E8E2D6', [0, 1.5, -1.3])); g.add(mesh(G.box(5.6, .12, 3.6), '#2E7BC0', [0, 3.05, -.6], { rot: [-.12, 0, 0], cast: false }));
+  [-2.6, 2.6].forEach(x => g.add(mesh(G.box(.1, 3, .1), '#8A8A8A', [x, 1.5, 1.1])));
+  const C = ['#5A3220', '#C8302A', '#2E6FB0', '#F2C14E', '#2E9C6A', '#8E5AA8']; for (let i = 0; i < 18; i++) g.add(renceng(g, [-2.3 + i * .27, 2.85, 1.05], C[i % 6], 7 + (i % 3)));
+  for (let r = 0; r < 3; r++) for (let i = 0; i < 7; i++) g.add(mesh(G.box(.55, .38, .45), ['#C9A36B', '#B8915A', '#D9B67E'][(i + r) % 3], [-1.8 + i * .6, .19 + r * .39, -.4]));
+  g.add(mesh(G.box(3.4, .9, .7), '#A86B35', [0, .45, .55])); const pp = canvasPlane(3.2, .6, papanTeks('GROSIR SEMBAKO', '#C8302A', '#FFE27A'), 600); pp.position.set(0, 3.45, 1.25); g.add(pp); g.add(mesh(G.box(3.4, .7, .06), '#8A1E1A', [0, 3.45, 1.2])); return g;
+}
