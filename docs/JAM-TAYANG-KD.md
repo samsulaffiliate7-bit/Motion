@@ -61,3 +61,6 @@ Blok: A 07:00-08:59, B 09:00-11:59, C 12:00-13:59, D 14:00-16:59, E 17:00-19:59,
 | 2026-11-21 | denah | s1aturan | TikTok | 12:17 | C | 6affd1ccb49d09cff2e03571 |
 | 2026-11-21 | denah | s1aturan | YouTube | 12:52 | C | 6affd1ccb49d09cff2e035a6 |
 | 2026-11-21 | denah | s1aturan | IG | 13:34 | C | 6affd1cdb49d09cff2e035dc |
+| 2026-11-22 | denah | s1e01 | TikTok | 18:14 | E | 6b00f11117cee9b9de5a9105 |
+| 2026-11-22 | denah | s1e01 | IG | 18:52 | E | 6b00f11217cee9b9de5a9142 |
+| 2026-11-22 | denah | s1e01 | YouTube | 19:37 | E | 6b00f11317cee9b9de5a9195 |
