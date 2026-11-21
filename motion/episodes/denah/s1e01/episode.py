@@ -49,4 +49,5 @@ SCENES = [
          say="Ada yang komen: rumah *betang*. Rumah panjang dari Kalimantan, bisa seratus lima puluh meter, buat ratusan orang. Rumah kedua kita: *Betang*, *Gadang*, atau *Honai*?"),
 ]
 END_PAD = 1.0
+SPLIT_SHIFT = {1: 1}   # "rumah Kampung" ikut s2 (cek_potongan 21 Nov)
 CONFIG_OVERRIDE = {"style": "rumahdunia", "theme": {"look": "premium", "figure": "stick", "exposure": 1.15}}
