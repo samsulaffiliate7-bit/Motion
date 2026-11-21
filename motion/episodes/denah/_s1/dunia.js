@@ -89,6 +89,12 @@ export function rumahMini(parent, p, kind) {   // maket rumah Jawa: joglo (atap 
     const b = new THREE.Mesh(new THREE.CylinderGeometry(.02, .32, .5, 4), mat(R)); b.rotation.y = Math.PI / 4; b.scale.set(1, 1, .8); b.position.y = 1.18; g.add(b) }
   if (kind === 'limasan') { const a = new THREE.Mesh(new THREE.CylinderGeometry(.05, .85, .55, 4), mat(R)); a.rotation.y = Math.PI / 4; a.scale.set(1.25, 1, .8); a.position.y = .9; g.add(a) }
   if (kind === 'kampung') { const s = new THREE.Shape(); s.moveTo(-.55, 0); s.lineTo(0, .45); s.lineTo(.55, 0); s.lineTo(-.55, 0); const e = new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 1.2, bevelEnabled: false }), mat(R)); e.rotation.y = Math.PI / 2; e.position.set(-.6, .62, 0); e.castShadow = true; g.add(e) }
+  if (kind === 'betang') { g.children.slice(1).forEach(c => c.visible = false); [-1, 1].forEach(z => [-1.1, -.55, 0, .55, 1.1].forEach(x => g.add(mesh(G.box(.05, .45, .05), '#6A4A2A', [x * .55, .28, z * .3]))));
+    g.add(mesh(G.box(1.3, .32, .55), '#A87A4A', [0, .66, 0])); const s = new THREE.Shape(); s.moveTo(-.38, 0); s.lineTo(0, .3); s.lineTo(.38, 0); s.lineTo(-.38, 0); const e = new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 1.4, bevelEnabled: false }), mat('#6E4A2C')); e.rotation.y = Math.PI / 2; e.position.set(-.7, .82, 0); g.add(e); g.add(mesh(G.box(.14, .4, .04), '#6A4A2A', [0, .28, .36], { rot: [.5, 0, 0] })) }
+  if (kind === 'gadang') { g.children.slice(1).forEach(c => c.visible = false); g.add(mesh(G.box(1.0, .4, .6), '#8A5A34', [0, .5, 0])); [-.45, -.15, .15, .45].forEach(x => [-.25, .25].forEach(z => g.add(mesh(G.box(.05, .3, .05), '#6A4A2A', [x, .15, z]))));
+    const R2 = '#3A3A36'; [-1, 1].forEach(sx => { const h = mesh(G.cone(.12, .62, 6), R2, [sx * .62, 1.12, 0], { rot: [0, 0, -sx * .55] }); g.add(h) }); [-1, 1].forEach(sx => g.add(mesh(G.box(.62, .07, .7), R2, [sx * .3, .9 + .0, 0], { rot: [0, 0, sx * .28] })));
+    g.add(mesh(G.cone(.1, .5, 6), R2, [0, 1.12, 0])) }
+  if (kind === 'honai') { g.children.slice(1).forEach(c => c.visible = false); g.add(mesh(G.cyl(.45, .45, .5, 16), '#8A6A4A', [0, .33, 0])); g.add(mesh(G.sph(.6, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), '#B8A06A', [0, .55, 0], { s: [1, 1.1, 1] })); g.add(mesh(G.box(.18, .26, .04), '#3A2A1A', [0, .2, .45])) }
   g.traverse(o => { if (o.isMesh) o.castShadow = true }); return g;
 }
 
@@ -211,12 +217,12 @@ export function rumahKampung(parent, p, o = {}) {
 }
 // deretan rumah kampung kecil (instanced) untuk "like = tempat tinggal"; tampil(n) menampilkan n rumah pertama
 export function kampungBanyak(sc, n, o = {}) {
-  const R = RNG(o.seed || 5), body = inst(new THREE.BoxGeometry(1, 1, 1), n), roof = inst(new THREE.CylinderGeometry(.62, .62, 1, 3), n), pos = [];
+  const R = RNG(o.seed || 5), body = inst(new THREE.BoxGeometry(1, 1, 1), n), tri = new THREE.Shape(); tri.moveTo(-.5, 0); tri.lineTo(0, .5); tri.lineTo(.5, 0); tri.lineTo(-.5, 0); const tg = new THREE.ExtrudeGeometry(tri, { depth: 1, bevelEnabled: false }); tg.translate(0, 0, -.5); tg.rotateY(Math.PI / 2); const roof = inst(tg, n), pos = [];
   const cx = o.cx ?? 0, cz = o.cz ?? -14, cols = o.cols || 12, sx = o.sx || 4.2, sz = o.sz || 4.6;
   for (let i = 0; i < n; i++) { const c = i % cols, r = Math.floor(i / cols); pos.push([cx + (c - (cols - 1) / 2) * sx + (r % 2) * sx / 2, cz - r * sz]) }
   const O = new THREE.Object3D(), col = new THREE.Color();
   const set = (i, k) => { const [x, z] = pos[i]; const s = Math.max(.001, k); O.position.set(x, .7 * s, z); O.rotation.set(0, 0, 0); O.scale.set(2.6, 1.4 * s, 2.1); O.updateMatrix(); body.setMatrixAt(i, O.matrix);
-    O.position.set(x, 1.4 * s + .45 * s, z); O.rotation.set(0, 0, Math.PI / 2); O.rotation.y = 0; O.scale.set(.85 * s, 3.0, 2.2); O.updateMatrix(); roof.setMatrixAt(i, O.matrix) };
+    O.position.set(x, 1.4 * s, z); O.rotation.set(0, 0, 0); O.scale.set(3.0, 1.8 * s, 2.6); O.updateMatrix(); roof.setMatrixAt(i, O.matrix) };
   for (let i = 0; i < n; i++) { set(i, 1); body.setColorAt(i, col.set(grade(['#E2CC98', '#D8BE86', '#E8D6A8'][Math.floor(R() * 3)]))); roof.setColorAt(i, col.set(grade(['#B5452B', '#A83E26', '#C25A34'][Math.floor(R() * 3)]))) }
   sc.add(body); sc.add(roof);
   return { pos, tampil: (t, t0, dt) => { for (let i = 0; i < n; i++) set(i, E.back(seg(t, t0 + i * dt, t0 + i * dt + .3))); body.instanceMatrix.needsUpdate = roof.instanceMatrix.needsUpdate = true } };
