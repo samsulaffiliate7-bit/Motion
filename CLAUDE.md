@@ -61,6 +61,7 @@ Baca dulu:
 - Caption: emas, outline cokelat tua; kata kunci `*...*` di naskah jadi putih; muncul KATA PER KATA mengikuti suara.
 - Label AI platform aktif di TikTok dan YouTube. YouTube publik. IG dibagikan ke feed.
 - Video dikompres CRF 23 (keputusan pemilik 9 Nov).
+- JANGAN pasang komentar pertama otomatis (`firstComment` Repliz harus kosong) di semua akun. Pemilik memasangnya sendiri lewat AI lain (keputusan pemilik 21 Nov).
 - ATM dari referensi: ambil struktur hook, tempo, jenis visual. Jangan salin cerita, tokoh, atau aset.
 - Jangan sebut orang, partai, perusahaan, atau instansi nyata. Fakta nyata wajib bersumber (simpan di `episode.py`).
 - Model 3D dari luar hanya yang lisensinya bebas (cek dan catat dulu).
