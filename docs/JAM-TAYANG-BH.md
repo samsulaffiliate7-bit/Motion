@@ -120,3 +120,4 @@ Aturan isi jadwal baru:
 | 2026-11-21 | hewan | s1aturan | IG | 18:36 | E | 6affcb71c3733bf16aa9fe4c | |
 | 2026-11-21 | hewan | s1aturan | TikTok | 19:03 | E | 6affcb72b49d09cff2de7628 | |
 | 2026-11-21 | hewan | s1aturan | YouTube | 19:31 | E | 6affcb73c3733bf16aa9fe85 | |
+| 2026-11-22 | hewan | s1e01 | IG | 10:37 | B | 6b00e6a58669ba106e77c549 | cover |
