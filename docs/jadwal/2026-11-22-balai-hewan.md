@@ -12,4 +12,4 @@ Rencana jam (tidak bentrok dengan Dompet/Meja 22 Nov): Balai TikTok 12:23 · YT 
 | balai-s1e01 | 16:07 | YouTube | D | tidak | BELUM |
 | balai-s1e01 | 18:41 | IG | E | ya | BELUM |
 
-File Repliz: hewan-s1e01.mp4 6b00e68eb8fe316ea06baff7 · cover-hewan-s1e01.jpg 6b00e5008669ba106e7752d3 · cover-balai-s1e01.jpg 6b00e4f58669ba106e7750e1.
+File Repliz: balai-s1e01.mp4 6b00eb74b8fe316ea06cf76e · hewan-s1e01.mp4 6b00e68eb8fe316ea06baff7 · cover-hewan-s1e01.jpg 6b00e5008669ba106e7752d3 · cover-balai-s1e01.jpg 6b00e4f58669ba106e7750e1.
