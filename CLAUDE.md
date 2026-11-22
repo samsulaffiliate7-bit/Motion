@@ -61,6 +61,7 @@ Baca dulu:
 - Caption: emas, outline cokelat tua; kata kunci `*...*` di naskah jadi putih; muncul KATA PER KATA mengikuti suara.
 - Label AI platform aktif di TikTok dan YouTube. YouTube publik. IG dibagikan ke feed.
 - Video dikompres CRF 23 (keputusan pemilik 9 Nov).
+- DENAH dan HEWAN DILIBURKAN di SEMUA platform (TikTok, IG, YouTube) mulai 23 Nov 2026 (keputusan pemilik 22 Nov). Jangan produksi, TTS, atau jadwalkan episode baru dua akun itu sampai pemilik menyuruh lanjut. Jadwal lama dibiarkan.
 - IG Denah dan IG Hewan DIBATASI Instagram sampai Desember 2026 (21 Nov diretas lewat sesi browser Windows yang dicuri, 4 story penipuan crypto; posting API ditolak "The Instagram account is restricted"). Selama dibatasi: episode baru Denah/Hewan JANGAN dijadwalkan ke IG (cukup TikTok + YouTube). Jadwal IG yang sudah ada dibiarkan, jangan diubah/dihapus (pemilik, 22 Nov). Nyalakan lagi hanya kalau pemilik bilang status IG sudah normal.
 - JANGAN pasang komentar pertama otomatis (`firstComment` Repliz harus kosong) di semua akun. Pemilik memasangnya sendiri lewat AI lain (keputusan pemilik 21 Nov).
 - ATM dari referensi: ambil struktur hook, tempo, jenis visual. Jangan salin cerita, tokoh, atau aset.
