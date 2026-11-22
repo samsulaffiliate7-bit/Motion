@@ -192,3 +192,21 @@ export function lapakGrosir(parent, p) {   // lapak grosir pinggir jalan: rak, t
   for (let r = 0; r < 3; r++) for (let i = 0; i < 7; i++) g.add(mesh(G.box(.55, .38, .45), ['#C9A36B', '#B8915A', '#D9B67E'][(i + r) % 3], [-1.8 + i * .6, .19 + r * .39, -.4]));
   g.add(mesh(G.box(3.4, .9, .7), '#A86B35', [0, .45, .55])); const pp = canvasPlane(3.2, .6, papanTeks('GROSIR SEMBAKO', '#C8302A', '#FFE27A'), 600); pp.position.set(0, 3.45, 1.25); g.add(pp); g.add(mesh(G.box(3.4, .7, .06), '#8A1E1A', [0, 3.45, 1.2])); return g;
 }
+
+// ==== tambahan Ep 2 (22 Nov): Tono sales grosir + pikap, anak sekolah, kopi susu cup ====
+export function tono(p, o = {}) {   // Tono: sales grosir, kemeja biru muda, topi, tas pinggang, senyum lebar
+  const g = person(o.parent, p, Object.assign({ body: '#8EC3E6', pants: '#3A3F46', skin: '#C98E64', hair: '#1A1410', hat: 'cap', hatC: '#F28C28' }, o)); const st = g.userData.st;
+  st.body.add(mesh(G.box(.3, .1, .14), '#2A2A2E', [0, -.08, .1], { cast: false })); return g;
+}
+export function anakSekolah(p, o = {}) {   // anak SD: kemeja putih, celana/rok merah, tas punggung
+  const g = person(o.parent, p, Object.assign({ body: '#FFFFFF', pants: '#C8302A', skin: o.skin || '#D9A07A', hair: '#1A1410' }, o)); g.scale.setScalar(.78);
+  g.userData.st.body.add(mesh(G.box(.26, .3, .12), o.tas || '#2E6FB0', [0, .2, -.17])); return g;
+}
+export function kopiSusu(parent, p) { const g = group(parent, p); g.add(mesh(G.cyl(.06, .046, .16, 14), '#EAF2F6', [0, .08, 0], { mat: { transparent: true, opacity: .7, flatShading: false } }));
+  g.add(mesh(G.cyl(.055, .046, .08, 14), '#8A5A3A', [0, .045, 0], { cast: false })); g.add(mesh(G.cyl(.058, .055, .05, 14), '#E8D2B0', [0, .11, 0], { cast: false })); g.add(mesh(G.cyl(.062, .062, .012, 14), '#FFFFFF', [0, .165, 0], { cast: false })); return g }
+export function pikap(parent, p, c = '#2E6FB0') {   // mobil bak terbuka pembawa dus grosir
+  const g = group(parent, p); g.add(mesh(G.box(1.7, .5, 4.2), '#3A3F46', [0, .55, 0])); g.add(mesh(G.box(1.7, 1.0, 1.4), c, [0, 1.25, 1.3])); g.add(mesh(G.box(1.6, .5, .05), '#9FD3E6', [0, 1.45, 2.01], { cast: false }));
+  [-.86, .86].forEach(x => g.add(mesh(G.box(.06, .45, 2.6), c, [x, 1.0, -.7]))); g.add(mesh(G.box(1.7, .45, .06), c, [0, 1.0, -2.0]));
+  for (let i = 0; i < 9; i++) g.add(mesh(G.box(.5, .4, .45), ['#C9A36B', '#B8915A', '#D9B67E'][i % 3], [-.5 + (i % 3) * .5, 1.0 + Math.floor(i / 3) * .1, -1.6 + Math.floor(i / 3) * .7]));
+  [[-.85, 1.3], [.85, 1.3], [-.85, -1.3], [.85, -1.3]].forEach(([x, z]) => g.add(mesh(G.cyl(.32, .32, .2, 14), '#1E1E1E', [x, .32, z], { rot: [0, 0, Math.PI / 2] }))); return g;
+}

@@ -255,3 +255,21 @@ export function masjid(parent, p, o = {}) {   // masjid kampung fiktif: aula kre
   for (let i = 0; i < 6; i++) g.add(mesh(G.box(.28, .05, .12), ['#2E6FB0', '#E5484D', '#3A3A3A', '#F2C14E'][i % 4], [2.6 + (i % 3) * .34, .55, 2.6 + Math.floor(i / 3) * .2], { cast: false }));
   g.add(mesh(G.box(11.6, .2, .6), '#CFC6B4', [0, .3, 3.4])); g.userData = { lamps, lantai: .52 }; return g;
 }
+
+// ==== tambahan Ep 2 (22 Nov): dapur belakang warteg (bak cuci, rak piring, menara piring) ====
+export function dapur(parent, p = [0, 0, 0]) {   // dapur terbuka di belakang warteg: lantai keramik, dinding rendah (kota terlihat di atasnya), bak cuci, keran, rak, peti
+  const g = group(parent, p); g.add(mesh(G.box(9, .08, 7), '#E8E2D6', [0, .04, 0], { cast: false })); for (let i = 0; i < 10; i++) g.add(mesh(G.box(.02, .085, 7), '#CFC6B4', [-4.5 + i, .043, 0], { cast: false }));
+  g.add(mesh(G.box(9, 2.4, .2), '#F4EFE2', [0, 1.2, -3.4])); g.add(mesh(G.box(9, .9, .21), '#9FD3C7', [0, .5, -3.39], { cast: false })); g.add(mesh(G.box(.2, 2.4, 7), '#F4EFE2', [-4.5, 1.2, 0]));
+  g.add(mesh(G.box(9.4, .14, 2.6), '#2E6FB0', [0, 2.7, -2.4], { rot: [-.12, 0, 0], cast: false }));
+  const bak = group(g, [0, 0, -2.6]); bak.add(mesh(G.box(1.8, .9, .8), '#B9C2CA', [0, .45, 0])); bak.add(mesh(G.box(1.6, .05, .6), '#7FC4E8', [0, .86, 0], { cast: false, mat: { emissive: '#7FC4E8', emissiveIntensity: .15 } }));
+  bak.add(mesh(G.cyl(.03, .03, .5, 8), '#9AA0A8', [0, 1.15, -.32])); bak.add(mesh(G.cyl(.03, .03, .3, 8), '#9AA0A8', [0, 1.38, -.18], { rot: [Math.PI / 2, 0, 0] }));
+  for (let i = 0; i < 12; i++) g.add(mesh(G.sph(.12 + (i % 3) * .03, 10, 8), '#FFFFFF', [-.6 + (i % 6) * .24, .92, -2.7 + Math.floor(i / 6) * .2], { s: [1, .5, 1], cast: false, mat: { transparent: true, opacity: .8 } }));
+  const rak = group(g, [2.4, 0, -3.1]); rak.add(mesh(G.box(1.4, .06, .4), '#9AA0A8', [0, 1.1, 0])); rak.add(mesh(G.box(1.4, .06, .4), '#9AA0A8', [0, 1.6, 0])); [-1, 1].forEach(s => rak.add(mesh(G.box(.05, 1.7, .05), '#7E8A90', [s * .68, .85, .18])));
+  for (let i = 0; i < 9; i++) rak.add(mesh(G.cyl(.18, .18, .02, 14), '#FFFFFF', [-.55 + i * .14, 1.3, 0], { rot: [0, 0, Math.PI / 2 - .2] }));
+  [[-2.8, -2.6, '#C9A36B'], [-3.3, -1.9, '#B8915A']].forEach(([x, z, c]) => g.add(mesh(G.box(.6, .5, .5), c, [x, .25, z])));
+  g.add(mesh(G.cyl(.3, .26, .7, 14), '#2E6FB0', [-1.7, .35, -2.7])); return g;
+}
+export function menaraPiring(parent, p, n = 40) {   // tumpukan piring; set(k) = jumlah piring tampil; condong(a) miring (rad)
+  const g = group(parent, p); const L = []; for (let i = 0; i < n; i++) { const m = mesh(G.cyl(.26, .22, .05, 14), i % 6 === 3 ? '#F2E6C8' : '#FFFFFF', [Math.sin(i * 1.7) * .03, .03 + i * .058, Math.cos(i * 1.3) * .03]); g.add(m); L.push(m) }
+  g.userData.set = k => L.forEach((m, i) => m.visible = i < k); g.userData.n = n; return g;
+}
