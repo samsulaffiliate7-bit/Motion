@@ -12,3 +12,6 @@ Pembanding (TANPA vidIQ), views ±24-48 jam, TikTok / IG / YouTube:
 ## Log harian
 | Tanggal | Kredit awal -> akhir | Riset | Dipakai di | Views 24-48 jam episode itu |
 |---|---|---|---|---|
+| 23 Nov | 142 -> 122 | outlier TikTok+IG 4 akun (hook, format, hashtag) | konsep Ep 3 | (isi 25 Nov) |
+
+Temuan lintas akun 23 Nov: hampir semua outlier pakai musik latar + efek suara (kita: tanpa musik, efek suara belum ada); pilihan penonton umumnya 2 opsi (A/B) tertulis besar; nomor episode/PART di hook; hook = hasil/akibat pilihan kemarin.
