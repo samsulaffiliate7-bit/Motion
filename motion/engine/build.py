@@ -241,6 +241,9 @@ def main():
         i = int(at * SR)
         for j, s in enumerate(pcm):
             buf[i + j] = max(-32768, min(32767, buf[i + j] + s))
+    if getattr(mod, "SFX", None):   # efek suara prosedural (engine/sfx.py), bukan musik
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import sfx as _sfx
+        _sfx.mix(buf, scenes, mod.SFX, SR, caps)
     w = wave.open(f"{outdir}/narration.wav", "wb"); w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes(struct.pack("<%dh" % len(buf), *buf)); w.close()
 

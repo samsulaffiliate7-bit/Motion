@@ -15,3 +15,5 @@ Pembanding (TANPA vidIQ), views ±24-48 jam, TikTok / IG / YouTube:
 | 23 Nov | 142 -> 122 | outlier TikTok+IG 4 akun (hook, format, hashtag) | konsep Ep 3 | (isi 25 Nov) |
 
 Temuan lintas akun 23 Nov: hampir semua outlier pakai musik latar + efek suara (kita: tanpa musik, efek suara belum ada); pilihan penonton umumnya 2 opsi (A/B) tertulis besar; nomor episode/PART di hook; hook = hasil/akibat pilihan kemarin.
+
+24 Nov (catatan sesi produksi Kades): Kades Ep 3 "Pipa dari Bukit" = episode PERTAMA yang dibuat dari riset vidIQ (detik 0 teks hasil besar + angka + EPISODE 3, slogan tetap, 1 sukses + 1 gagal lucu, A/B besar, efek suara prosedural, akhir loop ke kran). Tayang 24 Nov: IG 07:38, YouTube 11:17, TikTok 20:26 WIB.
