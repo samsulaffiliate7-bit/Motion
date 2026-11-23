@@ -154,6 +154,40 @@ def chunks(sentence, size=4):
     return out
 
 
+# ---- efek suara (boleh sejak Ep 3, pemilik 23 Nov; MUSIK tetap tidak) ----
+# Disintesis prosedural (tanpa aset luar). Pakai di SCENES: sfx=[("kata", "kentongan"), (1.2, "ketuk", .8)]
+#   isyarat = kata di narasi adegan itu (bunyi pas kata itu diucapkan) atau detik dari awal adegan; vol opsional (1 = default).
+def _sfx_gen(name):
+    import math, random
+    rnd = random.Random(7); out = []
+    def add(t0, dur, f):
+        i0 = int(t0 * SR); n = int(dur * SR)
+        while len(out) < i0 + n: out.append(0.0)
+        for j in range(n): out[i0 + j] += f(j / SR)
+    def hit_wood(t0, f0=430, f1=1060, tau=.11):   # kentongan: dua mode kayu + klik
+        add(t0, .6, lambda x: math.exp(-x / tau) * (.7 * math.sin(2 * math.pi * f0 * x) + .35 * math.sin(2 * math.pi * f1 * x)) + (rnd.uniform(-1, 1) * .5 * math.exp(-x / .006)))
+    def thud(t0, f0=95, tau=.07, nz=.35):   # ketukan pintu kayu: dentum rendah + derak
+        add(t0, .35, lambda x: math.exp(-x / tau) * (math.sin(2 * math.pi * f0 * x * (1 + .4 * math.exp(-x / .02))) + .4 * math.sin(2 * math.pi * 2.3 * f0 * x)) + rnd.uniform(-1, 1) * nz * math.exp(-x / .012))
+    def noise(t0, dur, env, lp=.15):   # derau tersaring (lowpass 1 kutub)
+        st = [0.0]
+        def f(x):
+            st[0] += lp * (rnd.uniform(-1, 1) - st[0]); return st[0] * env(x) * 3
+        add(t0, dur, f)
+    if name == "kentongan":
+        for k, t in enumerate([0, .26, .52, 1.0, 1.26, 1.52]): hit_wood(t, 430 - k % 3 * 8)
+    elif name == "ketuk":
+        for t in [0, .34, .68]: thud(t)
+    elif name == "byur":   # jatuh ke parit berair: dentum + cipratan
+        thud(0, 70, .12, .2); noise(.02, .9, lambda x: min(1, x / .03) * math.exp(-x / .25), .35)
+    elif name == "wus":    # panah melesat
+        noise(0, .45, lambda x: math.sin(math.pi * x / .45) ** 2, .5); thud(.42, 160, .04, .5)
+    elif name == "gali":   # cangkul masuk tanah, tiga kali
+        for t in [0, .45, .9]: thud(t, 120, .05, .6); noise(t, .2, lambda x: math.exp(-x / .05), .25)
+    else: sys.exit(f"sfx tidak dikenal: {name}")
+    pk = max(abs(x) for x in out) or 1
+    return [x / pk for x in out]
+
+
 def main():
     acc, ep = sys.argv[1], sys.argv[2]
     key = os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY")
@@ -208,7 +242,7 @@ def main():
             seg = split_full(full, [says[i] for i in g], getattr(mod, "SPLIT_SHIFT", None) if len(groups) == 1 else None) if len(g) > 1 else [full]
             pcms += [trim(p) for p in seg]
 
-    scenes, caps, t, clips = [], [], 0.0, []
+    scenes, caps, t, clips, sfxs = [], [], 0.0, [], []
     for (sc, marked, say), pcm in zip(items, pcms):
         dur_a = len(pcm) / SR
         dur = LEAD + dur_a + TAIL
@@ -228,6 +262,15 @@ def main():
             for x in wl: wt.append(round(acc_t, 3)); acc_t += d * x / wsum
             caps.append(dict(t0=round(cur, 3), t1=round(cur + d, 3), text=" ".join(w for w, _ in p),
                              words=[[w, h, tw] for (w, h), tw in zip(p, wt)])); cur += d
+        words = [(w.lower().strip(".,!?:;\"'*()"), tw) for c in caps if c["t0"] >= t for w, _, tw in c["words"]]
+        for cue in sc.get("sfx", []):
+            q, nm, vol = (list(cue) + [1])[:3]
+            if isinstance(q, str):
+                hit = [tw for w, tw in words if w.startswith(q.lower())]
+                if not hit: sys.exit(f"sfx {nm}: kata '{q}' tidak ada di adegan {sc['id']}")
+                ts = hit[0]
+            else: ts = t + q
+            sfxs.append((round(ts, 3), nm, vol))
         scenes.append(dict(id=sc["id"], type=sc["type"], variant=sc.get("variant"), kicker=sc["kicker"], sub=sc["sub"],
                            start=round(t, 3), dur=round(dur, 3), data={k: v[k] for k in sc["data"]}, say=say))
         t += dur + GAP
@@ -244,12 +287,16 @@ def main():
     if getattr(mod, "SFX", None):   # efek suara prosedural (engine/sfx.py), bukan musik
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import sfx as _sfx
         _sfx.mix(buf, scenes, mod.SFX, SR, caps)
+    for ts, nm, vol in sfxs:   # efek suara di bawah narasi (puncak ~0,3 skala penuh x vol)
+        i = int(ts * SR)
+        for j, x in enumerate(_sfx_gen(nm)):
+            if i + j < len(buf): buf[i + j] = max(-32768, min(32767, buf[i + j] + int(x * 9800 * vol)))
     w = wave.open(f"{outdir}/narration.wav", "wb"); w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes(struct.pack("<%dh" % len(buf), *buf)); w.close()
 
     tl = dict(w=1080, h=1920, fps=30, duration=total, theme=cfg["theme"], style=cfg["style"], engine="3d",
               brand=dict(name=cfg["name"], handle=cfg["handle"], tagline=cfg["tagline"], disclaimer=cfg["disclaimer"], logo=cfg.get("logo")),
-              scenes=scenes, caps=caps, vars=v, draft=draft)
+              scenes=scenes, caps=caps, vars=v, draft=draft, sfx=[dict(t=a, name=b, vol=c) for a, b, c in sfxs])
     if os.path.exists(f"{epdir}/shots.js"): tl["shots"] = f"episodes/{acc}/{ep}/shots.js"   # shot 3D khusus episode ini
     json.dump(tl, open(f"{outdir}/timeline.json", "w"), ensure_ascii=False, indent=1)
     print(f"timeline ok: {len(scenes)} adegan, {total}s -> {outdir}")

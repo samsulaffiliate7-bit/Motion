@@ -124,6 +124,7 @@ Baca dulu:
 - Render memakai CRF 23 (keputusan pemilik 9 Nov). Rotasi suara: `tts.pool` di config, dipilih lewat `META["suara"]` (Balai: Charon, Achird, Algenib; Hewan: Algenib, Puck, Achird; semua dinilai logat natural).
 - Kalender topik: `docs/KALENDER-BH.md` (musiman sampai 31 Des; detail 2 minggu). Tokoh tamu Hewan: Ular, Beo, Bunglon, Merak, Ayam, Rakun (usulan penonton).
 - Format terakhir. Balai 12 Nov: Kalkulator Warga, Liputan Darurat, Siaran Pers Balai. Hewan 12 Nov: Pepatah Baru, Senjata Makan Tuan, Hewan di Sekitarmu.
+- Jam tayang Balai (pemilik 23 Nov): ROTASI tiap hari, campur blok per platform; IG jangan malam terus. Pilih blok yang paling jarang dipakai platform itu (hitung dari docs/JAM-TAYANG-BH.md), jam per platform beda dari hari sebelumnya.
 - 20 Nov: Season 1 (docs/KONSEP-S1.md) dimulai. Balai "Desa Terakhir" (zombie, Gilang; suara Charon) dan Hewan "Kerajaan Berdasi" (MMORPG, Belang; suara Algenib): `s1aturan` + `s1e00` jadi (render, cek potongan OK). Dunia season `episodes/<akun>/_s1/dunia.js`; gaya layar baru `engine/w3d/zombie.js` (Balai) dan `engine/w3d/rpg.js` (Hewan, `setHUD` untuk ubah gold/XP) dipilih lewat `CONFIG_OVERRIDE["style"]`. `TEMPO` di episode.py (mis. 1.07) mempercepat audio tanpa panggilan TTS baru bila durasi > 75 dtk.
 - Saat GitHub di-suspend (9-14 Nov) kode juga dicadangkan di Artifact privat https://claude.ai/artifact/4kHjkq21Dag48gkXGHF5kL (inti + ep-*.txt). Sejak 14 Nov GitHub bisa lagi; repo ini sumber utama.
 
@@ -143,4 +144,4 @@ Baca dulu:
 - Stok siap render (naskah + TTS ada, belum render/unggah): kades sq04, kades hari008, denah lore04, denah hari008 (Denah Hari 8 = pajak lebar, klinik, target 200 like stadion).
 - Komentar banyak: pakai repliz_list_tiktok_comments (50/halaman + like per komentar); 1.000+ komentar dihitung dari sampel, catat metodenya di episode.py.
 - Di storage Repliz ada file uji pemilik (tes gpt, kades-hari007-sensus-warga, -v2-cepat, tes-gpt-denah-hari007-*): bukan dari sesi ini, jangan dipakai tanpa tanya.
-- Belum ada: efek suara, analisis mingguan pertama.
+- Efek suara ADA sejak 23 Nov (Balai Ep 3): `sfx=[("kata"|detik, "kentongan"|"ketuk"|"byur"|"wus"|"gali", vol)]` per adegan di episode.py, disintesis di build.py (tanpa aset luar, tanpa musik). Belum ada: analisis mingguan pertama.
