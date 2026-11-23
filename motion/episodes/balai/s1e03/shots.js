@@ -35,7 +35,7 @@ function sasaran(sc, p) { const g = group(sc, p); g.add(mesh(G.cyl(.7, .7, .25, 
 function perban(p, k = 0) { p.userData.st.arms[k].userData.elbow.add(mesh(G.cyl(.075, .075, .2, 10), '#F4F0E6', [0, -.16, 0])); p.userData.st.arms[k].add(mesh(G.cyl(.08, .08, .16, 10), '#E8E0CC', [0, -.2, 0])) }
 const DUO = (a, b, c) => `<div style="display:inline-block;background:rgba(30,42,28,.94);border-radius:14px;padding:12px 28px 16px;border-bottom:8px solid ${c};box-shadow:0 12px 28px #0000005c"><div style="font-size:60px;font-weight:800;color:${c}">${a}</div><div style="font-size:36px;font-weight:700;color:${BONE}">${b}</div></div>`;
 const LABEL = (root, a, b, top = 330, c = AMBER) => X.ab({ left: 60, top, width: 960, textAlign: 'center', opacity: 0, fontFamily: FONT }, root, DUO(a, b, c));
-const pin = (root, html, css = {}) => { const w = X.ab({ left: 0, top: 0 }, root); const e = TAG(w, html, Object.assign({ position: 'relative', left: 0, top: 0, transform: 'translate(-50%,-100%)', fontSize: '36px' }, css)); return { w, e, at(obj, cam, off) { const [x, y] = X.proj(obj, cam, off); w.style.left = Math.max(220, Math.min(860, x)) + 'px'; w.style.top = y + 'px' } } };
+const pin = (root, html, css = {}) => { const w = X.ab({ left: 0, top: 0 }, root); const e = TAG(w, html, Object.assign({ position: 'relative', left: 0, top: 0, transform: 'translate(-50%,-100%)', fontSize: '36px' }, css)); return { w, e, at(obj, cam, off) { const [x, y] = X.proj(obj, cam, off); w.style.left = Math.max(320, Math.min(760, x)) + 'px'; w.style.top = y + 'px' } } };
 
 export const SHOTS = {
   B3_HOOK(s, root) {   // detik 0: kentongan + EPISODE 3 · KALIAN PILIH DUA-DUANYA; alun-alun terbelah dua kelompok (A biru, B kuning)
@@ -120,7 +120,7 @@ export const SHOTS = {
     return { scene: sc, cam, upd(t, dur) { const tt = at(s, 'Tok', 1), tb = at(s, 'balik', dur * .55), tl = at(s, 'Lengannya', dur * .75); R.pose(t);
       const st = R.userData.st, kn = t > tt && t < tt + 1.1; st.arms[1].rotation.x = kn ? -1.6 + Math.abs(Math.sin((t - tt) * Math.PI / .34)) * .5 : 0; st.arms[0].rotation.x = -.5; st.arms[0].userData.elbow.rotation.x = -1.2;
       let cp, cl; if (t < tb) { const p = ease(t, 0, tb); cp = LERP3([2, 7, RF + 16], [1.8, 2.2, RF + 6], p); cl = LERP3([0, 2, RF], [.3, 1.6, RF + 1], p) }
-      else { const p = ease(t, tb, tl + .4); cp = LERP3([1.8, 2.2, RF + 6], [1.6, 1.5, RF + 2.9], p); cl = LERP3([.3, 1.6, RF + 1], [.2, 1.1, RF + 1.1], p) }
+      else { const p = ease(t, tb, tl + .4); cp = LERP3([1.8, 2.2, RF + 6], [2.3, 1.7, RF + 4.2], p); cl = LERP3([.3, 1.6, RF + 1], [.1, 1.2, RF + 1.1], p) }
       cam.position.set(...cp); cam.lookAt(...cl); show(jam, seg(t, .1, .4) * (1 - seg(t, tt - .2, tt))); pulse(tok, seg(t, tt, tt + .3) * (1 - seg(t, tb - .3, tb)));
       pb.e.style.opacity = seg(t, tl, tl + .3); pb.at(st.arms[0].userData.elbow, cam, [0, .2, 0]) } };
   },
