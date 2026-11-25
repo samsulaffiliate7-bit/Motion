@@ -1,536 +1,545 @@
 {
-  "_catatan": "File video di storage Repliz (diunggah 6 Nov 2026). Pakai url ini saat menjadwalkan. Jangan hapus otomatis; peringatan saat terpakai 85%. Jadwal ep001 tetap memakai link raw GitHub (sudah terjadwal sebelum storage aktif).",
-  "meja-ep002": {
-    "id": "6aed7a4c440c3fc9ce854f22",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ecf9c0d9-dd32-4662-b688-325b0739528b.mp4"
-  },
-  "meja-ep003": {
-    "id": "6aed7a4d440c3fc9ce854f3a",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6add90d9-4d31-47c5-b26c-c0a883491148.mp4"
-  },
-  "dompet-ep002": {
-    "id": "6aed7a4e078a2fff7805dcd4",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/606a2390-fad3-4734-8eb4-66ef61744152.mp4"
-  },
-  "dompet-ep003": {
-    "id": "6aed7a4ed02ee1307b0bb770",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f984ce99-1dde-4ed0-ae26-8e9164e9ca62.mp4"
-  },
-  "hewan-ep002": {
-    "id": "6aed7a4f440c3fc9ce854f8c",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/fe5082e9-468f-41d1-b662-b3ea163cd8c6.mp4"
-  },
-  "hewan-ep003": {
-    "id": "6aed7a50b28924f89e246dbe",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/8ac92144-0d4c-492e-b477-17bc336b653e.mp4"
-  },
-  "balai-ep002": {
-    "id": "6aed7a51d02ee1307b0bb7d1",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6599600b-0fda-4294-a72d-f73401aab00f.mp4"
-  },
-  "balai-ep003": {
-    "id": "6aed7a52b28924f89e246e2b",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e661b9b7-e9ee-4b40-b2a6-9cb7cbbd0213.mp4"
-  },
-  "denah-ep002": {
-    "id": "6aed7a52d02ee1307b0bb827",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2e355b91-0f54-452b-a6c9-2384ca169e9e.mp4"
-  },
-  "denah-ep003": {
-    "id": "6aed7a53d02ee1307b0bb853",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/3cd46985-b64d-4801-8f8e-43d5c3ebfd39.mp4"
-  },
-  "kades-sela01": {
-    "id": "6aed7a54d02ee1307b0bb892",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ac07fc53-afe4-4edc-b673-00d5c3490f3b.mp4"
-  },
-  "kades-sela02": {
-    "id": "6aed7a2c440c3fc9ce854869",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6b7fdf35-e025-4dfa-bd41-0609a8e2c347.mp4"
-  },
-  "dompet-ep001": {
-    "id": "6aed89df078a2fff7808f1ab",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/af3f5ecc-20b2-4a68-ad80-425b4073a65c.mp4"
-  },
-  "meja-ep001": {
-    "id": "6aed89df078a2fff7808f1e3",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2f762747-7f98-4482-90ed-fd8e78258ac3.mp4"
-  },
-  "denah-ep001": {
-    "id": "6aed89e0d02ee1307b0ecefb",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2cf72afe-3897-4bd6-88b2-35b88b7c25dc.mp4"
-  },
-  "kades-ep001": {
-    "id": "6aed89e1d02ee1307b0ecf44",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e4a8713f-8794-4580-bb14-72e61b12d276.mp4"
-  },
-  "balai-ep001": {
-    "id": "6aed89e2440c3fc9ce8a2f38",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/01da532b-a518-4e66-933d-0f88d5c7ca13.mp4"
-  },
-  "hewan-ep001": {
-    "id": "6aed89e3078a2fff7808f280",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/eded21b7-65bc-4e6b-aabd-b8ed1ba0e4a1.mp4"
-  },
-  "denah-hari001": {
-    "id": "6aedcab623a292c34ba5e256",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bf2f7110-c493-4bfe-961b-edef56e247ad.mp4"
-  },
-  "denah-info01": {
-    "id": "6aedcab70b73a29be6abd703",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/3e18efa1-cf40-4d37-b745-aca357d247e2.mp4"
-  },
-  "balai-papan": {
-    "id": "6aedcab897f59f4753d370bd",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/365d4ae5-2efe-4741-95ae-eb712ae0607c.mp4"
-  },
-  "balai-lapangan": {
-    "id": "6aedcab923a292c34ba5e2e0",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/66ddcba9-c017-4611-9cc1-237ada3f07b7.mp4"
-  },
-  "meja-ep004": {
-    "id": "6aedcaba0b73a29be6abd7f6",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/0a823b80-3edc-4386-afbd-199b65477e4c.mp4"
-  },
-  "meja-ep005": {
-    "id": "6aedcaba23a292c34ba5e33e",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ca70a9c5-e49b-45dc-af25-a101a27d2b33.mp4"
-  },
-  "hewan-ep004": {
-    "id": "6aedcabb0b73a29be6abd8b8",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/a1a489b3-8cce-4161-a310-d96003af5136.mp4"
-  },
-  "hewan-ep005": {
-    "id": "6aedcabc97f59f4753d371cc",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bd5831a8-5916-4392-8765-972f05ca3f61.mp4"
-  },
-  "dompet-ep004": {
-    "id": "6aedcabd0b73a29be6abd973",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/490729b8-953c-4486-a4b8-b11927b1cd45.mp4"
-  },
-  "dompet-ep005": {
-    "id": "6aedcabe73d33addc513f2f4",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/9dd81652-f21b-4a8c-8e5b-cb5993fab330.mp4"
-  },
-  "kades-sela03": {
-    "id": "6aedcabf73d33addc513f30b",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ffb3d2e6-2308-4ab2-a3de-d130ac9eca01.mp4"
-  },
-  "kades-hari002": {
-    "id": "6aedd50a0b73a29be6af233b",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/79584fee-8c2c-4f98-a880-bec20fdfa182.mp4"
-  },
-  "dompet-ep006": {
-    "id": "6aee0276dbf3fe82c310757f",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/aed0e2a7-ce80-4ffc-94bf-58962bdd3abb.mp4"
-  },
-  "meja-ep006": {
-    "id": "6aee0277c0184f720cee90a1",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/d8e5126f-8a6d-414b-8a5f-861153742cc1.mp4"
-  },
-  "hewan-ep006": {
-    "id": "6aee0278c0184f720cee90c6",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/d0aa1064-5cba-413e-b946-23b3318066db.mp4"
-  },
-  "balai-jalan": {
-    "id": "6aee02781e286deb260a1c79",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/7468e639-0927-4777-92f3-4991aff12bff.mp4"
-  },
-  "dompet-ep007": {
-    "id": "6aee6a649088ef51eefe5dcf",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f3336f10-7ab1-437b-9834-fca935152445.mp4"
-  },
-  "meja-ep007": {
-    "id": "6aee6a659088ef51eefe5df3",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/59512419-18db-4778-b1b5-cb7f836d8a82.mp4"
-  },
-  "hewan-ep007": {
-    "id": "6aee6a661e286deb2626c568",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/3bdf8a0d-9fcc-438c-97f8-4ed3b1ff2e7b.mp4"
-  },
-  "balai-viral": {
-    "id": "6aee6a66dbf3fe82c3210c0d",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ed03f42c-892e-427a-9553-66dd49dfae36.mp4"
-  },
-  "dompet-ep008": {
-    "id": "6aefc3abda78ffe5f9fc98e9",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/a96c7bdd-c86e-45a8-8335-e369afbc988f.mp4"
-  },
-  "dompet-ep009": {
-    "id": "6aefc3acab5593483d0e7c98",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/85c31487-a7b9-484f-96f7-76597ca27e13.mp4"
-  },
-  "dompet-ep010": {
-    "id": "6aefc3ad6fd3743dbc8e70e5",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/c56fed77-352a-4ac1-ace5-438336630eba.mp4"
-  },
-  "meja-ep008": {
-    "id": "6aefc3ad7f909f4bfd570c73",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/79000225-60cd-498d-ade5-d7cdabaf2870.mp4"
-  },
-  "meja-ep009": {
-    "id": "6aefc3ae7f909f4bfd570c87",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/adf96c8a-c4ce-4a96-8d37-eae5ffa04722.mp4"
-  },
-  "meja-ep010": {
-    "id": "6aefc3af6fd3743dbc8e7104",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/7729b2e8-b2b0-4cf3-8e1d-26d72e998d3c.mp4"
-  },
-  "dompet-ep011": {
-    "id": "6af186ae5fd2afe1bccd39ca",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e692eef7-273d-44da-a1e7-901bd05f9c90.mp4"
-  },
-  "dompet-ep012": {
-    "id": "6af1b493857d5ad8aa9bc97c",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/9f61f800-b763-49f4-b68e-f4ece00398cb.mp4"
-  },
-  "dompet-ep013": {
-    "id": "6af1b493774114a8ae8ac320",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f07cb3de-8771-46eb-8ae0-8efcde270899.mp4"
-  },
-  "meja-ep011": {
-    "id": "6af1b494857d5ad8aa9bc9ce",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/22d9de25-e6d2-48cc-bd49-127581272f59.mp4"
-  },
-  "meja-ep012": {
-    "id": "6af1b4953ca9d6127c6190fc",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/aebea088-a95c-4f59-84b1-2e28092ecd96.mp4"
-  },
-  "meja-ep013": {
-    "id": "6af1b497fa8dfae463b57491",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/64deeffd-7eb5-441c-93c4-183ee20ebb7f.mp4"
-  },
-  "dompet-ep014": {
-    "id": "6af2d9ed26438e85cad4d6cf",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/b36e16bc-9477-48b5-963a-8135ad83f641.mp4"
-  },
-  "dompet-ep015": {
-    "id": "6af2dab5c3224fa2c56b34e9",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/62b63a85-6afa-4fd5-85a8-5e2a290bdaba.mp4"
-  },
-  "dompet-ep016": {
-    "id": "6af30c59717841e194b3f607",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4eaf4e8b-9a71-49c7-a2b8-0b46b68e3cc0.mp4"
-  },
-  "meja-ep014": {
-    "id": "6af30c5a717841e194b3f636",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/fb40656c-d2cf-47b6-9a31-894a54e858b2.mp4"
-  },
-  "meja-ep015": {
-    "id": "6af30c5a1ea65c2f4ef12102",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e01a3ff6-b2dd-41f7-80c6-b5fe1609c833.mp4"
-  },
-  "meja-ep016": {
-    "id": "6af30c5b717841e194b3f68a",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/fe5932bd-ce54-4243-873c-d5bdd54ef0a6.mp4"
-  },
-  "kades-sq01": {
-    "id": "6aefc3b16fd3743dbc8e7118",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1a3618e1-9743-424e-b608-36583d9b4223.mp4"
-  },
-  "denah-lore01": {
-    "id": "6aefc3b2da78ffe5f9fc99af",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/623222ae-6a11-449c-85bb-18d1ecde9c49.mp4"
-  },
-  "kades-sq02": {
-    "id": "6aefc3b2da78ffe5f9fc99c2",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bd55b617-bbce-42e3-91e0-262eab9bcedc.mp4"
-  },
-  "denah-lore02": {
-    "id": "6aefc3b36fd3743dbc8e7179",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/c4c3a716-b112-4481-ad85-26601a04b057.mp4"
-  },
-  "denah-hari002": {
-    "id": "6af131184a19c979adc370c1",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4ba8259c-729e-4b73-969e-16383afc6940.mp4"
-  },
-  "kades-hari003": {
-    "id": "6af180f35fd2afe1bccb6fbe",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/439422b3-55c4-4041-9e58-d81fec4360c5.mp4",
-    "catatan": "v2 CRF23 'dua hari lagi'; v1 6af139fc0eafe0d5e61ab5f7 tidak dipakai"
-  },
-  "denah-hari003": {
-    "id": "6af180f5857d5ad8aa8ece59",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/b7d0dbda-d04a-45de-8c23-5440f11c50b8.mp4",
-    "catatan": "v2; v1 6af14046cd29759e2527dcc2 tidak dipakai"
-  },
-  "kades-hari004": {
-    "id": "6af180f4774114a8ae7dc16c",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/058f820d-94cd-4d78-a836-2f181f1b5e27.mp4",
-    "catatan": "v2; v1 6af1404733dd8a45d34079cc tidak dipakai"
-  },
-  "denah-hari004": {
-    "id": "6af1404833dd8a45d34079fe",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/735876d8-a654-4c0a-b2ba-57072c59d814.mp4"
-  },
-  "kades-hari005": {
-    "id": "6af1c5373ca9d6127c66505c",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/313ef9ec-1557-4178-bda6-e19f46e59e08.mp4"
-  },
-  "kades-sq03": {
-    "id": "6af1c5383ca9d6127c6650b4",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/9d444da6-b921-499d-a56c-13e971beacb4.mp4"
-  },
-  "kades-hari006": {
-    "id": "6af1c539fa8dfae463b97f8c",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/c5fae52a-0afa-42f1-8d41-6bf06a79f6ea.mp4"
-  },
-  "denah-hari005": {
-    "id": "6af1c53a3ca9d6127c665132",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/5fdf46ff-658a-488d-8ddb-cef51703fa29.mp4"
-  },
-  "denah-lore03": {
-    "id": "6af1c53bfa8dfae463b98009",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6a6ccb9f-ef86-42a6-8835-5ee9ce5e7d5b.mp4"
-  },
-  "denah-hari006": {
-    "id": "6af1c53c774114a8ae8ed692",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/99e4972a-356e-49d7-9ac1-43c8187e4b24.mp4"
-  },
-  "kades-hari007": {
-    "id": "6af7ce2e196cb78532e1e9c5",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/8e94a2f2-8a86-4c8f-9a32-1c7c4921334b.mp4"
-  },
-  "denah-hari007": {
-    "id": "6af7e4517bdd9bc6440d5411",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/57a4d1dd-4c0f-449f-b377-54be2c73dad7.mp4"
-  },
-  "balai-iuran": {
-    "id": "6aefc3b07f909f4bfd570cc2",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2cf48343-c4a6-4532-b7b9-02ba04acbe85.mp4"
-  },
-  "balai-baliho": {
-    "id": "6aefc3b16fd3743dbc8e7120",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/30c003c3-d29c-41b1-8ccf-264b0e1f5e41.mp4"
-  },
-  "balai-sumur": {
-    "id": "6aefc3b27f909f4bfd570ce4",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/b71cb3bb-dd77-43bb-bee7-35e454e51f2d.mp4"
-  },
-  "hewan-ep008": {
-    "id": "6aefc3b36fd3743dbc8e715c",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/75a94bb9-1571-4255-a858-d0bb0e54cd0d.mp4"
-  },
-  "hewan-ep009": {
-    "id": "6aefc3b3da78ffe5f9fc99df",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2ce2700a-07f7-4199-b108-e5297a314567.mp4"
-  },
-  "hewan-ep010": {
-    "id": "6aefc3b46fd3743dbc8e71ac",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/a3947b93-57ad-4bb2-8535-961bd9e4dfaf.mp4"
-  },
-  "balai-surat": {
-    "id": "6af1bd05857d5ad8aa9dd9e1",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f21ff59d-f2c4-4113-9062-2cb5788de0ae.mp4"
-  },
-  "balai-musyawarah": {
-    "id": "6af1bd06857d5ad8aa9dda3d",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4877b250-9679-405d-94fc-991ef7c0e0ff.mp4"
-  },
-  "balai-bibit": {
-    "id": "6af1bd07fa8dfae463b77eb6",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/d0f31979-2efa-4316-aca2-034a3b675a33.mp4"
-  },
-  "hewan-ep011": {
-    "id": "6af1c537fa8dfae463b97f40",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4c830207-726a-49a3-b41a-46025ea50bf9.mp4"
-  },
-  "hewan-ep012": {
-    "id": "6af1c538774114a8ae8ed5cf",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/de8b5df5-11dc-42fb-b1ac-65a51209086c.mp4"
-  },
-  "hewan-ep013": {
-    "id": "6af1c5393ca9d6127c6650e1",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/76bab0fe-395f-4b39-a25e-9214dbadc69d.mp4"
-  },
-  "balai-bazar": {
-    "id": "6af310edc3224fa2c5767564",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/b0d744a6-a50e-4322-a130-4e61c6e7850a.mp4"
-  },
-  "balai-asap": {
-    "id": "6af310eec3224fa2c5767590",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/88a6db16-ad5a-43ab-ac8d-3a37d2935622.mp4"
-  },
-  "balai-lomba": {
-    "id": "6af310efc3224fa2c57675a9",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e300af3d-1b00-4830-aeff-532a38ae02da.mp4"
-  },
-  "hewan-ep014": {
-    "id": "6af3181ec3224fa2c577fa67",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f0f70aef-d109-4b36-bc5f-37831673650e.mp4"
-  },
-  "hewan-ep015": {
-    "id": "6af3181f1ea65c2f4ef39809",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/9d4ec2cd-13f3-4f97-94b2-e1600461ade8.mp4"
-  },
-  "hewan-ep016": {
-    "id": "6af3181fc80112b9e13d6174",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4bd48843-2f12-4a44-89c3-5cae0642fcd5.mp4"
-  },
-  "balai-s1e00": {
-    "id": "6affcb0e857c4e01109481c7",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/19b98012-36bf-483e-a534-c10b2804ce05.mp4"
-  },
-  "balai-s1aturan": {
-    "id": "6affcb0fb49d09cff2de5b9f",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1f33a140-1514-43c9-80eb-497e5eafe195.mp4"
-  },
-  "hewan-s1e00": {
-    "id": "6affcb10b49d09cff2de5bd4",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/522b7bd6-7a80-456a-b563-225f10637fe1.mp4"
-  },
-  "hewan-s1aturan": {
-    "id": "6affcb11c3733bf16aa9e535",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/928d5e0f-043c-41c3-8871-724060e1315b.mp4"
-  },
-  "dompet-s1e00": {
-    "id": "6affcb2ac3733bf16aa9ebd5",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/d6b05aaf-6225-407d-a112-2e10d6178de8.mp4"
-  },
-  "dompet-s1aturan": {
-    "id": "6affcb2ab49d09cff2de6297",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/63d1c787-ac26-4630-b4b5-0a77c3420be2.mp4"
-  },
-  "meja-s1e00": {
-    "id": "6affcb2bc3733bf16aa9ec3d",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1a570302-2fb2-47e7-9836-214f702b3af6.mp4"
-  },
-  "meja-s1aturan": {
-    "id": "6affcb2cb49d09cff2de62fb",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f18d9fbd-35a7-45fc-b86d-d3950a43c645.mp4"
-  },
-  "denah-s1e00": {
-    "id": "6affd191b49d09cff2e02725",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f8e0d48d-362b-4954-b0e0-bd35b3331d84.mp4",
-    "size": 19995443
-  },
-  "denah-s1aturan": {
-    "id": "6affd1a0b49d09cff2e02ab8",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/0bc9a020-1f20-49e0-80fb-ec5275557e9e.mp4",
-    "size": 17679970
-  },
-  "kades-s1e00": {
-    "id": "6affd1b4c3733bf16aabb841",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/8de0a959-6e0a-4be9-a47c-248a29f1c2d7.mp4"
-  },
-  "kades-s1aturan": {
-    "id": "6affd1b5c3733bf16aabb87b",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f8fd2d53-c0e6-4ded-865d-3215e9753c4c.mp4"
-  },
-  "kades-s1e01": {
-    "id": "6b00638989930392f93ceafe",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/aafb58ae-27be-4618-bfc9-cc2baf80d96d.mp4"
-  },
-  "cover-kades-s1e01": {
-    "id": "6b00638a89930392f93ceb30",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/65c16fa0-d9b0-4341-bc9a-eaf1c246e66f.jpg"
-  },
-  "dompet-s1e01": {
-    "id": "6b00e3aa17cee9b9de56d8cf",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/339779da-8a75-4adc-b18f-c67793f62dfb.mp4"
-  },
-  "meja-s1e01": {
-    "id": "6b00e3aa17cee9b9de56d911",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/dff47484-24a7-4f82-8249-b03ae6460fe2.mp4"
-  },
-  "cover-dompet-s1e01": {
-    "id": "6b00e3ab8669ba106e77013f",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/04204fbc-17db-497e-9d4a-5520b0c178d8.jpg"
-  },
-  "cover-meja-s1e01": {
-    "id": "6b00e3ac17cee9b9de56d9aa",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bd5ecf3e-7b01-4da7-967e-3530b190f7fa.jpg"
-  },
-  "balai-s1e01": {
-    "id": "6b00eb74b8fe316ea06cf76e",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/10804d32-1113-4782-bdfe-7aab52bd2a6b.mp4",
-    "cover": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ec5cc74e-ccd3-4140-9efa-c5331e56715a.jpg"
-  },
-  "hewan-s1e01": {
-    "id": "6b00e68eb8fe316ea06baff7",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/daa671c6-d7a7-4e49-8822-395ad3874642.mp4",
-    "cover": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6acfa740-b9cd-4244-88c5-4da322b5ea5e.jpg"
-  },
-  "denah-s1e01": {
-    "id": "6b00f0f017cee9b9de5a8527",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/89f8000f-6d95-4d71-885b-6eaa59613a3a.mp4",
-    "size": 15516304
-  },
-  "cover-denah-s1e01": {
-    "id": "6b00f0f117cee9b9de5a8559",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e8189b27-3b3b-40f8-b8cd-876692829321.jpg",
-    "size": 208416
-  },
-  "balai-s1e02": {
-    "id": "6b0301c917cee9b9def5ba47",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1c07b9b1-3cb0-4e31-903d-b742bfd12b7c.mp4",
-    "cover": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ab946d79-f76b-4163-88e7-43fe81c5d389.jpg"
-  },
-  "kades-s1e02": {
-    "id": "6b0304228669ba106e167680",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/88ea96b2-fd45-46c4-86f1-c188d7adf42d.mp4",
-    "size": 16116516
-  },
-  "cover-kades-s1e02": {
-    "id": "6b0304238669ba106e1676df",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/56275382-90b0-4f9a-92ef-c7f4e3c6a6fe.jpg",
-    "size": 211938
-  },
-  "dompet-s1e02": {
-    "id": "6b030db117cee9b9def927d9",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/0c8ff0b2-8f98-4c85-a8ed-63495e37f359.mp4",
-    "size": 10775733
-  },
-  "meja-s1e02": {
-    "id": "6b030db217cee9b9def92815",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/137de07b-513e-4108-98e3-307fca327f79.mp4",
-    "size": 11797544
-  },
-  "cover-dompet-s1e02": {
-    "id": "6b030db3b8fe316ea00d1ed5",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2b60e3f2-9d8d-4abc-a79d-352301d7124e.jpg",
-    "size": 213367
-  },
-  "cover-meja-s1e02": {
-    "id": "6b030db48669ba106e192637",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1cbe4f82-e16b-4c63-bee7-59e88107333c.jpg",
-    "size": 193040
-  },
-  "kades-s1e03": {
-    "id": "6b04b1e96de5c953fc143cd2",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/de1a3e9b-575f-4fd7-ae54-2ab073e20023.mp4"
-  },
-  "cover-kades-s1e03": {
-    "id": "6b04b1ea517417f14c10fc51",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4a50bd84-dba3-4120-aab2-5d1df2327257.jpg"
-  },
-  "balai-s1e03": {
-    "id": "6b04b6a1c8120ffff366a380",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/070810d8-4a41-4135-94cc-42c8dbb14730.mp4",
-    "cover": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/5cacf842-ae89-4e37-8694-08336d2525b1.jpg"
-  },
-  "cover-balai-s1e03": {
-    "id": "6b04b260517417f14c111332",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/5cacf842-ae89-4e37-8694-08336d2525b1.jpg"
-  },
-  "dompet-s1e03": {
-    "id": "6b04e829715a56788b6a5a9e",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bc0fa98b-c723-4802-a2dc-696a381407f5.mp4",
-    "size": 9626186
-  },
-  "meja-s1e03": {
-    "id": "6b04e82a715a56788b6a5af8",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e6e29034-20eb-49fb-9e6b-edf4e5603c8f.mp4",
-    "size": 9798128
-  },
-  "cover-dompet-s1e03": {
-    "id": "6b04e82b1ff1f3b957177822",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/26debc67-1876-4116-98d4-9bf95198a3a7.jpg",
-    "size": 152513
-  },
-  "cover-meja-s1e03": {
-    "id": "6b04e82c6298b72d1221ff46",
-    "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/c6703e0d-afd7-47c7-9bb6-dbd79e4663c9.jpg",
-    "size": 165016
-  }
+ "_catatan": "File video di storage Repliz (diunggah 6 Nov 2026). Pakai url ini saat menjadwalkan. Jangan hapus otomatis; peringatan saat terpakai 85%. Jadwal ep001 tetap memakai link raw GitHub (sudah terjadwal sebelum storage aktif).",
+ "meja-ep002": {
+  "id": "6aed7a4c440c3fc9ce854f22",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ecf9c0d9-dd32-4662-b688-325b0739528b.mp4"
+ },
+ "meja-ep003": {
+  "id": "6aed7a4d440c3fc9ce854f3a",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6add90d9-4d31-47c5-b26c-c0a883491148.mp4"
+ },
+ "dompet-ep002": {
+  "id": "6aed7a4e078a2fff7805dcd4",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/606a2390-fad3-4734-8eb4-66ef61744152.mp4"
+ },
+ "dompet-ep003": {
+  "id": "6aed7a4ed02ee1307b0bb770",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f984ce99-1dde-4ed0-ae26-8e9164e9ca62.mp4"
+ },
+ "hewan-ep002": {
+  "id": "6aed7a4f440c3fc9ce854f8c",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/fe5082e9-468f-41d1-b662-b3ea163cd8c6.mp4"
+ },
+ "hewan-ep003": {
+  "id": "6aed7a50b28924f89e246dbe",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/8ac92144-0d4c-492e-b477-17bc336b653e.mp4"
+ },
+ "balai-ep002": {
+  "id": "6aed7a51d02ee1307b0bb7d1",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6599600b-0fda-4294-a72d-f73401aab00f.mp4"
+ },
+ "balai-ep003": {
+  "id": "6aed7a52b28924f89e246e2b",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e661b9b7-e9ee-4b40-b2a6-9cb7cbbd0213.mp4"
+ },
+ "denah-ep002": {
+  "id": "6aed7a52d02ee1307b0bb827",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2e355b91-0f54-452b-a6c9-2384ca169e9e.mp4"
+ },
+ "denah-ep003": {
+  "id": "6aed7a53d02ee1307b0bb853",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/3cd46985-b64d-4801-8f8e-43d5c3ebfd39.mp4"
+ },
+ "kades-sela01": {
+  "id": "6aed7a54d02ee1307b0bb892",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ac07fc53-afe4-4edc-b673-00d5c3490f3b.mp4"
+ },
+ "kades-sela02": {
+  "id": "6aed7a2c440c3fc9ce854869",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6b7fdf35-e025-4dfa-bd41-0609a8e2c347.mp4"
+ },
+ "dompet-ep001": {
+  "id": "6aed89df078a2fff7808f1ab",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/af3f5ecc-20b2-4a68-ad80-425b4073a65c.mp4"
+ },
+ "meja-ep001": {
+  "id": "6aed89df078a2fff7808f1e3",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2f762747-7f98-4482-90ed-fd8e78258ac3.mp4"
+ },
+ "denah-ep001": {
+  "id": "6aed89e0d02ee1307b0ecefb",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2cf72afe-3897-4bd6-88b2-35b88b7c25dc.mp4"
+ },
+ "kades-ep001": {
+  "id": "6aed89e1d02ee1307b0ecf44",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e4a8713f-8794-4580-bb14-72e61b12d276.mp4"
+ },
+ "balai-ep001": {
+  "id": "6aed89e2440c3fc9ce8a2f38",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/01da532b-a518-4e66-933d-0f88d5c7ca13.mp4"
+ },
+ "hewan-ep001": {
+  "id": "6aed89e3078a2fff7808f280",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/eded21b7-65bc-4e6b-aabd-b8ed1ba0e4a1.mp4"
+ },
+ "denah-hari001": {
+  "id": "6aedcab623a292c34ba5e256",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bf2f7110-c493-4bfe-961b-edef56e247ad.mp4"
+ },
+ "denah-info01": {
+  "id": "6aedcab70b73a29be6abd703",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/3e18efa1-cf40-4d37-b745-aca357d247e2.mp4"
+ },
+ "balai-papan": {
+  "id": "6aedcab897f59f4753d370bd",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/365d4ae5-2efe-4741-95ae-eb712ae0607c.mp4"
+ },
+ "balai-lapangan": {
+  "id": "6aedcab923a292c34ba5e2e0",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/66ddcba9-c017-4611-9cc1-237ada3f07b7.mp4"
+ },
+ "meja-ep004": {
+  "id": "6aedcaba0b73a29be6abd7f6",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/0a823b80-3edc-4386-afbd-199b65477e4c.mp4"
+ },
+ "meja-ep005": {
+  "id": "6aedcaba23a292c34ba5e33e",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ca70a9c5-e49b-45dc-af25-a101a27d2b33.mp4"
+ },
+ "hewan-ep004": {
+  "id": "6aedcabb0b73a29be6abd8b8",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/a1a489b3-8cce-4161-a310-d96003af5136.mp4"
+ },
+ "hewan-ep005": {
+  "id": "6aedcabc97f59f4753d371cc",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bd5831a8-5916-4392-8765-972f05ca3f61.mp4"
+ },
+ "dompet-ep004": {
+  "id": "6aedcabd0b73a29be6abd973",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/490729b8-953c-4486-a4b8-b11927b1cd45.mp4"
+ },
+ "dompet-ep005": {
+  "id": "6aedcabe73d33addc513f2f4",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/9dd81652-f21b-4a8c-8e5b-cb5993fab330.mp4"
+ },
+ "kades-sela03": {
+  "id": "6aedcabf73d33addc513f30b",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ffb3d2e6-2308-4ab2-a3de-d130ac9eca01.mp4"
+ },
+ "kades-hari002": {
+  "id": "6aedd50a0b73a29be6af233b",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/79584fee-8c2c-4f98-a880-bec20fdfa182.mp4"
+ },
+ "dompet-ep006": {
+  "id": "6aee0276dbf3fe82c310757f",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/aed0e2a7-ce80-4ffc-94bf-58962bdd3abb.mp4"
+ },
+ "meja-ep006": {
+  "id": "6aee0277c0184f720cee90a1",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/d8e5126f-8a6d-414b-8a5f-861153742cc1.mp4"
+ },
+ "hewan-ep006": {
+  "id": "6aee0278c0184f720cee90c6",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/d0aa1064-5cba-413e-b946-23b3318066db.mp4"
+ },
+ "balai-jalan": {
+  "id": "6aee02781e286deb260a1c79",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/7468e639-0927-4777-92f3-4991aff12bff.mp4"
+ },
+ "dompet-ep007": {
+  "id": "6aee6a649088ef51eefe5dcf",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f3336f10-7ab1-437b-9834-fca935152445.mp4"
+ },
+ "meja-ep007": {
+  "id": "6aee6a659088ef51eefe5df3",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/59512419-18db-4778-b1b5-cb7f836d8a82.mp4"
+ },
+ "hewan-ep007": {
+  "id": "6aee6a661e286deb2626c568",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/3bdf8a0d-9fcc-438c-97f8-4ed3b1ff2e7b.mp4"
+ },
+ "balai-viral": {
+  "id": "6aee6a66dbf3fe82c3210c0d",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ed03f42c-892e-427a-9553-66dd49dfae36.mp4"
+ },
+ "dompet-ep008": {
+  "id": "6aefc3abda78ffe5f9fc98e9",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/a96c7bdd-c86e-45a8-8335-e369afbc988f.mp4"
+ },
+ "dompet-ep009": {
+  "id": "6aefc3acab5593483d0e7c98",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/85c31487-a7b9-484f-96f7-76597ca27e13.mp4"
+ },
+ "dompet-ep010": {
+  "id": "6aefc3ad6fd3743dbc8e70e5",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/c56fed77-352a-4ac1-ace5-438336630eba.mp4"
+ },
+ "meja-ep008": {
+  "id": "6aefc3ad7f909f4bfd570c73",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/79000225-60cd-498d-ade5-d7cdabaf2870.mp4"
+ },
+ "meja-ep009": {
+  "id": "6aefc3ae7f909f4bfd570c87",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/adf96c8a-c4ce-4a96-8d37-eae5ffa04722.mp4"
+ },
+ "meja-ep010": {
+  "id": "6aefc3af6fd3743dbc8e7104",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/7729b2e8-b2b0-4cf3-8e1d-26d72e998d3c.mp4"
+ },
+ "dompet-ep011": {
+  "id": "6af186ae5fd2afe1bccd39ca",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e692eef7-273d-44da-a1e7-901bd05f9c90.mp4"
+ },
+ "dompet-ep012": {
+  "id": "6af1b493857d5ad8aa9bc97c",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/9f61f800-b763-49f4-b68e-f4ece00398cb.mp4"
+ },
+ "dompet-ep013": {
+  "id": "6af1b493774114a8ae8ac320",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f07cb3de-8771-46eb-8ae0-8efcde270899.mp4"
+ },
+ "meja-ep011": {
+  "id": "6af1b494857d5ad8aa9bc9ce",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/22d9de25-e6d2-48cc-bd49-127581272f59.mp4"
+ },
+ "meja-ep012": {
+  "id": "6af1b4953ca9d6127c6190fc",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/aebea088-a95c-4f59-84b1-2e28092ecd96.mp4"
+ },
+ "meja-ep013": {
+  "id": "6af1b497fa8dfae463b57491",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/64deeffd-7eb5-441c-93c4-183ee20ebb7f.mp4"
+ },
+ "dompet-ep014": {
+  "id": "6af2d9ed26438e85cad4d6cf",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/b36e16bc-9477-48b5-963a-8135ad83f641.mp4"
+ },
+ "dompet-ep015": {
+  "id": "6af2dab5c3224fa2c56b34e9",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/62b63a85-6afa-4fd5-85a8-5e2a290bdaba.mp4"
+ },
+ "dompet-ep016": {
+  "id": "6af30c59717841e194b3f607",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4eaf4e8b-9a71-49c7-a2b8-0b46b68e3cc0.mp4"
+ },
+ "meja-ep014": {
+  "id": "6af30c5a717841e194b3f636",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/fb40656c-d2cf-47b6-9a31-894a54e858b2.mp4"
+ },
+ "meja-ep015": {
+  "id": "6af30c5a1ea65c2f4ef12102",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e01a3ff6-b2dd-41f7-80c6-b5fe1609c833.mp4"
+ },
+ "meja-ep016": {
+  "id": "6af30c5b717841e194b3f68a",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/fe5932bd-ce54-4243-873c-d5bdd54ef0a6.mp4"
+ },
+ "kades-sq01": {
+  "id": "6aefc3b16fd3743dbc8e7118",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1a3618e1-9743-424e-b608-36583d9b4223.mp4"
+ },
+ "denah-lore01": {
+  "id": "6aefc3b2da78ffe5f9fc99af",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/623222ae-6a11-449c-85bb-18d1ecde9c49.mp4"
+ },
+ "kades-sq02": {
+  "id": "6aefc3b2da78ffe5f9fc99c2",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bd55b617-bbce-42e3-91e0-262eab9bcedc.mp4"
+ },
+ "denah-lore02": {
+  "id": "6aefc3b36fd3743dbc8e7179",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/c4c3a716-b112-4481-ad85-26601a04b057.mp4"
+ },
+ "denah-hari002": {
+  "id": "6af131184a19c979adc370c1",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4ba8259c-729e-4b73-969e-16383afc6940.mp4"
+ },
+ "kades-hari003": {
+  "id": "6af180f35fd2afe1bccb6fbe",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/439422b3-55c4-4041-9e58-d81fec4360c5.mp4",
+  "catatan": "v2 CRF23 'dua hari lagi'; v1 6af139fc0eafe0d5e61ab5f7 tidak dipakai"
+ },
+ "denah-hari003": {
+  "id": "6af180f5857d5ad8aa8ece59",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/b7d0dbda-d04a-45de-8c23-5440f11c50b8.mp4",
+  "catatan": "v2; v1 6af14046cd29759e2527dcc2 tidak dipakai"
+ },
+ "kades-hari004": {
+  "id": "6af180f4774114a8ae7dc16c",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/058f820d-94cd-4d78-a836-2f181f1b5e27.mp4",
+  "catatan": "v2; v1 6af1404733dd8a45d34079cc tidak dipakai"
+ },
+ "denah-hari004": {
+  "id": "6af1404833dd8a45d34079fe",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/735876d8-a654-4c0a-b2ba-57072c59d814.mp4"
+ },
+ "kades-hari005": {
+  "id": "6af1c5373ca9d6127c66505c",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/313ef9ec-1557-4178-bda6-e19f46e59e08.mp4"
+ },
+ "kades-sq03": {
+  "id": "6af1c5383ca9d6127c6650b4",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/9d444da6-b921-499d-a56c-13e971beacb4.mp4"
+ },
+ "kades-hari006": {
+  "id": "6af1c539fa8dfae463b97f8c",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/c5fae52a-0afa-42f1-8d41-6bf06a79f6ea.mp4"
+ },
+ "denah-hari005": {
+  "id": "6af1c53a3ca9d6127c665132",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/5fdf46ff-658a-488d-8ddb-cef51703fa29.mp4"
+ },
+ "denah-lore03": {
+  "id": "6af1c53bfa8dfae463b98009",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6a6ccb9f-ef86-42a6-8835-5ee9ce5e7d5b.mp4"
+ },
+ "denah-hari006": {
+  "id": "6af1c53c774114a8ae8ed692",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/99e4972a-356e-49d7-9ac1-43c8187e4b24.mp4"
+ },
+ "kades-hari007": {
+  "id": "6af7ce2e196cb78532e1e9c5",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/8e94a2f2-8a86-4c8f-9a32-1c7c4921334b.mp4"
+ },
+ "denah-hari007": {
+  "id": "6af7e4517bdd9bc6440d5411",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/57a4d1dd-4c0f-449f-b377-54be2c73dad7.mp4"
+ },
+ "balai-iuran": {
+  "id": "6aefc3b07f909f4bfd570cc2",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2cf48343-c4a6-4532-b7b9-02ba04acbe85.mp4"
+ },
+ "balai-baliho": {
+  "id": "6aefc3b16fd3743dbc8e7120",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/30c003c3-d29c-41b1-8ccf-264b0e1f5e41.mp4"
+ },
+ "balai-sumur": {
+  "id": "6aefc3b27f909f4bfd570ce4",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/b71cb3bb-dd77-43bb-bee7-35e454e51f2d.mp4"
+ },
+ "hewan-ep008": {
+  "id": "6aefc3b36fd3743dbc8e715c",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/75a94bb9-1571-4255-a858-d0bb0e54cd0d.mp4"
+ },
+ "hewan-ep009": {
+  "id": "6aefc3b3da78ffe5f9fc99df",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2ce2700a-07f7-4199-b108-e5297a314567.mp4"
+ },
+ "hewan-ep010": {
+  "id": "6aefc3b46fd3743dbc8e71ac",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/a3947b93-57ad-4bb2-8535-961bd9e4dfaf.mp4"
+ },
+ "balai-surat": {
+  "id": "6af1bd05857d5ad8aa9dd9e1",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f21ff59d-f2c4-4113-9062-2cb5788de0ae.mp4"
+ },
+ "balai-musyawarah": {
+  "id": "6af1bd06857d5ad8aa9dda3d",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4877b250-9679-405d-94fc-991ef7c0e0ff.mp4"
+ },
+ "balai-bibit": {
+  "id": "6af1bd07fa8dfae463b77eb6",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/d0f31979-2efa-4316-aca2-034a3b675a33.mp4"
+ },
+ "hewan-ep011": {
+  "id": "6af1c537fa8dfae463b97f40",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4c830207-726a-49a3-b41a-46025ea50bf9.mp4"
+ },
+ "hewan-ep012": {
+  "id": "6af1c538774114a8ae8ed5cf",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/de8b5df5-11dc-42fb-b1ac-65a51209086c.mp4"
+ },
+ "hewan-ep013": {
+  "id": "6af1c5393ca9d6127c6650e1",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/76bab0fe-395f-4b39-a25e-9214dbadc69d.mp4"
+ },
+ "balai-bazar": {
+  "id": "6af310edc3224fa2c5767564",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/b0d744a6-a50e-4322-a130-4e61c6e7850a.mp4"
+ },
+ "balai-asap": {
+  "id": "6af310eec3224fa2c5767590",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/88a6db16-ad5a-43ab-ac8d-3a37d2935622.mp4"
+ },
+ "balai-lomba": {
+  "id": "6af310efc3224fa2c57675a9",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e300af3d-1b00-4830-aeff-532a38ae02da.mp4"
+ },
+ "hewan-ep014": {
+  "id": "6af3181ec3224fa2c577fa67",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f0f70aef-d109-4b36-bc5f-37831673650e.mp4"
+ },
+ "hewan-ep015": {
+  "id": "6af3181f1ea65c2f4ef39809",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/9d4ec2cd-13f3-4f97-94b2-e1600461ade8.mp4"
+ },
+ "hewan-ep016": {
+  "id": "6af3181fc80112b9e13d6174",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4bd48843-2f12-4a44-89c3-5cae0642fcd5.mp4"
+ },
+ "balai-s1e00": {
+  "id": "6affcb0e857c4e01109481c7",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/19b98012-36bf-483e-a534-c10b2804ce05.mp4"
+ },
+ "balai-s1aturan": {
+  "id": "6affcb0fb49d09cff2de5b9f",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1f33a140-1514-43c9-80eb-497e5eafe195.mp4"
+ },
+ "hewan-s1e00": {
+  "id": "6affcb10b49d09cff2de5bd4",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/522b7bd6-7a80-456a-b563-225f10637fe1.mp4"
+ },
+ "hewan-s1aturan": {
+  "id": "6affcb11c3733bf16aa9e535",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/928d5e0f-043c-41c3-8871-724060e1315b.mp4"
+ },
+ "dompet-s1e00": {
+  "id": "6affcb2ac3733bf16aa9ebd5",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/d6b05aaf-6225-407d-a112-2e10d6178de8.mp4"
+ },
+ "dompet-s1aturan": {
+  "id": "6affcb2ab49d09cff2de6297",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/63d1c787-ac26-4630-b4b5-0a77c3420be2.mp4"
+ },
+ "meja-s1e00": {
+  "id": "6affcb2bc3733bf16aa9ec3d",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1a570302-2fb2-47e7-9836-214f702b3af6.mp4"
+ },
+ "meja-s1aturan": {
+  "id": "6affcb2cb49d09cff2de62fb",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f18d9fbd-35a7-45fc-b86d-d3950a43c645.mp4"
+ },
+ "denah-s1e00": {
+  "id": "6affd191b49d09cff2e02725",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f8e0d48d-362b-4954-b0e0-bd35b3331d84.mp4",
+  "size": 19995443
+ },
+ "denah-s1aturan": {
+  "id": "6affd1a0b49d09cff2e02ab8",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/0bc9a020-1f20-49e0-80fb-ec5275557e9e.mp4",
+  "size": 17679970
+ },
+ "kades-s1e00": {
+  "id": "6affd1b4c3733bf16aabb841",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/8de0a959-6e0a-4be9-a47c-248a29f1c2d7.mp4"
+ },
+ "kades-s1aturan": {
+  "id": "6affd1b5c3733bf16aabb87b",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/f8fd2d53-c0e6-4ded-865d-3215e9753c4c.mp4"
+ },
+ "kades-s1e01": {
+  "id": "6b00638989930392f93ceafe",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/aafb58ae-27be-4618-bfc9-cc2baf80d96d.mp4"
+ },
+ "cover-kades-s1e01": {
+  "id": "6b00638a89930392f93ceb30",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/65c16fa0-d9b0-4341-bc9a-eaf1c246e66f.jpg"
+ },
+ "dompet-s1e01": {
+  "id": "6b00e3aa17cee9b9de56d8cf",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/339779da-8a75-4adc-b18f-c67793f62dfb.mp4"
+ },
+ "meja-s1e01": {
+  "id": "6b00e3aa17cee9b9de56d911",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/dff47484-24a7-4f82-8249-b03ae6460fe2.mp4"
+ },
+ "cover-dompet-s1e01": {
+  "id": "6b00e3ab8669ba106e77013f",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/04204fbc-17db-497e-9d4a-5520b0c178d8.jpg"
+ },
+ "cover-meja-s1e01": {
+  "id": "6b00e3ac17cee9b9de56d9aa",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bd5ecf3e-7b01-4da7-967e-3530b190f7fa.jpg"
+ },
+ "balai-s1e01": {
+  "id": "6b00eb74b8fe316ea06cf76e",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/10804d32-1113-4782-bdfe-7aab52bd2a6b.mp4",
+  "cover": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ec5cc74e-ccd3-4140-9efa-c5331e56715a.jpg"
+ },
+ "hewan-s1e01": {
+  "id": "6b00e68eb8fe316ea06baff7",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/daa671c6-d7a7-4e49-8822-395ad3874642.mp4",
+  "cover": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/6acfa740-b9cd-4244-88c5-4da322b5ea5e.jpg"
+ },
+ "denah-s1e01": {
+  "id": "6b00f0f017cee9b9de5a8527",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/89f8000f-6d95-4d71-885b-6eaa59613a3a.mp4",
+  "size": 15516304
+ },
+ "cover-denah-s1e01": {
+  "id": "6b00f0f117cee9b9de5a8559",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e8189b27-3b3b-40f8-b8cd-876692829321.jpg",
+  "size": 208416
+ },
+ "balai-s1e02": {
+  "id": "6b0301c917cee9b9def5ba47",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1c07b9b1-3cb0-4e31-903d-b742bfd12b7c.mp4",
+  "cover": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/ab946d79-f76b-4163-88e7-43fe81c5d389.jpg"
+ },
+ "kades-s1e02": {
+  "id": "6b0304228669ba106e167680",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/88ea96b2-fd45-46c4-86f1-c188d7adf42d.mp4",
+  "size": 16116516
+ },
+ "cover-kades-s1e02": {
+  "id": "6b0304238669ba106e1676df",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/56275382-90b0-4f9a-92ef-c7f4e3c6a6fe.jpg",
+  "size": 211938
+ },
+ "dompet-s1e02": {
+  "id": "6b030db117cee9b9def927d9",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/0c8ff0b2-8f98-4c85-a8ed-63495e37f359.mp4",
+  "size": 10775733
+ },
+ "meja-s1e02": {
+  "id": "6b030db217cee9b9def92815",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/137de07b-513e-4108-98e3-307fca327f79.mp4",
+  "size": 11797544
+ },
+ "cover-dompet-s1e02": {
+  "id": "6b030db3b8fe316ea00d1ed5",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/2b60e3f2-9d8d-4abc-a79d-352301d7124e.jpg",
+  "size": 213367
+ },
+ "cover-meja-s1e02": {
+  "id": "6b030db48669ba106e192637",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/1cbe4f82-e16b-4c63-bee7-59e88107333c.jpg",
+  "size": 193040
+ },
+ "kades-s1e03": {
+  "id": "6b04b1e96de5c953fc143cd2",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/de1a3e9b-575f-4fd7-ae54-2ab073e20023.mp4"
+ },
+ "cover-kades-s1e03": {
+  "id": "6b04b1ea517417f14c10fc51",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4a50bd84-dba3-4120-aab2-5d1df2327257.jpg"
+ },
+ "balai-s1e03": {
+  "id": "6b04b6a1c8120ffff366a380",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/070810d8-4a41-4135-94cc-42c8dbb14730.mp4",
+  "cover": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/5cacf842-ae89-4e37-8694-08336d2525b1.jpg"
+ },
+ "cover-balai-s1e03": {
+  "id": "6b04b260517417f14c111332",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/5cacf842-ae89-4e37-8694-08336d2525b1.jpg"
+ },
+ "dompet-s1e03": {
+  "id": "6b04e829715a56788b6a5a9e",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/bc0fa98b-c723-4802-a2dc-696a381407f5.mp4",
+  "size": 9626186
+ },
+ "meja-s1e03": {
+  "id": "6b04e82a715a56788b6a5af8",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/e6e29034-20eb-49fb-9e6b-edf4e5603c8f.mp4",
+  "size": 9798128
+ },
+ "cover-dompet-s1e03": {
+  "id": "6b04e82b1ff1f3b957177822",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/26debc67-1876-4116-98d4-9bf95198a3a7.jpg",
+  "size": 152513
+ },
+ "cover-meja-s1e03": {
+  "id": "6b04e82c6298b72d1221ff46",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/c6703e0d-afd7-47c7-9bb6-dbd79e4663c9.jpg",
+  "size": 165016
+ },
+ "balai-s1e04": {
+  "id": "6b064cd48823b191449a7667",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/c3c90291-2014-4592-a708-a4e802a9a8d9.mp4",
+  "cover": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4671719b-718f-4c89-91e1-d601b4702c44.jpg"
+ },
+ "cover-balai-s1e04": {
+  "id": "6b064877b09c9905c628df18",
+  "url": "https://storage.repliz.com/uploads/6ad2daf7601f5a03619a471c/4671719b-718f-4c89-91e1-d601b4702c44.jpg"
+ }
 }
