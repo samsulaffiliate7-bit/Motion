@@ -181,6 +181,8 @@ def _sfx_gen(name):
         thud(0, 70, .12, .2); noise(.02, .9, lambda x: min(1, x / .03) * math.exp(-x / .25), .35)
     elif name == "wus":    # panah melesat
         noise(0, .45, lambda x: math.sin(math.pi * x / .45) ** 2, .5); thud(.42, 160, .04, .5)
+    elif name == "tancap":   # panah menancap: dentum pendek + getar
+        thud(0, 150, .035, .6); add(.01, .25, lambda x: .35 * math.exp(-x / .07) * math.sin(2 * math.pi * 240 * x) * math.sin(2 * math.pi * 18 * x))
     elif name == "gali":   # cangkul masuk tanah, tiga kali
         for t in [0, .45, .9]: thud(t, 120, .05, .6); noise(t, .2, lambda x: math.exp(-x / .05), .25)
     else: sys.exit(f"sfx tidak dikenal: {name}")
