@@ -135,3 +135,6 @@ Aturan isi jadwal baru:
 | 2026-11-25 | balai | s1e04 | YouTube | 12:47 | C | 6b064ceff4d392472123799b | |
 | 2026-11-25 | balai | s1e04 | IG | 14:23 | D | 6b064cf0b09c9905c62a620f | cover |
 | 2026-11-25 | balai | s1e04 | TikTok | 18:52 | E | 6b064cf1b09c9905c62a626d | cover |
+| 2026-11-26 | balai | s1e05 | TikTok | 16:24 | D | 6b079fd60c6249657a13cb04 | cover |
+| 2026-11-26 | balai | s1e05 | YouTube | 18:13 | E | 6b079fd78683099516d4384f | |
+| 2026-11-26 | balai | s1e05 | IG | 20:19 | F | 6b079fd88683099516d4387f | cover |
