@@ -183,6 +183,10 @@ def _sfx_gen(name):
         noise(0, .45, lambda x: math.sin(math.pi * x / .45) ** 2, .5); thud(.42, 160, .04, .5)
     elif name == "tancap":   # panah menancap: dentum pendek + getar
         thud(0, 150, .035, .6); add(.01, .25, lambda x: .35 * math.exp(-x / .07) * math.sin(2 * math.pi * 240 * x) * math.sin(2 * math.pi * 18 * x))
+    elif name == "detak":   # detak jantung tegang: lub-dub x4
+        for k in range(4): thud(k * .78, 55, .06, .05); thud(k * .78 + .2, 48, .05, .04)
+    elif name == "tik":     # jam hitung mundur: tik-tok x6
+        for k in range(6): add(k * .5, .06, lambda x, f=(2600 if k % 2 == 0 else 1900): math.exp(-x / .01) * math.sin(2 * math.pi * f * x))
     elif name == "gali":   # cangkul masuk tanah, tiga kali
         for t in [0, .45, .9]: thud(t, 120, .05, .6); noise(t, .2, lambda x: math.exp(-x / .05), .25)
     else: sys.exit(f"sfx tidak dikenal: {name}")
